@@ -21,10 +21,10 @@
     "next": "12.1.0",
     "next-i18next": "^13.0.2",
     "random-joke-getter": "^2.0.3",
-    "react": "17.0.2",
+    "react": "18.2.0",
     "react-chat-ui": "^0.4.0",
     "react-chatbot-kit": "^2.1.2",
-    "react-dom": "17.0.2"
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
     "eslint": "8.11.0",
