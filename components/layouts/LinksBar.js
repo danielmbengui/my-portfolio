@@ -37,7 +37,7 @@ function LinksBar() {
           anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
           variant="dot"
         >
-          <Avatar src="/moi.jpeg" sx={{ width: 50, height: 50 }} />
+          <Avatar src="/me.jpg" sx={{ width: 50, height: 50 }} />
         </StyledBadge>
       </Box>
 

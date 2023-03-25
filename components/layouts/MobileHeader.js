@@ -29,7 +29,7 @@ function MobileHeader() {
           anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
           variant="dot"
         >
-          <Avatar src="/moi.jpeg" sx={{ width: '50px', height: '50px' }} />
+          <Avatar src="/me.jpg" sx={{ width: '50px', height: '50px' }} />
         </StyledBadge>
       </Box>
 
