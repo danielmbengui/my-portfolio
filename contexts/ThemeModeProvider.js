@@ -44,7 +44,7 @@ export default function ThemeModeProvider({ children, themeMode }) {
                         ? {
                             // palette values for light mode
                             primary: deepOrange,
-                            divider: amber[200],
+                            divider: 'var(--primary)',
                             text: {
                                 primary: grey[900],
                                 secondary: grey[800],
@@ -53,7 +53,7 @@ export default function ThemeModeProvider({ children, themeMode }) {
                         : {
                             // palette values for dark mode
                             primary: deepOrange,
-                            divider: deepOrange[700],
+                            divider: 'var(--primary)',
                             text: {
                                 primary: '#fff',
                                 secondary: grey[500],

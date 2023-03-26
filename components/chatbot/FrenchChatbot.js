@@ -139,7 +139,7 @@ const [lang,] = useLangMode();
       //background:'cyan', 
       height:'90vh', 
       overflowY: 'auto',
-      pb:1
+      pb:3
       }}>
       <Chatbot
     className={styles}
