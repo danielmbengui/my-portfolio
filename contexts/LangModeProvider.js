@@ -10,8 +10,12 @@ export const LangModeProviderContext = createContext(null);
 
 export default function LangModeProvider({children, langMode}) {
     const { i18n } = useTranslation();
-    const [lang, setLang] = useState(DEFAULT_LANGAGE);
+    const [lang, setLang] = useState(langMode);
 const router = useRouter();
+
+useEffect(() => {
+setLang(langMode);
+}, [langMode])
 
 useEffect(() => {
   //console.log("ACTUAL locale website address DEFAULT lang", router.defaultLocale);
@@ -19,13 +23,14 @@ useEffect(() => {
   if (router.locale) {
     setLang(router.locale);
     //moment.locale(lang);
+    router.replace(router.asPath, router.asPath, { locale: router.locale })
   }
 }, [])
     
     useEffect(() => {
         //setLang(langMode);
         document.documentElement.setAttribute(STORAGE_LANG_MODE, lang);
-        i18n.changeLanguage(lang);
+        //i18n.changeLanguage(lang);
         window.localStorage.setItem(STORAGE_LANG_MODE, lang);
         router.replace(router.asPath, router.asPath, { locale: lang })
         moment.locale(lang);

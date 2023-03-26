@@ -1,5 +1,7 @@
 // import { getProgrammingJoke } from 'random-joke-getter';
 
+import { LANGAGE_ENGLISH } from "../../_mocks_/_settings_items_";
+
 const intro =
   "I'm a Computer Science student at UCLA and an aspiring software engineer. What do you want to know about me?";
 const experience =
@@ -30,12 +32,14 @@ class ActionProvider {
     this.updateChatbotState(message);
   }
 
-  async handleBadMood() {
+  async handleBadMood(lang) {
+    const _langStr = lang === LANGAGE_ENGLISH ? `` : `?lang=${lang}`;
     const jokeData = await (
-      await fetch('https://v2.jokeapi.dev/joke/Any?type=single')
+      await fetch(`https://v2.jokeapi.dev/joke/Any${_langStr}`)
     ).json();
+    console.log("joke", jokeData)
     const message = this.createChatBotMessage(
-      `Let me tell you a joke: ${jokeData.joke}`,
+      `Let me tell you a joke: ${jokeData.type === 'single' ? jokeData.joke : `${jokeData.setup} ${jokeData.delivery}`}`,
       {
         widget: 'jokeOptions',
       }
@@ -43,12 +47,15 @@ class ActionProvider {
     this.updateChatbotState(message);
   }
 
-  async handleBadMoodAgain() {
+  async handleBadMoodAgain(lang) {
+    const _langStr = lang === LANGAGE_ENGLISH ? `` : `?lang=${lang}`;
     const jokeData = await (
-      await fetch('https://v2.jokeapi.dev/joke/Any?type=single')
+      await fetch(`https://v2.jokeapi.dev/joke/Any${_langStr}`)
     ).json();
+    console.log("joke", jokeData)
     const message = this.createChatBotMessage(
-      `Here's another one: ${jokeData.joke}`,
+      //`Here's another one: ${jokeData.joke}`,
+      `Here's another one: ${jokeData.type === 'single' ? jokeData.joke : `${jokeData.setup} ${jokeData.delivery}`}`,
       {
         widget: 'jokeOptions',
       }

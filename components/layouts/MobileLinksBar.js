@@ -14,6 +14,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import StickyNote2OutlinedIcon from '@mui/icons-material/StickyNote2Outlined';
+import { GITHUB_LINK, LINKEDIN_LINK } from '../../_mocks_/_links_items_';
 
 function MobileLinksBar() {
   return (
@@ -62,7 +63,7 @@ function MobileLinksBar() {
         </ListItem>
         <ListItem disablePadding>
           <a
-            href="https://www.linkedin.com/in/jeffrey-zepeng-yu/"
+            href={LINKEDIN_LINK}
             target="_blank"
             rel="noreferrer"
           >
@@ -76,7 +77,7 @@ function MobileLinksBar() {
         </ListItem>
         <ListItem disablePadding>
           <a
-            href="https://github.com/JeffreytheCoder"
+            href={GITHUB_LINK}
             target="_blank"
             rel="noreferrer"
           >

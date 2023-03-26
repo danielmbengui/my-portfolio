@@ -16,6 +16,7 @@ import Link from 'next/link';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 import StyledBadge from '../atoms/StyledBadge';
+import { GITHUB_LINK, LINKEDIN_LINK } from '../../_mocks_/_links_items_';
 
 function LinksBar() {
   const avatarRef = useRef(null);
@@ -92,7 +93,7 @@ function LinksBar() {
       </Popover>
 
       <a
-        href="https://www.linkedin.com/in/jeffrey-zepeng-yu/"
+        href={LINKEDIN_LINK}
         target="_blank"
         rel="noreferrer"
       >
@@ -101,7 +102,7 @@ function LinksBar() {
         </IconButton>
       </a>
       <a
-        href="https://github.com/JeffreytheCoder"
+        href={GITHUB_LINK}
         target="_blank"
         rel="noreferrer"
       >

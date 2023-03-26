@@ -11,7 +11,7 @@ export const LANGAGE_ENGLISH = 'en';
 export const DEFAULT_LANGAGE = 'fr';
 export const ARRAY_LANGAGES = [
     LANGAGE_FRENCH,
-    //LANGAGE_ENGLISH,
+    LANGAGE_ENGLISH,
 ];
 
 /* --------------- STORAGE -------------- */

@@ -102,7 +102,7 @@ export default function DropdownLangageComponent() {
     const handleChange = (event) => {
         const _lang = event.target.value;
         if (ARRAY_LANGAGES && ARRAY_LANGAGES.includes(_lang)) {
-            //i18n.changeLanguage(_lang);
+            i18n.changeLanguage(_lang);
             //document.documentElement.setAttribute(STORAGE_LANG_MODE, _lang);
             setLang(_lang);
             //i18n.changeLanguage(_lang);
