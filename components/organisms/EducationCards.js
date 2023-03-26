@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material';
 import React from 'react';
 //import ExperienceCard from '../molecules/ExperienceCard';
-import EducationCard from '../molecules/EducationCArd';
+import EducationCard from '../molecules/EducationCard';
 
 //moment().format('MMMM Do YYYY, h:mm:ss a');
 
