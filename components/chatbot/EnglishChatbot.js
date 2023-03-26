@@ -15,7 +15,7 @@ const getMoodOptions = (actionProvider) => {
   return [
     {
       text: 'Doing great! Tell me about yourself',
-      handler: () => actionProvider.handleGoodMood(),
+      handler: () => actionProvider.handleGoodMood(LANGAGE_ENGLISH),
       id: 1,
     },
     {
@@ -30,7 +30,7 @@ const getJokeOptions = (actionProvider) => {
   return [
     {
       text: "LOL that's funny",
-      handler: () => actionProvider.handleGoodMoodFinally(),
+      handler: () => actionProvider.handleGoodMoodFinally(LANGAGE_ENGLISH),
       id: 1,
     },
     {
@@ -70,7 +70,7 @@ const config = {
     botName: 'Jeffrey Yu',
     initialMessages: [
       createChatBotMessage(
-        "Hi 👋🏿, I'm Daan. Nice to meet you! I How are you doing today?",
+        "Hi 👋, I'm Daan. Nice to meet you! I How are you doing today?",
         //"Heureux de te rencontrer! Comment vas tu aujourd'hui ?",
         {
           widget: 'moodOptions',

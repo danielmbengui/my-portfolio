@@ -1,10 +1,11 @@
 class MessageParser {
-  constructor(actionProvider) {
+  constructor(actionProvider, lang) {
     this.actionProvider = actionProvider;
+    this.lang = lang;
   }
 
-  parse(message) {
-    this.actionProvider.greet();
+  parse(message, lang) {
+    this.actionProvider.greet(this.lang);
   }
 }
 

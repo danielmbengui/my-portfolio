@@ -29,7 +29,7 @@ function SectionsBar() {
     return (
       <div sx={{ padding: 20 }}>
         <Box
-          sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
+          sx={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start' }}
         >
           <IconButton
             onClick={() => toggleDrawer(false, '')}

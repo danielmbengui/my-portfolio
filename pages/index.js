@@ -31,7 +31,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Avatar, ButtonBase, Container, Popover, Stack } from '@mui/material';
+import { Avatar, ButtonBase, Container, Paper, Popover, Stack, useTheme } from '@mui/material';
 import StyledBadge from '../components/atoms/StyledBadge';
 import { grey } from '@mui/material/colors';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
@@ -40,9 +40,13 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 
-import SelectLangageComponent from "../components/langs/SelectLangageComponent"
+import SelectLangageComponent from "../components/contexts/SelectLangageComponent"
+import SwitchThemeComponent from '../components/contexts/SwitchThemeComponent';
+import { CssBaseline } from '@mui/material';
+import DesktopContent from '../components/layouts/DesktopContent';
 
 export function ButtonAppBar() {
+  const theme = useTheme();
   const avatarRef = useRef(null);
   const [popoverOpen, setPopoverOpen] = useState(false);
 
@@ -51,97 +55,111 @@ export function ButtonAppBar() {
   };
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-      <Box
-        //component={ButtonBase}
+ <Box sx={{}}>
+     <AppBar position="static">
+    <Toolbar sx={{background:theme.palette.background.paper}}>
+     <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'} sx={{
+      width:'100%', 
+     //background:'pink'
+     }}>
+      <div>
+      <IconButton
+        size="large"
+        edge="start"
+        color="inherit"
+        aria-label="menu"
+        //sx={{ mr: 2 }}
         onClick={() => setPopoverOpen(!popoverOpen)}
-        ref={avatarRef}
+    ref={avatarRef}
       >
-        <StyledBadge
-          overlap="circular"
-          anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-          variant="dot"
-        >
-          <Avatar src="/me-no-back.png" sx={{ width: 50, height: 50 }} />
-        </StyledBadge>
-      </Box>
+                <StyledBadge
+      overlap="circular"
+      anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+      variant="dot"
+    >
+      <Avatar src="/me-no-back.png" sx={{ width: 40, height: 40, background:'var(--primary)' }} />
+    </StyledBadge>
+  <Box
+    //component={ButtonBase}
+    
+  >
 
+  </Box>
+
+
+      </IconButton>
       <Popover
-        open={popoverOpen}
-        onClose={handlePopoverClose}
-        anchorEl={avatarRef.current}
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        PaperProps={{
-          sx: {
-            border: 1,
-            borderColor: grey[200],
-            padding: 2,
-            marginLeft: 2,
-            borderRadius: '5%',
-          },
-        }}
-        elevation={0}
+    open={popoverOpen}
+    onClose={handlePopoverClose}
+    anchorEl={avatarRef.current}
+    anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+    PaperProps={{
+      sx: {
+        border: 1,
+        borderColor: grey[200],
+        padding: 2,
+        marginLeft: 2,
+        borderRadius: '5%',
+      },
+    }}
+    elevation={0}
+  >
+    <Box flex flexDirection="column">
+      <Typography variant="h6">Daniel Mbengui</Typography>
+      <Box
+        sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
       >
-        <Box flex flexDirection="column">
-          <Typography variant="h6">Jeffrey Yu</Typography>
-          <Box
-            sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
-          >
-            <EmailIcon />
-            <Typography
-              variant="span"
-              sx={{ marginLeft: '8px', marginTop: '5px' }}
-            >
-              jeffreyzepengyu@g.ucla.edu
-            </Typography>
-          </Box>
-          <Box
-            sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
-          >
-            <PhoneIcon />
-            <Typography
-              variant="span"
-              sx={{ marginLeft: '8px', marginTop: '5px' }}
-            >
-              213-468-2703
-            </Typography>
-          </Box>
-          <a
-            href="https://drive.google.com/file/d/1JOKZr9RP_HejWvgiomMuYk93MjKIgaqk/view?usp=sharing"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Button>See my resume</Button>
-          </a>
-        </Box>
-      </Popover>
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
-          </Typography>
-          <Button color="inherit">Login</Button>
-          <Stack justifyContent={'center'} alignItems={'center'} sx={{
-        background: 'red',
-        mx:'auto',
-        width: '100%'
-      }}>
-        <SelectLangageComponent
-
-        />
-      </Stack>
-        </Toolbar>
-      </AppBar>
+        <EmailIcon />
+        <Typography
+          variant="span"
+          sx={{ marginLeft: '8px', marginTop: '5px' }}
+        >
+          daniel.mbengui@gmail.com
+        </Typography>
+      </Box>
+      <Box
+        sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
+      >
+        <PhoneIcon />
+        <Typography
+          variant="span"
+          sx={{ marginLeft: '8px', marginTop: '5px' }}
+        >
+          {`+41 76 679 51 15`}
+        </Typography>
+      </Box>
+      <a
+        href="https://drive.google.com/file/d/1JOKZr9RP_HejWvgiomMuYk93MjKIgaqk/view?usp=sharing"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <Button>{`See my resume`}</Button>
+      </a>
+      <a
+        href="https://drive.google.com/file/d/1JOKZr9RP_HejWvgiomMuYk93MjKIgaqk/view?usp=sharing"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <Button variant='contained'>{`Chat with me`}</Button>
+      </a>
     </Box>
+  </Popover>
+      </div>
+      <div>
+      <Stack direction={'row'} spacing={1} justifyContent={'center'} alignItems={'center'} sx={{
+    //background: 'red',
+    //mx:'auto',
+    //width: '100%'
+  }}>
+    <SelectLangageComponent
+    />
+    <SwitchThemeComponent />
+  </Stack>
+      </div>
+     </Stack>
+    </Toolbar>
+  </AppBar>
+ </Box>
   );
 }
 
@@ -200,205 +218,35 @@ const getPersonalOptions = (actionProvider) => {
   ];
 };
 
-const config = {
-  botName: 'Jeffrey Yu',
-  initialMessages: [
-    createChatBotMessage(
-      "Hi, I'm Jeffrey. Nice to meet you! I How are you doing today?",
-      //"Heureux de te rencontrer! Comment vas tu aujourd'hui ?",
-      {
-        widget: 'moodOptions',
-      }
-    ),
-  ],
-  // customStyles: {
-  //   botMessageBox: {
-  //     backgroundColor: '#147efb',
-  //   },
-  //   chatButton: {
-  //     backgroundColor: '#147efb',
-  //   },
-  // },
-  widgets: [
-    {
-      widgetName: 'moodOptions',
-      widgetFunc: ({ actionProvider }) => (
-        <Options actionProvider={actionProvider} getOptions={getMoodOptions} />
-      ),
-    },
-    {
-      widgetName: 'jokeOptions',
-      widgetFunc: ({ actionProvider }) => (
-        <Options actionProvider={actionProvider} getOptions={getJokeOptions} />
-      ),
-    },
-    {
-      widgetName: 'personalOptions',
-      widgetFunc: ({ actionProvider }) => (
-        <Options
-          actionProvider={actionProvider}
-          getOptions={getPersonalOptions}
-        />
-      ),
-    },
-    {
-      widgetName: 'experienceOptions',
-      widgetFunc: () => <ExperienceCards />,
-    },
-    {
-      widgetName: 'projectsOptions',
-      widgetFunc: () => <ProjectCards />,
-    },
-    {
-      widgetName: 'skillsOptions',
-      widgetFunc: () => <SkillCards />,
-    },
-    {
-      widgetName: 'blogsOptions',
-      widgetFunc: () => <BlogCards />,
-    },
-  ],
-};
 
-const configFR = {
-  botName: 'Jeffrey Yu',
-  initialMessages: [
-    createChatBotMessage(
-      "Salut 👋🏿, je suis Daan. Heureux de te rencontrer! Comment tu vas aujourd'hui?",
-      //"Heureux de te rencontrer! Comment vas tu aujourd'hui ?",
-      {
-        widget: 'moodOptions',
-      }
-    ),
-  ],
-  // customStyles: {
-  //   botMessageBox: {
-  //     backgroundColor: '#147efb',
-  //   },
-  //   chatButton: {
-  //     backgroundColor: '#147efb',
-  //   },
-  // },
-  widgets: [
-    {
-      widgetName: 'moodOptions',
-      widgetFunc: ({ actionProvider }) => (
-        <Options actionProvider={actionProvider} getOptions={getMoodOptions} />
-      ),
-    },
-    {
-      widgetName: 'jokeOptions',
-      widgetFunc: ({ actionProvider }) => (
-        <Options actionProvider={actionProvider} getOptions={getJokeOptions} />
-      ),
-    },
-    {
-      widgetName: 'personalOptions',
-      widgetFunc: ({ actionProvider }) => (
-        <Options
-          actionProvider={actionProvider}
-          getOptions={getPersonalOptions}
-        />
-      ),
-    },
-    {
-      widgetName: 'experienceOptions',
-      widgetFunc: () => <ExperienceCards />,
-    },
-    {
-      widgetName: 'projectsOptions',
-      widgetFunc: () => <ProjectCards />,
-    },
-    {
-      widgetName: 'skillsOptions',
-      widgetFunc: () => <SkillCards />,
-    },
-    {
-      widgetName: 'blogsOptions',
-      widgetFunc: () => <BlogCards />,
-    },
-  ],
-};
-
-const configEN = {
-  botName: 'Jeffrey Yu',
-  initialMessages: [
-    createChatBotMessage(
-      "Hi 👋🏿, I'm Daan. Nice to meet you! I How are you doing today?",
-      //"Heureux de te rencontrer! Comment vas tu aujourd'hui ?",
-      {
-        widget: 'moodOptions',
-      }
-    ),
-  ],
-  // customStyles: {
-  //   botMessageBox: {
-  //     backgroundColor: '#147efb',
-  //   },
-  //   chatButton: {
-  //     backgroundColor: '#147efb',
-  //   },
-  // },
-  widgets: [
-    {
-      widgetName: 'moodOptions',
-      widgetFunc: ({ actionProvider }) => (
-        <Options actionProvider={actionProvider} getOptions={getMoodOptions} />
-      ),
-    },
-    {
-      widgetName: 'jokeOptions',
-      widgetFunc: ({ actionProvider }) => (
-        <Options actionProvider={actionProvider} getOptions={getJokeOptions} />
-      ),
-    },
-    {
-      widgetName: 'personalOptions',
-      widgetFunc: ({ actionProvider }) => (
-        <Options
-          actionProvider={actionProvider}
-          getOptions={getPersonalOptions}
-        />
-      ),
-    },
-    {
-      widgetName: 'experienceOptions',
-      widgetFunc: () => <ExperienceCards />,
-    },
-    {
-      widgetName: 'projectsOptions',
-      widgetFunc: () => <ProjectCards />,
-    },
-    {
-      widgetName: 'skillsOptions',
-      widgetFunc: () => <SkillCards />,
-    },
-    {
-      widgetName: 'blogsOptions',
-      widgetFunc: () => <BlogCards />,
-    },
-  ],
-};
 
 const WebHome = () => {
   const {t} = useTranslation();
   const [lang, ] = useLangMode();
   return (
-    <>
-      <div className={styles.links}>
+<Box sx={{
+  py:'5px',
+      paddingBottom:100
+    }}>
+      
+<Stack direction={'row'} justifyContent={'space-between'}>
+    <div className={styles.links}>
         <LinksBar />
       </div>
-      {
+      <div style={{background:'var(--background)', width:'100%'}}>
+{
         lang && lang === LANGAGE_FRENCH && <FrenchChatbot />
       }
 
 {
         lang && lang === LANGAGE_ENGLISH && <EnglishChatbot />
       }
-      <div className={styles.links}>
+</div>
+<div className={styles.links}>
         <SectionsBar />
       </div>
-    </>
+    </Stack>
+</Box>
   );
 };
 
@@ -588,16 +436,10 @@ const MobileHome = () => {
   }, [lang])
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        width: '100vw',
-        minHeight: '100vh',
-        height: '100vh',
-      }}
-    >
-      <MobileHeader />
+    <div style={{
+      paddingBottom:100
+    }}>
+            <MobileHeader />
       {
         lang && lang === LANGAGE_FRENCH && <FrenchChatbot />
       }
@@ -605,7 +447,7 @@ const MobileHome = () => {
 {
         lang && lang === LANGAGE_ENGLISH && <EnglishChatbot />
       }
-    </Box>
+    </div>
   );
 };
 
@@ -616,11 +458,7 @@ const {t} = useTranslation();
   return (
     
     <>
-    <ButtonAppBar />
-    <div className={styles.app} style={{
-      //marginTop:100
-    }}>
-      <Head>
+    <Head>
         <title>{t('titlePageHome')}</title>
         <meta
           name="description"
@@ -629,8 +467,10 @@ const {t} = useTranslation();
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="/me.ico" />
       </Head>
-      {width > 740 ? <WebHome /> : <MobileHome />}
-    </div>
+    <ButtonAppBar />
+    <CssBaseline />
+    {width > 740 ? <WebHome /> : <MobileHome />}
+      
     </>
   );
 }

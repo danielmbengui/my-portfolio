@@ -21,6 +21,72 @@
   --accents7: #7E868C;
   --accents8: #687076;
   --accents9: #11181C;
+
+  --text: black;
+  --text-secondary: white;
+  --background: white;
+  --background-card: white;
+
+}
+
+[data-theme="light"] {
+  --accents0: #F1F3F5;
+  --accents1: #ECEEF0;
+  --accents2: #E6E8EB;
+  --accents3: #DFE3E6;
+  --accents4: #D7DBDF;
+  --accents5: #C1C8CD;
+  --accents6: #889096;
+  --accents7: #7E868C;
+  --accents8: #687076;
+  --accents9: #11181C;
+
+  --orange100: #FDEBD5;
+  --orange200: #FCD2AC;
+  --orange300: #F8B181;
+  --orange400: #F19160;
+  --orange500: #E8602F;
+  --orange600: #C74222;
+  --orange700: #A72917;
+  --orange800: #86150E;
+  --orange900: #6F090A;
+
+  --primary: var(--orange500);
+
+  --text: black;
+  --text-secondary: white;
+  --background: white;
+  --background-card: pink;
+}
+
+[data-theme="dark"] {
+  --accents0: #16181A;
+  --accents1: #26292B;
+  --accents2: #2B2F31;
+  --accents3: #313538;
+  --accents4: #3A3F42;
+  --accents5: #4C5155;
+  --accents6: #697177;
+  --accents7: #787F85;
+  --accents8: #9BA1A6;
+  --accents9: #ECEDEE;
+
+  --orange900: #FDEBD5;
+  --orange800: #FCD2AC;
+  --orange700: #F8B181;
+  --orange600: #F19160;
+  --orange500: #E8602F;
+  --orange400: #C74222;
+  --orange300: #A72917;
+  --orange200: #86150E;
+  --orange100: #6F090A;
+
+  --primary: var(--orange500);
+
+  --text: white;
+  --text-secondary: black;
+  --background: black;
+  --background-card: green;
 }
 
 html,

@@ -1,9 +1,16 @@
 // import { getProgrammingJoke } from 'random-joke-getter';
 
-import { LANGAGE_ENGLISH } from "../../_mocks_/_settings_items_";
+import { LANGAGE_ENGLISH, LANGAGE_FRENCH } from "../../_mocks_/_settings_items_";
 
-const intro =
-  "I'm a Computer Science student at UCLA and an aspiring software engineer. What do you want to know about me?";
+
+const settingsFR = {
+  intro:`Je suis un développeur web passionné, alliant expertise technique et résolution créative de problèmes. Mon parcours unique me permet de créer un lien harmonieux entre technologie et gestion d'entreprise. Toujours à l'affût des évolutions du monde numérique, je suis ravi de collaborer sur des projets stimulants qui favorisent la croissance et l'innovation. Voulez-vous savoir autre chose sur moi?`
+}
+
+const settingsEN = {
+  intro: `I'm a Computer Science student at UCLA and an aspiring software engineer. What do you want to know about me?`
+}
+
 const experience =
   'I worked as Software Engineer intern at Paramount, Done. and TechFin.AI.';
 const projects =
@@ -18,14 +25,16 @@ class ActionProvider {
     this.setState = setStateFunc;
   }
 
-  greet() {
+  greet(lang) {
+    const message = lang === LANGAGE_FRENCH ? `Je cherche du temps pour explorer l'API de ChatGTP...` : `I'm looking for some time to explore the ChatGPT API...`;
     const greetingMessage = this.createChatBotMessage(
-      'AI chat in development...'
+      message
     );
     this.updateChatbotState(greetingMessage);
   }
 
-  handleGoodMood() {
+  handleGoodMood(lang) {
+    const intro = lang === LANGAGE_FRENCH ? settingsFR.intro : settingsEN.intro;
     const message = this.createChatBotMessage(intro, {
       widget: 'personalOptions',
     });
@@ -33,13 +42,14 @@ class ActionProvider {
   }
 
   async handleBadMood(lang) {
-    const _langStr = lang === LANGAGE_ENGLISH ? `` : `?lang=${lang}`;
+    const _langStr = lang === LANGAGE_FRENCH ? `?lang=${lang}` : ``;
+    const _requestStr = lang === LANGAGE_FRENCH ? `Alors laissez moi vous raconter une blague` : `So let me tell you a joke`;
     const jokeData = await (
       await fetch(`https://v2.jokeapi.dev/joke/Any${_langStr}`)
     ).json();
     console.log("joke", jokeData)
     const message = this.createChatBotMessage(
-      `Let me tell you a joke: ${jokeData.type === 'single' ? jokeData.joke : `${jokeData.setup} ${jokeData.delivery}`}`,
+      `${_requestStr} : ${jokeData.type === 'single' ? jokeData.joke : `${jokeData.setup} ${jokeData.delivery}`}`,
       {
         widget: 'jokeOptions',
       }
@@ -48,14 +58,15 @@ class ActionProvider {
   }
 
   async handleBadMoodAgain(lang) {
-    const _langStr = lang === LANGAGE_ENGLISH ? `` : `?lang=${lang}`;
+    const _langStr = lang === LANGAGE_FRENCH ? `?lang=${lang}` : '';
+    const _requestStr = lang === LANGAGE_FRENCH ? `Oui bien sûr!` : `Yes of course!`;
     const jokeData = await (
       await fetch(`https://v2.jokeapi.dev/joke/Any${_langStr}`)
     ).json();
     console.log("joke", jokeData)
     const message = this.createChatBotMessage(
       //`Here's another one: ${jokeData.joke}`,
-      `Here's another one: ${jokeData.type === 'single' ? jokeData.joke : `${jokeData.setup} ${jokeData.delivery}`}`,
+      `${_requestStr} : ${jokeData.type === 'single' ? jokeData.joke : `${jokeData.setup} ${jokeData.delivery}`}`,
       {
         widget: 'jokeOptions',
       }
@@ -63,9 +74,11 @@ class ActionProvider {
     this.updateChatbotState(message);
   }
 
-  handleGoodMoodFinally() {
+  handleGoodMoodFinally(lang) {
+    const intro = lang === LANGAGE_FRENCH ? settingsFR.intro : settingsEN.intro;
+    const _requestStr = lang === LANGAGE_FRENCH ? `Je suis content de vous avoir redonné le sourire! Du coup, laissez moi m'introduire... euh me présenter 😹` : `Glad you're happy! So, let me slip in... um, I mean introduce myself  😹`;
     const message = this.createChatBotMessage(
-      `Glad you're happy! Let me do a quick self intro: ${intro}`,
+      `${_requestStr} : ${intro}`,
       { widget: 'personalOptions' }
     );
     this.updateChatbotState(message);

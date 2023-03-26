@@ -28,77 +28,13 @@ function LinksBar() {
 
   return (
     <>
-      <Box
-        component={ButtonBase}
-        onClick={() => setPopoverOpen(!popoverOpen)}
-        ref={avatarRef}
-      >
-        <StyledBadge
-          overlap="circular"
-          anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-          variant="dot"
-        >
-          <Avatar src="/me.jpg" sx={{ width: 50, height: 50 }} />
-        </StyledBadge>
-      </Box>
-
-      <Popover
-        open={popoverOpen}
-        onClose={handlePopoverClose}
-        anchorEl={avatarRef.current}
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        PaperProps={{
-          sx: {
-            border: 1,
-            borderColor: grey[200],
-            padding: 2,
-            marginLeft: 2,
-            borderRadius: '5%',
-          },
-        }}
-        elevation={0}
-      >
-        <Box flex flexDirection="column">
-          <Typography variant="h6">Jeffrey Yu</Typography>
-          <Box
-            sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
-          >
-            <EmailIcon />
-            <Typography
-              variant="span"
-              sx={{ marginLeft: '8px', marginTop: '5px' }}
-            >
-              jeffreyzepengyu@g.ucla.edu
-            </Typography>
-          </Box>
-          <Box
-            sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
-          >
-            <PhoneIcon />
-            <Typography
-              variant="span"
-              sx={{ marginLeft: '8px', marginTop: '5px' }}
-            >
-              213-468-2703
-            </Typography>
-          </Box>
-          <a
-            href="https://drive.google.com/file/d/1JOKZr9RP_HejWvgiomMuYk93MjKIgaqk/view?usp=sharing"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Button>See my resume</Button>
-          </a>
-        </Box>
-      </Popover>
-
       <a
         href={LINKEDIN_LINK}
         target="_blank"
         rel="noreferrer"
       >
         <IconButton>
-          <LinkedInIcon sx={{ color: grey[700], width: 30, height: 30 }} />
+          <LinkedInIcon sx={{ color: 'var(--primary)', width: 30, height: 30 }} />
         </IconButton>
       </a>
       <a
@@ -107,16 +43,17 @@ function LinksBar() {
         rel="noreferrer"
       >
         <IconButton>
-          <GitHubIcon sx={{ color: grey[700], width: 30, height: 30 }} />
+          <GitHubIcon sx={{ color: 'var(--primary)', width: 30, height: 30 }} />
         </IconButton>
       </a>
       <a
         href="https://www.instagram.com/jeffreyzepeng/"
         target="_blank"
         rel="noreferrer"
+        style={{display:'none'}}
       >
         <IconButton>
-          <InstagramIcon sx={{ color: grey[700], width: 30, height: 30 }} />
+          <InstagramIcon sx={{ color: 'var(--primary)', width: 30, height: 30 }} />
         </IconButton>
       </a>
     </>

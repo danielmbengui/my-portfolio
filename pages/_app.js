@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { CacheProvider } from '@emotion/react';
-import { ThemeProvider, CssBaseline } from '@mui/material';
+
 
 import createEmotionCache from '../utility/createEmotionCache';
 import lightTheme from '../styles/theme/lightTheme';
@@ -9,29 +9,34 @@ import '../styles/chatbox.css';
 import LangModeProvider from '../contexts/LangModeProvider';
 import DeviceModeProvider from '../contexts/DeviceModeProvider';
 import { appWithTranslation, useTranslation } from "next-i18next";
-import { DEFAULT_LANGAGE, STORAGE_LANG_MODE } from '../_mocks_/_settings_items_';
+import { DEFAULT_LANGAGE, DEFAULT_THEME, STORAGE_LANG_MODE, STORAGE_THEME_MODE } from '../_mocks_/_settings_items_';
 import { SSRProvider } from '@react-aria/ssr';
+import ThemeModeProvider from '../contexts/ThemeModeProvider';
 
 const clientSideEmotionCache = createEmotionCache();
 
 const MyApp = (props) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+  const [themeMode, setThemeMode] = useState(DEFAULT_THEME);
   const [langMode, setLangMode] = useState(DEFAULT_LANGAGE);
 
   useEffect(() => {
     //firebase.initializeApp(firebaseConfig);
     // you can use any storage
-    //let theme = window.localStorage.getItem(STORAGE_THEME_MODE);
+    let theme = DEFAULT_THEME;
     let lang = DEFAULT_LANGAGE;
-    if (!window.localStorage.getItem(STORAGE_LANG_MODE)) {
-      window.localStorage.setItem(STORAGE_LANG_MODE, DEFAULT_LANGAGE);
+    if (!window.sessionStorage.getItem(STORAGE_THEME_MODE)) {
+      window.sessionStorage.setItem(STORAGE_THEME_MODE, DEFAULT_THEME);
     } else {
-      lang = window.localStorage.getItem(STORAGE_LANG_MODE);
+      theme = window.sessionStorage.getItem(STORAGE_THEME_MODE);
     }
-    
-    //setIsDark(theme === THEME_MODE_DARK);
-    //setThemeMode(theme === THEME_MODE_DARK ? THEME_MODE_DARK : THEME_MODE_LIGHT);
-    //document.documentElement.setAttribute(STORAGE_THEME_MODE, theme === THEME_MODE_DARK ? THEME_MODE_DARK : THEME_MODE_LIGHT);
+
+    if (!window.sessionStorage.getItem(STORAGE_LANG_MODE)) {
+      window.sessionStorage.setItem(STORAGE_LANG_MODE, DEFAULT_LANGAGE);
+    } else {
+      lang = window.sessionStorage.getItem(STORAGE_LANG_MODE);
+    }
+    setThemeMode(theme);
     setLangMode(lang);
 /*
     const observer = new MutationObserver(() => {
@@ -54,14 +59,14 @@ const MyApp = (props) => {
   return (
     <CacheProvider value={emotionCache}>
       <SSRProvider>
-      <ThemeProvider theme={lightTheme}>
+      <ThemeModeProvider themeMode={themeMode}>
         <LangModeProvider langMode={langMode}>
           <DeviceModeProvider>
-          <CssBaseline />
+          
         <Component {...pageProps} />
           </DeviceModeProvider>
         </LangModeProvider>
-      </ThemeProvider>
+      </ThemeModeProvider>
       </SSRProvider>
     </CacheProvider>
   );

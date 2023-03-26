@@ -71,8 +71,8 @@ height: 40px;
 border-radius: 50%;
 font-size: 1.2rem;
 margin-right: 12.5px;
-background-color: lightblue;
-background-image: url("/me.jpg");
+background-color: var(--primary);
+background-image: url("/me-no-back.png");
 background-repeat: no-repeat;
 background-position: center;
 background-size: cover;
@@ -93,11 +93,10 @@ background-size: cover;
 }
 
 .react-chatbot-kit-chat-bot-message {
-  background: linear-gradient(var(--orange300),var(--orange500));
   padding: 10px 15px;
   border-radius: 15px;
   font-size: 0.95rem;
-  color: #fff;
+  color: var(--text);
   font-weight: medium;
   position: relative;
   width: auto;
@@ -111,7 +110,7 @@ background-size: cover;
   height: 0;
   border-top: 8px solid transparent;
   border-bottom: 8px solid transparent;
-  border-right: 8px solid var(--orange400);
+  border-right: 8px solid var(--orange500);
   position: absolute;
   left: -7px;
   top: 13px;
@@ -172,11 +171,13 @@ background-size: cover;
 .react-chatbot-kit-chat-inner-container {
   display: flex;
   flex-direction: column;
-  background-color: #fff;
-  border-radius: 3px;
+  background-color: var(--background);
+  width: 100%;
   margin-bottom: 15px;
-  border-radius: 5px;
+  
   max-height: 100vh;
+  overflow-y: scroll;
+  padding-bottom: 100px;
 }
 
 .react-chatbot-kit-chat-header {
@@ -204,7 +205,7 @@ background-size: cover;
 
 .react-chatbot-kit-chat-message-container {
   padding: 0 17.5px 0 17.5px;
-  /* overflow-y: scroll; */
+  overflow-y: scroll;
   overflow-x: hidden;
   height: 95vh;
   min-height: 95vh;

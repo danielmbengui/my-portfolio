@@ -59,7 +59,7 @@ const styleSelect = {
         color: 'var(--primary)',
         fontWeight: 'bold',
         fontSize: 14,
-        height: 20,
+        //height: 20,
         background: 'transparent',
         //borderWidth:'1px',
         //borderRadius:5,
@@ -116,7 +116,7 @@ export default function DropdownLangageComponent() {
     }, [lang])
 
     return (
-        <FormControl sx={{ m: 1, }} variant="standard" size='small'>
+        <FormControl variant="standard" size='small'>
         <Select
             aria-label='Select langage'
             id="select-langage"
@@ -124,11 +124,11 @@ export default function DropdownLangageComponent() {
             autoWidth
             onChange={handleChange}
             input={<BootstrapInput />}
-            /*sx={styleSelect}
+            sx={styleSelect}
             MenuProps={{
                 sx: styleMenu,
             }}
-            */
+            
         >
             {
                 ARRAY_LANGAGES && ARRAY_LANGAGES.map((_lang, index) => {

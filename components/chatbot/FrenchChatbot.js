@@ -17,7 +17,7 @@ const getMoodOptions = (actionProvider) => {
   return [
     {
       text: 'Ça va merci! Parle-moi de toi.',
-      handler: () => actionProvider.handleGoodMood(),
+      handler: () => actionProvider.handleGoodMood(LANGAGE_FRENCH),
       id: 1,
     },
     {
@@ -31,12 +31,12 @@ const getMoodOptions = (actionProvider) => {
 const getJokeOptions = (actionProvider) => {
   return [
     {
-      text: "LOL that's funny",
-      handler: () => actionProvider.handleGoodMoodFinally(),
+      text: `LOL c'était drôle`,
+      handler: () => actionProvider.handleGoodMoodFinally(LANGAGE_FRENCH),
       id: 1,
     },
     {
-      text: 'Tell me another one',
+      text: `T'en as une autre?`,
       handler: () => actionProvider.handleBadMoodAgain(LANGAGE_FRENCH),
       id: 2,
     },
@@ -69,10 +69,10 @@ const getPersonalOptions = (actionProvider) => {
 };
 
 const config = {
-  botName: 'Jeffrey Yu',
+  botName: 'Daniel Mbengui',
   initialMessages: [
     createChatBotMessage(
-      "Salut 👋🏿, je suis Daan. Heureux de te rencontrer! Comment tu vas aujourd'hui?",
+      "Bonjour 👋, je suis Daan. Heureux de vous rencontrer! Comment allez-vous aujourd'hui?",
       //"Heureux de te rencontrer! Comment vas tu aujourd'hui ?",
       {
         widget: 'moodOptions',
@@ -130,13 +130,16 @@ const config = {
 
 
 export default function FrenchChatbot() {
-
+const [lang,] = useLangMode();
   return (
-    <Chatbot
+    <div>
+        <Chatbot
         className={styles}
         config={config}
         actionProvider={ActionProvider}
+        lang={lang}
         messageParser={MessageParser}
       />
+    </div>
   );
 }

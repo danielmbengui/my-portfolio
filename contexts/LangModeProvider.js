@@ -31,7 +31,7 @@ useEffect(() => {
         //setLang(langMode);
         document.documentElement.setAttribute(STORAGE_LANG_MODE, lang);
         //i18n.changeLanguage(lang);
-        window.localStorage.setItem(STORAGE_LANG_MODE, lang);
+        window.sessionStorage.setItem(STORAGE_LANG_MODE, lang);
         router.replace(router.asPath, router.asPath, { locale: lang })
         moment.locale(lang);
         //console.log("ACTUAL locale website address DEFAULT lang", router.defaultLocale)

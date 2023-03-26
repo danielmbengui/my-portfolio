@@ -24,7 +24,7 @@ import CodeOutlinedIcon from '@mui/icons-material/CodeOutlined';
 import BookOutlinedIcon from '@mui/icons-material/BookOutlined';
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
-import SelectLangageComponent from '../langs/SelectLangageComponent';
+import SelectLangageComponent from '../contexts/SelectLangageComponent';
 import { ARRAY_LANGAGES } from '../../_mocks_/_settings_items_';
 
 function MobileSectionsBar() {
