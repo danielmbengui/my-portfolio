@@ -11,7 +11,7 @@ import useWindowSize from '../hooks/useWindowSize';
 import { Box } from '@mui/system';
 import MobileHeader from '../components/layouts/MobileHeader';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { ARRAY_NAMESPACES, ARRAY_LANGAGES, LANGAGE_FRENCH, LANGAGE_ENGLISH } from '../_mocks_/_settings_items_';
+import { ARRAY_NAMESPACES, ARRAY_LANGAGES, LANGAGE_FRENCH, LANGAGE_ENGLISH, _MY_PROFILE_ } from '../_mocks_/_settings_items_';
 
 import { createChatBotMessage } from 'react-chatbot-kit';
 import Options from '../components/molecules/Options';
@@ -31,7 +31,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Avatar, ButtonBase, Container, Paper, Popover, Stack, useTheme } from '@mui/material';
+import { Avatar, ButtonBase, Container, Drawer, Paper, Popover, Stack, useTheme } from '@mui/material';
 import StyledBadge from '../components/atoms/StyledBadge';
 import { grey } from '@mui/material/colors';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
@@ -44,8 +44,11 @@ import SelectLangageComponent from "../components/contexts/SelectLangageComponen
 import SwitchThemeComponent from '../components/contexts/SwitchThemeComponent';
 import { CssBaseline } from '@mui/material';
 import DesktopContent from '../components/layouts/DesktopContent';
+import MobileLinksBar from '../components/layouts/MobileLinksBar';
+import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
+import MobileSectionsBar from '../components/layouts/MobileSectionsBar';
 
-export function ButtonAppBar() {
+export function WebAppBar() {
   const theme = useTheme();
   const avatarRef = useRef(null);
   const [popoverOpen, setPopoverOpen] = useState(false);
@@ -105,7 +108,7 @@ export function ButtonAppBar() {
     elevation={0}
   >
     <Box flex flexDirection="column">
-      <Typography variant="h6">Daniel Mbengui</Typography>
+      <Typography variant="h6">{_MY_PROFILE_.name}</Typography>
       <Box
         sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
       >
@@ -114,7 +117,7 @@ export function ButtonAppBar() {
           variant="span"
           sx={{ marginLeft: '8px', marginTop: '5px' }}
         >
-          daniel.mbengui@gmail.com
+          {_MY_PROFILE_.mail}
         </Typography>
       </Box>
       <Box
@@ -125,7 +128,7 @@ export function ButtonAppBar() {
           variant="span"
           sx={{ marginLeft: '8px', marginTop: '5px' }}
         >
-          {`+41 76 679 51 15`}
+          {_MY_PROFILE_.phone}
         </Typography>
       </Box>
       <a
@@ -155,6 +158,98 @@ export function ButtonAppBar() {
     />
     <SwitchThemeComponent />
   </Stack>
+      </div>
+     </Stack>
+    </Toolbar>
+  </AppBar>
+ </Box>
+  );
+}
+
+export function MobileAppBar() {
+  const theme = useTheme();
+  const avatarRef = useRef(null);
+  const [popoverOpen, setPopoverOpen] = useState(false);
+
+  const [linksBarOpen, setLinksBarOpen] = useState(false);
+  const [sectionBarOpen, setSectionBarOpen] = useState(false);
+
+  const handlePopoverClose = () => {
+    setPopoverOpen(false);
+  };
+
+  return (
+ <Box sx={{}}>
+     <AppBar position="static">
+    <Toolbar sx={{background:theme.palette.background.paper}}>
+     <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'} sx={{
+      width:'100%', 
+     //background:'pink'
+     }}>
+      <div>
+      <IconButton
+        size="large"
+        edge="start"
+        color="inherit"
+        aria-label="menu"
+        //sx={{ mr: 2 }}
+        //onClick={() => setPopoverOpen(!popoverOpen)}
+        onClick={() => setLinksBarOpen(!linksBarOpen)}
+    ref={avatarRef}
+      >
+                <StyledBadge
+      overlap="circular"
+      anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+      variant="dot"
+    >
+      <Avatar src="/me-no-back.png" sx={{ width: 40, height: 40, background:'var(--primary)' }} />
+    </StyledBadge>
+
+    <Drawer
+        anchor="left"
+        open={linksBarOpen}
+        onClose={() => setLinksBarOpen(false)}
+        PaperProps={{ sx: { padding: '20px', width: 'fit-content' } }}
+      >
+        <MobileLinksBar />
+      </Drawer>
+
+
+      </IconButton>
+      </div>
+      <div>
+      <Stack direction={'row'} spacing={1} justifyContent={'center'} alignItems={'center'} sx={{
+    //background: 'red',
+    //mx:'auto',
+    //width: '100%'
+  }}>
+    <SelectLangageComponent
+    />
+    <SwitchThemeComponent />
+  </Stack>
+      </div>
+      <div>
+      <Box
+        component={IconButton}
+        onClick={() => setSectionBarOpen(!sectionBarOpen)}
+      >
+        <MenuRoundedIcon />
+      </Box>
+      <Drawer
+        anchor="right"
+        open={sectionBarOpen}
+        onClose={() => setSectionBarOpen(false)}
+        PaperProps={{
+          sx: {
+            paddingLeft: '5px',
+            paddingRight: '20px',
+            paddingY: '10px',
+            width: 'fit-content',
+          },
+        }}
+      >
+        <MobileSectionsBar />
+      </Drawer>
       </div>
      </Stack>
     </Toolbar>
@@ -224,6 +319,8 @@ const WebHome = () => {
   const {t} = useTranslation();
   const [lang, ] = useLangMode();
   return (
+    <>
+    
 <Box sx={{
   py:'5px',
       paddingBottom:100
@@ -233,7 +330,7 @@ const WebHome = () => {
     <div className={styles.links}>
         <LinksBar />
       </div>
-      <div style={{background:'var(--background)', width:'100%'}}>
+      <div style={{background:'red', width:'100%'}}>
 {
         lang && lang === LANGAGE_FRENCH && <FrenchChatbot />
       }
@@ -247,6 +344,7 @@ const WebHome = () => {
       </div>
     </Stack>
 </Box>
+    </>
   );
 };
 
@@ -437,9 +535,9 @@ const MobileHome = () => {
 
   return (
     <div style={{
-      paddingBottom:100
+      paddingTop:10
     }}>
-            <MobileHeader />
+
       {
         lang && lang === LANGAGE_FRENCH && <FrenchChatbot />
       }
@@ -467,8 +565,10 @@ const {t} = useTranslation();
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="/me.ico" />
       </Head>
-    <ButtonAppBar />
+      
+      {width > 740 ? <WebAppBar /> : <MobileAppBar />}
     <CssBaseline />
+    
     {width > 740 ? <WebHome /> : <MobileHome />}
       
     </>

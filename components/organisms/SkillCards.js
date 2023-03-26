@@ -1,17 +1,29 @@
+import { Stack } from '@mui/material';
 import React from 'react';
+import { AndroidIcon, CssIcon, C_LangageIcon, HtmlIcon, JavaIcon, JavascriptIcon, MySqlIcon, PhpIcon, PythonIcon, SolidityIcon, TypescriptIcon } from '../icons/IconifiyIcons';
 import SkillCard from '../molecules/SkillCard';
 
 const skills = [
   {
-    name: 'Languages',
+    name: 'sections.skills.programming.title',
     skills: [
-      ['JavaScript', 95],
-      ['Python', 90],
-      ['TypeScript', 85],
-      ['HTML/CSS', 85],
+      ['JavaScript', 95, <JavascriptIcon size={20} />],
+      ['HTML/CSS', 95, <Stack direction={'row'} justifyContent={'center'}><HtmlIcon size={20} /><CssIcon size={20} /></Stack>],
+      ['Python', 90, <PythonIcon size={20} />],
+      ['Java', 85, <JavaIcon size={20} />],
+      ['Android', 85, <AndroidIcon size={20} />],
+      ['Php', 80, <PhpIcon size={20} />],
+      ['SQL', 80, <MySqlIcon size={20} />],
+      ['Typescript', 70, <TypescriptIcon size={20} />],
+      ['Solidity', 60, <SolidityIcon size={20} />],
+      ['C', 50, <C_LangageIcon size={20} />],
       ['C++', 75],
+      ['TypeScript', 85],
+      ['TypeScript', 85],
+      
+      
       ['SQL', 70],
-      ['Java', 65],
+      
       ['Golang', 60],
       ['Solidity', 50],
     ],

@@ -26,8 +26,12 @@ import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
 import SelectLangageComponent from '../contexts/SelectLangageComponent';
 import { ARRAY_LANGAGES } from '../../_mocks_/_settings_items_';
+import EducationCards from '../organisms/EducationCards';
+import { EducationIcon, ExperienceIcon, ProjectIcon, SkillsIcon, SoftSkillsIcon } from '../icons/IconifiyIcons';
+import { useTranslation } from 'next-i18next';
 
 function MobileSectionsBar() {
+  const {t} = useTranslation();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [section, setSection] = useState('');
 
@@ -59,11 +63,13 @@ function MobileSectionsBar() {
 
   const DrawerContent = () => {
     switch (section) {
-      case 'Experience':
+      case 'Education':
+        return <EducationCards isDetailed={true} />;
+        case 'Experience':
         return <ExperienceCards isDetailed={true} />;
       case 'Projects':
         return <ProjectCards isDetailed={true} />;
-      case 'Skills':
+      case t(`sections.skills.title`):
         return <SkillCards isDetailed={true} />;
       case 'Blogs':
         return <BlogCards isDetailed={true} />;
@@ -75,40 +81,64 @@ function MobileSectionsBar() {
   return (
     <Box flex flexDirection="column">
       <List>
-        <ListItem disablePadding>
+      <ListItem disablePadding>
+          <ListItemButton
+            aria-label="skills"
+            onClick={() => toggleDrawer(true, t(`sections.skills.title`))}
+          >
+            <ListItemIcon>
+              <SkillsIcon color={'inherit'} />
+            </ListItemIcon>
+            <ListItemText primary={t(`sections.skills.title`)} />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding sx={{display: 'none'}}>
+          <ListItemButton
+            aria-label="education"
+            onClick={() => toggleDrawer(true, t('sections.education.title'))}
+          >
+            <ListItemIcon>
+              <EducationIcon color={'inherit'} />
+            </ListItemIcon>
+            <ListItemText primary={t('sections.education.title')} />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding sx={{display: 'none'}}>
+          <ListItemButton
+            aria-label="skills"
+            onClick={() => toggleDrawer(true, 'Soft skills')}
+          >
+            <ListItemIcon>
+              <SoftSkillsIcon color={'inherit'} />
+            </ListItemIcon>
+            <ListItemText primary="Soft skills" />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding sx={{display: 'none'}}>
           <ListItemButton
             aria-label="experience"
             onClick={() => toggleDrawer(true, 'Experience')}
           >
             <ListItemIcon>
-              <WorkOutlineIcon />
+              <ExperienceIcon color={'inherit'} />
             </ListItemIcon>
             <ListItemText primary="Experience" />
           </ListItemButton>
         </ListItem>
-        <ListItem disablePadding>
+        <ListItem disablePadding sx={{display: 'none'}}>
           <ListItemButton
             aria-label="projects"
             onClick={() => toggleDrawer(true, 'Projects')}
           >
             <ListItemIcon>
-              <ArchitectureRoundedIcon />
+              <ProjectIcon color={'inherit'} />
             </ListItemIcon>
             <ListItemText primary="Projects" />
           </ListItemButton>
         </ListItem>
-        <ListItem disablePadding>
-          <ListItemButton
-            aria-label="skills"
-            onClick={() => toggleDrawer(true, 'Skills')}
-          >
-            <ListItemIcon>
-              <CodeOutlinedIcon />
-            </ListItemIcon>
-            <ListItemText primary="Skills" />
-          </ListItemButton>
-        </ListItem>
-        <ListItem disablePadding>
+
+
+        <ListItem disablePadding sx={{display: 'none'}}>
           <ListItemButton
             aria-label="blogs"
             onClick={() => toggleDrawer(true, 'Blogs')}
@@ -120,16 +150,6 @@ function MobileSectionsBar() {
           </ListItemButton>
         </ListItem>
       </List>
-
-      <Stack my={3} justifyContent={'center'} alignItems={'center'} sx={{
-        background: 'red',
-        mx:'auto',
-        width: '100%'
-      }}>
-        <SelectLangageComponent
-
-        />
-      </Stack>
 
       <Drawer
         anchor="right"

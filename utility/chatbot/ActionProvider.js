@@ -4,11 +4,11 @@ import { LANGAGE_ENGLISH, LANGAGE_FRENCH } from "../../_mocks_/_settings_items_"
 
 
 const settingsFR = {
-  intro:`Je suis un développeur web passionné, alliant expertise technique et résolution créative de problèmes. Mon parcours unique me permet de créer un lien harmonieux entre technologie et gestion d'entreprise. Toujours à l'affût des évolutions du monde numérique, je suis ravi de collaborer sur des projets stimulants qui favorisent la croissance et l'innovation. Voulez-vous savoir autre chose sur moi?`
+  intro:`Je suis un développeur passionné, alliant expertise technique et résolution créative de problèmes. Mon parcours unique me permet de créer un lien harmonieux entre technologie et gestion d'entreprise. Toujours à l'affût des évolutions du monde numérique, je suis ravi de collaborer sur des projets stimulants qui favorisent la croissance et l'innovation. Veux-tu savoir autre chose sur moi?`
 }
 
 const settingsEN = {
-  intro: `I'm a Computer Science student at UCLA and an aspiring software engineer. What do you want to know about me?`
+  intro: `I'm a passionate developer, combining technical expertise and creative problem-solving. My unique background allows me to create a harmonious connection between technology and business management. Always on the lookout for advancements in the digital world, I'm thrilled to collaborate on exciting projects that promote growth and innovation. Would you like to know anything else about me?`
 }
 
 const experience =
@@ -43,7 +43,7 @@ class ActionProvider {
 
   async handleBadMood(lang) {
     const _langStr = lang === LANGAGE_FRENCH ? `?lang=${lang}` : ``;
-    const _requestStr = lang === LANGAGE_FRENCH ? `Alors laissez moi vous raconter une blague` : `So let me tell you a joke`;
+    const _requestStr = lang === LANGAGE_FRENCH ? `Alors laisse moi te raconter une blague` : `So let me tell you a joke`;
     const jokeData = await (
       await fetch(`https://v2.jokeapi.dev/joke/Any${_langStr}`)
     ).json();
@@ -76,7 +76,7 @@ class ActionProvider {
 
   handleGoodMoodFinally(lang) {
     const intro = lang === LANGAGE_FRENCH ? settingsFR.intro : settingsEN.intro;
-    const _requestStr = lang === LANGAGE_FRENCH ? `Je suis content de vous avoir redonné le sourire! Du coup, laissez moi m'introduire... euh me présenter 😹` : `Glad you're happy! So, let me slip in... um, I mean introduce myself  😹`;
+    const _requestStr = lang === LANGAGE_FRENCH ? `Je suis content de t'avoir redonné le sourire! Du coup, laisse moi m'introduire... euh me présenter 😹` : `Glad you're happy! So, let me slip in... um, I mean introduce myself  😹`;
     const message = this.createChatBotMessage(
       `${_requestStr} : ${intro}`,
       { widget: 'personalOptions' }

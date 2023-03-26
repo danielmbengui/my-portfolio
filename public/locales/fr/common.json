@@ -4,5 +4,38 @@
     "langs": {
         "fr": "français",
         "en": "anglais"
+    },
+    "sections" :{
+        "skills" : {
+            "title": "Compétences",
+            "langs" : {
+                "title" : "Langues",
+                "fr" : {
+                    "name" : "Français",
+                    "value" : 10
+                },
+                "en" : {
+                    "name" : "Anglais",
+                    "value" : 10
+                }
+            },
+            "programming" : {
+                "title" : "Programmation",
+                "javascript" : {
+                    "name": "Javascript",
+                    "value": 50
+                }
+            }
+        },
+        "education" : {
+            "title": "Formations",
+            "javascript" : {
+                "name" : "FreeCodeCamp",
+                "image" : "/logos/freecodecamp.jpeg",
+                "position" : "JavaScript Algorithms and Data Structures",
+                "date" : "2022-03-20",
+                "link": "https://www.freecodecamp.org/certification/fccef9a36a5-5f01-45d2-ad9e-88f37eac23d1/javascript-algorithms-and-data-structures"
+            }
+        }
     }
 }

@@ -70,7 +70,7 @@ const config = {
     botName: 'Jeffrey Yu',
     initialMessages: [
       createChatBotMessage(
-        "Hi 👋, I'm Daan. Nice to meet you! I How are you doing today?",
+        "Hi 👋, I'm Daan. If you're visiting my website, it's probably because you want to get to know me, so let's use informal language... First of all, nice to meet you! How are you doing today?",
         //"Heureux de te rencontrer! Comment vas tu aujourd'hui ?",
         {
           widget: 'moodOptions',

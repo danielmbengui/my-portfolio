@@ -17,6 +17,7 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 import StyledBadge from '../atoms/StyledBadge';
 import { GITHUB_LINK, LINKEDIN_LINK } from '../../_mocks_/_links_items_';
+import { _MY_PROFILE_ } from '../../_mocks_/_settings_items_';
 
 function LinksBar() {
   const avatarRef = useRef(null);
@@ -29,7 +30,7 @@ function LinksBar() {
   return (
     <>
       <a
-        href={LINKEDIN_LINK}
+        href={_MY_PROFILE_.socials.linkedin}
         target="_blank"
         rel="noreferrer"
       >
@@ -38,7 +39,7 @@ function LinksBar() {
         </IconButton>
       </a>
       <a
-        href={GITHUB_LINK}
+        href={_MY_PROFILE_.socials.github}
         target="_blank"
         rel="noreferrer"
       >
@@ -47,13 +48,13 @@ function LinksBar() {
         </IconButton>
       </a>
       <a
-        href="https://www.instagram.com/jeffreyzepeng/"
+        href="/"
         target="_blank"
         rel="noreferrer"
-        style={{display:'none'}}
+        //style={{display:'none'}}
       >
         <IconButton>
-          <InstagramIcon sx={{ color: 'var(--primary)', width: 30, height: 30 }} />
+          <EmailIcon sx={{ color: 'var(--primary)', width: 30, height: 30 }} />
         </IconButton>
       </a>
     </>

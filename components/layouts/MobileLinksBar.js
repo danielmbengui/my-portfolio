@@ -15,11 +15,12 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import StickyNote2OutlinedIcon from '@mui/icons-material/StickyNote2Outlined';
 import { GITHUB_LINK, LINKEDIN_LINK } from '../../_mocks_/_links_items_';
+import { _MY_PROFILE_ } from '../../_mocks_/_settings_items_';
 
 function MobileLinksBar() {
   return (
     <Box flex flexDirection="column">
-      <Typography variant="h6">Jeffrey Yu</Typography>
+      <Typography variant="h6">{_MY_PROFILE_.name}</Typography>
       <Box
         sx={{
           display: 'flex',
@@ -30,7 +31,7 @@ function MobileLinksBar() {
       >
         <EmailIcon />
         <Typography variant="span" sx={{ marginLeft: '8px' }}>
-          jeffreyzepengyu@g.ucla.edu
+          {_MY_PROFILE_.mail}
         </Typography>
       </Box>
       <Box
@@ -43,13 +44,13 @@ function MobileLinksBar() {
       >
         <PhoneIcon />
         <Typography variant="span" sx={{ marginLeft: '8px' }}>
-          213-468-2703
+          {_MY_PROFILE_.phone}
         </Typography>
       </Box>
       <List>
         <ListItem disablePadding>
           <a
-            href="https://drive.google.com/file/d/1JOKZr9RP_HejWvgiomMuYk93MjKIgaqk/view?usp=sharing"
+            href=""
             target="_blank"
             rel="noreferrer"
           >
@@ -63,7 +64,7 @@ function MobileLinksBar() {
         </ListItem>
         <ListItem disablePadding>
           <a
-            href={LINKEDIN_LINK}
+            href={_MY_PROFILE_.socials.linkedin}
             target="_blank"
             rel="noreferrer"
           >
@@ -77,7 +78,7 @@ function MobileLinksBar() {
         </ListItem>
         <ListItem disablePadding>
           <a
-            href={GITHUB_LINK}
+            href={_MY_PROFILE_.socials.github}
             target="_blank"
             rel="noreferrer"
           >
@@ -97,9 +98,9 @@ function MobileLinksBar() {
           >
             <ListItemButton>
               <ListItemIcon>
-                <InstagramIcon />
+                <EmailIcon />
               </ListItemIcon>
-              <ListItemText primary="Instagram" />
+              <ListItemText primary="Contact" />
             </ListItemButton>
           </a>
         </ListItem>

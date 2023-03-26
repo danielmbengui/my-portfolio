@@ -43,7 +43,7 @@ export default function ThemeModeProvider({ children, themeMode }) {
                     ...(mode === 'light'
                         ? {
                             // palette values for light mode
-                            primary: amber,
+                            primary: deepOrange,
                             divider: amber[200],
                             text: {
                                 primary: grey[900],

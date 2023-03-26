@@ -3,7 +3,7 @@ import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import moment from 'moment';
 import 'moment/locale/fr';
-import { DEFAULT_LANGAGE, STORAGE_LANG_MODE } from '../_mocks_/_settings_items_';
+import { STORAGE_LANG_MODE } from '../_mocks_/_settings_items_';
 
 
 export const LangModeProviderContext = createContext(null);
@@ -15,6 +15,7 @@ const router = useRouter();
 
 useEffect(() => {
 setLang(langMode);
+//moment.locale(langMode);
 }, [langMode])
 
 useEffect(() => {
@@ -24,6 +25,7 @@ useEffect(() => {
     setLang(router.locale);
     //moment.locale(lang);
     router.replace(router.asPath, router.asPath, { locale: router.locale })
+    //moment.locale(router.locale);
   }
 }, [])
     
@@ -34,6 +36,7 @@ useEffect(() => {
         window.sessionStorage.setItem(STORAGE_LANG_MODE, lang);
         router.replace(router.asPath, router.asPath, { locale: lang })
         moment.locale(lang);
+        
         //console.log("ACTUAL locale website address DEFAULT lang", router.defaultLocale)
       //console.log("ACTUAL locale website address", router.locale)
         //router.push(url: router.asPath);

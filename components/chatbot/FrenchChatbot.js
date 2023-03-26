@@ -12,6 +12,7 @@ import BlogCards from '../organisms/BlogCards';
 import { useTranslation } from 'next-i18next';
 import { useLangMode } from '../../contexts/LangModeProvider';
 import { LANGAGE_FRENCH } from '../../_mocks_/_settings_items_';
+import { Container, Stack } from '@mui/material';
 
 const getMoodOptions = (actionProvider) => {
   return [
@@ -46,22 +47,22 @@ const getJokeOptions = (actionProvider) => {
 const getPersonalOptions = (actionProvider) => {
   return [
     {
-      text: 'Experience',
+      text: 'Experiences',
       handler: () => actionProvider.handleExperience(),
       id: 1,
     },
     {
-      text: 'Projects',
+      text: 'Projets',
       handler: () => actionProvider.handleProjects(),
       id: 2,
     },
     {
-      text: 'Skills',
+      text: 'Compétences',
       handler: () => actionProvider.handleSkills(),
       id: 3,
     },
     {
-      text: 'Blogs',
+      text: 'Autres',
       handler: () => actionProvider.handleBlogs(),
       id: 4,
     },
@@ -72,7 +73,7 @@ const config = {
   botName: 'Daniel Mbengui',
   initialMessages: [
     createChatBotMessage(
-      "Bonjour 👋, je suis Daan. Heureux de vous rencontrer! Comment allez-vous aujourd'hui?",
+      "Salut 👋, je suis Daan. Si tu visites mon site internet c'est que tu veux surement faire connaissance avec moi, alors autant se tutoyer... Tout d'abord, heureux de te rencontrer! Comment vas-tu aujourd'hui?",
       //"Heureux de te rencontrer! Comment vas tu aujourd'hui ?",
       {
         widget: 'moodOptions',
@@ -132,14 +133,21 @@ const config = {
 export default function FrenchChatbot() {
 const [lang,] = useLangMode();
   return (
-    <div>
-        <Chatbot
-        className={styles}
-        config={config}
-        actionProvider={ActionProvider}
-        lang={lang}
-        messageParser={MessageParser}
-      />
-    </div>
+    <Stack sx={{
+      //position:'absolute',
+      //bottom:0,
+      //background:'cyan', 
+      height:'90vh', 
+      overflowY: 'auto',
+      pb:1
+      }}>
+      <Chatbot
+    className={styles}
+    config={config}
+    actionProvider={ActionProvider}
+    lang={lang}
+    messageParser={MessageParser}
+  />
+    </Stack>
   );
 }

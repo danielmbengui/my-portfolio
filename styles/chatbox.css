@@ -119,6 +119,7 @@ background-size: cover;
 .react-chatbot-kit-chat-bot-loading-icon-container {
   height: 17px;
   width: 25px;
+  color:var(--primary)
 }
 
 .chatbot-loader-container {
@@ -129,16 +130,19 @@ background-size: cover;
 
 #chatbot-loader #chatbot-loader-dot1 {
   animation: load 1s infinite;
+  color:var(--primary)
 }
 
 #chatbot-loader #chatbot-loader-dot2 {
   animation: load 1s infinite;
   animation-delay: 0.2s;
+  color:var(--primary)
 }
 
 #chatbot-loader #chatbot-loader-dot3 {
   animation: load 1s infinite;
   animation-delay: 0.4s;
+  color:var(--primary)
 }
 
 @keyframes load {
@@ -156,7 +160,8 @@ background-size: cover;
 .react-chatbot-kit-chat-container {
   position: relative;
   width: 100%;
-  min-height: 100vh;
+
+  height: 95%;
 }
 
 @media (max-width: 640px) {
@@ -164,7 +169,7 @@ background-size: cover;
     position: relative;
     width: 100%;
     min-height: 0;
-    height: 100%;
+    height: 95%;
   }
 }
 
@@ -173,11 +178,7 @@ background-size: cover;
   flex-direction: column;
   background-color: var(--background);
   width: 100%;
-  margin-bottom: 15px;
   
-  max-height: 100vh;
-  overflow-y: scroll;
-  padding-bottom: 100px;
 }
 
 .react-chatbot-kit-chat-header {
@@ -197,7 +198,7 @@ background-size: cover;
 .react-chatbot-kit-chat-input-container {
   display: none;
   width: 100%;
-  display: flex;
+  display: none;
   height: 5vh;
   min-height: 5vh;
   max-height: 5vh;
@@ -213,6 +214,7 @@ background-size: cover;
 }
 
 .react-chatbot-kit-chat-input {
+  display: none;
   width: 100%;
   height: 100%;
   padding: 15px;
@@ -226,7 +228,7 @@ background-size: cover;
 
 .react-chatbot-kit-chat-input-form {
   width: 100%;
-  display: flex;
+  display: none;
 }
 
 .react-chatbot-kit-chat-input::placeholder {
