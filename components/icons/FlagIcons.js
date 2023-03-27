@@ -1,5 +1,5 @@
 import React from 'react';
-import { FR, GB, } from "country-flag-icons/react/3x2";
+import { FR, GB, IT, AO} from "country-flag-icons/react/3x2";
 import { DEFAULT_LANGAGE, LANGAGE_ENGLISH, LANGAGE_FRENCH } from '../../_mocks_/_settings_items_';
 
 export const FlagIcon = ({ fill, size, height, width, lang, ...props }) => {
@@ -86,6 +86,35 @@ export const FlagIcon = ({ fill, size, height, width, lang, ...props }) => {
   export const EnglishIcon = ({ size = 30, ...props }) => {
     return (
         <GB
+            //title={t('langEnglish')}
+            {...props}
+            style={{
+                borderRadius: '50%',
+                width: size,
+                height: size
+            }}
+            />
+    );
+  };
+
+  export const ItalianIcon = ({ size = 30, ...props }) => {
+    return (
+        <IT
+            //title={t('langEnglish')}
+            {...props}
+            style={{
+                borderRadius: '50%',
+                width: size,
+                height: size
+            }}
+            />
+    );
+  };
+
+
+  export const AngolanIcon = ({ size = 30, ...props }) => {
+    return (
+        <AO
             //title={t('langEnglish')}
             {...props}
             style={{

@@ -12,7 +12,7 @@ import BlogCards from '../organisms/BlogCards';
 import { useTranslation } from 'next-i18next';
 import { useLangMode } from '../../contexts/LangModeProvider';
 import { LANGAGE_FRENCH } from '../../_mocks_/_settings_items_';
-import { Container, Stack } from '@mui/material';
+import { Container, Stack, Typography } from '@mui/material';
 
 const getMoodOptions = (actionProvider) => {
   return [
@@ -46,6 +46,7 @@ const getJokeOptions = (actionProvider) => {
 
 const getPersonalOptions = (actionProvider) => {
   return [
+    /*
     {
       text: 'Experiences',
       handler: () => actionProvider.handleExperience(),
@@ -56,16 +57,24 @@ const getPersonalOptions = (actionProvider) => {
       handler: () => actionProvider.handleProjects(),
       id: 2,
     },
+    */
     {
       text: 'Compétences',
       handler: () => actionProvider.handleSkills(),
       id: 3,
     },
     {
+      text: 'Non merci',
+      handler: () => actionProvider.handleFinish(),
+      id: 5,
+    },
+    /*
+    {
       text: 'Autres',
       handler: () => actionProvider.handleBlogs(),
       id: 4,
     },
+    */
   ];
 };
 

@@ -56,7 +56,7 @@
   --text: black;
   --text-secondary: white;
   --background: white;
-  --background-card: pink;
+  --background-card: var(--accents3);
 }
 
 [data-theme="dark"] {
@@ -86,7 +86,7 @@
   --text: white;
   --text-secondary: black;
   --background: black;
-  --background-card: green;
+  --background-card: var(--accents0);
 }
 
 html,

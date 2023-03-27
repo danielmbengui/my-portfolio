@@ -10,6 +10,7 @@ import ProjectCards from '../organisms/ProjectCards';
 import SkillCards from '../organisms/SkillCards';
 import BlogCards from '../organisms/BlogCards';
 import { LANGAGE_ENGLISH } from '../../_mocks_/_settings_items_';
+import { Stack } from '@mui/material';
 
 const getMoodOptions = (actionProvider) => {
   return [
@@ -43,6 +44,7 @@ const getJokeOptions = (actionProvider) => {
 
 const getPersonalOptions = (actionProvider) => {
   return [
+    /*
     {
       text: 'Experience',
       handler: () => actionProvider.handleExperience(),
@@ -53,16 +55,19 @@ const getPersonalOptions = (actionProvider) => {
       handler: () => actionProvider.handleProjects(),
       id: 2,
     },
+    */
     {
       text: 'Skills',
       handler: () => actionProvider.handleSkills(),
       id: 3,
     },
+    /*
     {
       text: 'Blogs',
       handler: () => actionProvider.handleBlogs(),
       id: 4,
     },
+    */
   ];
 };
 
@@ -130,11 +135,22 @@ const config = {
 export default function EnglishChatbot() {
 
   return (
+
+
+      <Stack sx={{
+        //position:'absolute',
+        //bottom:0,
+        //background:'cyan', 
+        height:'90vh', 
+        overflowY: 'auto',
+        pb:3
+        }}>
     <Chatbot
         className={styles}
         config={config}
         actionProvider={ActionProvider}
         messageParser={MessageParser}
       />
+      </Stack>
   );
 }

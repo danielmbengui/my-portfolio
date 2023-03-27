@@ -39,6 +39,7 @@ export default function ThemeModeProvider({ children, themeMode }) {
                     background: {
                         default: 'var(--background)',
                         paper: 'var(--accents0)',
+                        drawer: 'var(--accents1)',
                     },
                     ...(mode === 'light'
                         ? {

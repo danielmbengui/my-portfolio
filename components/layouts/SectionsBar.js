@@ -15,8 +15,11 @@ import CodeOutlinedIcon from '@mui/icons-material/CodeOutlined';
 import BookOutlinedIcon from '@mui/icons-material/BookOutlined';
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
+import { SkillsIcon } from '../icons/IconifiyIcons';
+import { useTranslation } from 'next-i18next';
 
 function SectionsBar() {
+  const {t} = useTranslation();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [section, setSection] = useState('');
 
@@ -27,9 +30,9 @@ function SectionsBar() {
 
   const DrawerLayout = () => {
     return (
-      <div sx={{ padding: 20 }}>
+      <div sx={{ padding: 20,}}>
         <Box
-          sx={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start' }}
+          sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', pt:3, }}
         >
           <IconButton
             onClick={() => toggleDrawer(false, '')}
@@ -52,7 +55,7 @@ function SectionsBar() {
         return <ExperienceCards isDetailed={true} />;
       case 'Projects':
         return <ProjectCards isDetailed={true} />;
-      case 'Skills':
+      case t('sections.skills.title'):
         return <SkillCards isDetailed={true} />;
       case 'Blogs':
         return <BlogCards isDetailed={true} />;
@@ -66,6 +69,7 @@ function SectionsBar() {
       <Tooltip
         title={<span style={{ fontSize: 13 }}>experience</span>}
         placement="left"
+        sx={{display:'none'}}
       >
         <IconButton
           aria-label="experience"
@@ -78,6 +82,7 @@ function SectionsBar() {
       <Tooltip
         title={<span style={{ fontSize: 13 }}>projects</span>}
         placement="left"
+        sx={{display:'none'}}
       >
         <IconButton
           aria-label="projects"
@@ -90,20 +95,21 @@ function SectionsBar() {
       </Tooltip>
 
       <Tooltip
-        title={<span style={{ fontSize: 13 }}>skills</span>}
+        title={<span style={{ fontSize: 13 }}>{t('sections.skills.title')}</span>}
         placement="left"
       >
         <IconButton
-          aria-label="skills"
-          onClick={() => toggleDrawer(true, 'Skills')}
+          aria-label={t('sections.skills.title')}
+          onClick={() => toggleDrawer(true, t('sections.skills.title'))}
         >
-          <CodeOutlinedIcon sx={{ color: grey[700], width: 30, height: 30 }} />
+          <SkillsIcon color='var(--primary)' size={30} />
         </IconButton>
       </Tooltip>
 
       <Tooltip
         title={<span style={{ fontSize: 13 }}>blogs</span>}
         placement="left"
+        sx={{display:'none'}}
       >
         <IconButton
           aria-label="blogs"
@@ -117,6 +123,8 @@ function SectionsBar() {
         anchor="right"
         open={drawerOpen}
         onClose={() => toggleDrawer(false, '')}
+        //sx={{background:'red'}}
+        
       >
         <DrawerLayout />
       </Drawer>

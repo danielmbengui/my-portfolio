@@ -12,11 +12,19 @@
                 "title" : "Langues",
                 "fr" : {
                     "name" : "Français",
-                    "value" : 10
+                    "value" : 100
                 },
                 "en" : {
                     "name" : "Anglais",
-                    "value" : 10
+                    "value" : 80
+                },
+                "it" : {
+                    "name" : "Italien",
+                    "value" : 50
+                },
+                "ao" : {
+                    "name" : "Lingala",
+                    "value" : 70
                 }
             },
             "programming" : {
@@ -25,7 +33,23 @@
                     "name": "Javascript",
                     "value": 50
                 }
+            },
+            "frameworks" : {
+                "title" : "Librairies / Outils",
+                "react" : {
+                    "name": "ReactJS",
+                    "value": 80
+                }
+            },
+            "software" : {
+                "title" : "Logiciels",
+                "visualStudio" : {
+                    "name": "Visual Studio Code",
+                    "value": 80
+                }
             }
+        
+            
         },
         "education" : {
             "title": "Formations",

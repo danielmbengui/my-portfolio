@@ -9,14 +9,22 @@
         "skills" : {
             "title": "Skills",
             "langs" : {
-                "title" : "Languages Skills",
+                "title" : "Languages",
                 "fr" : {
                     "name" : "French",
-                    "value" : 10
+                    "value" : 100
                 },
                 "en" : {
                     "name" : "English",
-                    "value" : 10
+                    "value" : 80
+                },
+                "it" : {
+                    "name" : "Italian",
+                    "value" : 50
+                },
+                "ao" : {
+                    "name" : "Lingala",
+                    "value" : 70
                 }
             },
             "programming" : {
@@ -24,6 +32,20 @@
                 "javascript" : {
                     "name": "Javascript",
                     "value": 50
+                }
+            },
+            "frameworks" : {
+                "title" : "Frameworks / Tools",
+                "react" : {
+                    "name": "ReactJS",
+                    "value": 80
+                }
+            },
+            "software" : {
+                "title" : "Software",
+                "visualStudio" : {
+                    "name": "Visual Studio Code",
+                    "value": 80
                 }
             }
         },

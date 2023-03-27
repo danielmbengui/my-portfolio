@@ -5,6 +5,7 @@ import {
   Card,
   Grid,
   LinearProgress,
+  Stack,
   Typography,
 } from '@mui/material';
 import Image from 'next/image';
@@ -19,17 +20,23 @@ function SkillCard({ name, skills, isDetailed }) {
 
   return (
     <Card
+    elevation={10}
       variant="outlined"
       sx={{
-        padding: 1,
+        px: 2,
+        py: 3,
         display: 'flex',
         flexDirection: 'column',
         marginBottom: 1,
-        border: isDetailed ? 'none' : '',
+        //border: isDetailed ? 'none' : '',
+        background:'var(--background-card)',
+        borderRadius:'10px',
       }}
       width={isDetailed ? '500px' : '100%'}
     >
+      <div style={{textAlign:'center'}}>
       <Typography variant="h6">{t(name)}</Typography>
+      </div>
       {skills.map(([name, val, icon], idx) => {
         return (
           <Grid
@@ -40,21 +47,21 @@ function SkillCard({ name, skills, isDetailed }) {
             width="100%"
             alignItems="center"
             justifyContent={'center'}
-            sx={{ paddingTop: '3px' }}
+            sx={{ pt: 3 }}
             
           >
-            <Grid item xs={1} sm={1} sx={{textAlign:'center'}}>
-              {
+            <Grid item xs={3} md={2.5}>
+              <Typography sx={{fontWeight:'bold'}}>{t(name)}</Typography>
+            </Grid>
+            <Grid item xs sm md>
+            <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'} spacing={1} pb={1}>
+            {
                 icon
               }
-            </Grid>
-            <Grid item xs={4} sm={3} md={2}>
-              <Typography>{name}</Typography>
-            </Grid>
-            <Grid item xs sm md={9}>
             <Typography variant="body2" color="text.secondary">{`${Math.round(
           val,
         )}%`}</Typography>
+            </Stack>
             <LinearProgress
                   variant="determinate"
                   value={val}

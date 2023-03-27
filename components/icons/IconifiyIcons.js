@@ -108,6 +108,138 @@ export function SolidityIcon({size = 30, color = 'var(--text)', ...props}) {
     )
 }
 
+export function ReactIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="logos:react" {...props} color={color} width={size} />
+    )
+}
 
+export function SpyderIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="simple-icons:spyderide" {...props} color={color} width={size} />
+    )
+}
 
+export function NodeJsIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="logos:nodejs" {...props} color={color} width={size} />
+    )
+}
+
+export function NextJsIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="logos:nextjs" {...props} color={color} width={size} />
+    )
+}
+
+export function MomentJsIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="logos:momentjs" {...props} color={color} width={size} />
+    )
+}
+
+export function Web3JsIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="logos:web3js" {...props} color={color} width={size} />
+    )
+}
+
+export function EtherJsIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="logos:ethers" {...props} color={color} width={size} />
+    )
+}
+
+export function FirebaseIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="logos:firebase" {...props} color={color} width={size} />
+    )
+}
+
+export function GoogleMapsIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="logos:google-maps" {...props} color={color} width={size} />
+    )
+}
+
+export function TwitterApiIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="logos:twitter" {...props} color={color} width={size} />
+    )
+}
+
+export function DiscordApiIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="logos:discord-icon" {...props} color={color} width={size} />
+    )
+}
+
+export function IonicIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="logos:ionic-icon" {...props} color={color} width={size} />
+    )
+}
+
+export function DjangoIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="logos:django" {...props} color={color} width={size} />
+    )
+}
+
+export function EclipseIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="logos:eclipse-icon" {...props} color={color} width={size} />
+    )
+}
+
+export function VisualStudioIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="logos:visual-studio-code" {...props} color={color} width={size} />
+    )
+}
+
+export function AtomIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="logos:atom-icon" {...props} color={color} width={size} />
+    )
+}
+
+export function AndroidStudioIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="logos:android-vertical" {...props} color={color} width={size} />
+    )
+}
+
+export function NotepadIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="simple-icons:notepadplusplus" {...props} color={color} width={size} />
+    )
+}
+
+export function PhotoshopIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="skill-icons:photoshop" {...props} color={color} width={size} />
+    )
+}
+
+export function PwaIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="logos:pwa" {...props} color={color} width={size} />
+    )
+}
+
+export function MaterialUiIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="simple-icons:mui" {...props} color={color} width={size} />
+    )
+}
+/*
+
+      ['Firebase', 80],
+      ['Google Maps API', 80],
+      ['Twitter API', 80],
+      ['Discord API', 80],
+      ['Ionic', 80],
+      ['Django', 55],
+*/
 

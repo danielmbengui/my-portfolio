@@ -160,7 +160,7 @@ background-size: cover;
 .react-chatbot-kit-chat-container {
   position: relative;
   width: 100%;
-  height: 95%;
+  height: 99%;
   background: red;
   overflow-y: scroll;
 }

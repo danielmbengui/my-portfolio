@@ -103,6 +103,17 @@ class ActionProvider {
       widget: 'skillsOptions',
     });
     this.updateChatbotState(message);
+    const nextMessage = this.createChatBotMessage("Veux tu savoir autre chose ?", {
+      widget: 'personalOptions',
+    });
+    this.updateChatbotState(nextMessage);
+  }
+
+  handleFinish() {
+    const message = this.createChatBotMessage("Voilà tu connais désormais une partie de moi. Merci d'avoir pris du temps! À bientôt j'espère!", {
+      //widget: 'skillsOptions',
+    });
+    this.updateChatbotState(message);
   }
 
   handleBlogs() {
