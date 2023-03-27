@@ -1,30 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { PDFViewer } from '@react-pdf/renderer';
+import { PDFViewer, PDFDownloadLink } from '@react-pdf/renderer';
 import Test from '../components/resume/Test';
 import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { ARRAY_LANGAGES, ARRAY_NAMEPACES } from '../_mocks_/_settings_items_';
 import ReactPDF from '@react-pdf/renderer';
 import { useDeviceMode } from '../contexts/DeviceModeProvider';
+import { Stack } from '@mui/material';
 
 export default function ResumePage() {
 const {isMobile} = useDeviceMode();
     const router = useRouter();
-const [component, setComponent] = useState(<></>);
+const [component, setComponent] = useState();
     useEffect(() => {
 if (router.isReady && window) {
-    if (isMobile) {
-        ReactPDF.render(<Test />, `${__dirname}/example.pdf`);
-    } else {
-        setComponent(<PDFViewer 
-            width={'100%'}
-            height={'100%'}
-            showToolbar
-            >
-                <Test />
-              </PDFViewer>)
+    
+    setComponent(<Stack justifyContent={'center'} alignItems={'center'}>
+    <PDFDownloadLink document={<Test />} fileName="cv-daniel-mbengui.pdf">
+    {({ blob, url, loading, error }) =>
+      loading ? 'Loading document...' : 'Download now!'
     }
+  </PDFDownloadLink><PDFViewer 
+        id={'resume'}
+        width={'100%'}
+        height={'100%'}
+        showToolbar
+        >
+            <Test />
+          </PDFViewer>
+    </Stack>)
 }
     }, [])
     return (
