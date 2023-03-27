@@ -554,18 +554,7 @@ export default function Home() {
 const {t} = useTranslation();
 
   return (
-    
-    <>
-    <Head>
-        <title>{t('titlePageHome')}</title>
-        <meta
-          name="description"
-          content="Daniel Mbengui | Backend Developer | Web Developer "
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" href="/me.ico" />
-      </Head>
-      
+    <>      
       {width > 740 ? <WebAppBar /> : <MobileAppBar />}
     <CssBaseline />
     

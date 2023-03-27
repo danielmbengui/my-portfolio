@@ -12,10 +12,12 @@ import { appWithTranslation, useTranslation } from "next-i18next";
 import { DEFAULT_LANGAGE, DEFAULT_THEME, STORAGE_LANG_MODE, STORAGE_THEME_MODE } from '../_mocks_/_settings_items_';
 import { SSRProvider } from '@react-aria/ssr';
 import ThemeModeProvider from '../contexts/ThemeModeProvider';
+import Head from 'next/head';
 
 const clientSideEmotionCache = createEmotionCache();
 
 const MyApp = (props) => {
+  const {t} = useTranslation();
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   const [themeMode, setThemeMode] = useState(DEFAULT_THEME);
   const [langMode, setLangMode] = useState(DEFAULT_LANGAGE);
@@ -62,7 +64,15 @@ const MyApp = (props) => {
       <ThemeModeProvider themeMode={themeMode}>
         <LangModeProvider langMode={langMode}>
           <DeviceModeProvider>
-          
+          <Head>
+        <title>{t('titlePageHome')}</title>
+        <meta
+          name="description"
+          content="Daniel Mbengui | Backend Developer | Web Developer "
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href="/me.ico" />
+      </Head>
         <Component {...pageProps} />
           </DeviceModeProvider>
         </LangModeProvider>

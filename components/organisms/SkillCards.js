@@ -48,9 +48,9 @@ const skills = [
       ['Discord API', 80, <DiscordApiIcon size={20} />],
       ['Ionic', 80, <IonicIcon size={20} />],
       
-      ['i18n', 55],
-      ['Midjourney', 55],
-      ['ChatGPT', 55],  
+      ['i18n', 55, <div></div>],
+      ['Midjourney', 55, <div></div>],
+      ['ChatGPT', 55, <div></div>],  
     ],
   },
   {

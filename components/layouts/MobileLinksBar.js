@@ -92,7 +92,7 @@ function MobileLinksBar() {
         </ListItem>
         <ListItem disablePadding>
           <a
-            href="https://www.instagram.com/jeffreyzepeng/"
+            href=""
             target="_blank"
             rel="noreferrer"
           >
