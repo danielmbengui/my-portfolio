@@ -66,10 +66,6 @@ const styleSelect = {
             color: 'var(--primary)',
             border: 'none'
         },
-        //borderWidth:'1px',
-        //borderRadius:5,
-        //border: '2px solid var(--primary)'
-        //boxShadow:'none'
     },
 };
 
