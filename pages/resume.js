@@ -5,14 +5,17 @@ import Test from '../components/resume/Test';
 import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { ARRAY_LANGAGES, ARRAY_NAMEPACES } from '../_mocks_/_settings_items_';
-import ReactPDF from '@react-pdf/renderer';
 import { useDeviceMode } from '../contexts/DeviceModeProvider';
 import { Button, Stack } from '@mui/material';
 import { isBot } from 'next/dist/server/web/spec-extension/user-agent';
+import { useLangMode } from '../contexts/LangModeProvider';
+import { useTranslation } from 'next-i18next';
 
 export default function ResumePage() {
 const {isMobile, isTablet, isLaptop} = useDeviceMode();
     const router = useRouter();
+    const [lang, setLang] = useLangMode();
+    const {t} = useTranslation();
 const [component, setComponent] = useState();
     useEffect(() => {
 
@@ -32,7 +35,10 @@ if (router.isReady && window) {
     }
     setComponent(<Stack direction={'row'} py={ isTablet ? 30 : 0} justifyContent={'center'} alignItems={'center'}>
         <div style={{display:displayButtonDownload}}>
-        <PDFDownloadLink document={<Test />} fileName="cv-daniel-mbengui.pdf">
+        <PDFDownloadLink document={<Test education={{
+                    title:t('sections.education.title'),
+                    
+                }} />} fileName={`cv-daniel-mbengui-${lang}.pdf`}>
         {({ blob, url, loading, error }) =>
           loading ? 'Loading document...' : <Button variant='contained'>{`'Download my CV!'`}</Button>
         }
@@ -52,7 +58,15 @@ if (router.isReady && window) {
             height={'100%'}
             showToolbar
             >
-                <Test />
+                <Test
+                    t={t}
+
+                education={{
+                    title:t('sections.education.title'),
+
+                }}
+                
+                />
               </PDFViewer>
             </div>
         </Stack>)

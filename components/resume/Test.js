@@ -70,26 +70,29 @@ const styles = StyleSheet.create({
     },
   });
 
-const Resume = props => (
-    <Page {...props} style={styles.page}>
-      <Header />
-      <View style={styles.container}>
-        <View style={styles.leftColumn}>
-          <Image
-            src="/me-no-back.png"
-            style={styles.image}
-          />
-          <Education />
-          <Skills />
-        </View>
-        <Experience />
-      </View>
-      <Text style={styles.footer}>This IS the candidate you are looking for</Text>
-    </Page>
-  );
+const Resume = (props) => {
+    const {education,} = props;
+    return (
+        <Page {...props} style={styles.page}>
+          <Header />
+          <View style={styles.container}>
+            <View style={styles.leftColumn}>
+              <Image
+                src="/me-no-back.png"
+                style={styles.image}
+              />
+              <Education education={education} />
+              <Skills />
+            </View>
+            <Experience />
+          </View>
+          <Text style={styles.footer}>This IS the candidate you are looking for</Text>
+        </Page>
+      );
+}
 
 // Create Document Component
-const Test = () => (
+const Test = ({education, }) => (
     <Document
     author="Daniel Mbengui"
       keywords="awesome, resume, start wars"
@@ -97,7 +100,7 @@ const Test = () => (
       title="Resume"
       //fullScreen
     >
-      <Resume size="A4" />
+      <Resume education={education} size="A4" />
       <Resume orientation="landscape" size="A4" />
       <Resume size={[500, 1250]} />
     </Document>
