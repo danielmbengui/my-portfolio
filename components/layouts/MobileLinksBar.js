@@ -50,7 +50,7 @@ function MobileLinksBar() {
       <List>
         <ListItem disablePadding>
           <a
-            href=""
+            href="/resume"
             target="_blank"
             rel="noreferrer"
           >

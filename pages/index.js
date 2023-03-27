@@ -132,15 +132,15 @@ export function WebAppBar() {
         </Typography>
       </Box>
       <a
-        href="https://drive.google.com/file/d/1JOKZr9RP_HejWvgiomMuYk93MjKIgaqk/view?usp=sharing"
+        href="/resume"
         target="_blank"
         rel="noreferrer"
       >
         <Button>{`See my resume`}</Button>
       </a>
       <a
-        href="https://drive.google.com/file/d/1JOKZr9RP_HejWvgiomMuYk93MjKIgaqk/view?usp=sharing"
-        target="_blank"
+        href=""
+        //target="_blank"
         rel="noreferrer"
       >
         <Button variant='contained'>{`Chat with me`}</Button>
