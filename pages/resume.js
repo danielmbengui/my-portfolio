@@ -7,31 +7,57 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { ARRAY_LANGAGES, ARRAY_NAMEPACES } from '../_mocks_/_settings_items_';
 import ReactPDF from '@react-pdf/renderer';
 import { useDeviceMode } from '../contexts/DeviceModeProvider';
-import { Stack } from '@mui/material';
+import { Button, Stack } from '@mui/material';
+import { isBot } from 'next/dist/server/web/spec-extension/user-agent';
 
 export default function ResumePage() {
-const {isMobile} = useDeviceMode();
+const {isMobile, isTablet, isLaptop} = useDeviceMode();
     const router = useRouter();
 const [component, setComponent] = useState();
     useEffect(() => {
+
 if (router.isReady && window) {
-    
-    setComponent(<Stack justifyContent={'center'} alignItems={'center'}>
-    <PDFDownloadLink document={<Test />} fileName="cv-daniel-mbengui.pdf">
-    {({ blob, url, loading, error }) =>
-      loading ? 'Loading document...' : 'Download now!'
+    setComponent(<></>)
+    var display = 'none';
+    var displayPdf = 'none';
+    var displayButtonDownload = 'none';
+    if (isTablet) {
+        display = 'flex';
+        displayPdf = 'none';
+        displayButtonDownload = 'flex';
+    } else {
+        display = 'none';
+        displayPdf = 'flex';
+        displayButtonDownload = 'none';
     }
-  </PDFDownloadLink><PDFViewer 
-        id={'resume'}
-        width={'100%'}
-        height={'100%'}
-        showToolbar
-        >
-            <Test />
-          </PDFViewer>
-    </Stack>)
+    setComponent(<Stack direction={'row'} py={ isTablet ? 30 : 0} justifyContent={'center'} alignItems={'center'}>
+        <div style={{display:displayButtonDownload}}>
+        <PDFDownloadLink document={<Test />} fileName="cv-daniel-mbengui.pdf">
+        {({ blob, url, loading, error }) =>
+          loading ? 'Loading document...' : <Button variant='contained'>{`'Download my CV!'`}</Button>
+        }
+      </PDFDownloadLink>
+            </div>
+            <div style={{
+                display: displayPdf,
+                position:'absolute',
+                top:0,
+                left:0,
+                right:0,
+                bottom:0,
+            }}>
+            <PDFViewer 
+            id={'resume'}
+            width={'100%'}
+            height={'100%'}
+            showToolbar
+            >
+                <Test />
+              </PDFViewer>
+            </div>
+        </Stack>)
 }
-    }, [])
+    }, [isTablet])
     return (
 <div style={{
     position:'absolute',
