@@ -5,20 +5,26 @@ import Test from '../components/resume/Test';
 import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { ARRAY_LANGAGES, ARRAY_NAMEPACES } from '../_mocks_/_settings_items_';
+import ReactPDF from '@react-pdf/renderer';
+import { useDeviceMode } from '../contexts/DeviceModeProvider';
 
 export default function ResumePage() {
-
+const {isMobile} = useDeviceMode();
     const router = useRouter();
 const [component, setComponent] = useState(<></>);
     useEffect(() => {
 if (router.isReady && window) {
-    setComponent(<PDFViewer 
-    width={'100%'}
-    height={'100%'}
-    showToolbar
-    >
-        <Test />
-      </PDFViewer>)
+    if (isMobile) {
+        ReactPDF.render(<Test />, `${__dirname}/example.pdf`);
+    } else {
+        setComponent(<PDFViewer 
+            width={'100%'}
+            height={'100%'}
+            showToolbar
+            >
+                <Test />
+              </PDFViewer>)
+    }
 }
     }, [])
     return (
