@@ -5,6 +5,7 @@ import Skills from './Skills';
 import Experience from './Experience';
 import Header from './Header';
 import { Container, Typography } from '@mui/material';
+import { _MY_PROFILE_ } from '../../_mocks_/_settings_items_';
 
 Font.register({
     family: 'Open Sans',
@@ -78,7 +79,7 @@ const Resume = (props) => {
           <View style={styles.container}>
             <View style={styles.leftColumn}>
               <Image
-                src="/me-no-back.png"
+                src={_MY_PROFILE_.srcImage}
                 style={styles.image}
               />
               <Education education={education} />

@@ -27,7 +27,11 @@ export const _MY_PROFILE_ = {
     name : "Daniel Mbengui",
     mail : "daniel.mbengui@gmail.com",
     phone : "+41 76 679 51 15",
+    position : "Étudiant 42Lausanne",
+    srcImage: "/img/me.png",
+    srcBot:"/img/bot-no-back.png",
     socials : {
+        website: "https://danielmbengui.ch",
         linkedin: "https://www.linkedin.com/in/daniel-mbengui/",
         github: "https://github.com/danielmbengui",
     }

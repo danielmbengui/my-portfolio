@@ -6,9 +6,11 @@ import {
   Box,
   ButtonBase,
   Button,
+  Tooltip,
 } from '@mui/material';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import StickyNote2OutlinedIcon from '@mui/icons-material/StickyNote2Outlined';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import { grey } from '@mui/material/colors';
 import { Popover } from '@mui/material';
@@ -29,7 +31,28 @@ function LinksBar() {
 
   return (
     <>
-      <a
+     <Tooltip
+        title={<span style={{ fontSize: 13 }}>{`Resume`}</span>}
+        placement="left"
+        //sx={{display:'none'}}
+      >
+        <a
+        href="/resume"
+        target="_blank"
+        rel="noreferrer"
+        //style={{display:'none'}}
+      >
+        <IconButton>
+          <StickyNote2OutlinedIcon sx={{ color: 'var(--primary)', width: 30, height: 30 }} />
+        </IconButton>
+      </a>
+      </Tooltip>
+      <Tooltip
+        title={<span style={{ fontSize: 13 }}>{`Linkedin`}</span>}
+        placement="left"
+        //sx={{display:'none'}}
+      >
+        <a
         href={_MY_PROFILE_.socials.linkedin}
         target="_blank"
         rel="noreferrer"
@@ -38,7 +61,14 @@ function LinksBar() {
           <LinkedInIcon sx={{ color: 'var(--primary)', width: 30, height: 30 }} />
         </IconButton>
       </a>
-      <a
+        </Tooltip>    
+      
+      <Tooltip
+        title={<span style={{ fontSize: 13 }}>{`Github`}</span>}
+        placement="left"
+        //sx={{display:'none'}}
+      >
+         <a
         href={_MY_PROFILE_.socials.github}
         target="_blank"
         rel="noreferrer"
@@ -47,7 +77,14 @@ function LinksBar() {
           <GitHubIcon sx={{ color: 'var(--primary)', width: 30, height: 30 }} />
         </IconButton>
       </a>
-      <a
+        </Tooltip> 
+     
+      <Tooltip
+        title={<span style={{ fontSize: 13 }}>{`Contact`}</span>}
+        placement="left"
+        //sx={{display:'none'}}
+      >
+        <a
         href="/"
         target="_blank"
         rel="noreferrer"
@@ -57,6 +94,8 @@ function LinksBar() {
           <EmailIcon sx={{ color: 'var(--primary)', width: 30, height: 30 }} />
         </IconButton>
       </a>
+        </Tooltip> 
+      
     </>
   );
 }

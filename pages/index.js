@@ -330,7 +330,7 @@ const WebHome = () => {
     <div className={styles.links}>
         <LinksBar />
       </div>
-      <div style={{background:'red', width:'100%'}}>
+      <div style={{width:'100%'}}>
 {
         lang && lang === LANGAGE_FRENCH && <FrenchChatbot />
       }

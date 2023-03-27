@@ -1,6 +1,9 @@
 import React from 'react';
 
-import { Link, Text, View, StyleSheet } from '@react-pdf/renderer';
+import { Link, Text, View, StyleSheet, Image, Svg } from '@react-pdf/renderer';
+import { _MY_PROFILE_ } from '../../_mocks_/_settings_items_';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 const styles = StyleSheet.create({
   container: {
@@ -43,12 +46,21 @@ const styles = StyleSheet.create({
 export default () => (
   <View style={styles.container}>
     <View style={styles.detailColumn}>
-      <Text style={styles.name}>Luke Skywalker</Text>
-      <Text style={styles.subtitle}>Jedi Master</Text>
+      <Text style={styles.name}>{_MY_PROFILE_.name}</Text>
+      <Text style={styles.subtitle}>{_MY_PROFILE_.position}</Text>
     </View>
     <View style={styles.linkColumn}>
-      <Link href="mailto:luke@theforce.com" style={styles.link}>
-        luke@theforce.com
+      <Link href={`${_MY_PROFILE_.socials.website}`} style={styles.link}>
+        {_MY_PROFILE_.socials.website}
+      </Link>
+      <Link href={`mailto:${_MY_PROFILE_.mail}`} style={styles.link}>
+        {_MY_PROFILE_.mail}
+      </Link>
+      <Link href={`${_MY_PROFILE_.socials.linkedin}`} style={styles.link}>
+        {_MY_PROFILE_.socials.linkedin}
+      </Link>
+      <Link href={`${_MY_PROFILE_.socials.github}`} target={'_blank'} style={styles.link}>
+      {_MY_PROFILE_.socials.github}
       </Link>
     </View>
   </View>

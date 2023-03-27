@@ -17,7 +17,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
         borderRadius: 15,
         position: 'relative',
         backgroundColor: 'transparent',
-        border: '1px solid var(--primary)',
+        //border: '1px solid var(--primary)',
         fontSize: 14,
         //padding: '5px 26px 5px 12px',
         //py:'5px',
@@ -61,9 +61,14 @@ const styleSelect = {
         fontSize: 14,
         //height: 20,
         background: 'transparent',
+        "&:hover, &:focus": {
+            //background: 'var(--primary)',
+            color: 'var(--primary)',
+            border: 'none'
+        },
         //borderWidth:'1px',
         //borderRadius:5,
-        border: '2px solid var(--primary)'
+        //border: '2px solid var(--primary)'
         //boxShadow:'none'
     },
 };
@@ -77,7 +82,8 @@ const styleMenu = {
         //backgroundColor:'yellow',
         "&:hover, &:focus": {
             background: 'var(--primary)',
-            color: 'black'
+            color: 'black',
+            border: 'none'
         },
     }
 };
