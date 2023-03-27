@@ -4,7 +4,7 @@ import Education from './Education';
 import Skills from './Skills';
 import Experience from './Experience';
 import Header from './Header';
-import { Container } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 
 Font.register({
     family: 'Open Sans',
@@ -30,7 +30,7 @@ Font.register({
 const styles = StyleSheet.create({
     page: {
       padding: 30,
-      widht:'90vw'
+      //widht:'90vw'
     },
     container: {
       flex: 1,
@@ -95,7 +95,7 @@ const Test = () => (
       keywords="awesome, resume, start wars"
       subject="The resume of Luke Skywalker"
       title="Resume"
-      fullScreen
+      //fullScreen
     >
       <Resume size="A4" />
       <Resume orientation="landscape" size="A4" />

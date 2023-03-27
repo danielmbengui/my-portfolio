@@ -15,6 +15,7 @@ if (router.isReady && window) {
     setComponent(<PDFViewer 
     width={'100%'}
     height={'100%'}
+    showToolbar
     >
         <Test />
       </PDFViewer>)
