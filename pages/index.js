@@ -11,7 +11,7 @@ import useWindowSize from '../hooks/useWindowSize';
 import { Box } from '@mui/system';
 import MobileHeader from '../components/layouts/MobileHeader';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { ARRAY_NAMESPACES, ARRAY_LANGAGES, LANGAGE_FRENCH, LANGAGE_ENGLISH, _MY_PROFILE_ } from '../_mocks_/_settings_items_';
+import { ARRAY_NAMESPACES, ARRAY_LANGAGES, LANGAGE_FRENCH, LANGAGE_ENGLISH, _MY_PROFILE_, PAGE_LINK_CHAT_BOT, PAGE_LINK_RESUME, NAMESPACE_LANGAGE_HOME } from '@/_mocks_/_settings_items_';
 
 import { createChatBotMessage } from 'react-chatbot-kit';
 import Options from '../components/molecules/Options';
@@ -47,6 +47,8 @@ import DesktopContent from '../components/layouts/DesktopContent';
 import MobileLinksBar from '../components/layouts/MobileLinksBar';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import MobileSectionsBar from '../components/layouts/MobileSectionsBar';
+import Link from 'next/link';
+import { ResumeIcon } from '@/components/icons/IconMaterialUi';
 
 export function WebAppBar() {
   const theme = useTheme();
@@ -58,111 +60,18 @@ export function WebAppBar() {
   };
 
   return (
- <Box sx={{}}>
-     <AppBar position="static">
-    <Toolbar sx={{background:theme.palette.background.paper}}>
-     <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'} sx={{
-      width:'100%', 
-     //background:'pink'
-     }}>
-      <div>
-      <IconButton
-        size="large"
-        edge="start"
-        color="inherit"
-        aria-label="menu"
-        //sx={{ mr: 2 }}
-        onClick={() => setPopoverOpen(!popoverOpen)}
-    ref={avatarRef}
-      >
-                <StyledBadge
-      overlap="circular"
-      anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-      variant="dot"
-    >
-      <Avatar src="/me-no-back.png" sx={{ width: 40, height: 40, background:'var(--primary)' }} />
-    </StyledBadge>
-  <Box
-    //component={ButtonBase}
-    
-  >
-
-  </Box>
-
-
-      </IconButton>
-      <Popover
-    open={popoverOpen}
-    onClose={handlePopoverClose}
-    anchorEl={avatarRef.current}
-    anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-    PaperProps={{
-      sx: {
-        border: 1,
-        borderColor: grey[200],
-        padding: 2,
-        marginLeft: 2,
-        borderRadius: '5%',
-      },
-    }}
-    elevation={0}
-  >
-    <Box flex flexDirection="column">
-      <Typography variant="h6">{_MY_PROFILE_.name}</Typography>
-      <Box
-        sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
-      >
-        <EmailIcon />
-        <Typography
-          variant="span"
-          sx={{ marginLeft: '8px', marginTop: '5px' }}
-        >
-          {_MY_PROFILE_.mail}
-        </Typography>
-      </Box>
-      <Box
-        sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
-      >
-        <PhoneIcon />
-        <Typography
-          variant="span"
-          sx={{ marginLeft: '8px', marginTop: '5px' }}
-        >
-          {_MY_PROFILE_.phone}
-        </Typography>
-      </Box>
-      <a
-        href="/resume"
-        target="_blank"
-        rel="noreferrer"
-      >
-        <Button>{`See my resume`}</Button>
-      </a>
-      <a
-        href=""
-        //target="_blank"
-        rel="noreferrer"
-      >
-        <Button variant='contained'>{`Chat with me`}</Button>
-      </a>
+    <Box sx={{}}>
+      <AppBar position="static" elevation={0}>
+        <Toolbar sx={{ background: 'var(--background)' }}>
+          <Stack direction={'row'} justifyContent={'center'} spacing={1} alignItems={'center'} sx={{
+            width: '100%',
+            //background:'pink'
+          }}>
+            <SwitchThemeComponent />
+          </Stack>
+        </Toolbar>
+      </AppBar>
     </Box>
-  </Popover>
-      </div>
-      <div>
-      <Stack direction={'row'} spacing={1} justifyContent={'center'} alignItems={'center'} sx={{
-    //background: 'red',
-    //mx:'auto',
-    //width: '100%'
-  }}>
-    <SelectLangageComponent
-    />
-    <SwitchThemeComponent />
-  </Stack>
-      </div>
-     </Stack>
-    </Toolbar>
-  </AppBar>
- </Box>
   );
 }
 
@@ -179,82 +88,82 @@ export function MobileAppBar() {
   };
 
   return (
- <Box sx={{}}>
-     <AppBar position="static">
-    <Toolbar sx={{background:theme.palette.background.paper}}>
-     <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'} sx={{
-      width:'100%', 
-     //background:'pink'
-     }}>
-      <div>
-      <IconButton
-        size="large"
-        edge="start"
-        color="inherit"
-        aria-label="menu"
-        //sx={{ mr: 2 }}
-        //onClick={() => setPopoverOpen(!popoverOpen)}
-        onClick={() => setLinksBarOpen(!linksBarOpen)}
-    ref={avatarRef}
-      >
+    <Box sx={{}}>
+      <AppBar position="static">
+        <Toolbar sx={{ background: theme.palette.background.paper }}>
+          <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'} sx={{
+            width: '100%',
+            //background:'pink'
+          }}>
+            <div>
+              <IconButton
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                //sx={{ mr: 2 }}
+                //onClick={() => setPopoverOpen(!popoverOpen)}
+                onClick={() => setLinksBarOpen(!linksBarOpen)}
+                ref={avatarRef}
+              >
                 <StyledBadge
-      overlap="circular"
-      anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-      variant="dot"
-    >
-      <Avatar src="/me-no-back.png" sx={{ width: 40, height: 40, background:'var(--primary)' }} />
-    </StyledBadge>
+                  overlap="circular"
+                  anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                  variant="dot"
+                >
+                  <Avatar src="/me-no-back.png" sx={{ width: 40, height: 40, background: 'var(--primary)' }} />
+                </StyledBadge>
 
-    <Drawer
-        anchor="left"
-        open={linksBarOpen}
-        onClose={() => setLinksBarOpen(false)}
-        PaperProps={{ sx: { padding: '20px', width: 'fit-content' } }}
-      >
-        <MobileLinksBar />
-      </Drawer>
+                <Drawer
+                  anchor="left"
+                  open={linksBarOpen}
+                  onClose={() => setLinksBarOpen(false)}
+                  PaperProps={{ sx: { padding: '20px', width: 'fit-content' } }}
+                >
+                  <MobileLinksBar />
+                </Drawer>
 
 
-      </IconButton>
-      </div>
-      <div>
-      <Stack direction={'row'} spacing={1} justifyContent={'center'} alignItems={'center'} sx={{
-    //background: 'red',
-    //mx:'auto',
-    //width: '100%'
-  }}>
-    <SelectLangageComponent
-    />
-    <SwitchThemeComponent />
-  </Stack>
-      </div>
-      <div>
-      <Box
-        component={IconButton}
-        onClick={() => setSectionBarOpen(!sectionBarOpen)}
-      >
-        <MenuRoundedIcon />
-      </Box>
-      <Drawer
-        anchor="right"
-        open={sectionBarOpen}
-        onClose={() => setSectionBarOpen(false)}
-        PaperProps={{
-          sx: {
-            paddingLeft: '5px',
-            paddingRight: '20px',
-            paddingY: '10px',
-            width: 'fit-content',
-          },
-        }}
-      >
-        <MobileSectionsBar />
-      </Drawer>
-      </div>
-     </Stack>
-    </Toolbar>
-  </AppBar>
- </Box>
+              </IconButton>
+            </div>
+            <div>
+              <Stack direction={'row'} spacing={1} justifyContent={'center'} alignItems={'center'} sx={{
+                //background: 'red',
+                //mx:'auto',
+                //width: '100%'
+              }}>
+                <SelectLangageComponent
+                />
+                <SwitchThemeComponent />
+              </Stack>
+            </div>
+            <div>
+              <Box
+                component={IconButton}
+                onClick={() => setSectionBarOpen(!sectionBarOpen)}
+              >
+                <MenuRoundedIcon />
+              </Box>
+              <Drawer
+                anchor="right"
+                open={sectionBarOpen}
+                onClose={() => setSectionBarOpen(false)}
+                PaperProps={{
+                  sx: {
+                    paddingLeft: '5px',
+                    paddingRight: '20px',
+                    paddingY: '10px',
+                    width: 'fit-content',
+                  },
+                }}
+              >
+                <MobileSectionsBar />
+              </Drawer>
+            </div>
+          </Stack>
+        </Toolbar>
+      </AppBar>
+    </Box>
   );
 }
 
@@ -316,41 +225,47 @@ const getPersonalOptions = (actionProvider) => {
 
 
 const WebHome = () => {
-  const {t} = useTranslation();
-  const [lang, ] = useLangMode();
+  const { t } = useTranslation();
+  const [lang,] = useLangMode();
   return (
     <>
-    
-<Box sx={{
-  py:'5px',
-      paddingBottom:100
-    }}>
-      
-<Stack direction={'row'} justifyContent={'space-between'}>
-    <div className={styles.links}>
-        <LinksBar />
-      </div>
-      <div style={{width:'100%'}}>
-{
-        lang && lang === LANGAGE_FRENCH && <FrenchChatbot />
-      }
 
-{
-        lang && lang === LANGAGE_ENGLISH && <EnglishChatbot />
-      }
-</div>
-<div className={styles.links}>
-        <SectionsBar />
-      </div>
-    </Stack>
-</Box>
+      <Box sx={{
+        py: '5px',
+        paddingBottom: 100
+      }}>
+
+        <Stack direction={'column'} justifyContent={'center'} alignItems={'center'} sx={{ background: 'red' }}>
+          <Stack alignItems={'center'} my={3} sx={{background:'yellow'}}>
+          <div>
+          <StyledBadge
+              overlap="circular"
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+              variant="dot"
+            >
+              <Avatar src="/me-no-back.png" sx={{ width: 150, height: 150, background: 'var(--primary)' }} />
+            </StyledBadge>
+          </div>
+          <SelectLangageComponent/>
+          </Stack>
+
+          <Link href={PAGE_LINK_CHAT_BOT} target={'_blank'}>
+              <Button sx={{fontFamily:'Coolvetica'}}>{t('buttons.goChat',{ns:NAMESPACE_LANGAGE_HOME})}</Button>
+            </Link>
+
+            <Link href={PAGE_LINK_RESUME} target={'_blank'}>
+              <Button sx={{fontFamily:'Coolvetica', color:'var(--text)'}} startIcon={<ResumeIcon />} variant='contained'>{t('buttons.goCv', {ns:NAMESPACE_LANGAGE_HOME})}</Button>
+            </Link>
+
+        </Stack>
+      </Box>
     </>
   );
 };
 
 const MobileHome = () => {
-  const {t} = useTranslation();
-  const [lang, ] = useLangMode();
+  const { t } = useTranslation();
+  const [lang,] = useLangMode();
   const [config, setConfig] = useState({
     botName: 'Jeffrey Yu',
     initialMessages: [
@@ -535,41 +450,50 @@ const MobileHome = () => {
 
   return (
     <div style={{
-      paddingTop:10
+      paddingTop: 10
     }}>
 
       {
         lang && lang === LANGAGE_FRENCH && <FrenchChatbot />
       }
 
-{
+      {
         lang && lang === LANGAGE_ENGLISH && <EnglishChatbot />
       }
     </div>
   );
 };
 
-export default function Home() {
+export default function HomePage() {
   const { width } = useWindowSize();
-const {t} = useTranslation();
+  const { t } = useTranslation();
 
   return (
-    <>      
-      {width > 740 ? <WebAppBar /> : <MobileAppBar />}
-    <CssBaseline />
-    
-    {width > 740 ? <WebHome /> : <MobileHome />}
-      
+    <>
+    <Head>
+    <title>{t('titlePage', {ns:NAMESPACE_LANGAGE_HOME})}</title>
+        <meta
+          name="description"
+          content={t('descriptionPage', {ns:NAMESPACE_LANGAGE_HOME})}
+        />
+    </Head>
+      {width > 740 && <WebAppBar />}
+      {width <= 740 && <MobileAppBar />}
+      <CssBaseline />
+
+      {width > 740 && <WebHome />}
+      {width <= 740 && <MobileHome />}
+
     </>
   );
 }
 
 export async function getStaticProps({ locale }) {
   return {
-      props: {
-        //tabPrice: response,
-          ...(await serverSideTranslations(locale, ARRAY_NAMESPACES, null, ARRAY_LANGAGES)),
-          // Will be passed to the page component as props
-      },
+    props: {
+      //tabPrice: response,
+      ...(await serverSideTranslations(locale, ARRAY_NAMESPACES, null, ARRAY_LANGAGES)),
+      // Will be passed to the page component as props
+    },
   }
 }

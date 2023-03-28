@@ -5,7 +5,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useTranslation } from 'next-i18next';
 import { InputBase, NativeSelect, Stack, Typography } from '@mui/material';
-import { ARRAY_LANGAGES, NAMESPACE_LANGAGE_COMMON } from '../../_mocks_/_settings_items_';
+import { ARRAY_LANGAGES, GENERAL_FONT_FAMILY, NAMESPACE_LANGAGE_COMMON } from '../../_mocks_/_settings_items_';
 import { useLangMode } from '../../contexts/LangModeProvider';
 import { getFlag } from '../icons/FlagIcons';
 
@@ -142,7 +142,8 @@ export default function DropdownLangageComponent() {
                                     getFlag(_lang)
                                 }
                                 <Typography sx={{
-                                    textTransform:'capitalize'
+                                    textTransform:'capitalize',
+                                    fontFamily:GENERAL_FONT_FAMILY
                                 }}>{t(`langs.${_lang}`, {ns:NAMESPACE_LANGAGE_COMMON})}</Typography>
                             </Stack>
                         </MenuItem>

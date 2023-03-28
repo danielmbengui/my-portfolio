@@ -1,8 +1,10 @@
 /* --------------- NAME SPACES -------------- */
 export const NAMESPACE_LANGAGE_COMMON = 'common';
+export const NAMESPACE_LANGAGE_HOME = 'home';
 
 export const ARRAY_NAMEPACES = [
     NAMESPACE_LANGAGE_COMMON,
+    NAMESPACE_LANGAGE_HOME,
 ];
 
 /* --------------- LANGS -------------- */
@@ -21,6 +23,14 @@ export const DEFAULT_THEME = THEME_LIGHT;
 /* --------------- STORAGE -------------- */
 export const STORAGE_THEME_MODE = "data-theme";
 export const STORAGE_LANG_MODE = 'lang';
+
+/* --------------- FONTS -------------- */
+export const GENERAL_FONT_FAMILY = "Coolvetica";
+/* --------------- PAGES -------------- */
+export const PAGE_LINK_HOME = "/";
+export const PAGE_LINK_RESUME = "/portfolio/resume";
+export const PAGE_LINK_CHAT_BOT = "/portfolio/chatbot";
+export const PAGE_LINK_SKILLS = "/portfolio/skills";
 
 
 export const _MY_PROFILE_ = {

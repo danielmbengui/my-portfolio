@@ -19,12 +19,15 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 import StyledBadge from '../atoms/StyledBadge';
 import { GITHUB_LINK, LINKEDIN_LINK } from '../../_mocks_/_links_items_';
-import { _MY_PROFILE_ } from '../../_mocks_/_settings_items_';
+import { PAGE_LINK_RESUME, _MY_PROFILE_ } from '../../_mocks_/_settings_items_';
+import { useRouter } from 'next/router';
+import { useLangMode } from '../../contexts/LangModeProvider';
 
 function LinksBar() {
   const avatarRef = useRef(null);
   const [popoverOpen, setPopoverOpen] = useState(false);
-
+const router = useRouter();
+const [lang, setLang] = useLangMode();
   const handlePopoverClose = () => {
     setPopoverOpen(false);
   };
@@ -37,7 +40,7 @@ function LinksBar() {
         //sx={{display:'none'}}
       >
         <a
-        href="/resume"
+        href={`/${lang}${PAGE_LINK_RESUME}`}
         target="_blank"
         rel="noreferrer"
         //style={{display:'none'}}
