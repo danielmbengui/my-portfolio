@@ -11,7 +11,7 @@ import useWindowSize from '../hooks/useWindowSize';
 import { Box } from '@mui/system';
 import MobileHeader from '../components/layouts/MobileHeader';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { ARRAY_NAMESPACES, ARRAY_LANGAGES, LANGAGE_FRENCH, LANGAGE_ENGLISH, _MY_PROFILE_, PAGE_LINK_CHAT_BOT, PAGE_LINK_RESUME, NAMESPACE_LANGAGE_HOME } from '@/_mocks_/_settings_items_';
+import { ARRAY_NAMESPACES, ARRAY_LANGAGES, LANGAGE_FRENCH, LANGAGE_ENGLISH, _MY_PROFILE_, PAGE_LINK_CHAT_BOT, PAGE_LINK_RESUME, NAMESPACE_LANGAGE_HOME, THEME_DARK, THEME_LIGHT } from '@/_mocks_/_settings_items_';
 
 import { createChatBotMessage } from 'react-chatbot-kit';
 import Options from '../components/molecules/Options';
@@ -52,6 +52,7 @@ import { ResumeIcon } from '@/components/icons/IconMaterialUi';
 import { AndroidIcon, AndroidStudioIcon, CssIcon, HtmlIcon, JavascriptIcon, MaterialUiIcon, MomentJsIcon, NextJsIcon, NodeJsIcon, PhotoshopIcon, PwaIcon, ReactIcon, SpyderIcon, SwrIcon, VisualStudioIcon } from '@/components/icons/IconifiyIcons';
 import { motion, AnimatePresence } from "framer-motion"
 import { Fade, Bounce } from "react-awesome-reveal";
+import { useDeviceMode } from '@/contexts/DeviceModeProvider';
 
 
 export function WebAppBar() {
@@ -64,9 +65,11 @@ export function WebAppBar() {
   };
 
   return (
-    <Box sx={{}}>
-      <AppBar position="static" elevation={0}>
-        <Toolbar sx={{ background: 'var(--background)' }}>
+    <Box sx={{background:'transparent'}}>
+      <AppBar position="fixed" sx={{background:'var(--background)'}}>
+        <Toolbar 
+        sx={{ background: 'transparent' }}
+        >
           <Stack direction={'row'} justifyContent={'center'} spacing={1} alignItems={'center'} sx={{
             width: '100%',
             //background:'pink'
@@ -230,6 +233,7 @@ const getPersonalOptions = (actionProvider) => {
 
 const WebHome = () => {
   const { t } = useTranslation();
+  const theme = useTheme();
   const [lang,] = useLangMode();
   const refProgramm = useRef();
   const [positionVisualStudio, setPositionVisualStudio] = useState({
@@ -302,22 +306,44 @@ return () => clearInterval(interval);
   return (
     <Box sx={{
       height:'100%',
+      position:'relative',
+      //my:30,
       //mb:50,
-      overflowY:'scroll'
+      overflowY:'scroll',
+      //backgroundColor: `rgba(${theme.palette.mode === THEME_LIGHT ? '255,255,255' : '0,0,0'}, 0.7)`, /* Black w/opacity/see-through */
+      //opacity:0.5,
+      //zIndex:0
       //mt: 3,
       //paddingBottom: 100
     }}>
-      <Stack 
+      <div style={{
+        position:'absolute',
+        top:0,
+        left:0,
+        right:0,
+        bottom:0,
+        //paddingTop:50
+        //background:'red',
+        
+        //opacity:1,
+        //zIndex:10000
+        //opacity:0.5
+        
+      }}>
+        <Stack 
       //mb={50}
-      pb={10}
+      py={10}
       justifyContent={'center'} alignItems={'center'} 
       sx={{
+        opacity:1,
+        
         //background:'cyan'
         }}>
-
-      <Stack my={3} direction={'row'} spacing={1} alignItems={'center'} justifyContent={'center'} sx={{
+<Stack p={1} mt={3} mb={1} direction={'row'} spacing={1} alignItems={'center'} justifyContent={'center'} sx={{
 //background:'green',
-//width:'100%'
+//background:'cyan',
+//width:'100%',
+borderRadius: 10
 }}>
 <Stack justifyContent={'center'} alignItems={'center'} style={{
       position: 'relative',
@@ -327,6 +353,7 @@ return () => clearInterval(interval);
       width: 80,
       height: 80,
       objectFit: 'cover',
+      
     }}>
 <AnimatePresence style={{
       position: 'relative',
@@ -467,22 +494,23 @@ return () => clearInterval(interval);
 </Stack>
 
 </Stack>
-
-        <Stack alignItems={'center'} mb={2}>
+        <Stack alignItems={'center'} spacing={1} mb={2}>
         <Bounce duration={3000}>
-        <div>
-        <StyledBadge
-            overlap="circular"
-            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-            variant="dot"
-          >
-            <Avatar src="/me-no-back.png" sx={{ width: 150, height: 150, background: 'var(--primary)' }} />
-          </StyledBadge>
-        </div>
+        <Paper 
+        //elevation={theme.palette.mode === THEME_LIGHT ? 16 : 0} 
+        sx={{
+          p:1,
+          //px:2,
+          borderRadius:'50%',
+          border:'3px solid var(--primary)'
+        }}>
+        <Avatar src="/me-no-back.png" sx={{ width: 150, height: 150, }} />
+          </Paper>
         </Bounce>
+        
         <SelectLangageComponent/>
         </Stack>
-
+     
 
           <Stack alignItems={'start'} sx={{
             display:'none',
@@ -497,14 +525,20 @@ Your browser does not support the video tag.
 </video>
           </Stack>
 
+          <Paper sx={{my:5}}>
+          <Stack p={1} alignItems={'center'}>
           <Link href={PAGE_LINK_CHAT_BOT} target={'_blank'}>
-            <Button sx={{fontFamily:'Coolvetica'}}>{t('buttons.goChat',{ns:NAMESPACE_LANGAGE_HOME})}</Button>
+            <Button sx={{fontFamily:'Coolvetica', color:'var(--text)'}} startIcon={<ResumeIcon />} variant='contained'>{'Commencez votre voyage avec moi'}</Button>
           </Link>
-
           <Link href={PAGE_LINK_RESUME} target={'_blank'}>
-            <Button sx={{fontFamily:'Coolvetica', color:'var(--text)'}} startIcon={<ResumeIcon />} variant='contained'>{t('buttons.goCv', {ns:NAMESPACE_LANGAGE_HOME})}</Button>
+            <Button sx={{fontFamily:'Coolvetica', color:'var(--text)'}}>{t('buttons.goCv',{ns:NAMESPACE_LANGAGE_HOME})}</Button>
           </Link>
+          </Stack>
+          </Paper>
+
+          
       </Stack>
+      </div>
     </Box>
   );
 };
@@ -711,12 +745,18 @@ const MobileHome = () => {
 };
 
 export default function HomePage() {
+  const theme = useTheme();
   const { width } = useWindowSize();
   const { t } = useTranslation();
-
+const {isMobile} = useDeviceMode();
   return (
     <div style={{
       //background:'red', 
+      //paddingTop:20,
+      //backgroundImage: `url('/img/home/background-${theme.palette.mode}.gif')`,
+      backgroundSize:'cover',
+      backgroundRepeat:'no-repeat',
+      background:theme.palette.background.default,
     overflow:'scroll', position:'absolute', bottom:0, top:0, left:0, right:0}}>
     <Head>
     <title>{t('titlePage', {ns:NAMESPACE_LANGAGE_HOME})}</title>

@@ -31,7 +31,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Avatar, ButtonBase, Container, Drawer, Paper, Popover, Stack, useTheme } from '@mui/material';
+import { Avatar, ButtonBase, Container, Drawer, Grid, Paper, Popover, Stack, useTheme } from '@mui/material';
 import StyledBadge from '@/components/atoms/StyledBadge';
 import { grey } from '@mui/material/colors';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
@@ -47,6 +47,22 @@ import DesktopContent from '@/components/layouts/DesktopContent';
 import MobileLinksBar from '@/components/layouts/MobileLinksBar';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import MobileSectionsBar from '@/components/layouts/MobileSectionsBar';
+import { Slide, Fade, Bounce } from "react-awesome-reveal";
+
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import { CardActionArea } from '@mui/material';
+
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+
+
+import { motion, AnimatePresence } from "framer-motion"
+import { ReactIcon } from '@/components/icons/IconifiyIcons';
 
 export function WebAppBar() {
   const theme = useTheme();
@@ -313,11 +329,50 @@ const getPersonalOptions = (actionProvider) => {
   ];
 };
 
-
+function AlertDialog({selectedId, setSelectedId}) {
+    const [open, setOpen] = useState(selectedId ? true : false);
+  
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+  
+    const handleClose = () => {
+      setOpen(false);
+      setSelectedId(null);
+    };
+  
+    return (
+      <div>
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">
+            {"Use Google's location service?" + selectedId}
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Let Google help apps determine location. This means sending anonymous
+              location data to Google, even when no apps are running.
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>Disagree</Button>
+            <Button onClick={handleClose} autoFocus>
+              Agree
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </div>
+    );
+  }
 
 const WebHome = () => {
   const {t} = useTranslation();
   const [lang, ] = useLangMode();
+  const [selectedId, setSelectedId] = useState(null)
   return (
     <>
     
@@ -332,9 +387,157 @@ const WebHome = () => {
         <LinksBar />
       </div>
 <Stack px={20} pt={5} pb={10} sx={{background:'red', width:'100%', overflowY:'scroll', height:'90vh'}}>
+
+
+<Grid container justifyContent={'center'} spacing={1} sx={{background:'cyan'}}>
+    <Grid item xs={12} md={6}>
+    <motion.div 
+    layoutId={1} 
+    onClick={() => setSelectedId(1)}
+    initial={false}
+    whileHover={{scale: 0.9, "z-index":10000}}
+    //animate={{ x: 100 }}
+    >
+   <Fade triggerOnce>
+   <Card sx={{}}>
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          height="140"
+          image="/img/skills/langs.jpg"
+          alt="green iguana"
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            Langues
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {`En tant qu'afro-européen, je suis fier de parler deux langues couramment. 
+            Mes langues maternelles sont le lingala et le français, que j'ai apprises dès mon enfance; en plus de cela, je parle également l'anglais, 
+            acquis grâce à des voyages, des études et des expériences personnelles. 
+            Chaque langue que je parle représente pour moi une ouverture vers de nouvelles cultures, de nouveaux horizons et de nouvelles manières de penser. 
+            Je suis convaincu que la connaissance des langues est un outil essentiel pour communiquer et comprendre le monde qui nous entoure.`}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+    </Card>
+   </Fade>
+  </motion.div>  
+    </Grid>
+
+    <Grid item xs={12} md={6}>
+    <motion.div layoutId={2} onClick={() => setSelectedId(2)}>
+    <Fade>
+    <Card sx={{ }}>
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          height="140"
+          image="/img/skills/prog.jpg"
+          alt="green iguana"
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            Programmation
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Lizards are a widespread group of squamate reptiles, with over 6,000
+            species, ranging across all continents except Antarctica
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+    </Card>
+    </Fade>
+  </motion.div>  
+    </Grid>
+
+    <Grid item xs={12} md={6}>
+    <Fade triggerOnce>
+    <motion.div layoutId={3} onClick={() => setSelectedId(3)}>
+    <Card sx={{ }}>
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          height="140"
+          image="/img/skills/frameworks.jpg"
+          alt="green iguana"
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            Librairies / Outils
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Lizards are a widespread group of squamate reptiles, with over 6,000
+            species, ranging across all continents except Antarctica
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+    </Card>
+  </motion.div>  
+    </Fade>
+    </Grid>
+
+    <Grid item xs={12} md={6}>
+    <Fade triggerOnce>
+    <motion.div layoutId={4} onClick={() => setSelectedId(4)}>
+    <Card sx={{ }}>
+      <CardActionArea>
+      <AnimatePresence>
+      <motion.div
+    animate={{
+      scale: [1, 2, 2, 1, 1],
+      rotate: [0, 0, 270, 270, 0],
+      borderRadius: ["20%", "20%", "50%", "50%", "20%"],
+    }}
+   // whileHover={{scale:0.8}}
+    >
+        <Stack>
+        <ReactIcon />
+        </Stack>
+    </motion.div>
+      </AnimatePresence>
+       
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            Logiciels
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Lizards are a widespread group of squamate reptiles, with over 6,000
+            species, ranging across all continents except Antarctica
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+    </Card>
+  </motion.div>  
+    </Fade>
+    </Grid>
+
+    <AnimatePresence>
+  {selectedId && (
+     <Bounce>
+        <motion.div 
+     layoutId={selectedId}
+     animate={{ opacity: 0 }}
+     transition={{duration:5}}
+     >
+         <AlertDialog selectedId={selectedId} setSelectedId={setSelectedId} />
+       
+     </motion.div>
+     </Bounce>
+  )}
+</AnimatePresence>
+</Grid>
+
+
+
+
     <div style={{paddingBottom:20, textAlign:'center'}}>
-    <Typography fontSize={30} sx={{fontFamily:'Coolvetica'}}>{t('sections.skills.title')}</Typography>
+    <Fade triggerOnce cascade damping={0.3} style={{
+        fontSize:30,
+        fontFamily:'Coolvetica'
+    }}>{t('sections.skills.title')}</Fade>
     </div>
+
 <div style={{overflowY:'sroll'}}>
 <SkillCards />
 </div>

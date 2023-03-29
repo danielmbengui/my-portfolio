@@ -37,8 +37,8 @@ export default function ThemeModeProvider({ children, themeMode }) {
                 palette: {
                     mode,
                     background: {
-                        default: 'var(--background)',
-                        paper: 'var(--accents0)',
+                        default: 'var(--accents0)',
+                        paper: 'var(--background)',
                         drawer: 'var(--accents1)',
                     },
                     ...(mode === 'light'

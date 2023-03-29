@@ -81,13 +81,13 @@ export function AndroidIcon({size = 30, color = 'var(--text)', ...props}) {
 
 export function HtmlIcon({size = 30, color = 'var(--text)', ...props}) {
     return(
-        <Icon icon="logos:html-5" {...props} color={color} width={size} />
+        <Icon icon="vscode-icons:file-type-html" {...props} color={color} width={size} />
     )
 }
 
 export function CssIcon({size = 30, color = 'var(--text)', ...props}) {
     return(
-        <Icon icon="logos:css-3" {...props} color={color} width={size} />
+        <Icon icon="vscode-icons:file-type-css" {...props} color={color} width={size} />
     )
 }
 
