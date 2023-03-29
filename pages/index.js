@@ -31,9 +31,9 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Avatar, ButtonBase, Container, Drawer, Paper, Popover, Stack, useTheme } from '@mui/material';
+import { Avatar, ButtonBase, Container, Drawer, Grid, Paper, Popover, Stack, useTheme } from '@mui/material';
 import StyledBadge from '../components/atoms/StyledBadge';
-import { grey } from '@mui/material/colors';
+import { grey, blue } from '@mui/material/colors';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -49,6 +49,10 @@ import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import MobileSectionsBar from '../components/layouts/MobileSectionsBar';
 import Link from 'next/link';
 import { ResumeIcon } from '@/components/icons/IconMaterialUi';
+import { AndroidIcon, AndroidStudioIcon, CssIcon, HtmlIcon, JavascriptIcon, MaterialUiIcon, MomentJsIcon, NextJsIcon, NodeJsIcon, PhotoshopIcon, PwaIcon, ReactIcon, SpyderIcon, SwrIcon, VisualStudioIcon } from '@/components/icons/IconifiyIcons';
+import { motion, AnimatePresence } from "framer-motion"
+import { Fade, Bounce } from "react-awesome-reveal";
+
 
 export function WebAppBar() {
   const theme = useTheme();
@@ -227,39 +231,281 @@ const getPersonalOptions = (actionProvider) => {
 const WebHome = () => {
   const { t } = useTranslation();
   const [lang,] = useLangMode();
+  const refProgramm = useRef();
+  const [positionVisualStudio, setPositionVisualStudio] = useState({
+    x:0,
+    y: 0
+  })
+
+
+  const [isVisible, setIsVisible] = useState(true);
+  const [currentImageProg, setCurrentImageProg] = useState(0);
+  const [currentImageFramework, setCurrentImageFramework] = useState(0);
+  const [currentImageSoftware, setCurrentImageSoftware] = useState(0);
+const imgProg = [
+  <JavascriptIcon size={60} />,
+  <HtmlIcon size={60} />,
+  <NodeJsIcon size={70} />,  
+]
+
+const imgFramework = [ 
+  <ReactIcon size={60} />,
+  <MaterialUiIcon size={60} />,
+  <PwaIcon size={70} />,  
+]
+
+const imgSoftware = [
+  <NextJsIcon size={60} />,
+  <CssIcon size={60} />,
+  <VisualStudioIcon size={60} />,
+]
+
+useEffect(() => {
+    
+  const interval = setInterval(() => {
+    setCurrentImageProg((prevImage) => (prevImage + 1) % imgProg.length);
+    setCurrentImageFramework((prevImage) => (prevImage + 1) % imgFramework.length);
+    setCurrentImageSoftware((prevImage) => (prevImage + 1) % imgSoftware.length);
+}, 3000);
+return () => clearInterval(interval);
+
+}, [])
+
+
+
+  const [x, setX] = useState(0);
+
+  useEffect(() => {
+    
+    const interval = setInterval(() => {
+    const _position = positionVisualStudio;
+    _position.x += 100;
+    if (_position.x >= window.innerWidth) {
+      _position.x = 0;
+      //setX(0);
+    } else {
+      //setX(_position.x);
+    }
+    //setPositionVisualStudio(_position);
+    
+    //_position.x += 10;
+    //setSeconds(_seconds);
+    //setSeconds(_seconds);
+    //console.log("NEw position" ,_position.x, window.innerWidth)
+    //console.log("Width stack" ,refProgramm.current.style.width)
+
+    
+}, 1000);
+  return () => clearInterval(interval);
+  
+  }, [])
   return (
-    <>
+    <Box sx={{
+      height:'100%',
+      //mb:50,
+      overflowY:'scroll'
+      //mt: 3,
+      //paddingBottom: 100
+    }}>
+      <Stack 
+      //mb={50}
+      pb={10}
+      justifyContent={'center'} alignItems={'center'} 
+      sx={{
+        //background:'cyan'
+        }}>
 
-      <Box sx={{
-        py: '5px',
-        paddingBottom: 100
-      }}>
+      <Stack my={3} direction={'row'} spacing={1} alignItems={'center'} justifyContent={'center'} sx={{
+//background:'green',
+//width:'100%'
+}}>
+<Stack justifyContent={'center'} alignItems={'center'} style={{
+      position: 'relative',
+      //background:'cyan',
+      //top: 0,
+      //left: 0,
+      width: 80,
+      height: 80,
+      objectFit: 'cover',
+    }}>
+<AnimatePresence style={{
+      position: 'relative',
+      //background:'red',
+      margin:'auto',
+      objectFit: 'cover',
+    }}>
+<Grid container justifyContent={'center'} alignItems={'center'}>
+{imgProg.map((image, index) => (
+           <motion.div
+           key={index}
+    initial={{ opacity: 0 }}
+    animate={{ opacity: index === currentImageProg ? 1 : 0 }}
+    exit={{ opacity: 0 }}
+    //transition={{ duration: 0.5 }}
+    whileTap={{
+      scale:index === currentImageProg ? 2 : 1,
+    }}
+    transition={{ duration: 1 }}
+    style={{
+      position: 'absolute',
+      //background:'yellow',
+      top:0,
+      bottom:0,
+      left:0,
+      right:0,
+      //textAlign:'center'
+    }}
+  >
+    <Stack justifyContent={'center'} alignItems={'center'} sx={{
+      width:'100%',
+      height:'100%'
+    }}>
+    {image}
+    </Stack>
+  </motion.div>
+         ))}
+</Grid>
+       </AnimatePresence>
+</Stack>
 
-        <Stack direction={'column'} justifyContent={'center'} alignItems={'center'} sx={{ background: 'red' }}>
-          <Stack alignItems={'center'} my={3} sx={{background:'yellow'}}>
-          <div>
-          <StyledBadge
-              overlap="circular"
-              anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-              variant="dot"
-            >
-              <Avatar src="/me-no-back.png" sx={{ width: 150, height: 150, background: 'var(--primary)' }} />
-            </StyledBadge>
-          </div>
-          <SelectLangageComponent/>
+<Stack justifyContent={'center'} alignItems={'center'} style={{
+      position: 'relative',
+      //background:'cyan',
+      //top: 0,
+      //left: 0,
+      width: 80,
+      height: 80,
+      objectFit: 'cover',
+    }}>
+<AnimatePresence style={{
+      position: 'relative',
+      //background:'red',
+      margin:'auto',
+      objectFit: 'cover',
+    }}>
+<Grid container justifyContent={'center'} alignItems={'center'}>
+{imgFramework.map((image, index) => (
+           <motion.div
+           key={index}
+    initial={{ opacity: 0 }}
+    animate={{ opacity: index === currentImageFramework ? 1 : 0 }}
+    exit={{ opacity: 0 }}
+    //transition={{ duration: 0.5 }}
+    transition={{ duration: 1 }}
+    whileTap={{
+      scale: index === currentImageFramework ? 2 : 1,
+    }}
+    style={{
+      position: 'absolute',
+      //background:'yellow',
+      top:0,
+      bottom:0,
+      left:0,
+      right:0,
+      //textAlign:'center'
+    }}
+  >
+    <Stack justifyContent={'center'} alignItems={'center'} sx={{
+      width:'100%',
+      height:'100%'
+    }}>
+    {image}
+    </Stack>
+  </motion.div>
+         ))}
+</Grid>
+       </AnimatePresence>
+</Stack>
+
+<Stack justifyContent={'center'} alignItems={'center'} style={{
+      position: 'relative',
+      //background:'cyan',
+      //top: 0,
+      //left: 0,
+      width: 80,
+      height: 80,
+      objectFit: 'cover',
+    }}>
+<AnimatePresence style={{
+      position: 'relative',
+      //background:'red',
+      margin:'auto',
+      objectFit: 'cover',
+    }}>
+<Grid container justifyContent={'center'} alignItems={'center'}>
+{imgSoftware.map((image, index) => (
+           <motion.div
+           key={'img-software-' + index}
+    initial={{ opacity: 0 }}
+    animate={{ opacity: index === currentImageSoftware ? 1 : 0 }}
+    exit={{ opacity: 0 }}
+    //transition={{ duration: 0.5 }}
+    transition={{ duration: 1 }}
+    whileTap={{
+      scale: index === currentImageSoftware ? 2 : 1,
+    }}
+    style={{
+      position: 'absolute',
+      //background:'yellow',
+      top:0,
+      bottom:0,
+      left:0,
+      right:0,
+      //textAlign:'center'
+    }}
+  >
+    <Stack justifyContent={'center'} alignItems={'center'} sx={{
+      width:'100%',
+      height:'100%'
+    }}>
+    {image}
+    </Stack>
+  </motion.div>
+         ))}
+</Grid>
+       </AnimatePresence>
+</Stack>
+
+</Stack>
+
+        <Stack alignItems={'center'} mb={2}>
+        <Bounce duration={3000}>
+        <div>
+        <StyledBadge
+            overlap="circular"
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+            variant="dot"
+          >
+            <Avatar src="/me-no-back.png" sx={{ width: 150, height: 150, background: 'var(--primary)' }} />
+          </StyledBadge>
+        </div>
+        </Bounce>
+        <SelectLangageComponent/>
+        </Stack>
+
+
+          <Stack alignItems={'start'} sx={{
+            display:'none',
+            width:1920 / 3,
+            height:1080 / 3,
+            background:'yellow'}}>
+          <video width="100%" height="100%" style={{
+            objectFit:'fill'
+          }} controls>
+<source src="/videos/home.mp4" type="video/mp4" />
+Your browser does not support the video tag.
+</video>
           </Stack>
 
           <Link href={PAGE_LINK_CHAT_BOT} target={'_blank'}>
-              <Button sx={{fontFamily:'Coolvetica'}}>{t('buttons.goChat',{ns:NAMESPACE_LANGAGE_HOME})}</Button>
-            </Link>
+            <Button sx={{fontFamily:'Coolvetica'}}>{t('buttons.goChat',{ns:NAMESPACE_LANGAGE_HOME})}</Button>
+          </Link>
 
-            <Link href={PAGE_LINK_RESUME} target={'_blank'}>
-              <Button sx={{fontFamily:'Coolvetica', color:'var(--text)'}} startIcon={<ResumeIcon />} variant='contained'>{t('buttons.goCv', {ns:NAMESPACE_LANGAGE_HOME})}</Button>
-            </Link>
-
-        </Stack>
-      </Box>
-    </>
+          <Link href={PAGE_LINK_RESUME} target={'_blank'}>
+            <Button sx={{fontFamily:'Coolvetica', color:'var(--text)'}} startIcon={<ResumeIcon />} variant='contained'>{t('buttons.goCv', {ns:NAMESPACE_LANGAGE_HOME})}</Button>
+          </Link>
+      </Stack>
+    </Box>
   );
 };
 
@@ -469,7 +715,9 @@ export default function HomePage() {
   const { t } = useTranslation();
 
   return (
-    <>
+    <div style={{
+      //background:'red', 
+    overflow:'scroll', position:'absolute', bottom:0, top:0, left:0, right:0}}>
     <Head>
     <title>{t('titlePage', {ns:NAMESPACE_LANGAGE_HOME})}</title>
         <meta
@@ -477,15 +725,21 @@ export default function HomePage() {
           content={t('descriptionPage', {ns:NAMESPACE_LANGAGE_HOME})}
         />
     </Head>
-      {width > 740 && <WebAppBar />}
-      {width <= 740 && <MobileAppBar />}
+      
+      <WebAppBar />
       <CssBaseline />
+      <WebHome />
+     
 
-      {width > 740 && <WebHome />}
-      {width <= 740 && <MobileHome />}
-
-    </>
+    </div>
   );
+  /*
+  {width > 740 && <WebAppBar />}
+      {width <= 740 && <MobileAppBar />}
+
+   {width > 740 && <WebHome />}
+      {width <= 740 && <MobileHome />}
+  */
 }
 
 export async function getStaticProps({ locale }) {

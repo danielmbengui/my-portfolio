@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@emotion/cache": "^11.7.1",
-    "@emotion/react": "^11.8.2",
+    "@emotion/react": "^11.10.6",
     "@emotion/server": "^11.4.0",
     "@emotion/styled": "^11.8.1",
     "@fontsource/roboto": "^4.5.3",
@@ -25,11 +25,13 @@
     "@react-aria/ssr": "^3.5.0",
     "@react-pdf/renderer": "^3.1.9",
     "country-flag-icons": "^1.5.7",
+    "framer-motion": "^10.9.2",
     "moment": "^2.29.4",
     "next": "13.2.4",
     "next-i18next": "^13.2.2",
     "random-joke-getter": "^2.0.3",
     "react": "^18.2.0",
+    "react-awesome-reveal": "^4.2.3",
     "react-chatbot-kit": "^2.1.2",
     "react-dom": "^18.2.0"
   },

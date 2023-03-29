@@ -110,7 +110,7 @@ class ActionProvider {
   }
 
   handleFinish() {
-    const message = this.createChatBotMessage("Voilà tu connais désormais une partie de moi. Merci d'avoir pris du temps! À bientôt j'espère!", {
+    const message = this.createChatBotMessage("Voilà tu connais désormais une partie de moi. Merci d'avoir pris du temps! N'hésite pas à consulter mon CV ou ma vidéo de présentation!", {
       //widget: 'skillsOptions',
     });
     this.updateChatbotState(message);

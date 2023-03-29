@@ -50,7 +50,7 @@ function SkillCard({ name, skills, isDetailed }) {
             sx={{ pt: 3 }}
             
           >
-            <Grid item xs={4} md={2.5}>
+            <Grid item xs={4} md={3}>
               <Typography sx={{fontWeight:'bold'}}>{t(name)}</Typography>
             </Grid>
             <Grid item xs sm md>

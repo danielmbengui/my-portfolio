@@ -322,15 +322,19 @@ const WebHome = () => {
     <>
     
 <Box sx={{
-  py:'5px',
-      paddingBottom:100
+  py:'1vh',
+      paddingBottom:100,
+      fontFamily:'Coolvetica'
     }}>
       
 <Stack direction={'row'} justifyContent={'space-between'}>
     <div className={styles.links}>
         <LinksBar />
       </div>
-<Stack sx={{background:'red', width:'50%', overflowY:'scroll', height:'90vh'}}>
+<Stack px={20} pt={5} pb={10} sx={{background:'red', width:'100%', overflowY:'scroll', height:'90vh'}}>
+    <div style={{paddingBottom:20, textAlign:'center'}}>
+    <Typography fontSize={30} sx={{fontFamily:'Coolvetica'}}>{t('sections.skills.title')}</Typography>
+    </div>
 <div style={{overflowY:'sroll'}}>
 <SkillCards />
 </div>

@@ -1,4 +1,5 @@
 import { Icon } from '@iconify/react';
+import { blue } from '@mui/material/colors';
 
 export function SunIcon({size = 24, color = 'var(--text)', ...props}) {
     return(
@@ -122,13 +123,13 @@ export function SpyderIcon({size = 30, color = 'var(--text)', ...props}) {
 
 export function NodeJsIcon({size = 30, color = 'var(--text)', ...props}) {
     return(
-        <Icon icon="logos:nodejs" {...props} color={color} width={size} />
+        <Icon icon="logos:nodejs-icon" {...props} color={color} width={size} />
     )
 }
 
 export function NextJsIcon({size = 30, color = 'var(--text)', ...props}) {
     return(
-        <Icon icon="logos:nextjs" {...props} color={color} width={size} />
+        <Icon icon="file-icons:nextjs" {...props} color={color} width={size} />
     )
 }
 
@@ -228,9 +229,27 @@ export function PwaIcon({size = 30, color = 'var(--text)', ...props}) {
     )
 }
 
-export function MaterialUiIcon({size = 30, color = 'var(--text)', ...props}) {
+export function MaterialUiIcon({size = 30, color = blue[500], ...props}) {
     return(
         <Icon icon="simple-icons:mui" {...props} color={color} width={size} />
+    )
+}
+
+export function SwrIcon({size = 30, color = blue[500], ...props}) {
+    return(
+        <Icon icon="logos:swr" {...props} color={color} width={size} />
+    )
+}
+
+export function OpenAiIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="tabler:brand-openai" {...props} color={color} width={size} />
+    )
+}
+
+export function PrestashopIcon({size = 30, color = blue[500], ...props}) {
+    return(
+        <Icon icon="logos:prestashop" {...props} color={color} width={size} />
     )
 }
 /*
