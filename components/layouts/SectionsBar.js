@@ -15,13 +15,18 @@ import CodeOutlinedIcon from '@mui/icons-material/CodeOutlined';
 import BookOutlinedIcon from '@mui/icons-material/BookOutlined';
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
-import { SkillsIcon } from '../icons/IconifiyIcons';
+import { ChatbotIcon, SkillsIcon } from '@/components/icons/IconifiyIcons';
 import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
+import { useLangMode } from '@/contexts/LangModeProvider';
+import { PAGE_LINK_CHAT_BOT, PAGE_LINK_SKILLS } from '@/_mocks_/_settings_items_';
 
 function SectionsBar() {
   const {t} = useTranslation();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [section, setSection] = useState('');
+  const router = useRouter();
+  const [lang, ] = useLangMode();
 
   const toggleDrawer = (isOpen, section) => {
     setSection(section);
@@ -80,6 +85,22 @@ function SectionsBar() {
       </Tooltip>
 
       <Tooltip
+        title={<span style={{ fontSize: 13 }}>{`Chat`}</span>}
+        placement="left"
+        //sx={{display:'none'}}
+      >
+        <IconButton
+          aria-label="experience"
+          onClick={() => router.push(`/${lang}/${PAGE_LINK_CHAT_BOT}`)}
+        >
+          <ChatbotIcon 
+          color={router.asPath === PAGE_LINK_CHAT_BOT ? 'var(--primary)' : 'var(--accents7)'} 
+          size={30}
+           />
+        </IconButton>
+      </Tooltip>
+
+      <Tooltip
         title={<span style={{ fontSize: 13 }}>projects</span>}
         placement="left"
         sx={{display:'none'}}
@@ -97,12 +118,23 @@ function SectionsBar() {
       <Tooltip
         title={<span style={{ fontSize: 13 }}>{t('sections.skills.title')}</span>}
         placement="left"
+        sx={{ "&:hover": { color: "blue" } }}
       >
         <IconButton
           aria-label={t('sections.skills.title')}
-          onClick={() => toggleDrawer(true, t('sections.skills.title'))}
+          //onClick={() => toggleDrawer(true, t('sections.skills.title'))}
+          onClick={() => router.push(`/${lang}/${PAGE_LINK_SKILLS}`)}
+          sx={{ "&:hover": { color: "var(--primary)" } }}
+          color={router.asPath === PAGE_LINK_SKILLS ? 'var(--primary)' : 'blue'} 
         >
-          <SkillsIcon color='var(--primary)' size={30} />
+          <SkillsIcon
+          //color={'inherit'} 
+          color={router.asPath === PAGE_LINK_SKILLS ? 'var(--primary)' : 'inherit'}
+          sx={{ "&:hover": { color: "var(--primary)" } }} 
+          size={30}
+          //sx={{ "&:hover": { background: "inherit" } }}
+          //hoverColor={'var(--primary)'}
+           />
         </IconButton>
       </Tooltip>
 

@@ -33,7 +33,8 @@ export function ProjectIcon({size = 30, color = 'var(--text)', ...props}) {
 
 export function SkillsIcon({size = 30, color = 'var(--text)', ...props}) {
     return(
-        <Icon icon="material-symbols:code" {...props} color={color} width={size} />
+        <Icon icon="material-symbols:code" {...props} color={color} width={size}
+        />
     )
 }
 
@@ -82,6 +83,30 @@ export function AndroidIcon({size = 30, color = 'var(--text)', ...props}) {
 export function HtmlIcon({size = 30, color = 'var(--text)', ...props}) {
     return(
         <Icon icon="vscode-icons:file-type-html" {...props} color={color} width={size} />
+    )
+}
+
+export function ChatbotIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="teenyicons:chatbot-solid" {...props} color={color} width={size} />
+    )
+}
+
+export function ResumeIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="pepicons-pop:cv" {...props} color={color} width={size} />
+    )
+}
+
+export function LinkedinIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="simple-icons:linkedin" {...props} color={color} width={size} />
+    )
+}
+
+export function GithubIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="fe:github" {...props} color={color} width={size} />
     )
 }
 

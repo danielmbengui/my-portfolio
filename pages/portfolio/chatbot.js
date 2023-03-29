@@ -327,9 +327,10 @@ const WebHome = () => {
     }}>
       
 <Stack direction={'row'} justifyContent={'space-between'}>
-    <div className={styles.links}>
-        <LinksBar />
+<div className={styles.links}>
+        <SectionsBar />
       </div>
+
       <div style={{width:'100%'}}>
 {
         lang && lang === LANGAGE_FRENCH && <FrenchChatbot />
@@ -339,8 +340,9 @@ const WebHome = () => {
         lang && lang === LANGAGE_ENGLISH && <EnglishChatbot />
       }
 </div>
-<div className={styles.links}>
-        <SectionsBar />
+
+      <div className={styles.links}>
+        <LinksBar />
       </div>
     </Stack>
 </Box>

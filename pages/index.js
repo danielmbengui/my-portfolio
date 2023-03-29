@@ -525,16 +525,14 @@ Your browser does not support the video tag.
 </video>
           </Stack>
 
-          <Paper sx={{my:5}}>
-          <Stack p={1} alignItems={'center'}>
+          <Stack my={5} p={1} alignItems={'center'}>
           <Link href={PAGE_LINK_CHAT_BOT} target={'_blank'}>
-            <Button sx={{fontFamily:'Coolvetica', color:'var(--text)'}} startIcon={<ResumeIcon />} variant='contained'>{'Commencez votre voyage avec moi'}</Button>
+            <Button sx={{fontFamily:'Coolvetica', color:'var(--text)'}} startIcon={<ResumeIcon />} variant='contained'>{t('buttons.goChat',{ns:NAMESPACE_LANGAGE_HOME})}</Button>
           </Link>
           <Link href={PAGE_LINK_RESUME} target={'_blank'}>
             <Button sx={{fontFamily:'Coolvetica', color:'var(--text)'}}>{t('buttons.goCv',{ns:NAMESPACE_LANGAGE_HOME})}</Button>
           </Link>
           </Stack>
-          </Paper>
 
           
       </Stack>

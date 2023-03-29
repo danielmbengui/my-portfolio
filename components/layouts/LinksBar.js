@@ -8,7 +8,6 @@ import {
   Button,
   Tooltip,
 } from '@mui/material';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import StickyNote2OutlinedIcon from '@mui/icons-material/StickyNote2Outlined';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -19,9 +18,10 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 import StyledBadge from '../atoms/StyledBadge';
 import { GITHUB_LINK, LINKEDIN_LINK } from '../../_mocks_/_links_items_';
-import { PAGE_LINK_RESUME, _MY_PROFILE_ } from '../../_mocks_/_settings_items_';
+import { PAGE_LINK_CHAT_BOT, PAGE_LINK_RESUME, _MY_PROFILE_ } from '../../_mocks_/_settings_items_';
 import { useRouter } from 'next/router';
 import { useLangMode } from '../../contexts/LangModeProvider';
+import { ChatbotIcon, LinkedinIcon, ResumeIcon, GithubIcon } from '../icons/IconifiyIcons';
 
 function LinksBar() {
   const avatarRef = useRef(null);
@@ -35,7 +35,24 @@ const [lang, setLang] = useLangMode();
   return (
     <>
      <Tooltip
-        title={<span style={{ fontSize: 13 }}>{`Resume`}</span>}
+        title={<span style={{ fontSize: 16 }}>{`Chat`}</span>}
+        placement="left"
+        //sx={{display:'none'}}
+      >
+        <a
+        href={`/${lang}${PAGE_LINK_CHAT_BOT}`}
+        target="_blank"
+        rel="noreferrer"
+        //style={{display:'none'}}
+      >
+        <IconButton>
+          <ChatbotIcon color={router.asPath === PAGE_LINK_CHAT_BOT ? 'var(--primary)' : 'var(--accents7)'} size={30} />
+        </IconButton>
+      </a>
+      </Tooltip>
+
+      <Tooltip
+        title={<span style={{ fontSize: 16 }}>{`Resume`}</span>}
         placement="left"
         //sx={{display:'none'}}
       >
@@ -46,7 +63,7 @@ const [lang, setLang] = useLangMode();
         //style={{display:'none'}}
       >
         <IconButton>
-          <StickyNote2OutlinedIcon sx={{ color: 'var(--primary)', width: 30, height: 30 }} />
+          <ResumeIcon size={35} color={'var(--primary)'}  />
         </IconButton>
       </a>
       </Tooltip>
@@ -60,8 +77,13 @@ const [lang, setLang] = useLangMode();
         target="_blank"
         rel="noreferrer"
       >
-        <IconButton>
-          <LinkedInIcon sx={{ color: 'var(--primary)', width: 30, height: 30 }} />
+        <IconButton 
+        sx={{ "&:hover": { color: "var(--blue-linkedin)" } }}
+        color={'var(--accents7)'} 
+        >
+          <LinkedinIcon
+          color={'inherit'}
+          />
         </IconButton>
       </a>
         </Tooltip>    
@@ -76,8 +98,14 @@ const [lang, setLang] = useLangMode();
         target="_blank"
         rel="noreferrer"
       >
-        <IconButton>
-          <GitHubIcon sx={{ color: 'var(--primary)', width: 30, height: 30 }} />
+        <IconButton
+        sx={{ "&:hover": { color: "var(--text)" } }}
+        color={'var(--accents7)'} 
+        >
+          <GithubIcon
+          color={'inherit'}
+           />
+          
         </IconButton>
       </a>
         </Tooltip> 

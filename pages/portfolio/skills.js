@@ -63,6 +63,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 import { motion, AnimatePresence } from "framer-motion"
 import { ReactIcon } from '@/components/icons/IconifiyIcons';
+import SkillsComponent from '@/components/skills/SkillsComponent';
+import SkillsComponent1 from '@/components/skills/SkillsComponent1';
 
 export function WebAppBar() {
   const theme = useTheme();
@@ -82,7 +84,11 @@ export function WebAppBar() {
      //background:'pink'
      }}>
       <div>
-      <IconButton
+      <motion.div
+    whileHover={{ scale: 1.3 }}
+    //whileTap={{ scale: 0.9 }}
+  >
+ <IconButton
         size="large"
         edge="start"
         color="inherit"
@@ -96,17 +102,13 @@ export function WebAppBar() {
       anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
       variant="dot"
     >
-      <Avatar src="/me-no-back.png" sx={{ width: 40, height: 40, background:'var(--primary)' }} />
+      <Avatar src="/img/skills/logo.gif" sx={{ width: 40, height: 40, background:'var(--primary)' }} />
     </StyledBadge>
-  <Box
-    //component={ButtonBase}
-    
-  >
-
-  </Box>
-
-
       </IconButton>
+  </motion.div>
+     
+
+
       <Popover
     open={popoverOpen}
     onClose={handlePopoverClose}
@@ -383,13 +385,26 @@ const WebHome = () => {
     }}>
       
 <Stack direction={'row'} justifyContent={'space-between'}>
-    <div className={styles.links}>
-        <LinksBar />
+
+      <div className={styles.links}>
+        <SectionsBar />
       </div>
+
+
 <Stack px={20} pt={5} pb={10} sx={{background:'red', width:'100%', overflowY:'scroll', height:'90vh'}}>
 
 
+
+
 <Grid container justifyContent={'center'} spacing={1} sx={{background:'cyan'}}>
+    <Grid item xs={12}>
+        <SkillsComponent1 />
+    </Grid>
+    <Grid item xs={12}>
+    <SkillsComponent />
+    </Grid>
+
+
     <Grid item xs={12} md={6}>
     <motion.div 
     layoutId={1} 
@@ -403,9 +418,12 @@ const WebHome = () => {
       <CardActionArea>
         <CardMedia
           component="img"
-          height="140"
-          image="/img/skills/langs.jpg"
+          height="300"
+          image="/img/skills/langs.gif"
           alt="green iguana"
+          sx={{
+            objectFit:'cover'
+          }}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
@@ -542,9 +560,13 @@ const WebHome = () => {
 <SkillCards />
 </div>
 </Stack>
+
+
 <div className={styles.links}>
-        <SectionsBar />
+        <LinksBar />
       </div>
+
+      
     </Stack>
 </Box>
     </>
@@ -757,13 +779,22 @@ export default function SkillsPage() {
 const {t} = useTranslation();
 
   return (
-    <>      
+    <div>  
+     <Head>
+        <title>{t('titlePageHome')}</title>
+        <meta
+          name="description"
+          content="Daniel Mbengui | Backend Developer | Web Developer"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href="/img/skills/logo.ico" />
+      </Head>    
       {width > 740 ? <WebAppBar /> : <MobileAppBar />}
     <CssBaseline />
     
     {width > 740 ? <WebHome /> : <MobileHome />}
       
-    </>
+    </div>
   );
 }
 
