@@ -60,9 +60,9 @@ const styleSelect = {
         fontWeight: 'bold',
         fontSize: 14,
         //height: 20,
-        background: 'var(--background)',
+        background: 'transparent',
         "&:hover, &:focus, &:active": {
-            background: 'var(--background)',
+            background: 'transparent',
             color: 'var(--primary)',
             border: 'none'
         },
@@ -72,11 +72,17 @@ const styleSelect = {
 const styleMenu = {
     '.MuiList-root': {
         //backgroundColor: 'red', // ou la couleur de fond que vous souhaitez utiliser
-        backgroundColor: 'var(--background)', // ou la couleur de fond que vous souhaitez utiliser
+        backgroundColor: 'var(--background-menu)', // ou la couleur de fond que vous souhaitez utiliser
     },
     '.MuiMenuItem-root': {
         //backgroundColor:'yellow',
-        "&:hover, &:focus": {
+        "&:hover": {
+            background: 'var(--orange600)',
+            color: 'black',
+            border: 'none'
+        },
+
+        "&:focus, &:active": {
             background: 'var(--primary)',
             color: 'black',
             border: 'none'

@@ -71,7 +71,7 @@ height: 40px;
 border-radius: 50%;
 font-size: 1.2rem;
 margin-right: 12.5px;
-background-color: var(--primary);
+/* background-color: var(--primary); */
 background-image: url("/img/chat-bot.gif");
 background-repeat: no-repeat;
 background-position: center;
@@ -110,7 +110,7 @@ background-size: cover;
   height: 0;
   border-top: 8px solid transparent;
   border-bottom: 8px solid transparent;
-  border-right: 8px solid var(--primary);
+  border-right: 8px solid var(--green-light-bot-primary);
   position: absolute;
   left: -7px;
   top: 13px;
@@ -119,14 +119,13 @@ background-size: cover;
 .react-chatbot-kit-chat-bot-loading-icon-container {
   height: 17px;
   width: 25px;
-  color:var(--primary)
 }
 
 .chatbot-loader-container {
   display: flex;
   width: 100%;
   justify-content: center;
-  background: var(--primary);
+  background: var(--green-light-bot-primary);
   border-radius: 15px;
 }
 

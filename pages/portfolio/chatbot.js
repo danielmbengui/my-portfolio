@@ -48,6 +48,22 @@ import MobileLinksBar from '@/components/layouts/MobileLinksBar';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import MobileSectionsBar from '@/components/layouts/MobileSectionsBar';
 
+import { styled } from '@mui/material/styles';
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
+import { Fade } from 'react-awesome-reveal';
+
+const BootstrapTooltip = styled(({ className, ...props }) => (
+  <Tooltip {...props} arrow classes={{ popper: className }} />
+))(({ theme }) => ({
+  [`& .${tooltipClasses.arrow}`]: {
+    color: theme.palette.primary.main,
+  },
+  [`& .${tooltipClasses.tooltip}`]: {
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.text.secondary
+  },
+}));
+
 export function WebAppBar() {
   const theme = useTheme();
   const avatarRef = useRef(null);
@@ -60,12 +76,15 @@ export function WebAppBar() {
   return (
  <Box sx={{}}>
      <AppBar position="static">
-    <Toolbar sx={{background:theme.palette.background.paper}}>
+    <Toolbar sx={{background:theme.palette.background.menu}}>
      <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'} sx={{
       width:'100%', 
      //background:'pink'
      }}>
       <div>
+
+     
+      <BootstrapTooltip theme={theme} describeChild open={true} title={ <Fade cascade damping={0.2}>{`Bienvenue !`}</Fade>} placement="right">
       <IconButton
         size="large"
         edge="start"
@@ -82,15 +101,9 @@ export function WebAppBar() {
     >
       <Avatar src="/me-no-back.png" sx={{ width: 40, height: 40, background:'var(--primary)' }} />
     </StyledBadge>
-  <Box
-    //component={ButtonBase}
-    
-  >
-
-  </Box>
-
-
       </IconButton>
+      </BootstrapTooltip>
+
       <Popover
     open={popoverOpen}
     onClose={handlePopoverClose}
@@ -323,7 +336,8 @@ const WebHome = () => {
     
 <Box sx={{
   py:'5px',
-      paddingBottom:100
+      paddingBottom:100,
+      background:'transparent'
     }}>
       
 <Stack direction={'row'} justifyContent={'space-between'}>
@@ -341,9 +355,7 @@ const WebHome = () => {
       }
 </div>
 
-      <div className={styles.links}>
-        <LinksBar />
-      </div>
+
     </Stack>
 </Box>
     </>

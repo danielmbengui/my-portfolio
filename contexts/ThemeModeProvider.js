@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
-import { STORAGE_THEME_MODE, THEME_DARK, THEME_LIGHT } from '../_mocks_/_settings_items_';
+import { GENERAL_FONT_FAMILY, STORAGE_THEME_MODE, THEME_DARK, THEME_LIGHT } from '../_mocks_/_settings_items_';
 import { amber, green, grey, deepOrange } from '@mui/material/colors';
 
 export const ColorModeContext = createContext({ toggleColorMode: () => { } });
@@ -34,12 +34,46 @@ export default function ThemeModeProvider({ children, themeMode }) {
     const theme = useMemo(
         () =>
             createTheme({
+                typography: {
+                    button: {
+                      //fontSize: '1rem',
+                      //fontFamily: GENERAL_FONT_FAMILY,
+                    },
+                    tooltip: {
+                        //fontSize: '1rem',
+                        fontFamily: GENERAL_FONT_FAMILY,
+                      },
+                  },
+                components: {
+                    // Name of the component
+                    MuiTypography: {
+                        styleOverrides: {
+                            // Name of the slot
+                            root: {
+                              // Some CSS
+                              fontFamily: "Roboto",
+                              color:'var(--text)',
+                            },
+                          },
+                    },
+                    MuiTooltip: {
+                        styleOverrides: {
+                            // Name of the slot
+                            root: {
+                              // Some CSS
+                              fontFamily: "Coolvetica",
+                            },
+                          },
+                    }
+                  },
                 palette: {
                     mode,
                     background: {
-                        default: 'var(--accents0)',
-                        paper: 'var(--background)',
-                        drawer: 'var(--accents1)',
+                        default: 'var(--background)',
+                        menu: 'var(--background-menu)',
+                        paper: 'var(--background-menu)',
+                        card: 'var(--background-menu)',
+                        drawer: 'var(--background-menu)',
                     },
                     ...(mode === 'light'
                         ? {
@@ -47,8 +81,8 @@ export default function ThemeModeProvider({ children, themeMode }) {
                             primary: deepOrange,
                             divider: 'var(--primary)',
                             text: {
-                                primary: grey[900],
-                                secondary: grey[800],
+                                primary: '#000000',
+                                secondary: '#ffffff',
                             },
                         }
                         : {
@@ -57,7 +91,7 @@ export default function ThemeModeProvider({ children, themeMode }) {
                             divider: 'var(--primary)',
                             text: {
                                 primary: '#fff',
-                                secondary: grey[500],
+                                secondary: "#000000",
                             },
                         }),
                 },

@@ -1,4 +1,13 @@
-@import './fonts.css';
+@import "./robotoMono-fonts.css";
+
+@font-face {
+  font-family: 'Coolvetica';
+  src: url('/fonts/coolvetica-rg.otf') format('opentype');
+  font-weight: 400; /* Normal */
+  font-style: sans-serif;
+}
+
+
 
 :root { 
   --orange100: #FDEBD5;
@@ -81,7 +90,7 @@
   --orange200: #FCD2AC;
   --orange300: #F8B181;
   --orange400: #F19160;
-  --orange500: #E8602F;
+  --orange500: #FF5722;
   --orange600: #C74222;
   --orange700: #A72917;
   --orange800: #86150E;
@@ -93,8 +102,9 @@
 
   --text: black;
   --text-secondary: white;
-  --background: white;
-  --background-card: var(--accents3);
+  --background: var(--accents2);
+  --background-menu: white;
+  --background-card: white;
 }
 
 [data-theme="dark"] {
@@ -113,7 +123,7 @@
   --orange800: #FCD2AC;
   --orange700: #F8B181;
   --orange600: #F19160;
-  --orange500: #E8602F;
+  --orange500: #FF5722;
   --orange400: #C74222;
   --orange300: #A72917;
   --orange200: #86150E;
@@ -124,16 +134,18 @@
 
   --text: white;
   --text-secondary: black;
-  --background: black;
-  --background-card: var(--accents0);
+  --background: var(--accents0);
+  --background-menu: black;
+  --background-card: black;
 }
 
 html,
 body {
   padding: 0;
+  background: var(--background);
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: "Roboto", sans-serif;
+    
     overflow: hidden;
 }
 

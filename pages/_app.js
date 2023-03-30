@@ -4,8 +4,8 @@ import { CacheProvider } from '@emotion/react';
 
 import createEmotionCache from '../utility/createEmotionCache';
 import lightTheme from '../styles/theme/lightTheme';
-import '../styles/globals.css';
-import '../styles/chatbox.css';
+import '@/styles/globals.css';
+import '@/styles/chatbox.css';
 import LangModeProvider from '../contexts/LangModeProvider';
 import DeviceModeProvider from '../contexts/DeviceModeProvider';
 import { appWithTranslation, useTranslation } from "next-i18next";

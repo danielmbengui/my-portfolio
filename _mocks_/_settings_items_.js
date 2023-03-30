@@ -25,7 +25,7 @@ export const STORAGE_THEME_MODE = "data-theme";
 export const STORAGE_LANG_MODE = 'lang';
 
 /* --------------- FONTS -------------- */
-export const GENERAL_FONT_FAMILY = "Coolvetica";
+export const GENERAL_FONT_FAMILY = "Roboto";
 /* --------------- PAGES -------------- */
 export const PAGE_LINK_HOME = "/";
 export const PAGE_LINK_RESUME = "/portfolio/resume";

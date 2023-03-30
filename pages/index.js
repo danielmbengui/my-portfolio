@@ -66,7 +66,7 @@ export function WebAppBar() {
 
   return (
     <Box sx={{background:'transparent'}}>
-      <AppBar position="fixed" sx={{background:'var(--background)'}}>
+      <AppBar position="fixed" sx={{background:'var(--background-menu)'}}>
         <Toolbar 
         sx={{ background: 'transparent' }}
         >
@@ -502,9 +502,12 @@ borderRadius: 10
           p:1,
           //px:2,
           borderRadius:'50%',
-          border:'3px solid var(--primary)'
+          border:'3px solid var(--primary)',
+          background:'transparent'
         }}>
-        <Avatar src="/me-no-back.png" sx={{ width: 150, height: 150, }} />
+        <Avatar src="/me-no-back.png" 
+        sx={{ width: 150, height: 150, }}
+         />
           </Paper>
         </Bounce>
         
@@ -527,10 +530,10 @@ Your browser does not support the video tag.
 
           <Stack my={5} p={1} alignItems={'center'}>
           <Link href={PAGE_LINK_CHAT_BOT} target={'_blank'}>
-            <Button sx={{fontFamily:'Coolvetica', color:'var(--text)'}} startIcon={<ResumeIcon />} variant='contained'>{t('buttons.goChat',{ns:NAMESPACE_LANGAGE_HOME})}</Button>
+            <Button sx={{color:'var(--text)'}} startIcon={<ResumeIcon />} variant='contained'>{t('buttons.goChat',{ns:NAMESPACE_LANGAGE_HOME})}</Button>
           </Link>
           <Link href={PAGE_LINK_RESUME} target={'_blank'}>
-            <Button sx={{fontFamily:'Coolvetica', color:'var(--text)'}}>{t('buttons.goCv',{ns:NAMESPACE_LANGAGE_HOME})}</Button>
+            <Button sx={{color:'var(--text)'}}>{t('buttons.goCv',{ns:NAMESPACE_LANGAGE_HOME})}</Button>
           </Link>
           </Stack>
 
@@ -754,7 +757,7 @@ const {isMobile} = useDeviceMode();
       //backgroundImage: `url('/img/home/background-${theme.palette.mode}.gif')`,
       backgroundSize:'cover',
       backgroundRepeat:'no-repeat',
-      background:theme.palette.background.default,
+      //background:theme.palette.background.default,
     overflow:'scroll', position:'absolute', bottom:0, top:0, left:0, right:0}}>
     <Head>
     <title>{t('titlePage', {ns:NAMESPACE_LANGAGE_HOME})}</title>
