@@ -83,7 +83,7 @@ function SectionsBar() {
   spacing={2}
   sx={{
     height:'100%',
-    background:'green'
+    //background:'green'
   }}
   >
           <Slide cascade direction='up'>

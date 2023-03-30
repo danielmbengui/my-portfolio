@@ -95,6 +95,7 @@ background-size: cover;
 .react-chatbot-kit-chat-bot-message {
   padding: 10px 15px;
   border-radius: 15px;
+  border: var(--green-light-bot-primary) 1px solid;
   font-size: 0.95rem;
   color: var(--text);
   font-weight: medium;
@@ -112,7 +113,7 @@ background-size: cover;
   border-bottom: 8px solid transparent;
   border-right: 8px solid var(--green-light-bot-primary);
   position: absolute;
-  left: -7px;
+  left: -8px;
   top: 13px;
 }
 

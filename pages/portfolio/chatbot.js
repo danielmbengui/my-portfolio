@@ -56,10 +56,11 @@ const BootstrapTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} arrow classes={{ popper: className }} />
 ))(({ theme }) => ({
   [`& .${tooltipClasses.arrow}`]: {
-    color: theme.palette.primary.main,
+    color: 'var(--green-light-bot-primary)',
   },
   [`& .${tooltipClasses.tooltip}`]: {
-    backgroundColor: theme.palette.primary.main,
+    //backgroundColor: theme.palette.primary.main,
+    backgroundColor: 'var(--green-light-bot-primary)',
     color: theme.palette.text.secondary
   },
 }));
@@ -84,7 +85,7 @@ export function WebAppBar() {
       <div>
 
      
-      <BootstrapTooltip theme={theme} describeChild open={true} title={ <Fade cascade damping={0.2}>{`Bienvenue !`}</Fade>} placement="right">
+      <BootstrapTooltip theme={theme} describeChild open={true} title={ <Fade cascade damping={0.2}>{`C'est une partie de moi !`}</Fade>} placement="right">
       <IconButton
         size="large"
         edge="start"
@@ -99,7 +100,7 @@ export function WebAppBar() {
       anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
       variant="dot"
     >
-      <Avatar src="/me-no-back.png" sx={{ width: 40, height: 40, background:'var(--primary)' }} />
+      <Avatar src="/me-no-back.png" sx={{ width: 40, height: 40, background:'var(--green-light-bot-primary)' }} />
     </StyledBadge>
       </IconButton>
       </BootstrapTooltip>
@@ -345,7 +346,8 @@ const WebHome = () => {
         <SectionsBar />
       </div>
 
-      <div style={{width:'100%'}}>
+<Fade duration={5000}>
+<div style={{width:'100%'}}>
 {
         lang && lang === LANGAGE_FRENCH && <FrenchChatbot />
       }
@@ -354,6 +356,7 @@ const WebHome = () => {
         lang && lang === LANGAGE_ENGLISH && <EnglishChatbot />
       }
 </div>
+</Fade>
 
 
     </Stack>

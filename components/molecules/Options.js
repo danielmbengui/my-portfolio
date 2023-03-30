@@ -22,6 +22,9 @@ const Options = ({ getOptions, actionProvider }) => {
               padding: '2px',
               fontSize: '0.85rem',
               marginBottom: '5px',
+              "&:hover " : {
+                background:'var(--green-light-bot-primary)'
+              }
             }}
           />
         );
