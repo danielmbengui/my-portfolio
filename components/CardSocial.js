@@ -1,19 +1,19 @@
 import React from "react";
-import { FlexRow, FlexCol, Item } from "@mui-treasury/component-flex";
+//import { div, div, div } from "mui-treasury/component-flex";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 
-const PersonItem = ({ src = "", name = "", count = 0 }) => {
+const Persondiv = ({ src = "", name = "", count = 0 }) => {
   return (
-    <FlexRow gap={2} p={2} noWrap>
-      <Item noShrink>
+    <div gap={2} p={2} noWrap>
+      <div noShrink>
         <Avatar src={src} />
-      </Item>
-      <FlexRow gap={1} grow stackPoint={240} alignItems="center">
-        <Item grow>
+      </div>
+      <div gap={1} grow stackPoint={240} aligndivs="center">
+        <div grow>
           <Typography
             noWrap
             sx={{
@@ -36,8 +36,8 @@ const PersonItem = ({ src = "", name = "", count = 0 }) => {
           >
             {count} mutual friends
           </Typography>
-        </Item>
-        <Item>
+        </div>
+        <div>
           <Button
             size="small"
             variant={"outlined"}
@@ -50,15 +50,15 @@ const PersonItem = ({ src = "", name = "", count = 0 }) => {
           >
             Follow
           </Button>
-        </Item>
-      </FlexRow>
-    </FlexRow>
+        </div>
+      </div>
+    </div>
   );
 };
 
-export default function CardSocial() {
+export default function CardSocial({...props}) {
   return (
-    <FlexCol
+    <div
       borderRadius={2}
       sx={{
         bgcolor: (theme) =>
@@ -68,40 +68,40 @@ export default function CardSocial() {
       }}
       {...props}
     >
-      <FlexRow
-        alignItems="baseline"
+      <div
+        aligndivs="baseline"
         p={2}
         sx={{
           bgcolor: (theme) =>
             theme.palette.mode === "dark" ? "#2f3c50" : "#fff",
         }}
       >
-        <Item grow mr={1}>
+        <div grow mr={1}>
           <Typography variant="h6">
             <b>Who to follow</b>
           </Typography>
-        </Item>
-        <Item>
+        </div>
+        <div>
           <Link href="#">Refresh</Link> • <Link href="#">See all</Link>
-        </Item>
-      </FlexRow>
-      <PersonItem
+        </div>
+      </div>
+      <Persondiv
         src="https://i.pravatar.cc/300?img=10"
         name="Amber Matthews"
         count={6}
       />
       <Divider />
-      <PersonItem
+      <Persondiv
         src="https://i.pravatar.cc/300?img=20"
         name="Russel Robertson"
         count={2}
       />
       <Divider />
-      <PersonItem
+      <Persondiv
         src="https://i.pravatar.cc/300?img=30"
         name="Kathleen Ellis"
         count={2}
       />
-    </FlexCol>
+    </div>
   );
 }
