@@ -53,6 +53,8 @@ import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 import { Fade } from 'react-awesome-reveal';
 import SkillsComponent1 from '@/components/skills/SkillsComponent1';
 
+import stylesCarousel from "@/styles/Carousel.module.css"
+
 const BootstrapTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} arrow classes={{ popper: className }} />
 ))(({ theme }) => ({
@@ -342,6 +344,43 @@ const getPersonalOptions = (actionProvider) => {
 const WebHome = () => {
   const {t} = useTranslation();
   const [lang, ] = useLangMode();
+
+  const carouselItems = document.querySelectorAll(".carousel-item");
+
+carouselItems.forEach((item, index) => {
+    item.style.transform = `rotateY(${(360 / carouselItems.length) * index}deg) translateZ(250px)`;
+});
+
+let angle = 0;
+
+
+useEffect(() => {
+    document.addEventListener("keydown", (event) => {
+        if (event.code === "ArrowLeft") {
+            angle -= 360 / carouselItems.length;
+        } else if (event.code === "ArrowRight") {
+            angle += 360 / carouselItems.length;
+        }
+        document.querySelector("carousel").style.transform = `rotateY(${angle}deg)`;
+    });
+
+    const swiper = new Swiper(".swiper-container", {
+        effect: "coverflow",
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: "auto",
+        coverflowEffect: {
+          rotate: 50,
+          stretch: 0,
+          depth: 100,
+          modifier: 1,
+          slideShadows: true
+        },
+        pagination: {
+          el: ".swiper-pagination"
+        }
+      });
+})
   return (
     <>
     
@@ -349,14 +388,22 @@ const WebHome = () => {
   py:'5px',
       paddingBottom:100,
       background:'transparent'
-    }}>
-      
+    }}> 
 <Stack direction={'row'} justifyContent={'space-between'}>
 <div className={styles.links}>
         <SectionsBar />
       </div>
 
       <div style={{width:'100%'}}>
+      <div className={stylesCarousel['carousel-container']}>
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">Élément 1</div>
+            <div class="swiper-slide">Élément 2</div>
+            <div class="swiper-slide">Élément 3</div>
+        </div>
+    </div>
+      </div>
         <SkillsComponent1 />
         {
             /*

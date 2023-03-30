@@ -120,6 +120,7 @@ const config = {
         <Options
           actionProvider={actionProvider}
           getOptions={getPersonalOptions}
+          
         />
       ),
     },

@@ -14,6 +14,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import Image from 'next/image';
 
 export function AlertDialog({selectedId, setSelectedId, item}) {
   const [open, setOpen] = useState(selectedId);
@@ -86,20 +87,30 @@ const [selectedId, setSelectedId] = useState(null)
     //background:'green'
 }}
     >
-        <Grid container justifyContent={'center'} spacing={5} pt={5} pb={30}>
+        <Grid 
+        container 
+        justifyContent={'center'} 
+        spacing={5}
+        pt={5} 
+        pb={30}
+        >
             <Grid item xs={12} sx={{textAlign:'center'}}>
             <Stack >
             <Typography 
             fontSize={26} 
             fontWeight={'bold'}
-            sx={{background:theme.palette.primary.main, 
+            sx={{
+                background:theme.palette.primary.main, 
                 //opacity:0.8, 
-                margin:'auto', px:1, borderRadius:1.5, color:'var(--text-secondary)'}}
+                margin:'auto', 
+                px:1, 
+                borderRadius:1.5,
+                color:'var(--text-secondary)'}}
             ><Bounce triggerOnce duration={2500}>{t('sections.skills.title')}</Bounce></Typography>
             </Stack>
             </Grid>
 
-            <Grid item xs={12} md={8}>
+            <Grid item xs={12} md={9}>
             <Masonry columns={3} spacing={3} sx={{
      //width:'70%',
      //height:'100%'
@@ -124,10 +135,12 @@ const [selectedId, setSelectedId] = useState(null)
             {item.title}
         </Label>
   </motion.div>
-        <img
+        <Image
            src={`${item.img}?w=81&auto=format`}
            srcSet={`${item.img}?w=81&auto=format&dpr=2 2x`}
            alt={item.title}
+           width={150}
+           height={150}
            loading="lazy"
            style={{
              borderBottomLeftRadius: 4,
