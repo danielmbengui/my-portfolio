@@ -165,6 +165,7 @@ export function WebAppBar() {
         href={PAGE_LINK_RESUME}
         target="_blank"
         rel="noreferrer"
+        style={{display:'none'}}
       >
         <Button>{`See my resume`}</Button>
       </a>
@@ -172,6 +173,7 @@ export function WebAppBar() {
         href=""
         //target="_blank"
         rel="noreferrer"
+        style={{display:'none'}}
       >
         <Button variant='contained'>{`Chat with me`}</Button>
       </a>
@@ -241,6 +243,14 @@ const {t} = useTranslation();
     >
       <Avatar src="/me-no-back.png" sx={{ width: 40, height: 40, background:'var(--primary)' }} />
     </StyledBadge>
+    <Drawer
+        anchor="left"
+        open={linksBarOpen}
+        onClose={() => setLinksBarOpen(false)}
+        PaperProps={{ sx: { padding: '20px', width: 'fit-content' } }}
+      >
+        <MobileLinksBar />
+      </Drawer>
       </IconButton>
       </BootstrapTooltip>
 

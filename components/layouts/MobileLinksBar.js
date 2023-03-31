@@ -10,14 +10,15 @@ import {
 import { Box } from '@mui/system';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import GitHubIcon from '@mui/icons-material/GitHub';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import StickyNote2OutlinedIcon from '@mui/icons-material/StickyNote2Outlined';
 import { GITHUB_LINK, LINKEDIN_LINK } from '../../_mocks_/_links_items_';
-import { _MY_PROFILE_ } from '../../_mocks_/_settings_items_';
+import { PAGE_LINK_RESUME, _MY_PROFILE_ } from '../../_mocks_/_settings_items_';
+import { useTranslation } from 'next-i18next';
+import { GithubIcon, LinkedinIcon, ResumeIcon } from '../icons/IconifiyIcons';
 
 function MobileLinksBar() {
+  const {t} = useTranslation();
   return (
     <Box flex flexDirection="column">
       <Typography variant="h6">{_MY_PROFILE_.name}</Typography>
@@ -50,15 +51,29 @@ function MobileLinksBar() {
       <List>
         <ListItem disablePadding>
           <a
-            href="/resume"
+            href={PAGE_LINK_RESUME}
             target="_blank"
             rel="noreferrer"
           >
             <ListItemButton>
               <ListItemIcon>
-                <StickyNote2OutlinedIcon />
+                <ResumeIcon />
               </ListItemIcon>
-              <ListItemText primary="Resume" />
+              <ListItemText primary={t('seeMyCV')} />
+            </ListItemButton>
+          </a>
+        </ListItem>
+        <ListItem disablePadding>
+          <a
+            href={`mailto:${_MY_PROFILE_.mail}`}
+            //target="_blank"
+            rel="noreferrer"
+          >
+            <ListItemButton>
+              <ListItemIcon>
+                <EmailIcon fontSize='large' />
+              </ListItemIcon>
+              <ListItemText primary={t('sendMeMail')} />
             </ListItemButton>
           </a>
         </ListItem>
@@ -70,9 +85,9 @@ function MobileLinksBar() {
           >
             <ListItemButton>
               <ListItemIcon>
-                <LinkedInIcon />
+                <LinkedinIcon color='var(--blue-linkedin)' size={30} />
               </ListItemIcon>
-              <ListItemText primary="LinkedIn" />
+              <ListItemText primary={t('profileLinkedin')} />
             </ListItemButton>
           </a>
         </ListItem>
@@ -84,26 +99,13 @@ function MobileLinksBar() {
           >
             <ListItemButton>
               <ListItemIcon>
-                <GitHubIcon />
+                <GithubIcon size={35} />
               </ListItemIcon>
-              <ListItemText primary="GitHub" />
+              <ListItemText primary={t('profileGithub')} />
             </ListItemButton>
           </a>
         </ListItem>
-        <ListItem disablePadding>
-          <a
-            href=""
-            target="_blank"
-            rel="noreferrer"
-          >
-            <ListItemButton>
-              <ListItemIcon>
-                <EmailIcon />
-              </ListItemIcon>
-              <ListItemText primary="Contact" />
-            </ListItemButton>
-          </a>
-        </ListItem>
+       
       </List>
     </Box>
   );

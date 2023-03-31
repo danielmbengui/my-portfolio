@@ -92,7 +92,7 @@ const {t} = useTranslation();
                       px:1,
                       height:'100%',
                       width:'100%',
-                      border:'1px solid var(--primary)',
+                      border:'1px solid var(--accents2)',
                       //background:'purple',
                       textAlign:'center'
                     }}>
@@ -250,7 +250,7 @@ const {isMobile} = useDeviceMode()
        layoutId={index + 1} onClick={() => setSelectedId(index + 1)}
     whileHover={{ scale: 1.05 }}
     style={{
-      border:'1px solid var(--accents5)',
+      border:'1px solid var(--accents2)',
       borderRadius:'10px'
     }}
     //whileTap={{ scale: 0.9, background:'red' }}

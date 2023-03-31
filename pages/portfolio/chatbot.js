@@ -86,7 +86,9 @@ const {t} = useTranslation();
       <div>
 
      
-      <BootstrapTooltip theme={theme} describeChild open={true} title={ <Fade cascade damping={0.2}>{t('slogan')}</Fade>} placement="right">
+      <BootstrapTooltip sx={{
+        zIndex:1
+      }} theme={theme} describeChild open={true} title={ <Fade cascade damping={0.2}>{t('slogan')}</Fade>} placement="right">
       <IconButton
         size="large"
         edge="start"
@@ -150,6 +152,7 @@ const {t} = useTranslation();
         href={PAGE_LINK_RESUME}
         target="_blank"
         rel="noreferrer"
+        style={{display:'none'}}
       >
         <Button>{`See my resume`}</Button>
       </a>
@@ -157,6 +160,7 @@ const {t} = useTranslation();
         href=""
         //target="_blank"
         rel="noreferrer"
+        style={{display:'none'}}
       >
         <Button variant='contained'>{`Chat with me`}</Button>
       </a>
