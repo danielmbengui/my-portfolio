@@ -185,7 +185,7 @@ export function MobileAppBar() {
   const theme = useTheme();
   const avatarRef = useRef(null);
   const [popoverOpen, setPopoverOpen] = useState(false);
-
+const {t} = useTranslation();
   const [linksBarOpen, setLinksBarOpen] = useState(false);
   const [sectionBarOpen, setSectionBarOpen] = useState(false);
 
@@ -202,6 +202,13 @@ export function MobileAppBar() {
      //background:'pink'
      }}>
       <div>
+      <BootstrapTooltip 
+      theme={theme} describeChild open={true} 
+      sx={{
+        position:'relative',
+        zIndex:1
+      }}
+      title={ <Fade cascade damping={0.2}>{t('slogan')}</Fade>} placement="right">
       <IconButton
         size="large"
         edge="start"
@@ -231,17 +238,8 @@ export function MobileAppBar() {
 
 
       </IconButton>
-      </div>
-      <div>
-      <Stack direction={'row'} spacing={1} justifyContent={'center'} alignItems={'center'} sx={{
-    //background: 'red',
-    //mx:'auto',
-    //width: '100%'
-  }}>
-    <SelectLangageComponent
-    />
-    <SwitchThemeComponent />
-  </Stack>
+      </BootstrapTooltip>
+
       </div>
       <div>
       <Box

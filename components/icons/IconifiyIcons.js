@@ -58,19 +58,19 @@ export function TypescriptIcon({size = 30, color = 'var(--text)', ...props}) {
 
 export function MySqlIcon({size = 30, color = 'var(--text)', ...props}) {
     return(
-        <Icon icon="logos:mysql" {...props} color={color} width={size} />
+        <Icon icon="logos:mysql-icon" {...props} color={color} width={size} />
     )
 }
 
 export function SqlLiteIcon({size = 30, color = 'var(--text)', ...props}) {
     return(
-        <Icon icon="logos:sqlite" {...props} color={color} width={size} />
+        <Icon icon="vscode-icons:file-type-sqlite" {...props} color={color} width={size} />
     )
 }
 
 export function MongoDbIcon({size = 30, color = 'var(--text)', ...props}) {
     return(
-        <Icon icon="logos:mongodb" {...props} color={color} width={size} />
+        <Icon icon="logos:mongodb-icon" {...props} color={color} width={size} />
     )
 }
 
@@ -249,7 +249,7 @@ export function IonicIcon({size = 30, color = 'var(--text)', ...props}) {
 
 export function DjangoIcon({size = 30, color = 'var(--text)', ...props}) {
     return(
-        <Icon icon="logos:django" {...props} color={color} width={size} />
+        <Icon icon="logos:django-icon" {...props} color={color} width={size} />
     )
 }
 

@@ -22,8 +22,11 @@ const Options = ({ getOptions, actionProvider }) => {
               padding: '2px',
               fontSize: '0.85rem',
               marginBottom: '5px',
+              background:'var(--accents4)',
+              border:'1px dashed var(--primary)',
               "&:hover " : {
-                background:'var(--primary)'
+                background:'var(--primary)',
+                color:'black'
               }
             }}
           />

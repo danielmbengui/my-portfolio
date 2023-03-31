@@ -84,7 +84,7 @@ function MobileSectionsBar() {
   };
 
   return (
-    <Box flex flexDirection="column" sx={{position:'relative'}}>
+    <Box flex flexDirection="column" sx={{position:'relative', zIndex:100}}>
       <List>
       <ListItem disablePadding>
           <ListItemButton

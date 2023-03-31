@@ -16,8 +16,8 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Image from 'next/image';
 import { AngolanIcon, EnglishIcon, FrenchIcon } from '../icons/FlagIcons';
-import { AndroidIcon, AndroidStudioIcon, AtomIcon, CloseIcon, CssIcon, DjangoIcon, EclipseIcon, EtherJsIcon, FirebaseIcon, GanacheIcon, HtmlIcon, IonicIcon, JavaIcon, JavascriptIcon, MaterialUiIcon, MomentJsIcon, MongoDbIcon, MySqlIcon, NextJsIcon, NodeJsIcon, NotepadIcon, OpenAiIcon, PhotoshopIcon, PhpIcon, PrestashopIcon, PwaIcon, PythonIcon, ReactIcon, SolidityIcon, SpyderIcon, SqlLiteIcon, TruffleIcon, VimIcon, VisualStudioIcon, Web3JsIcon } from '../icons/IconifiyIcons';
-import { MidjourneyIcon, NetbeansIcon, SynthesiaIcon } from '../icons/ImagesIcons';
+import { AndroidIcon, AndroidStudioIcon, AtomIcon, CloseIcon, CssIcon, DiscordApiIcon, DjangoIcon, EclipseIcon, EtherJsIcon, FirebaseIcon, GanacheIcon, HtmlIcon, IonicIcon, JavaIcon, JavascriptIcon, MaterialUiIcon, MomentJsIcon, MongoDbIcon, MySqlIcon, NextJsIcon, NodeJsIcon, NotepadIcon, OpenAiIcon, PhotoshopIcon, PhpIcon, PrestashopIcon, PwaIcon, PythonIcon, ReactIcon, SolidityIcon, SpyderIcon, SqlLiteIcon, TruffleIcon, VimIcon, VisualStudioIcon, Web3JsIcon } from '../icons/IconifiyIcons';
+import { I18nIcon, MidjourneyIcon, NetbeansIcon, SynthesiaIcon } from '../icons/ImagesIcons';
 import { useDeviceMode } from '@/contexts/DeviceModeProvider';
 import { blue } from '@mui/material/colors';
 
@@ -61,7 +61,7 @@ const {t} = useTranslation();
         }}
       >
         <DialogTitle sx={{ m: 0, p: 2 }}>
-      {item && item.title}
+      {item && t(item.title)}
       <IconButton
           aria-label="close"
           onClick={handleClose}
@@ -85,23 +85,27 @@ const {t} = useTranslation();
                   item
                   xs={6}
                   md
-                  sx={{background:'cyan'}}
+                  //sx={{background:'cyan'}}
                   >
                     <Card sx={{
-                      py:1,
+                      py:2,
+                      px:1,
                       height:'100%',
                       width:'100%',
-                      background:'purple',
+                      border:'1px solid var(--primary)',
+                      //background:'purple',
                       textAlign:'center'
                     }}>
                     <Stack alignItems={'center'} spacing={1} justifyContent={'center'} sx={{
                       height:'100%',
                       width:'100%',
-                      background:'red',
+                     // background:'red',
                       textAlign:'center'
                     }}>
-                   <Stack alignItems={'center'} justifyContent={{xs:'center', md:'end'}} 
-                   style={{height:'100%', width:'100%', background:'green'}}>
+                   <Stack alignItems={'center'} justifyContent={{xs:'center', md:'center'}} 
+                   style={{height:'100%', width:'100%', 
+                   //background:'green'
+                   }}>
                    {
                 icon
               }
@@ -318,38 +322,38 @@ const itemData = [
     title: 'sections.skills.web.title',
     subtitle: 'sections.skills.mobile.title',
     skills: [
-      ['Javascript', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><JavascriptIcon size={20} /><Typography>{``}</Typography></Stack>],
-      ['Html', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><HtmlIcon size={20} /><Typography>{``}</Typography></Stack>],
-      ['Css', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><CssIcon size={20} /><Typography>{``}</Typography></Stack>],
-      ['Php', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><PhpIcon size={20} /><Typography>{``}</Typography></Stack>],
-      ['Python', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><PythonIcon size={20} /><Typography>{``}</Typography></Stack>],
-      ['Java', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><JavaIcon size={20} /><Typography>{``}</Typography></Stack>],
-      ['ReactJS', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><ReactIcon size={20} /><Typography>{``}</Typography></Stack>],
-      ['NextJS', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><NextJsIcon size={20} /><Typography>{``}</Typography></Stack>],
-      ['Android', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><AndroidIcon size={20} /><Typography>{``}</Typography></Stack>],
-      ['PWA', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><PwaIcon size={20} /><Typography>{``}</Typography></Stack>],
-      ['Ionic', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><IonicIcon size={20} /><Typography>{``}</Typography></Stack>],
+      ['Javascript', 95, <Stack direction={'row'} alignItems={'center'} spacing={1}><JavascriptIcon size={30} /><Typography>{``}</Typography></Stack>],
+      ['Html', 95, <Stack direction={'row'} alignItems={'center'} spacing={1}><HtmlIcon size={30} /><Typography>{``}</Typography></Stack>],
+      ['Css', 85, <Stack direction={'row'} alignItems={'center'} spacing={1}><CssIcon size={30} /><Typography>{``}</Typography></Stack>],
+      ['Php', 80, <Stack direction={'row'} alignItems={'center'} spacing={1}><PhpIcon size={50} /><Typography>{``}</Typography></Stack>],
+      ['Python', 80, <Stack direction={'row'} alignItems={'center'} spacing={1}><PythonIcon size={40} /><Typography>{``}</Typography></Stack>],
+      ['Java', 80, <Stack direction={'row'} alignItems={'center'} spacing={1}><JavaIcon size={30} /><Typography>{``}</Typography></Stack>],
+      ['ReactJS', 75, <Stack direction={'row'} alignItems={'center'} spacing={1}><ReactIcon size={35} /><Typography>{``}</Typography></Stack>],
+      ['NextJS', 75, <Stack direction={'row'} alignItems={'center'} spacing={1}><NextJsIcon size={35} /><Typography>{``}</Typography></Stack>],
+      ['Android', 70, <Stack direction={'row'} alignItems={'center'} spacing={1}><AndroidIcon size={50} /><Typography>{``}</Typography></Stack>],
+      ['PWA', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><PwaIcon size={50} /><Typography>{``}</Typography></Stack>],
+      ['Ionic', 70, <Stack direction={'row'} alignItems={'center'} spacing={1}><IonicIcon size={45} /><Typography>{``}</Typography></Stack>],
     ]
   },
 
   
 
   {
-    img: '/img/skills/frameworks.gif',
+    img: '/img/skills/frameworks.jpg',
     title: 'sections.skills.frameworks.title',
     skills: [
-      ['NodeJS', 85, <NodeJsIcon size={20} />],
-      ['Material Ui', 55, <MaterialUiIcon color={blue[600]} size={20} />],
-      ['MomentJS', 85, <MomentJsIcon size={20} />],
-      ['API ChatGPT', 55, <OpenAiIcon />],  
-      ['Prestashop', 55, <PrestashopIcon />],  
+      ['NodeJS', 80, <NodeJsIcon size={30} />],
+      ['Material Ui', 90, <MaterialUiIcon color={blue[600]} size={30} />],
+      ['i18n', 100, <I18nIcon size={35} />],
+      ['MomentJS', 100, <MomentJsIcon size={30} />],
+      ['API ChatGPT', 70, <OpenAiIcon size={30} />],  
       /*
       ['Google Maps API', 80, <GoogleMapsIcon size={20} />],
       ['Twitter API', 80, <TwitterApiIcon size={20} />],
       ['Discord API', 80, <DiscordApiIcon size={20} />],
       ['Ionic', 80, <IonicIcon size={20} />],
       */
-      ['i18n', 55, <div></div>],
+      
      // ['Firebase', 80, <FirebaseIcon size={20} />],
     ],
   },
@@ -357,19 +361,19 @@ const itemData = [
     img: '/img/skills/ai.gif',
     title: 'sections.skills.artificial.title',
     skills: [
-      ['OpenAi', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><OpenAiIcon size={20} /><Typography>{``}</Typography></Stack>],
-      ['Midjourney', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><MidjourneyIcon size={25} /><Typography>{``}</Typography></Stack>],
-      ['Synthesia', 70, <Stack direction={'row'} alignItems={'center'} spacing={1}><SynthesiaIcon size={30} /><Typography>{``}</Typography></Stack>],
+      ['OpenAi', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><OpenAiIcon size={35} /><Typography>{``}</Typography></Stack>],
+      ['Midjourney', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><MidjourneyIcon size={35} /><Typography>{``}</Typography></Stack>],
+      ['Synthesia', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><SynthesiaIcon size={40} /><Typography>{``}</Typography></Stack>],
     ],
   },
   {
-    img: '/img/skills/langs.jpg',
+    img: '/img/skills/database.jpg',
     title: 'sections.skills.database.title',
     skills : [
-      ['Firebase', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><FirebaseIcon size={20} /><Typography>{``}</Typography></Stack>],
-      ['MongoDB', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><MongoDbIcon size={20} /><Typography>{``}</Typography></Stack>],
-      ['MySQL', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><MySqlIcon size={20} /><Typography>{``}</Typography></Stack>],
-      ['SQLite', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><SqlLiteIcon size={20} /><Typography>{``}</Typography></Stack>],
+      ['Firebase', 70, <Stack direction={'row'} alignItems={'center'} spacing={1}><FirebaseIcon size={25} /><Typography>{``}</Typography></Stack>],
+      ['MongoDB', 50, <Stack direction={'row'} alignItems={'center'} spacing={1}><MongoDbIcon size={20} /><Typography>{``}</Typography></Stack>],
+      ['MySQL', 65, <Stack direction={'row'} alignItems={'center'} spacing={1}><MySqlIcon size={35} /><Typography>{``}</Typography></Stack>],
+      ['SQLite', 75, <Stack direction={'row'} alignItems={'center'} spacing={1}><SqlLiteIcon size={35} /><Typography>{``}</Typography></Stack>],
 
     ]
   },
@@ -378,27 +382,28 @@ const itemData = [
 img: '/img/skills/blockchain.gif',
 title: 'sections.skills.blockchain.title',
 skills: [
-  ['Solidity', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><SolidityIcon size={20} /><Typography>{``}</Typography></Stack>],
-  ['Web3JS', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><Web3JsIcon size={25} /><Typography>{``}</Typography></Stack>],
-  ['EtherJS', 70, <Stack direction={'row'} alignItems={'center'} spacing={1}><EtherJsIcon size={30} /><Typography>{``}</Typography></Stack>],
-  ['Truffle', 70, <Stack direction={'row'} alignItems={'center'} spacing={1}><TruffleIcon size={30} /><Typography>{``}</Typography></Stack>],
-  ['Ganache', 70, <Stack direction={'row'} alignItems={'center'} spacing={1}><GanacheIcon size={30} /><Typography>{``}</Typography></Stack>],
+  ['Solidity', 70, <Stack direction={'row'} alignItems={'center'} spacing={1}><SolidityIcon size={25} /><Typography>{``}</Typography></Stack>],
+  ['Web3JS', 75, <Stack direction={'row'} alignItems={'center'} spacing={1}><Web3JsIcon size={45} /><Typography>{``}</Typography></Stack>],
+  ['EtherJS', 75, <Stack direction={'row'} alignItems={'center'} spacing={1}><EtherJsIcon size={45} /><Typography>{``}</Typography></Stack>],
+  ['Truffle', 75, <Stack direction={'row'} alignItems={'center'} spacing={1}><TruffleIcon size={35} /><Typography>{``}</Typography></Stack>],
+  ['Ganache', 75, <Stack direction={'row'} alignItems={'center'} spacing={1}><GanacheIcon size={40} /><Typography>{``}</Typography></Stack>],
 ],
 },
   {
     img: '/img/skills/software.gif',
     title: 'sections.skills.software.title',
     skills: [
-      ['Visual Studio Code', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><VisualStudioIcon size={20} /><Typography>{``}</Typography></Stack>],
-      ['Spyder', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><SpyderIcon size={20} /><Typography>{``}</Typography></Stack>],
-      ['Eclipse', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><EclipseIcon size={20} /><Typography>{``}</Typography></Stack>],
-      ['Photoshop', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><PhotoshopIcon size={20} /><Typography>{``}</Typography></Stack>],
-      ['Android Studio', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><AndroidStudioIcon size={20} /><Typography>{``}</Typography></Stack>],
-      ['Atom', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><AtomIcon size={20} /><Typography>{``}</Typography></Stack>],
-      ['NotePad ++', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><NotepadIcon size={20} /><Typography>{``}</Typography></Stack>],
-      ['Netbeans', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><NetbeansIcon size={20} /><Typography>{``}</Typography></Stack>],
-      ['Django', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><DjangoIcon size={20} /><Typography>{``}</Typography></Stack>],
-      ['Vim', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><VimIcon size={20} /><Typography>{``}</Typography></Stack>],
+      ['Visual Studio Code', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><VisualStudioIcon size={35} /><Typography>{``}</Typography></Stack>],
+      ['Discord', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><DiscordApiIcon size={35} /><Typography>{``}</Typography></Stack>],
+      ['Android Studio', 85, <Stack direction={'row'} alignItems={'center'} spacing={1}><AndroidIcon size={45} /><Typography>{``}</Typography></Stack>],
+      ['Spyder', 60, <Stack direction={'row'} alignItems={'center'} spacing={1}><SpyderIcon size={45} /><Typography>{``}</Typography></Stack>],
+      ['Eclipse', 60, <Stack direction={'row'} alignItems={'center'} spacing={1}><EclipseIcon size={40} /><Typography>{``}</Typography></Stack>],
+      ['Photoshop', 75, <Stack direction={'row'} alignItems={'center'} spacing={1}><PhotoshopIcon size={40} /><Typography>{``}</Typography></Stack>],
+      ['Atom', 80, <Stack direction={'row'} alignItems={'center'} spacing={1}><AtomIcon size={45} /><Typography>{``}</Typography></Stack>],
+      ['NotePad ++', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><NotepadIcon size={45} /><Typography>{``}</Typography></Stack>],
+      ['Netbeans', 80, <Stack direction={'row'} alignItems={'center'} spacing={1}><NetbeansIcon size={45} /><Typography>{``}</Typography></Stack>],
+      ['Django', 80, <Stack direction={'row'} alignItems={'center'} spacing={1}><DjangoIcon size={40} /><Typography>{``}</Typography></Stack>],
+      ['Vim', 50, <Stack direction={'row'} alignItems={'center'} spacing={1}><VimIcon size={40} /><Typography>{``}</Typography></Stack>],
 
     ]
   },

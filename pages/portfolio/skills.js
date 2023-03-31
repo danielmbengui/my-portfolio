@@ -90,7 +90,7 @@ export function WebAppBar() {
      }}>
       <div>
       <BootstrapTooltip theme={theme} describeChild open={true} 
-      title={<Typography fontSize={14}><Fade cascade damping={0.2} style={{fontFamily:GENERAL_FONT_FAMILY}}>{t('sections.skills.title')}</Fade></Typography>} 
+      title={<Typography fontSize={14} color={'text.secondary'}><Fade cascade damping={0.2} style={{fontFamily:GENERAL_FONT_FAMILY}}>{t('sections.skills.title')}</Fade></Typography>} 
       placement="right"
       sx={{
         position:'relative',
@@ -199,7 +199,7 @@ export function MobileAppBar() {
   const theme = useTheme();
   const avatarRef = useRef(null);
   const [popoverOpen, setPopoverOpen] = useState(false);
-
+const {t} = useTranslation();
   const [linksBarOpen, setLinksBarOpen] = useState(false);
   const [sectionBarOpen, setSectionBarOpen] = useState(false);
 
@@ -216,6 +216,14 @@ export function MobileAppBar() {
      //background:'pink'
      }}>
       <div>
+      <BootstrapTooltip theme={theme} describeChild open={true} 
+      title={<Typography fontSize={14} color={'text.secondary'}><Fade cascade damping={0.2} style={{fontFamily:GENERAL_FONT_FAMILY}}>{t('sections.skills.title')}</Fade></Typography>} 
+      placement="right"
+      sx={{
+        position:'relative',
+        zIndex:1
+      }}
+      >
       <IconButton
         size="large"
         edge="start"
@@ -233,29 +241,12 @@ export function MobileAppBar() {
     >
       <Avatar src="/me-no-back.png" sx={{ width: 40, height: 40, background:'var(--primary)' }} />
     </StyledBadge>
-
-    <Drawer
-        anchor="left"
-        open={linksBarOpen}
-        onClose={() => setLinksBarOpen(false)}
-        PaperProps={{ sx: { padding: '20px', width: 'fit-content' } }}
-      >
-        <MobileLinksBar />
-      </Drawer>
-
-
       </IconButton>
+      </BootstrapTooltip>
+
       </div>
       <div>
-      <Stack direction={'row'} spacing={1} justifyContent={'center'} alignItems={'center'} sx={{
-    //background: 'red',
-    //mx:'auto',
-    //width: '100%'
-  }}>
-    <SelectLangageComponent
-    />
-    <SwitchThemeComponent />
-  </Stack>
+
       </div>
       <div>
       <Box

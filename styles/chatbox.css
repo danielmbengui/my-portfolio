@@ -96,6 +96,7 @@ background-size: cover;
   padding: 10px 15px;
   border-radius: 15px;
   border: var(--primary) 1px solid;
+  background-color: var(--background-menu);
   font-size: 0.95rem;
   color: var(--text);
   font-weight: medium;
