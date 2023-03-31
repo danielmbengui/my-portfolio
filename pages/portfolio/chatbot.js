@@ -56,11 +56,11 @@ const BootstrapTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} arrow classes={{ popper: className }} />
 ))(({ theme }) => ({
   [`& .${tooltipClasses.arrow}`]: {
-    color: 'var(--green-light-bot-primary)',
+    color: 'var(--primary)',
   },
   [`& .${tooltipClasses.tooltip}`]: {
     //backgroundColor: theme.palette.primary.main,
-    backgroundColor: 'var(--green-light-bot-primary)',
+    backgroundColor: 'var(--primary)',
     color: theme.palette.text.secondary
   },
 }));
@@ -69,6 +69,7 @@ export function WebAppBar() {
   const theme = useTheme();
   const avatarRef = useRef(null);
   const [popoverOpen, setPopoverOpen] = useState(false);
+const {t} = useTranslation();
 
   const handlePopoverClose = () => {
     setPopoverOpen(false);
@@ -85,7 +86,7 @@ export function WebAppBar() {
       <div>
 
      
-      <BootstrapTooltip theme={theme} describeChild open={true} title={ <Fade cascade damping={0.2}>{`C'est une partie de moi !`}</Fade>} placement="right">
+      <BootstrapTooltip theme={theme} describeChild open={true} title={ <Fade cascade damping={0.2}>{t('slogan')}</Fade>} placement="right">
       <IconButton
         size="large"
         edge="start"
@@ -100,7 +101,7 @@ export function WebAppBar() {
       anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
       variant="dot"
     >
-      <Avatar src="/me-no-back.png" sx={{ width: 40, height: 40, background:'var(--green-light-bot-primary)' }} />
+      <Avatar src="/me-no-back.png" sx={{ width: 40, height: 40, background:'var(--primary)' }} />
     </StyledBadge>
       </IconButton>
       </BootstrapTooltip>

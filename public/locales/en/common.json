@@ -2,6 +2,8 @@
     "titlePageHome": "Portfolio · Daniel Mbengui",
     "welcome" :  "Hi 👋🏿, I'm Daan. Nice to meet you! I How are you doing today?",
     "langs": {
+        "title": "language",
+        "plural": "languages",
         "fr": "french",
         "en": "english"
     },
@@ -47,6 +49,41 @@
                     "name": "Visual Studio Code",
                     "value": 80
                 }
+            },
+            "web" : {
+                "title" : "Web",
+                "visualStudio" : {
+                    "name": "Visual Studio Code",
+                    "value": 80
+                }
+            },
+            "mobile" : {
+                "title" : "Mobile",
+                "visualStudio" : {
+                    "name": "Visual Studio Code",
+                    "value": 80
+                }
+            },
+            "blockchain" : {
+                "title" : "Blockchain",
+                "visualStudio" : {
+                    "name": "Visual Studio Code",
+                    "value": 80
+                }
+            },
+            "database" : {
+                "title" : "Database",
+                "visualStudio" : {
+                    "name": "Visual Studio Code",
+                    "value": 80
+                }
+            },
+            "artificial" : {
+                "title" : "Artificial intelligence",
+                "visualStudio" : {
+                    "name": "Visual Studio Code",
+                    "value": 80
+                }
             }
         },
         "education" : {
@@ -59,5 +96,12 @@
                 "link": "https://www.freecodecamp.org/certification/fccef9a36a5-5f01-45d2-ad9e-88f37eac23d1/javascript-algorithms-and-data-structures"
             }
         }
-    }
+    },
+    "chatbot" : "Chat with me",
+    "seeMyCV" : "See my resume",
+    "sendMeMail" : "Contact me",
+    "profileLinkedin" : "Linkedin profile",
+    "profileGithub" : "Github profile",
+    "slogan": "Because I'm a geek !",
+    "theme" : "theme"
 }

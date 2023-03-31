@@ -17,11 +17,7 @@ import { Container, Stack, Typography } from '@mui/material';
 const getMoodOptions = (actionProvider) => {
   return [
     {
-      text: <Typography sx={{
-        "&:hover:" : {
-           background:'red'
-        }
-      }}>{`Ça va merci! Parle-moi de toi.`}</Typography>,
+      text: 'Ça va merci! Parle-moi de toi.',
       handler: () => actionProvider.handleGoodMood(LANGAGE_FRENCH),
       id: 1,
     },

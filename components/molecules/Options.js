@@ -23,7 +23,7 @@ const Options = ({ getOptions, actionProvider }) => {
               fontSize: '0.85rem',
               marginBottom: '5px',
               "&:hover " : {
-                background:'var(--green-light-bot-primary)'
+                background:'var(--primary)'
               }
             }}
           />

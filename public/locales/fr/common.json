@@ -2,6 +2,8 @@
     "titlePageHome": "Portfolio · Daniel Mbengui",
     "welcome" :  "Salut 👋🏿, je suis Daan. Heureux de te rencontrer! Comment tu vas aujourd'hui?",
     "langs": {
+        "title": "langue",
+        "plural": "langues",
         "fr": "français",
         "en": "anglais"
     },
@@ -35,18 +37,25 @@
                 }
             },
             "frameworks" : {
-                "title" : "Librairies / Outils",
-                "react" : {
-                    "name": "ReactJS",
-                    "value": 80
-                }
+                "title" : "Librairies / Outils"
             },
             "software" : {
-                "title" : "Logiciels",
-                "visualStudio" : {
-                    "name": "Visual Studio Code",
-                    "value": 80
-                }
+                "title" : "Logiciels"
+            },
+            "web" : {
+                "title" : "Web"
+            },
+            "mobile" : {
+                "title" : "Mobile"
+            },
+            "blockchain" : {
+                "title" : "Blockchain"
+            },
+            "database" : {
+                "title" : "Base de données"
+            },
+            "artificial" : {
+                "title" : "Intelligence artificielle"
             }
         
             
@@ -61,5 +70,12 @@
                 "link": "https://www.freecodecamp.org/certification/fccef9a36a5-5f01-45d2-ad9e-88f37eac23d1/javascript-algorithms-and-data-structures"
             }
         }
-    }
+    },
+    "chatbot" : "Discutes avec moi",
+    "seeMyCV" : "Voir mon CV",
+    "sendMeMail" : "Contactes moi",
+    "profileLinkedin" : "Profil Linkedin",
+    "profileGithub" : "Profil Github",
+    "slogan" : "Parce que je suis un geek !",
+    "theme" : "thème"
 }

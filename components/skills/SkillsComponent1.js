@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Masonry from '@mui/lab/Masonry';
 import { styled, useTheme } from '@mui/material/styles';
-import { Container, Grid, ImageListItem, ListSubheader, Stack, Typography } from '@mui/material';
+import { Card, CircularProgress, Container, Grid, IconButton, ImageListItem, LinearProgress, ListSubheader, Stack, Typography } from '@mui/material';
 import { useTranslation } from 'next-i18next';
 import { Bounce, Fade, Flip, Slide } from 'react-awesome-reveal';
 import {motion, AnimatePresence} from "framer-motion";
@@ -15,9 +15,26 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Image from 'next/image';
+import { AngolanIcon, EnglishIcon, FrenchIcon } from '../icons/FlagIcons';
+import { AndroidIcon, AndroidStudioIcon, AtomIcon, CloseIcon, CssIcon, DjangoIcon, EclipseIcon, EtherJsIcon, FirebaseIcon, GanacheIcon, HtmlIcon, IonicIcon, JavaIcon, JavascriptIcon, MaterialUiIcon, MomentJsIcon, MongoDbIcon, MySqlIcon, NextJsIcon, NodeJsIcon, NotepadIcon, OpenAiIcon, PhotoshopIcon, PhpIcon, PrestashopIcon, PwaIcon, PythonIcon, ReactIcon, SolidityIcon, SpyderIcon, SqlLiteIcon, TruffleIcon, VimIcon, VisualStudioIcon, Web3JsIcon } from '../icons/IconifiyIcons';
+import { MidjourneyIcon, NetbeansIcon, SynthesiaIcon } from '../icons/ImagesIcons';
+import { useDeviceMode } from '@/contexts/DeviceModeProvider';
+import { blue } from '@mui/material/colors';
 
 export function AlertDialog({selectedId, setSelectedId, item}) {
-  const [open, setOpen] = useState(selectedId);
+  const [open, setOpen] = useState(selectedId > 0);
+const {isMobile} = useDeviceMode();
+
+const {t} = useTranslation();
+
+  const skill = {
+    name: 'sections.skills.langs.title',
+    skills: [
+      ['sections.skills.langs.ao.name', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><AngolanIcon size={20} /><Typography>{`Langue maternelle`}</Typography></Stack>],
+      ['sections.skills.langs.fr.name', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><FrenchIcon size={20} /><Typography>{`Langue maternelle`}</Typography></Stack>],
+      ['sections.skills.langs.en.name', 70, <Stack direction={'row'} alignItems={'center'} spacing={1}><EnglishIcon size={20} /><Typography>{`Niveau B1`}</Typography></Stack>],
+    ],
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -30,33 +47,139 @@ export function AlertDialog({selectedId, setSelectedId, item}) {
 
   return (
     <div style={{position:'relative'}}>
-      <Button variant="outlined" onClick={handleClickOpen} >
-        Open alert dialog
-      </Button>
       <Dialog
         open={open}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
-        style={{p:30}}
-        
+        fullScreen={isMobile ? true : false}
+        //style={{p:30}}
+        //TransitionComponent={Fade}
+        transitionDuration={{
+          enter:0,
+          exit:0
+        }}
       >
-        <Paper  sx={{
-            m:3,
-            background:'red'}}>
-        <DialogTitle id="alert-dialog-title">
-        {item && item.title}
-        </DialogTitle>
-        </Paper>
-        
+        <DialogTitle sx={{ m: 0, p: 2 }}>
+      {item && item.title}
+      <IconButton
+          aria-label="close"
+          onClick={handleClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+    </DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            {item && <Typography>{item.title}</Typography>}
-            Let Google help apps determine location. This means sending anonymous
-            location data to Google, even when no apps are running.
+          <Grid container spacing={1}>
+            {
+              item.skills && item.skills.map(([name, val, icon], idx) => {
+                return(
+                  <Grid
+                  key={idx}
+                  item
+                  xs={6}
+                  md
+                  sx={{background:'cyan'}}
+                  >
+                    <Card sx={{
+                      py:1,
+                      height:'100%',
+                      width:'100%',
+                      background:'purple',
+                      textAlign:'center'
+                    }}>
+                    <Stack alignItems={'center'} spacing={1} justifyContent={'center'} sx={{
+                      height:'100%',
+                      width:'100%',
+                      background:'red',
+                      textAlign:'center'
+                    }}>
+                   <Stack alignItems={'center'} justifyContent={{xs:'center', md:'end'}} 
+                   style={{height:'100%', width:'100%', background:'green'}}>
+                   {
+                icon
+              }
+                    <Typography sx={{fontWeight:'bold'}}>{t(name)}</Typography>
+                   </Stack>
+                    <Box sx={{ position: 'relative', display: 'inline-flex', width:100, height:100 }}>
+                    <CircularProgress variant="determinate" value={val} style={{
+                      width:100,
+                      height:100
+                    }} />
+      <Box
+        sx={{
+          top: 0,
+          left: 0,
+          bottom: 0,
+          right: 0,
+          position: 'absolute',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          //background:'red'
+        }}
+      >
+        
+        <Typography variant="caption" component="div" color="text.primary">
+          {`${Math.round(val)}%`}
+        </Typography>
+      </Box>
+    </Box>
+                    </Stack>
+                    </Card>
+                    </Grid>
+                )
+              })
+            }
+          </Grid>
+        <div style={{paddingLeft:30, paddingRight:30, display:'none'}}>
+        {item.skills && item.skills.map(([name, val, icon], idx) => {
+        return (
+          <Grid
+            container
+            display="flex"
+            flexDirection="row"
+            key={idx}
+            width="100%"
+            alignItems="center"
+            justifyContent={'center'}
+            sx={{ pt: 3, color:'var(--text)' }}
+            spacing={3}
+          >
+            <Grid item xs={4} md={3}>
+              <Typography sx={{fontWeight:'bold'}}>{t(name)}</Typography>
+            </Grid>
+            <Grid item xs sm md>
+            <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'} spacing={1} pb={1}>
+            {
+                icon
+              }
+            <Typography variant="body2" color="text.primary">{`${Math.round(
+          val,
+        )}%`}</Typography>
+            </Stack>
+            <LinearProgress
+                  variant="determinate"
+                  value={val}
+                  sx={{ borderRadius: 2 }}
+                />
+              
+            </Grid>
+          </Grid>
+        );
+      })}
+        </div>
+          <DialogContentText id="alert-dialog-description" sx={{color:'red', p:3}}>
+            {`IMPORTANT : les compétences et les pourcentages indiqués ne représentent pas nécessairement mon niveau absolu, mais plutôt une estimation de ma maîtrise relative des sujets abordés.`}
           </DialogContentText>
         </DialogContent>
-        <DialogActions>
+        <DialogActions sx={{display:'none'}}>
           <Button onClick={handleClose}>Disagree</Button>
           <Button onClick={handleClose} autoFocus>
             Agree
@@ -81,7 +204,7 @@ export default function SkillsComponent1() {
     const {t} = useTranslation();
 const theme = useTheme();
 const [selectedId, setSelectedId] = useState(null)
-
+const {isMobile} = useDeviceMode()
   return (
     <Container sx={{height:'100vh', position:'relative', overflowY:'scroll', 
     //background:'green'
@@ -96,55 +219,71 @@ const [selectedId, setSelectedId] = useState(null)
         >
             <Grid item xs={12} sx={{textAlign:'center'}}>
             <Stack >
-            <Typography 
+            <Bounce triggerOnce duration={2500}><Typography 
             fontSize={26} 
             fontWeight={'bold'}
             sx={{
-                background:theme.palette.primary.main, 
+                //background:theme.palette.primary.main, 
                 //opacity:0.8, 
                 margin:'auto', 
                 px:1, 
-                borderRadius:1.5,
-                color:'var(--text-secondary)'}}
-            ><Bounce triggerOnce duration={2500}>{t('sections.skills.title')}</Bounce></Typography>
+                //borderRadius:1.5,
+                color:'var(--text)'
+              }}>{t('sections.skills.title')}</Typography></Bounce>
             </Stack>
             </Grid>
 
             <Grid item xs={12} md={9}>
-            <Masonry columns={3} spacing={3} sx={{
+            <Masonry columns={{xs:1, sm:3, }} spacing={{xs:0, sm:2}} sx={{
      //width:'70%',
      //height:'100%'
    }}>
    
      {itemData.map((item, index) => (
          <Slide key={index} direction='up' cascade damping={1} triggerOnce>
-            <div  style={{cursor:'pointer', color:'var(--text)', position:'relative'}}>
+            <div  style={{cursor:'pointer', color:'var(--text)', position:'relative', paddingTop: isMobile ? 10 : 0,}} >
        <motion.div
        layoutId={index + 1} onClick={() => setSelectedId(index + 1)}
     whileHover={{ scale: 1.05 }}
+    style={{
+      border:'1px solid var(--accents5)',
+      borderRadius:'10px'
+    }}
     //whileTap={{ scale: 0.9, background:'red' }}
     //whileFocus={{background:'red'}}
   >
 
 <motion.div
     whileHover={{ scale: 1.1 }}
+    
     //whileTap={{ scale: 0.9, background:'red' }}
-    whileFocus={{background:'red'}}
+    //whileFocus={{background:'red'}}
   >
-   <Label sx={{py:3,px:3, color:'var(--text)', background:'var(--background-card)'}}>
-            {item.title}
+   <Label sx={{
+    borderTopLeftRadius:'10px',
+    borderTopRightRadius:'10px',
+    fontWeight:'bold',
+    fontSize:16,
+    py:2,px:2, color:'var(--text)', background:'var(--primary)', 
+   //position:'absolute', 
+   //left:20,
+   //right:20,
+   //top:'50%',
+   //bottom:'50%'
+   my:'auto'
+   }}>
+            {t(item.title)}
+            {item.subtitle && ` / ${t(item.subtitle)}`}
         </Label>
   </motion.div>
-        <Image
+        <img
            src={`${item.img}?w=81&auto=format`}
            srcSet={`${item.img}?w=81&auto=format&dpr=2 2x`}
            alt={item.title}
-           width={150}
-           height={150}
            loading="lazy"
            style={{
-             borderBottomLeftRadius: 4,
-             borderBottomRightRadius: 4,
+             borderBottomLeftRadius: 10,
+             borderBottomRightRadius: 10,
              display: 'block',
              width: '100%',
            }}
@@ -153,22 +292,19 @@ const [selectedId, setSelectedId] = useState(null)
        </div>
        </Slide>
      ))}
-<AnimatePresence>
+
+   </Masonry>
+   <AnimatePresence>
             {selectedId && (
-              <motion.div layoutId={selectedId}>
+              <motion.dialog layoutId={selectedId}>
                 <AlertDialog
                 selectedId={selectedId}
                 setSelectedId={setSelectedId}
                 item={itemData[selectedId-1]}
                 />
-                <motion.h5>{`OOOOK`}</motion.h5>
-                <motion.h2>{selectedId}</motion.h2>
-                <motion.button onClick={() => setSelectedId(null)} />
-              </motion.div>
+              </motion.dialog>
             )}
           </AnimatePresence>
-   </Masonry>
-   
             </Grid>
         </Grid>
         
@@ -177,31 +313,99 @@ const [selectedId, setSelectedId] = useState(null)
 }
 
 const itemData = [
-    {
-        img: '/img/skills/ai.gif',
-        title: 'Intelligence artificielle',
-      },
-  {
-    img: '/img/skills/langs.gif',
-    title: 'Langues',
-  },
   {
     img: '/img/skills/prog.gif',
-    title: 'Web / Mobile',
-  },
-  {
-    img: '/img/skills/blockchain.gif',
-    title: 'Blockchain',
+    title: 'sections.skills.web.title',
+    subtitle: 'sections.skills.mobile.title',
+    skills: [
+      ['Javascript', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><JavascriptIcon size={20} /><Typography>{``}</Typography></Stack>],
+      ['Html', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><HtmlIcon size={20} /><Typography>{``}</Typography></Stack>],
+      ['Css', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><CssIcon size={20} /><Typography>{``}</Typography></Stack>],
+      ['Php', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><PhpIcon size={20} /><Typography>{``}</Typography></Stack>],
+      ['Python', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><PythonIcon size={20} /><Typography>{``}</Typography></Stack>],
+      ['Java', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><JavaIcon size={20} /><Typography>{``}</Typography></Stack>],
+      ['ReactJS', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><ReactIcon size={20} /><Typography>{``}</Typography></Stack>],
+      ['NextJS', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><NextJsIcon size={20} /><Typography>{``}</Typography></Stack>],
+      ['Android', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><AndroidIcon size={20} /><Typography>{``}</Typography></Stack>],
+      ['PWA', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><PwaIcon size={20} /><Typography>{``}</Typography></Stack>],
+      ['Ionic', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><IonicIcon size={20} /><Typography>{``}</Typography></Stack>],
+    ]
   },
 
+  
+
   {
-    img: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f',
-    title: 'Fern',
+    img: '/img/skills/frameworks.gif',
+    title: 'sections.skills.frameworks.title',
+    skills: [
+      ['NodeJS', 85, <NodeJsIcon size={20} />],
+      ['Material Ui', 55, <MaterialUiIcon color={blue[600]} size={20} />],
+      ['MomentJS', 85, <MomentJsIcon size={20} />],
+      ['API ChatGPT', 55, <OpenAiIcon />],  
+      ['Prestashop', 55, <PrestashopIcon />],  
+      /*
+      ['Google Maps API', 80, <GoogleMapsIcon size={20} />],
+      ['Twitter API', 80, <TwitterApiIcon size={20} />],
+      ['Discord API', 80, <DiscordApiIcon size={20} />],
+      ['Ionic', 80, <IonicIcon size={20} />],
+      */
+      ['i18n', 55, <div></div>],
+     // ['Firebase', 80, <FirebaseIcon size={20} />],
+    ],
   },
   {
-    img: 'https://images.unsplash.com/photo-1627308595229-7830a5c91f9f',
-    title: 'Snacks',
+    img: '/img/skills/ai.gif',
+    title: 'sections.skills.artificial.title',
+    skills: [
+      ['OpenAi', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><OpenAiIcon size={20} /><Typography>{``}</Typography></Stack>],
+      ['Midjourney', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><MidjourneyIcon size={25} /><Typography>{``}</Typography></Stack>],
+      ['Synthesia', 70, <Stack direction={'row'} alignItems={'center'} spacing={1}><SynthesiaIcon size={30} /><Typography>{``}</Typography></Stack>],
+    ],
   },
+  {
+    img: '/img/skills/langs.jpg',
+    title: 'sections.skills.database.title',
+    skills : [
+      ['Firebase', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><FirebaseIcon size={20} /><Typography>{``}</Typography></Stack>],
+      ['MongoDB', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><MongoDbIcon size={20} /><Typography>{``}</Typography></Stack>],
+      ['MySQL', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><MySqlIcon size={20} /><Typography>{``}</Typography></Stack>],
+      ['SQLite', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><SqlLiteIcon size={20} /><Typography>{``}</Typography></Stack>],
+
+    ]
+  },
+
+{
+img: '/img/skills/blockchain.gif',
+title: 'sections.skills.blockchain.title',
+skills: [
+  ['Solidity', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><SolidityIcon size={20} /><Typography>{``}</Typography></Stack>],
+  ['Web3JS', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><Web3JsIcon size={25} /><Typography>{``}</Typography></Stack>],
+  ['EtherJS', 70, <Stack direction={'row'} alignItems={'center'} spacing={1}><EtherJsIcon size={30} /><Typography>{``}</Typography></Stack>],
+  ['Truffle', 70, <Stack direction={'row'} alignItems={'center'} spacing={1}><TruffleIcon size={30} /><Typography>{``}</Typography></Stack>],
+  ['Ganache', 70, <Stack direction={'row'} alignItems={'center'} spacing={1}><GanacheIcon size={30} /><Typography>{``}</Typography></Stack>],
+],
+},
+  {
+    img: '/img/skills/software.gif',
+    title: 'sections.skills.software.title',
+    skills: [
+      ['Visual Studio Code', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><VisualStudioIcon size={20} /><Typography>{``}</Typography></Stack>],
+      ['Spyder', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><SpyderIcon size={20} /><Typography>{``}</Typography></Stack>],
+      ['Eclipse', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><EclipseIcon size={20} /><Typography>{``}</Typography></Stack>],
+      ['Photoshop', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><PhotoshopIcon size={20} /><Typography>{``}</Typography></Stack>],
+      ['Android Studio', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><AndroidStudioIcon size={20} /><Typography>{``}</Typography></Stack>],
+      ['Atom', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><AtomIcon size={20} /><Typography>{``}</Typography></Stack>],
+      ['NotePad ++', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><NotepadIcon size={20} /><Typography>{``}</Typography></Stack>],
+      ['Netbeans', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><NetbeansIcon size={20} /><Typography>{``}</Typography></Stack>],
+      ['Django', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><DjangoIcon size={20} /><Typography>{``}</Typography></Stack>],
+      ['Vim', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><VimIcon size={20} /><Typography>{``}</Typography></Stack>],
+
+    ]
+  },
+
+
+/*
+
   {
     img: 'https://images.unsplash.com/photo-1597645587822-e99fa5d45d25',
     title: 'Mushrooms',
@@ -262,4 +466,5 @@ const itemData = [
     img: 'https://images.unsplash.com/photo-1589118949245-7d38baf380d6',
     title: 'Bike',
   },
+  */
 ];

@@ -62,6 +62,18 @@ export function MySqlIcon({size = 30, color = 'var(--text)', ...props}) {
     )
 }
 
+export function SqlLiteIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="logos:sqlite" {...props} color={color} width={size} />
+    )
+}
+
+export function MongoDbIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="logos:mongodb" {...props} color={color} width={size} />
+    )
+}
+
 export function PythonIcon({size = 30, color = 'var(--text)', ...props}) {
     return(
         <Icon icon="vscode-icons:file-type-python" {...props} color={color} width={size} />
@@ -101,6 +113,35 @@ export function ResumeIcon({size = 30, color = 'var(--text)', ...props}) {
 export function LinkedinIcon({size = 30, color = 'var(--text)', ...props}) {
     return(
         <Icon icon="simple-icons:linkedin" {...props} color={color} width={size} />
+    )
+}
+
+export function CloseIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="material-symbols:close" {...props} color={color} width={size} />
+    )
+}
+
+
+
+export function TruffleIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="vscode-icons:file-type-truffle" {...props} color={color} width={size} />
+    )
+}
+
+export function VimIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="logos:vim" {...props} color={color} width={size} />
+    )
+}
+
+
+
+
+export function GanacheIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="logos:ganache-icon" {...props} color={color} width={size} />
     )
 }
 

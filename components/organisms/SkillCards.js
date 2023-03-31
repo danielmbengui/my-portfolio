@@ -6,7 +6,7 @@ import { AndroidIcon, AndroidStudioIcon, AtomIcon, CssIcon, C_LangageIcon, Disco
 import SkillCard from '../molecules/SkillCard';
 import { Slide } from "react-awesome-reveal";
 
-const skills = [
+export const skills = [
   {
     name: 'sections.skills.langs.title',
     skills: [

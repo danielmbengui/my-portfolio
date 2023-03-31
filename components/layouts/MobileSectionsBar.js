@@ -25,15 +25,20 @@ import BookOutlinedIcon from '@mui/icons-material/BookOutlined';
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
 import SelectLangageComponent from '../contexts/SelectLangageComponent';
-import { ARRAY_LANGAGES } from '../../_mocks_/_settings_items_';
+import { ARRAY_LANGAGES, PAGE_LINK_CHAT_BOT, PAGE_LINK_SKILLS } from '../../_mocks_/_settings_items_';
 import EducationCards from '../organisms/EducationCards';
-import { EducationIcon, ExperienceIcon, ProjectIcon, SkillsIcon, SoftSkillsIcon } from '../icons/IconifiyIcons';
+import { ChatbotIcon, EducationIcon, ExperienceIcon, ProjectIcon, SkillsIcon, SoftSkillsIcon } from '../icons/IconifiyIcons';
 import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
+import { useLangMode } from '@/contexts/LangModeProvider';
+import SwitchThemeComponent from '../contexts/SwitchThemeComponent';
 
 function MobileSectionsBar() {
   const {t} = useTranslation();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [section, setSection] = useState('');
+  const router = useRouter();
+  const [lang,] = useLangMode();
 
   const toggleDrawer = (isOpen, section) => {
     setSection(section);
@@ -79,23 +84,52 @@ function MobileSectionsBar() {
   };
 
   return (
-    <Box flex flexDirection="column">
+    <Box flex flexDirection="column" sx={{position:'relative'}}>
       <List>
       <ListItem disablePadding>
           <ListItemButton
             aria-label="skills"
-            onClick={() => toggleDrawer(true, t(`sections.skills.title`))}
+            onClick={() => router.push(`/${lang}/${PAGE_LINK_CHAT_BOT}`)}
+            sx={{color:router.asPath === PAGE_LINK_CHAT_BOT ? 'var(--primary)' : 'inherit'}}
           >
             <ListItemIcon>
-              <SkillsIcon color={'inherit'} />
+              <ChatbotIcon color={
+                router.asPath === PAGE_LINK_CHAT_BOT ? 'var(--primary)' : 'inherit'
+              } />
             </ListItemIcon>
-            <ListItemText primary={t(`sections.skills.title`)} />
+            <ListItemText
+            primaryTypographyProps={{
+              color:router.asPath === PAGE_LINK_CHAT_BOT ? 'var(--primary)' : 'inherit'
+            }}
+            primary={t(`chatbot`)} />
           </ListItemButton>
         </ListItem>
+
+        <ListItem disablePadding>
+          <ListItemButton
+            aria-label="skills"
+            onClick={() => router.push(`/${lang}/${PAGE_LINK_SKILLS}`)}
+            sx={{color:router.asPath === PAGE_LINK_SKILLS ? 'var(--primary)' : 'inherit'}}
+          >
+            <ListItemIcon>
+              <SkillsIcon color={
+                router.asPath === PAGE_LINK_SKILLS ? 'var(--primary)' : 'inherit'
+              } />
+            </ListItemIcon>
+            <ListItemText
+            primaryTypographyProps={{
+              color:router.asPath === PAGE_LINK_SKILLS ? 'var(--primary)' : 'inherit'
+            }}
+            primary={t(`sections.skills.title`)} />
+          </ListItemButton>
+        </ListItem>
+
+
         <ListItem disablePadding sx={{display: 'none'}}>
           <ListItemButton
             aria-label="education"
             onClick={() => toggleDrawer(true, t('sections.education.title'))}
+            
           >
             <ListItemIcon>
               <EducationIcon color={'inherit'} />
@@ -150,7 +184,18 @@ function MobileSectionsBar() {
           </ListItemButton>
         </ListItem>
       </List>
-
+<Stack px={2} py={7} sx={{
+  
+}}>
+<Stack direction={'row'} alignItems={'center'} >
+  <Typography fontWeight={'bold'} sx={{textTransform:'capitalize'}}>{`${t('langs.title')} : `}</Typography>
+<SelectLangageComponent />
+</Stack>
+<Stack direction={'row'} alignItems={'center'}>
+  <Typography fontWeight={'bold'} sx={{textTransform:'capitalize'}}>{`${t('theme')} : `}</Typography>
+  <SwitchThemeComponent />
+</Stack>
+</Stack>
       <Drawer
         anchor="right"
         open={drawerOpen}

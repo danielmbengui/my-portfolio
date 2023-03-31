@@ -86,24 +86,24 @@ function SectionsBar() {
           //background:'green'
         }}
       >
-        <Slide cascade direction='up'>
+        <Slide cascade direction='up' triggerOnce>
           <Tooltip
-            title={<span style={{ fontSize: 13 }}>{`Chat`}</span>}
+            title={<Typography color={'white'}  style={{ fontSize: 13 }}>{t('chatbot')}</Typography>}
             placement="right"
           //sx={{display:'none'}}
           >
             <IconButton
               aria-label="experience"
               onClick={() => router.push(`/${lang}/${PAGE_LINK_CHAT_BOT}`)}
-              color={router.asPath === PAGE_LINK_CHAT_BOT ? 'var(--green-light-bot-primary)' : 'var(--accents7)'}
-              sx={{ "&:hover": { color: "var(--green-light-bot-primary)" } }}
+              color={router.asPath === PAGE_LINK_CHAT_BOT ? 'var(--primary)' : 'var(--accents7)'}
+              sx={{ "&:hover": { color: "var(--primary)" } }}
             //className={scintillate['container']}
             >
               <ChatbotIcon
                 // className={scintillate.scintillatingBox}
                 //color={router.asPath === PAGE_LINK_CHAT_BOT ? 'var(--primary)' : 'var(--accents7)'} 
                 size={30}
-                color={router.asPath === PAGE_LINK_CHAT_BOT ? 'var(--green-light-bot-primary)' : 'inherit'}
+                color={router.asPath === PAGE_LINK_CHAT_BOT ? 'var(--primary)' : 'inherit'}
               //color={router.asPath === PAGE_LINK_SKILLS ? 'var(--primary)' : 'blue'} 
               />
             </IconButton>
@@ -116,7 +116,7 @@ function SectionsBar() {
           //spacing={1}
           >
             <Tooltip
-              title={<Typography style={{ fontSize: 13 }}>{t('sections.skills.title')}</Typography>}
+              title={<Typography color={'white'}  style={{ fontSize: 13 }}>{t('sections.skills.title')}</Typography>}
               placement="right"
             //sx={{ "&:hover": { color: "blue" } }}
             >
@@ -141,6 +141,7 @@ function SectionsBar() {
             <Tooltip
               title={<span style={{ fontSize: 13 }}>projects</span>}
               placement="left"
+              sx={{display:'none'}}
             //sx={{display:'none'}}
             >
               <IconButton
@@ -161,7 +162,7 @@ function SectionsBar() {
           //spacing={1}
           >
             <Tooltip
-              title={<span style={{ fontSize: 13 }}>{t('Voir mon CV')}</span>}
+              title={<Typography color={'white'}  style={{ fontSize: 13 }}>{t('seeMyCV')}</Typography>}
               placement="right"
             //sx={{ "&:hover": { color: "blue" } }}
             >
@@ -186,7 +187,7 @@ function SectionsBar() {
             </Tooltip>
 
             <Tooltip
-              title={<span style={{ fontSize: 13 }}>{t('Envoyer email')}</span>}
+              title={<Typography color={'white'}  style={{ fontSize: 13 }}>{t('sendMeMail')}</Typography>}
               placement="right"
             //sx={{ "&:hover": { color: "blue" } }}
             >
@@ -211,7 +212,7 @@ function SectionsBar() {
             </Tooltip>
 
             <Tooltip
-              title={<span style={{ fontSize: 13 }}>{t('Profil Linkedin')}</span>}
+              title={<Typography color={'white'}  style={{ fontSize: 13 }}>{t('profileLinkedin')}</Typography>}
               placement="right"
             //sx={{ "&:hover": { color: "blue" } }}
             >
@@ -236,7 +237,7 @@ function SectionsBar() {
             </Tooltip>
 
             <Tooltip
-              title={<span style={{ fontSize: 13 }}>{t('Profil Github')}</span>}
+              title={<Typography color={'white'} style={{ fontSize: 13 }}>{t('profileGithub')}</Typography>}
               placement="right"
             //sx={{ "&:hover": { color: "blue" } }}
             >
