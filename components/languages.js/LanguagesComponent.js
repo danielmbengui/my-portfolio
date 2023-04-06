@@ -1,0 +1,521 @@
+import React, { useState } from 'react';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Masonry from '@mui/lab/Masonry';
+import { styled, useTheme } from '@mui/material/styles';
+import { Card, CircularProgress, Container, Grid, IconButton, ImageListItem, LinearProgress, ListSubheader, Stack, Tooltip, Typography } from '@mui/material';
+import { useTranslation } from 'next-i18next';
+import { Bounce, Fade, Flip, Slide } from 'react-awesome-reveal';
+import {motion, AnimatePresence} from "framer-motion";
+
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Image from 'next/image';
+import { AngolanIcon, EnglishIcon, FrenchIcon } from '../icons/FlagIcons';
+import { AndroidIcon, AndroidStudioIcon, AtomIcon, CloseIcon, CssIcon, DiscordApiIcon, DjangoIcon, EclipseIcon, EtherJsIcon, FirebaseIcon, GanacheIcon, HtmlIcon, IonicIcon, JavaIcon, JavascriptIcon, MaterialUiIcon, MomentJsIcon, MongoDbIcon, MySqlIcon, NextJsIcon, NodeJsIcon, NotepadIcon, OpenAiIcon, PhotoshopIcon, PhpIcon, PrestashopIcon, PwaIcon, PythonIcon, ReactIcon, SolidityIcon, SpyderIcon, SqlLiteIcon, TruffleIcon, VimIcon, VisualStudioIcon, Web3JsIcon } from '../icons/IconifiyIcons';
+import { I18nIcon, MidjourneyIcon, NetbeansIcon, SynthesiaIcon } from '../icons/ImagesIcons';
+import { useDeviceMode } from '@/contexts/DeviceModeProvider';
+import { blue } from '@mui/material/colors';
+import { _MY_PROFILE_, _NEXTJS_LINK_, _PAGE_LINK_RESUME_, _WEBSITE_ADDRESS_ } from '@/_mocks_/_settings_items_';
+import { useLangMode } from '@/contexts/LangModeProvider';
+
+export function AlertDialog({selectedId, setSelectedId, item}) {
+  const [open, setOpen] = useState(selectedId > 0);
+const {isMobile} = useDeviceMode();
+
+const {t} = useTranslation();
+
+  const skill = {
+    name: 'sections.skills.langs.title',
+    skills: [
+      ['sections.skills.langs.ao.name', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><AngolanIcon size={20} /><Typography>{`Langue maternelle`}</Typography></Stack>],
+      ['sections.skills.langs.fr.name', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><FrenchIcon size={20} /><Typography>{`Langue maternelle`}</Typography></Stack>],
+      ['sections.skills.langs.en.name', 70, <Stack direction={'row'} alignItems={'center'} spacing={1}><EnglishIcon size={20} /><Typography>{`Niveau B1`}</Typography></Stack>],
+    ],
+  };
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setSelectedId(null);
+  };
+
+  return (
+    <div style={{position:'relative'}}>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        fullScreen={isMobile ? true : false}
+        //style={{p:30}}
+        //TransitionComponent={Fade}
+        transitionDuration={{
+          enter:0,
+          exit:0
+        }}
+      >
+        <DialogTitle sx={{ m: 0, p: 2 }}>
+      {item && t(item.title)}
+      <IconButton
+          aria-label="close"
+          onClick={handleClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+    </DialogTitle>
+        <DialogContent>
+          <Grid container spacing={1}>
+            {
+              item.skills && item.skills.map(([name, val, icon], idx) => {
+                return(
+                  <Grid
+                  key={idx}
+                  item
+                  xs={6}
+                  md
+                  //sx={{background:'cyan'}}
+                  >
+                    <Card sx={{
+                      py:2,
+                      px:1,
+                      height:'100%',
+                      width:'100%',
+                      border:'1px solid var(--accents2)',
+                      //background:'purple',
+                      textAlign:'center'
+                    }}>
+                    <Stack alignItems={'center'} spacing={1} justifyContent={'center'} sx={{
+                      height:'100%',
+                      width:'100%',
+                     // background:'red',
+                      textAlign:'center'
+                    }}>
+                   <Stack alignItems={'center'} justifyContent={{xs:'center', md:'center'}} 
+                   style={{height:'100%', width:'100%', 
+                   //background:'green'
+                   }}>
+                   {
+                icon
+              }
+                    <Typography sx={{fontWeight:'bold'}}>{t(name)}</Typography>
+                   </Stack>
+                    <Box sx={{ position: 'relative', display: 'inline-flex', width:100, height:100 }}>
+                    <CircularProgress variant="determinate" value={val} style={{
+                      width:100,
+                      height:100
+                    }} />
+      <Box
+        sx={{
+          top: 0,
+          left: 0,
+          bottom: 0,
+          right: 0,
+          position: 'absolute',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          //background:'red'
+        }}
+      >
+        
+        <Typography variant="caption" component="div" color="text.primary">
+          {`${Math.round(val)}%`}
+        </Typography>
+      </Box>
+    </Box>
+                    </Stack>
+                    </Card>
+                    </Grid>
+                )
+              })
+            }
+          </Grid>
+        <div style={{paddingLeft:30, paddingRight:30, display:'none'}}>
+        {item.skills && item.skills.map(([name, val, icon], idx) => {
+        return (
+          <Grid
+            container
+            display="flex"
+            flexDirection="row"
+            key={idx}
+            width="100%"
+            alignItems="center"
+            justifyContent={'center'}
+            sx={{ pt: 3, color:'var(--text)' }}
+            spacing={3}
+          >
+            <Grid item xs={4} md={3}>
+              <Typography sx={{fontWeight:'bold'}}>{t(name)}</Typography>
+            </Grid>
+            <Grid item xs sm md>
+            <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'} spacing={1} pb={1}>
+            {
+                icon
+              }
+            <Typography variant="body2" color="text.primary">{`${Math.round(
+          val,
+        )}%`}</Typography>
+            </Stack>
+            <LinearProgress
+                  variant="determinate"
+                  value={val}
+                  sx={{ borderRadius: 2 }}
+                />
+              
+            </Grid>
+          </Grid>
+        );
+      })}
+        </div>
+          <DialogContentText id="alert-dialog-description" sx={{color:'red', p:3}}>
+            {`IMPORTANT : les compétences et les pourcentages indiqués ne représentent pas nécessairement mon niveau absolu, mais plutôt une estimation de ma maîtrise relative des sujets abordés.`}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions sx={{display:'none'}}>
+          <Button onClick={handleClose}>Disagree</Button>
+          <Button onClick={handleClose} autoFocus>
+            Agree
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </div>
+  );
+}
+ 
+const Label = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(0.5),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+  borderBottomLeftRadius: 0,
+  borderBottomRightRadius: 0,
+}));
+
+export default function LanguagesComponent() {
+    const {t} = useTranslation();
+const theme = useTheme();
+const [selectedId, setSelectedId] = useState(null)
+const {isMobile} = useDeviceMode()
+const [lang] = useLangMode();
+  return (
+    <Container sx={{height:'100vh', position:'relative', overflowY:'scroll', 
+    //background:'green'
+}}
+    >
+        <Grid 
+        container 
+        justifyContent={'center'}
+        spacing={5}
+        pt={5} 
+        pb={10}
+        >
+            <Grid item xs={12} sx={{textAlign:'center'}}>
+            <Stack >
+            <Bounce triggerOnce duration={2500}><Typography 
+            fontSize={26} 
+            fontWeight={'bold'}
+            sx={{
+                //background:theme.palette.primary.main, 
+                //opacity:0.8, 
+                margin:'auto', 
+                px:1, 
+                //borderRadius:1.5,
+                color:'var(--text)'
+              }}>{t('sections.skills.langs.title')}</Typography></Bounce>
+            </Stack>
+            </Grid>
+
+<Grid item xs={12} sm={10}>
+<Grid container justifyContent={'center'} sx={{width:'100%',}}>
+    <Grid item xs={12}>
+    <div class="section inset" >
+            <div class="accordion" id="accordionExample2" sx={{width:'100%', border:'3px solid yellow'}}>
+                <div class="accordion-item" style={{background:'var(--background-menu)'}}>
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#accordion01">
+                            <Stack direction={'row'} alignItems={'center'} spacing={1}><FrenchIcon /><Typography>{t('sections.skills.langs.fr.name')}</Typography></Stack>
+                        </button>
+                    </h2>
+                    <div id="accordion01" class="accordion-collapse collapse" data-bs-parent="#accordionExample2">
+                        <div class="accordion-body" style={{textAlign:'justify'}}>
+                            {`Le français est ma langue maternelle, et je suis fier de maîtriser cette belle langue avec aisance. Grâce à cette compétence, je suis en mesure de m'exprimer clairement et de communiquer efficacement dans diverses situations professionnelles et personnelles.`}
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item" style={{background:'var(--background-menu)'}}>
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#accordion02">
+                            <Stack direction={'row'} alignItems={'center'} spacing={1}><AngolanIcon /><Typography>{t('sections.skills.langs.ao.name')}</Typography></Stack>
+
+                        </button>
+                    </h2>
+                    <div id="accordion02" class="accordion-collapse collapse" data-bs-parent="#accordionExample2">
+                        <div class="accordion-body" style={{textAlign:'justify'}}>
+                            {`En plus du français, je parle couramment le lingala, la langue de mes racines angolaises. Je suis particulièrement fier de maîtriser cette langue, car elle me permet de rester connecté à ma famille et à ma communauté d'origine. Le lingala joue un rôle précieux dans ma vie, renforçant les liens culturels et les échanges authentiques avec ceux qui partagent ce patrimoine linguistique.`}
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item" style={{background:'var(--background-menu)'}}>
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#accordion03">
+                            <Stack direction={'row'} alignItems={'center'} spacing={1}><EnglishIcon /><Typography>{t('sections.skills.langs.en.name')}</Typography></Stack>
+                        </button>
+                    </h2>
+                    <div id="accordion03" class="accordion-collapse collapse" data-bs-parent="#accordionExample2">
+                        <div class="accordion-body" style={{textAlign:'justify'}}>
+                            {`Au fil du temps, j'ai développé une solide compétence en anglais, langue que je parle couramment aujourd'hui. Mon parcours m'a permis d'améliorer cette langue à travers une ancienne relation, ainsi que par ma passion pour la programmation informatique et les tutoriels disponibles sur YouTube. L'anglais est devenu un outil essentiel dans ma vie professionnelle et personnelle, me permettant d'accéder à de nouvelles opportunités et de communiquer avec un public international.`}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </Grid>
+</Grid>
+</Grid>
+
+
+            <Grid item xs={12}>
+            <div className="appFooter" style={{ marginTop:150, background: 'var(--background)' }}>
+          <div className="footer-title" style={{ color: 'var(--accents9)' }}>
+            <Stack style={{ fontSize: 12 }} spacing={0.3}>
+              <div>
+                {t('footer.deployedWith')} <a href={_NEXTJS_LINK_} target='_blank'>{`Next.js`} <NextJsIcon size={15} /></a>
+              </div>
+              <div>
+                {`${t('footer.copyright')}`}<span className="yearNow"></span>{` ${_WEBSITE_ADDRESS_}`}
+              </div>
+              <div>
+                {t('footer.allRightsReserved')}
+              </div>
+            </Stack>
+          </div>
+
+          <div className="mt-2">
+            <Tooltip sx={{
+              zIndex: 1
+            }} title={t('seeMyCV')} placement="top">
+              <a href={`/${lang}${_PAGE_LINK_RESUME_}`} target='_blank' className="btn btn-icon btn-sm" style={{
+                background: 'var(--accents6)',
+                color: 'black'
+              }}>
+                <ion-icon name="newspaper-outline"></ion-icon>
+              </a>
+            </Tooltip>
+
+            <Tooltip sx={{
+              zIndex: 1
+            }} title={t('sendMeMail')} placement="top">
+              <a href={`mailto:${_MY_PROFILE_.mail}`} className="btn btn-icon btn-sm" style={{
+                background: 'var(--primary)',
+                color: 'black'
+              }}>
+                <ion-icon name="mail"></ion-icon>
+              </a>
+            </Tooltip>
+
+            <Tooltip sx={{
+              zIndex: 1
+            }} title={t('profileLinkedin')} placement="top">
+              <a href={_MY_PROFILE_.socials.linkedin} target='_blank' className="btn btn-icon btn-sm" style={{
+                background: 'var(--blue-linkedin)',
+                color: 'white'
+              }}>
+                <ion-icon name="logo-linkedin"></ion-icon>
+              </a>
+            </Tooltip>
+
+            <Tooltip sx={{
+              zIndex: 1
+            }} title={t('profileGithub')} placement="top">
+              <a href={_MY_PROFILE_.socials.github} target='_blank' className="btn btn-icon btn-sm" style={{
+                background: 'black',
+                color: 'white'
+              }}>
+                <ion-icon name="logo-github"></ion-icon>
+              </a>
+            </Tooltip>
+          </div>
+        </div>
+            </Grid>
+        </Grid>
+        
+    </Container>
+  );
+}
+
+const itemData = [
+  {
+    img: '/img/skills/prog.gif',
+    title: 'sections.skills.web.title',
+    subtitle: 'sections.skills.mobile.title',
+    skills: [
+      ['Javascript', 95, <Stack direction={'row'} alignItems={'center'} spacing={1}><JavascriptIcon size={30} /><Typography>{``}</Typography></Stack>],
+      ['Html', 95, <Stack direction={'row'} alignItems={'center'} spacing={1}><HtmlIcon size={30} /><Typography>{``}</Typography></Stack>],
+      ['Css', 85, <Stack direction={'row'} alignItems={'center'} spacing={1}><CssIcon size={30} /><Typography>{``}</Typography></Stack>],
+      ['Php', 80, <Stack direction={'row'} alignItems={'center'} spacing={1}><PhpIcon size={50} /><Typography>{``}</Typography></Stack>],
+      ['Python', 80, <Stack direction={'row'} alignItems={'center'} spacing={1}><PythonIcon size={40} /><Typography>{``}</Typography></Stack>],
+      ['Java', 80, <Stack direction={'row'} alignItems={'center'} spacing={1}><JavaIcon size={30} /><Typography>{``}</Typography></Stack>],
+      ['ReactJS', 75, <Stack direction={'row'} alignItems={'center'} spacing={1}><ReactIcon size={35} /><Typography>{``}</Typography></Stack>],
+      ['NextJS', 75, <Stack direction={'row'} alignItems={'center'} spacing={1}><NextJsIcon size={35} /><Typography>{``}</Typography></Stack>],
+      ['Android', 70, <Stack direction={'row'} alignItems={'center'} spacing={1}><AndroidIcon size={50} /><Typography>{``}</Typography></Stack>],
+      ['PWA', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><PwaIcon size={50} /><Typography>{``}</Typography></Stack>],
+      ['Ionic', 70, <Stack direction={'row'} alignItems={'center'} spacing={1}><IonicIcon size={45} /><Typography>{``}</Typography></Stack>],
+    ]
+  },
+
+  
+
+  {
+    img: '/img/skills/frameworks.jpg',
+    title: 'sections.skills.frameworks.title',
+    skills: [
+      ['NodeJS', 80, <NodeJsIcon size={30} />],
+      ['Material Ui', 90, <MaterialUiIcon color={blue[600]} size={30} />],
+      ['i18n', 100, <I18nIcon size={35} />],
+      ['MomentJS', 100, <MomentJsIcon size={30} />],
+      ['API ChatGPT', 70, <OpenAiIcon size={30} />],  
+      /*
+      ['Google Maps API', 80, <GoogleMapsIcon size={20} />],
+      ['Twitter API', 80, <TwitterApiIcon size={20} />],
+      ['Discord API', 80, <DiscordApiIcon size={20} />],
+      ['Ionic', 80, <IonicIcon size={20} />],
+      */
+      
+     // ['Firebase', 80, <FirebaseIcon size={20} />],
+    ],
+  },
+  {
+    img: '/img/skills/ai.gif',
+    title: 'sections.skills.artificial.title',
+    skills: [
+      ['OpenAi', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><OpenAiIcon size={35} /><Typography>{``}</Typography></Stack>],
+      ['Midjourney', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><MidjourneyIcon size={35} /><Typography>{``}</Typography></Stack>],
+      ['Synthesia', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><SynthesiaIcon size={40} /><Typography>{``}</Typography></Stack>],
+    ],
+  },
+  {
+    img: '/img/skills/database.jpg',
+    title: 'sections.skills.database.title',
+    skills : [
+      ['Firebase', 70, <Stack direction={'row'} alignItems={'center'} spacing={1}><FirebaseIcon size={25} /><Typography>{``}</Typography></Stack>],
+      ['MongoDB', 50, <Stack direction={'row'} alignItems={'center'} spacing={1}><MongoDbIcon size={20} /><Typography>{``}</Typography></Stack>],
+      ['MySQL', 65, <Stack direction={'row'} alignItems={'center'} spacing={1}><MySqlIcon size={35} /><Typography>{``}</Typography></Stack>],
+      ['SQLite', 75, <Stack direction={'row'} alignItems={'center'} spacing={1}><SqlLiteIcon size={35} /><Typography>{``}</Typography></Stack>],
+
+    ]
+  },
+
+{
+img: '/img/skills/blockchain.gif',
+title: 'sections.skills.blockchain.title',
+skills: [
+  ['Solidity', 70, <Stack direction={'row'} alignItems={'center'} spacing={1}><SolidityIcon size={25} /><Typography>{``}</Typography></Stack>],
+  ['Web3JS', 75, <Stack direction={'row'} alignItems={'center'} spacing={1}><Web3JsIcon size={45} /><Typography>{``}</Typography></Stack>],
+  ['EtherJS', 75, <Stack direction={'row'} alignItems={'center'} spacing={1}><EtherJsIcon size={45} /><Typography>{``}</Typography></Stack>],
+  ['Truffle', 75, <Stack direction={'row'} alignItems={'center'} spacing={1}><TruffleIcon size={35} /><Typography>{``}</Typography></Stack>],
+  ['Ganache', 75, <Stack direction={'row'} alignItems={'center'} spacing={1}><GanacheIcon size={40} /><Typography>{``}</Typography></Stack>],
+],
+},
+  {
+    img: '/img/skills/software.gif',
+    title: 'sections.skills.software.title',
+    skills: [
+      ['Visual Studio Code', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><VisualStudioIcon size={35} /><Typography>{``}</Typography></Stack>],
+      ['Discord', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><DiscordApiIcon size={35} /><Typography>{``}</Typography></Stack>],
+      ['Android Studio', 85, <Stack direction={'row'} alignItems={'center'} spacing={1}><AndroidIcon size={45} /><Typography>{``}</Typography></Stack>],
+      ['Spyder', 60, <Stack direction={'row'} alignItems={'center'} spacing={1}><SpyderIcon size={45} /><Typography>{``}</Typography></Stack>],
+      ['Eclipse', 60, <Stack direction={'row'} alignItems={'center'} spacing={1}><EclipseIcon size={40} /><Typography>{``}</Typography></Stack>],
+      ['Photoshop', 75, <Stack direction={'row'} alignItems={'center'} spacing={1}><PhotoshopIcon size={40} /><Typography>{``}</Typography></Stack>],
+      ['Atom', 80, <Stack direction={'row'} alignItems={'center'} spacing={1}><AtomIcon size={45} /><Typography>{``}</Typography></Stack>],
+      ['NotePad ++', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><NotepadIcon size={45} /><Typography>{``}</Typography></Stack>],
+      ['Netbeans', 80, <Stack direction={'row'} alignItems={'center'} spacing={1}><NetbeansIcon size={45} /><Typography>{``}</Typography></Stack>],
+      ['Django', 80, <Stack direction={'row'} alignItems={'center'} spacing={1}><DjangoIcon size={40} /><Typography>{``}</Typography></Stack>],
+      ['Vim', 50, <Stack direction={'row'} alignItems={'center'} spacing={1}><VimIcon size={40} /><Typography>{``}</Typography></Stack>],
+
+    ]
+  },
+
+
+/*
+
+  {
+    img: 'https://images.unsplash.com/photo-1597645587822-e99fa5d45d25',
+    title: 'Mushrooms',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1529655683826-aba9b3e77383',
+    title: 'Tower',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1471357674240-e1a485acb3e1',
+    title: 'Sea star',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
+    title: 'Honey',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1516802273409-68526ee1bdd6',
+    title: 'Basketball',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
+    title: 'Breakfast',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1627328715728-7bcc1b5db87d',
+    title: 'Tree',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
+    title: 'Burger',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45',
+    title: 'Camera',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
+    title: 'Coffee',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1627000086207-76eabf23aa2e',
+    title: 'Camping Car',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8',
+    title: 'Hats',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1567306301408-9b74779a11af',
+    title: 'Tomato basil',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1627328561499-a3584d4ee4f7',
+    title: 'Mountain',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1589118949245-7d38baf380d6',
+    title: 'Bike',
+  },
+  */
+];

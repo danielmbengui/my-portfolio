@@ -4,28 +4,34 @@ import Box from '@mui/material/Box';
 import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
-import { GENERAL_FONT_FAMILY, STORAGE_THEME_MODE, THEME_DARK, THEME_LIGHT } from '../_mocks_/_settings_items_';
+import { DEFAULT_THEME, GENERAL_FONT_FAMILY, STORAGE_THEME_MODE, THEME_DARK, THEME_LIGHT } from '../_mocks_/_settings_items_';
 import { amber, green, grey, deepOrange } from '@mui/material/colors';
 
 export const ColorModeContext = createContext({ toggleColorMode: () => { } });
 
 
 export default function ThemeModeProvider({ children, themeMode }) {
-    const [mode, setMode] = useState(themeMode);
+    const [mode, setMode] = useState(DEFAULT_THEME);
 
     useEffect(() => {
         setMode(themeMode);
+        console.log("Init theme", themeMode)
     }, [themeMode])
 
     useEffect(() => {
         document.documentElement.setAttribute(STORAGE_THEME_MODE, mode);
-        window.sessionStorage.setItem(STORAGE_THEME_MODE, mode);
+        //window.localStorage.setItem(STORAGE_THEME_MODE, mode);
+        console.log("Change theme", mode)
     }, [mode])
 
     const colorMode = useMemo(
         () => ({
             toggleColorMode: () => {
-                setMode((prevMode) => (prevMode === THEME_LIGHT ? THEME_DARK : THEME_LIGHT));
+                setMode((prevMode) => {
+                    window.localStorage.setItem(STORAGE_THEME_MODE, prevMode === THEME_LIGHT ? THEME_DARK : THEME_LIGHT);
+                    return(prevMode === THEME_LIGHT ? THEME_DARK : THEME_LIGHT);
+                });
+                
             },
         }),
         [],

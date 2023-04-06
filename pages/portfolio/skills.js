@@ -11,7 +11,7 @@ import useWindowSize from '@/hooks/useWindowSize';
 import { Box } from '@mui/system';
 import MobileHeader from '@/components/layouts/MobileHeader';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { ARRAY_NAMESPACES, ARRAY_LANGAGES, LANGAGE_FRENCH, LANGAGE_ENGLISH, _MY_PROFILE_, PAGE_LINK_RESUME, GENERAL_FONT_FAMILY } from '@/_mocks_/_settings_items_';
+import { ARRAY_NAMESPACES, ARRAY_LANGAGES, LANGAGE_FRENCH, LANGAGE_ENGLISH, _MY_PROFILE_, _PAGE_LINK_RESUME_, GENERAL_FONT_FAMILY, _WEBSITE_ADDRESS_, _NEXTJS_LINK_ } from '@/_mocks_/_settings_items_';
 
 import { createChatBotMessage } from 'react-chatbot-kit';
 import Options from '@/components/molecules/Options';
@@ -55,6 +55,7 @@ import SkillsComponent1 from '@/components/skills/SkillsComponent1';
 
 import stylesCarousel from "@/styles/Carousel.module.css"
 import CardSocial from '@/components/CardSocial';
+import { NextJsIcon } from '@/components/icons/IconifiyIcons';
 
 
 
@@ -162,7 +163,7 @@ export function WebAppBar() {
         </Typography>
       </Box>
       <a
-        href={PAGE_LINK_RESUME}
+        href={_PAGE_LINK_RESUME_}
         target="_blank"
         rel="noreferrer"
         style={{display:'none'}}
@@ -632,6 +633,7 @@ const MobileHome = () => {
 export default function SkillsPage() {
   const { width } = useWindowSize();
 const {t} = useTranslation();
+const [lang] = useLangMode();
 
   return (
     <>      
@@ -639,7 +641,67 @@ const {t} = useTranslation();
     <CssBaseline />
     
     {width > 740 ? <WebHome /> : <MobileHome />}
-      
+    <div className="appFooter" style={{ position: 'relative', background: 'var(--background)' }}>
+          <div className="footer-title" style={{ color: 'var(--accents9)' }}>
+            <Stack style={{ fontSize: 12 }} spacing={0.3}>
+              <div>
+                {t('footer.deployedWith')} <a href={_NEXTJS_LINK_} target='_blank'>{`Next.js`} <NextJsIcon size={15} /></a>
+              </div>
+              <div>
+                {`${t('footer.copyright')}`}<span className="yearNow"></span>{` ${_WEBSITE_ADDRESS_}`}
+              </div>
+              <div>
+                {t('footer.allRightsReserved')}
+              </div>
+            </Stack>
+          </div>
+
+          <div className="mt-2">
+            <Tooltip sx={{
+              zIndex: 1
+            }} title={t('seeMyCV')} placement="top">
+              <a href={`/${lang}${_PAGE_LINK_RESUME_}`} target='_blank' className="btn btn-icon btn-sm" style={{
+                background: 'var(--accents6)',
+                color: 'black'
+              }}>
+                <ion-icon name="newspaper-outline"></ion-icon>
+              </a>
+            </Tooltip>
+
+            <Tooltip sx={{
+              zIndex: 1
+            }} title={t('sendMeMail')} placement="top">
+              <a href={`mailto:${_MY_PROFILE_.mail}`} className="btn btn-icon btn-sm" style={{
+                background: 'var(--primary)',
+                color: 'black'
+              }}>
+                <ion-icon name="mail"></ion-icon>
+              </a>
+            </Tooltip>
+
+            <Tooltip sx={{
+              zIndex: 1
+            }} title={t('profileLinkedin')} placement="top">
+              <a href={_MY_PROFILE_.socials.linkedin} target='_blank' className="btn btn-icon btn-sm" style={{
+                background: 'var(--blue-linkedin)',
+                color: 'white'
+              }}>
+                <ion-icon name="logo-linkedin"></ion-icon>
+              </a>
+            </Tooltip>
+
+            <Tooltip sx={{
+              zIndex: 1
+            }} title={t('profileGithub')} placement="top">
+              <a href={_MY_PROFILE_.socials.github} target='_blank' className="btn btn-icon btn-sm" style={{
+                background: 'black',
+                color: 'white'
+              }}>
+                <ion-icon name="logo-github"></ion-icon>
+              </a>
+            </Tooltip>
+          </div>
+        </div>
     </>
   );
 }

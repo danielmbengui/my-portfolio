@@ -27,13 +27,13 @@ useEffect(() => {
     router.replace(router.asPath, router.asPath, { locale: router.locale })
     //moment.locale(router.locale);
   }
-}, [])
+}, [router.locale])
     
     useEffect(() => {
         //setLang(langMode);
         document.documentElement.setAttribute(STORAGE_LANG_MODE, lang);
         //i18n.changeLanguage(lang);
-        window.sessionStorage.setItem(STORAGE_LANG_MODE, lang);
+        window.localStorage.setItem(STORAGE_LANG_MODE, lang);
         router.replace(router.asPath, router.asPath, { locale: lang })
         moment.locale(lang);
         

@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Masonry from '@mui/lab/Masonry';
 import { styled, useTheme } from '@mui/material/styles';
-import { Card, CircularProgress, Container, Grid, IconButton, ImageListItem, LinearProgress, ListSubheader, Stack, Typography } from '@mui/material';
+import { Card, CircularProgress, Container, Grid, IconButton, ImageListItem, LinearProgress, ListSubheader, Stack, Tooltip, Typography } from '@mui/material';
 import { useTranslation } from 'next-i18next';
 import { Bounce, Fade, Flip, Slide } from 'react-awesome-reveal';
 import {motion, AnimatePresence} from "framer-motion";
@@ -20,6 +20,8 @@ import { AndroidIcon, AndroidStudioIcon, AtomIcon, CloseIcon, CssIcon, DiscordAp
 import { I18nIcon, MidjourneyIcon, NetbeansIcon, SynthesiaIcon } from '../icons/ImagesIcons';
 import { useDeviceMode } from '@/contexts/DeviceModeProvider';
 import { blue } from '@mui/material/colors';
+import { _MY_PROFILE_, _NEXTJS_LINK_, _PAGE_LINK_RESUME_, _WEBSITE_ADDRESS_ } from '@/_mocks_/_settings_items_';
+import { useLangMode } from '@/contexts/LangModeProvider';
 
 export function AlertDialog({selectedId, setSelectedId, item}) {
   const [open, setOpen] = useState(selectedId > 0);
@@ -209,6 +211,7 @@ export default function SkillsComponent1() {
 const theme = useTheme();
 const [selectedId, setSelectedId] = useState(null)
 const {isMobile} = useDeviceMode()
+const [lang] = useLangMode();
   return (
     <Container sx={{height:'100vh', position:'relative', overflowY:'scroll', 
     //background:'green'
@@ -219,7 +222,7 @@ const {isMobile} = useDeviceMode()
         justifyContent={'center'} 
         spacing={5}
         pt={5} 
-        pb={30}
+        pb={10}
         >
             <Grid item xs={12} sx={{textAlign:'center'}}>
             <Stack >
@@ -309,6 +312,70 @@ const {isMobile} = useDeviceMode()
               </motion.dialog>
             )}
           </AnimatePresence>
+            </Grid>
+
+            <Grid item xs={12}>
+            <div className="appFooter" style={{marginTop:150, background: 'var(--background)' }}>
+          <div className="footer-title" style={{ color: 'var(--accents9)' }}>
+            <Stack style={{ fontSize: 12 }} spacing={0.3}>
+              <div>
+                {t('footer.deployedWith')} <a href={_NEXTJS_LINK_} target='_blank'>{`Next.js`} <NextJsIcon size={15} /></a>
+              </div>
+              <div>
+                {`${t('footer.copyright')}`}<span className="yearNow"></span>{` ${_WEBSITE_ADDRESS_}`}
+              </div>
+              <div>
+                {t('footer.allRightsReserved')}
+              </div>
+            </Stack>
+          </div>
+
+          <div className="mt-2">
+            <Tooltip sx={{
+              zIndex: 1
+            }} title={t('seeMyCV')} placement="top">
+              <a href={`/${lang}${_PAGE_LINK_RESUME_}`} target='_blank' className="btn btn-icon btn-sm" style={{
+                background: 'var(--accents6)',
+                color: 'black'
+              }}>
+                <ion-icon name="newspaper-outline"></ion-icon>
+              </a>
+            </Tooltip>
+
+            <Tooltip sx={{
+              zIndex: 1
+            }} title={t('sendMeMail')} placement="top">
+              <a href={`mailto:${_MY_PROFILE_.mail}`} className="btn btn-icon btn-sm" style={{
+                background: 'var(--primary)',
+                color: 'black'
+              }}>
+                <ion-icon name="mail"></ion-icon>
+              </a>
+            </Tooltip>
+
+            <Tooltip sx={{
+              zIndex: 1
+            }} title={t('profileLinkedin')} placement="top">
+              <a href={_MY_PROFILE_.socials.linkedin} target='_blank' className="btn btn-icon btn-sm" style={{
+                background: 'var(--blue-linkedin)',
+                color: 'white'
+              }}>
+                <ion-icon name="logo-linkedin"></ion-icon>
+              </a>
+            </Tooltip>
+
+            <Tooltip sx={{
+              zIndex: 1
+            }} title={t('profileGithub')} placement="top">
+              <a href={_MY_PROFILE_.socials.github} target='_blank' className="btn btn-icon btn-sm" style={{
+                background: 'black',
+                color: 'white'
+              }}>
+                <ion-icon name="logo-github"></ion-icon>
+              </a>
+            </Tooltip>
+          </div>
+        </div>
             </Grid>
         </Grid>
         

@@ -31,6 +31,13 @@ export function ProjectIcon({size = 30, color = 'var(--text)', ...props}) {
     )
 }
 
+export function LanguagesIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="heroicons:language-20-solid" {...props} color={color} width={size}
+        />
+    )
+}
+
 export function SkillsIcon({size = 30, color = 'var(--text)', ...props}) {
     return(
         <Icon icon="material-symbols:code" {...props} color={color} width={size}

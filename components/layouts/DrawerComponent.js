@@ -25,7 +25,7 @@ import SwitchThemeComponent from "@/components/contexts/SwitchThemeComponent";
 import StyledBadge from '../atoms/StyledBadge';
 import { motion, AnimatePresence } from "framer-motion"
 import { grey } from '@mui/material/colors';
-import { PAGE_LINK_CHAT_BOT, PAGE_LINK_RESUME, PAGE_LINK_SKILLS, _MY_PROFILE_ } from '@/_mocks_/_settings_items_';
+import { _PAGE_LINK_CHAT_BOT_, _PAGE_LINK_RESUME_, _PAGE_LINK_SKILLS_, _MY_PROFILE_ } from '@/_mocks_/_settings_items_';
 import { PhonelinkLockOutlined } from '@mui/icons-material';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
@@ -184,14 +184,14 @@ export default function DrawerComponent() {
         </Typography>
       </Box>
       <a
-        href={PAGE_LINK_RESUME}
+        href={_PAGE_LINK_RESUME_}
         target="_blank"
         rel="noreferrer"
       >
         <Button>{`See my resume`}</Button>
       </a>
       <a
-        href={PAGE_LINK_CHAT_BOT}
+        href={_PAGE_LINK_CHAT_BOT_}
         //target="_blank"
         rel="noreferrer"
       >
@@ -255,7 +255,7 @@ export default function DrawerComponent() {
                   minHeight: 48,
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
-                  color: router.asPath === PAGE_LINK_CHAT_BOT ? 'var(--primary)' : grey[600],
+                  color: router.asPath === _PAGE_LINK_CHAT_BOT_ ? 'var(--primary)' : grey[600],
                   //background:'red'
                   "&:hover" : {
                     //background:'red',
@@ -299,7 +299,7 @@ export default function DrawerComponent() {
                   }}
                 >
                   <SkillsIcon
-                  color={router.asPath === PAGE_LINK_SKILLS ? 'var(--primary)' : 'inherit'}
+                  color={router.asPath === _PAGE_LINK_SKILLS_ ? 'var(--primary)' : 'inherit'}
                   size={24} />
                 </ListItemIcon>
                 <ListItemText primary={'Chat'} sx={{ opacity: open ? 1 : 0 }} />

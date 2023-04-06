@@ -77,7 +77,7 @@ export default () => (
       <Link href={`mailto:${_MY_PROFILE_.mail}`} style={styles.link}>
         {_MY_PROFILE_.mail}
       </Link>
-      <Link href={`${_MY_PROFILE_.socials.linkedin}`} style={styles.link}>
+      <Link href={`${_MY_PROFILE_.socials.linkedin}`} target='_blank' style={styles.link}>
         {_MY_PROFILE_.socials.linkedin}
       </Link>
       <Link href={`${_MY_PROFILE_.socials.github}`} target={'_blank'} style={styles.link}>

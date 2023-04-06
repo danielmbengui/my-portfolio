@@ -13,7 +13,7 @@ import EmailIcon from '@mui/icons-material/Email';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import StickyNote2OutlinedIcon from '@mui/icons-material/StickyNote2Outlined';
 import { GITHUB_LINK, LINKEDIN_LINK } from '../../_mocks_/_links_items_';
-import { PAGE_LINK_RESUME, _MY_PROFILE_ } from '../../_mocks_/_settings_items_';
+import { _PAGE_LINK_RESUME_, _MY_PROFILE_ } from '../../_mocks_/_settings_items_';
 import { useTranslation } from 'next-i18next';
 import { GithubIcon, LinkedinIcon, ResumeIcon } from '../icons/IconifiyIcons';
 
@@ -51,7 +51,7 @@ function MobileLinksBar() {
       <List>
         <ListItem disablePadding>
           <a
-            href={PAGE_LINK_RESUME}
+            href={_PAGE_LINK_RESUME_}
             target="_blank"
             rel="noreferrer"
           >

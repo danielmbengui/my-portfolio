@@ -1,6 +1,11 @@
 {
     "titlePageHome": "Portfolio · Daniel Mbengui",
     "welcome" :  "Hi 👋🏿, I'm Daan. Nice to meet you! I How are you doing today?",
+    "footer": {
+        "deployedWith" : "Crafted with passion and dedication, powered by",
+        "copyright" : "Copyright©",
+        "allRightsReserved" : "All rights reserved."
+    },
     "langs": {
         "title": "language",
         "plural": "languages",
@@ -85,6 +90,9 @@
                     "value": 80
                 }
             }
+        },
+        "projects" : {
+            "title" : "Projects"
         },
         "education" : {
             "title": "Education",

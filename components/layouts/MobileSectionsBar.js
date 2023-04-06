@@ -25,9 +25,9 @@ import BookOutlinedIcon from '@mui/icons-material/BookOutlined';
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
 import SelectLangageComponent from '../contexts/SelectLangageComponent';
-import { ARRAY_LANGAGES, PAGE_LINK_CHAT_BOT, PAGE_LINK_SKILLS } from '../../_mocks_/_settings_items_';
+import { ARRAY_LANGAGES, _PAGE_LINK_CHAT_BOT_, _PAGE_LINK_LANGUAGES_, _PAGE_LINK_PROJECTS_, _PAGE_LINK_SKILLS_ } from '../../_mocks_/_settings_items_';
 import EducationCards from '../organisms/EducationCards';
-import { ChatbotIcon, EducationIcon, ExperienceIcon, ProjectIcon, SkillsIcon, SoftSkillsIcon } from '../icons/IconifiyIcons';
+import { ChatbotIcon, EducationIcon, ExperienceIcon, LanguagesIcon, ProjectIcon, SkillsIcon, SoftSkillsIcon } from '../icons/IconifiyIcons';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useLangMode } from '@/contexts/LangModeProvider';
@@ -88,18 +88,18 @@ function MobileSectionsBar() {
       <List>
       <ListItem disablePadding>
           <ListItemButton
-            aria-label="skills"
-            onClick={() => router.push(`/${lang}/${PAGE_LINK_CHAT_BOT}`)}
-            sx={{color:router.asPath === PAGE_LINK_CHAT_BOT ? 'var(--primary)' : 'inherit'}}
+            aria-label="chatbot"
+            onClick={() => router.push(`/${lang}/${_PAGE_LINK_CHAT_BOT_}`)}
+            sx={{color:router.asPath === _PAGE_LINK_CHAT_BOT_ ? 'var(--primary)' : 'inherit'}}
           >
             <ListItemIcon>
               <ChatbotIcon color={
-                router.asPath === PAGE_LINK_CHAT_BOT ? 'var(--primary)' : 'inherit'
+                router.asPath === _PAGE_LINK_CHAT_BOT_ ? 'var(--primary)' : 'inherit'
               } />
             </ListItemIcon>
             <ListItemText
             primaryTypographyProps={{
-              color:router.asPath === PAGE_LINK_CHAT_BOT ? 'var(--primary)' : 'inherit'
+              color:router.asPath === _PAGE_LINK_CHAT_BOT_ ? 'var(--primary)' : 'inherit'
             }}
             primary={t(`chatbot`)} />
           </ListItemButton>
@@ -107,20 +107,58 @@ function MobileSectionsBar() {
 
         <ListItem disablePadding>
           <ListItemButton
-            aria-label="skills"
-            onClick={() => router.push(`/${lang}/${PAGE_LINK_SKILLS}`)}
-            sx={{color:router.asPath === PAGE_LINK_SKILLS ? 'var(--primary)' : 'inherit'}}
+            aria-label={t(`sections.skills.langs.title`)}
+            onClick={() => router.push(`/${lang}/${_PAGE_LINK_LANGUAGES_}`)}
+            sx={{color:router.asPath === _PAGE_LINK_LANGUAGES_ ? 'var(--primary)' : 'inherit'}}
           >
             <ListItemIcon>
-              <SkillsIcon color={
-                router.asPath === PAGE_LINK_SKILLS ? 'var(--primary)' : 'inherit'
+              <LanguagesIcon color={
+                router.asPath === _PAGE_LINK_LANGUAGES_ ? 'var(--primary)' : 'inherit'
               } />
             </ListItemIcon>
             <ListItemText
             primaryTypographyProps={{
-              color:router.asPath === PAGE_LINK_SKILLS ? 'var(--primary)' : 'inherit'
+              color:router.asPath === _PAGE_LINK_LANGUAGES_ ? 'var(--primary)' : 'inherit'
+            }}
+            primary={t(`sections.skills.langs.title`)} />
+          </ListItemButton>
+        </ListItem>
+
+        <ListItem disablePadding>
+          <ListItemButton
+            aria-label="skills"
+            onClick={() => router.push(`/${lang}/${_PAGE_LINK_SKILLS_}`)}
+            sx={{color:router.asPath === _PAGE_LINK_SKILLS_ ? 'var(--primary)' : 'inherit'}}
+          >
+            <ListItemIcon>
+              <SkillsIcon color={
+                router.asPath === _PAGE_LINK_SKILLS_ ? 'var(--primary)' : 'inherit'
+              } />
+            </ListItemIcon>
+            <ListItemText
+            primaryTypographyProps={{
+              color:router.asPath === _PAGE_LINK_SKILLS_ ? 'var(--primary)' : 'inherit'
             }}
             primary={t(`sections.skills.title`)} />
+          </ListItemButton>
+        </ListItem>
+
+        <ListItem disablePadding>
+          <ListItemButton
+            aria-label={t(`sections.projects.title`)}
+            onClick={() => router.push(`/${lang}/${_PAGE_LINK_PROJECTS_}`)}
+            sx={{color:router.asPath === _PAGE_LINK_PROJECTS_ ? 'var(--primary)' : 'inherit'}}
+          >
+            <ListItemIcon>
+              <ProjectIcon color={
+                router.asPath === _PAGE_LINK_PROJECTS_ ? 'var(--primary)' : 'inherit'
+              } />
+            </ListItemIcon>
+            <ListItemText
+            primaryTypographyProps={{
+              color:router.asPath === _PAGE_LINK_PROJECTS_ ? 'var(--primary)' : 'inherit'
+            }}
+            primary={t(`sections.projects.title`)} />
           </ListItemButton>
         </ListItem>
 

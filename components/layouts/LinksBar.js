@@ -18,7 +18,7 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 import StyledBadge from '../atoms/StyledBadge';
 import { GITHUB_LINK, LINKEDIN_LINK } from '../../_mocks_/_links_items_';
-import { PAGE_LINK_CHAT_BOT, PAGE_LINK_RESUME, _MY_PROFILE_ } from '../../_mocks_/_settings_items_';
+import { _PAGE_LINK_CHAT_BOT_, _PAGE_LINK_RESUME_, _MY_PROFILE_ } from '../../_mocks_/_settings_items_';
 import { useRouter } from 'next/router';
 import { useLangMode } from '../../contexts/LangModeProvider';
 import { ChatbotIcon, LinkedinIcon, ResumeIcon, GithubIcon } from '../icons/IconifiyIcons';
@@ -40,13 +40,13 @@ const [lang, setLang] = useLangMode();
         //sx={{display:'none'}}
       >
         <a
-        href={`/${lang}${PAGE_LINK_CHAT_BOT}`}
+        href={`/${lang}${_PAGE_LINK_CHAT_BOT_}`}
         target="_blank"
         rel="noreferrer"
         //style={{display:'none'}}
       >
         <IconButton>
-          <ChatbotIcon color={router.asPath === PAGE_LINK_CHAT_BOT ? 'var(--primary)' : 'var(--accents7)'} size={30} />
+          <ChatbotIcon color={router.asPath === _PAGE_LINK_CHAT_BOT_ ? 'var(--primary)' : 'var(--accents7)'} size={30} />
         </IconButton>
       </a>
       </Tooltip>
@@ -57,7 +57,7 @@ const [lang, setLang] = useLangMode();
         //sx={{display:'none'}}
       >
         <a
-        href={`/${lang}${PAGE_LINK_RESUME}`}
+        href={`/${lang}${_PAGE_LINK_RESUME_}`}
         target="_blank"
         rel="noreferrer"
         //style={{display:'none'}}

@@ -10,6 +10,11 @@
 
 
 :root { 
+
+  --blue-padelaxe: #0D6FE5;
+  --green-light-padelaxe: #C1FF72;
+  --grey-padelaxe: #545454;
+
   --orange100: #FDEBD5;
         --orange200: #FCD2AC;
         --orange300: #F8B181;

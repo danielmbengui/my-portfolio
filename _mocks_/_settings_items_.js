@@ -1,10 +1,16 @@
+/* --------------- GENERAL -------------- */
+export const _WEBSITE_NAME_ = 'danielmbengui.ch';
+export const _WEBSITE_ADDRESS_ = 'danielmbengui.ch';
+export const _WEBSITE_ADDRESS_FULL_ = 'https://danielmbengui.ch';
+export const _NEXTJS_LINK_ = 'https://nextjs.org/';
+
 /* --------------- NAME SPACES -------------- */
-export const NAMESPACE_LANGAGE_COMMON = 'common';
-export const NAMESPACE_LANGAGE_HOME = 'home';
+export const _NAMESPACE_LANGAGE_COMMON_ = 'common';
+export const _NAMESPACE_LANGAGE_HOME_ = 'home';
 
 export const ARRAY_NAMEPACES = [
-    NAMESPACE_LANGAGE_COMMON,
-    NAMESPACE_LANGAGE_HOME,
+    _NAMESPACE_LANGAGE_COMMON_,
+    _NAMESPACE_LANGAGE_HOME_,
 ];
 
 /* --------------- LANGS -------------- */
@@ -27,10 +33,12 @@ export const STORAGE_LANG_MODE = 'lang';
 /* --------------- FONTS -------------- */
 export const GENERAL_FONT_FAMILY = "Roboto";
 /* --------------- PAGES -------------- */
-export const PAGE_LINK_HOME = "/";
-export const PAGE_LINK_RESUME = "/portfolio/resume";
-export const PAGE_LINK_CHAT_BOT = "/portfolio/chatbot";
-export const PAGE_LINK_SKILLS = "/portfolio/skills";
+export const _PAGE_LINK_HOME_ = "/";
+export const _PAGE_LINK_RESUME_ = "/portfolio/resume";
+export const _PAGE_LINK_CHAT_BOT_ = "/portfolio/chatbot";
+export const _PAGE_LINK_SKILLS_ = "/portfolio/skills";
+export const _PAGE_LINK_LANGUAGES_ = "/portfolio/languages";
+export const _PAGE_LINK_PROJECTS_ = "/portfolio/projects";
 
 
 export const _MY_PROFILE_ = {

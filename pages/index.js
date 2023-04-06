@@ -11,7 +11,7 @@ import useWindowSize from '../hooks/useWindowSize';
 import { Box } from '@mui/system';
 import MobileHeader from '../components/layouts/MobileHeader';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { ARRAY_NAMESPACES, ARRAY_LANGAGES, LANGAGE_FRENCH, LANGAGE_ENGLISH, _MY_PROFILE_, PAGE_LINK_CHAT_BOT, PAGE_LINK_RESUME, NAMESPACE_LANGAGE_HOME, THEME_DARK, THEME_LIGHT } from '@/_mocks_/_settings_items_';
+import { ARRAY_NAMESPACES, ARRAY_LANGAGES, LANGAGE_FRENCH, LANGAGE_ENGLISH, _MY_PROFILE_, _PAGE_LINK_CHAT_BOT_, _PAGE_LINK_RESUME_, _NAMESPACE_LANGAGE_HOME_, THEME_DARK, THEME_LIGHT, _WEBSITE_ADDRESS_, _NEXTJS_LINK_ } from '@/_mocks_/_settings_items_';
 
 import { createChatBotMessage } from 'react-chatbot-kit';
 import Options from '../components/molecules/Options';
@@ -31,7 +31,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Avatar, ButtonBase, Container, Drawer, Grid, Paper, Popover, Stack, useTheme } from '@mui/material';
+import { Avatar, ButtonBase, Container, Drawer, Grid, Paper, Popover, Stack, Tooltip, useTheme } from '@mui/material';
 import StyledBadge from '../components/atoms/StyledBadge';
 import { grey, blue } from '@mui/material/colors';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
@@ -65,10 +65,10 @@ export function WebAppBar() {
   };
 
   return (
-    <Box sx={{background:'transparent'}}>
-      <AppBar position="fixed" sx={{background:'var(--background-menu)'}}>
-        <Toolbar 
-        sx={{ background: 'transparent' }}
+    <Box sx={{ background: 'transparent' }}>
+      <AppBar position="fixed" sx={{ background: 'var(--background-menu)' }}>
+        <Toolbar
+          sx={{ background: 'transparent' }}
         >
           <Stack direction={'row'} justifyContent={'center'} spacing={1} alignItems={'center'} sx={{
             width: '100%',
@@ -231,13 +231,13 @@ const getPersonalOptions = (actionProvider) => {
 
 
 
-const WebHome = () => {
+export const WebHome = () => {
   const { t } = useTranslation();
   const theme = useTheme();
   const [lang,] = useLangMode();
   const refProgramm = useRef();
   const [positionVisualStudio, setPositionVisualStudio] = useState({
-    x:0,
+    x: 0,
     y: 0
   })
 
@@ -246,70 +246,43 @@ const WebHome = () => {
   const [currentImageProg, setCurrentImageProg] = useState(0);
   const [currentImageFramework, setCurrentImageFramework] = useState(0);
   const [currentImageSoftware, setCurrentImageSoftware] = useState(0);
-const imgProg = [
-  <JavascriptIcon size={60} />,
-  <HtmlIcon size={60} />,
-  <NodeJsIcon size={70} />,  
-]
+  const imgProg = [
+    <JavascriptIcon size={60} />,
+    <HtmlIcon size={60} />,
+    <NodeJsIcon size={70} />,
+  ]
 
-const imgFramework = [ 
-  <ReactIcon size={60} />,
-  <MaterialUiIcon size={60} />,
-  <PwaIcon size={70} />,  
-]
+  const imgFramework = [
+    <ReactIcon size={60} />,
+    <MaterialUiIcon size={60} />,
+    <PwaIcon size={70} />,
+  ]
 
-const imgSoftware = [
-  <NextJsIcon size={60} />,
-  <CssIcon size={60} />,
-  <VisualStudioIcon size={60} />,
-]
-
-useEffect(() => {
-    
-  const interval = setInterval(() => {
-    setCurrentImageProg((prevImage) => (prevImage + 1) % imgProg.length);
-    setCurrentImageFramework((prevImage) => (prevImage + 1) % imgFramework.length);
-    setCurrentImageSoftware((prevImage) => (prevImage + 1) % imgSoftware.length);
-}, 3000);
-return () => clearInterval(interval);
-
-}, [])
-
-
-
-  const [x, setX] = useState(0);
+  const imgSoftware = [
+    <NextJsIcon size={60} />,
+    <CssIcon size={60} />,
+    <VisualStudioIcon size={60} />,
+  ]
 
   useEffect(() => {
-    
-    const interval = setInterval(() => {
-    const _position = positionVisualStudio;
-    _position.x += 100;
-    if (_position.x >= window.innerWidth) {
-      _position.x = 0;
-      //setX(0);
-    } else {
-      //setX(_position.x);
-    }
-    //setPositionVisualStudio(_position);
-    
-    //_position.x += 10;
-    //setSeconds(_seconds);
-    //setSeconds(_seconds);
-    //console.log("NEw position" ,_position.x, window.innerWidth)
-    //console.log("Width stack" ,refProgramm.current.style.width)
 
-    
-}, 1000);
-  return () => clearInterval(interval);
-  
+    const interval = setInterval(() => {
+      setCurrentImageProg((prevImage) => (prevImage + 1) % imgProg.length);
+      setCurrentImageFramework((prevImage) => (prevImage + 1) % imgFramework.length);
+      setCurrentImageSoftware((prevImage) => (prevImage + 1) % imgSoftware.length);
+    }, 3000);
+    return () => clearInterval(interval);
+
   }, [])
+
+
   return (
     <Box sx={{
-      height:'100%',
-      position:'relative',
+      height: '100%',
+      position: 'relative',
       //my:30,
       //mb:50,
-      overflowY:'scroll',
+      overflowY: 'scroll',
       //backgroundColor: `rgba(${theme.palette.mode === THEME_LIGHT ? '255,255,255' : '0,0,0'}, 0.7)`, /* Black w/opacity/see-through */
       //opacity:0.5,
       //zIndex:0
@@ -317,228 +290,277 @@ return () => clearInterval(interval);
       //paddingBottom: 100
     }}>
       <div style={{
-        position:'absolute',
-        top:0,
-        left:0,
-        right:0,
-        bottom:0,
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
         //paddingTop:50
         //background:'red',
-        
+
         //opacity:1,
         //zIndex:10000
         //opacity:0.5
-        
+
       }}>
-        <Stack 
-      //mb={50}
-      py={10}
-      justifyContent={'center'} alignItems={'center'} 
-      sx={{
-        opacity:1,
-        
-        //background:'cyan'
-        }}>
-<Stack p={1} mt={3} mb={1} direction={'row'} spacing={1} alignItems={'center'} justifyContent={'center'} sx={{
-//background:'green',
-//background:'cyan',
-//width:'100%',
-borderRadius: 10
-}}>
-<Stack justifyContent={'center'} alignItems={'center'} style={{
-      position: 'relative',
-      //background:'cyan',
-      //top: 0,
-      //left: 0,
-      width: 80,
-      height: 80,
-      objectFit: 'cover',
-      
-    }}>
-<AnimatePresence style={{
-      position: 'relative',
-      //background:'red',
-      margin:'auto',
-      objectFit: 'cover',
-    }}>
-<Grid container justifyContent={'center'} alignItems={'center'}>
-{imgProg.map((image, index) => (
-           <motion.div
-           key={index}
-    initial={{ opacity: 0 }}
-    animate={{ opacity: index === currentImageProg ? 1 : 0 }}
-    exit={{ opacity: 0 }}
-    //transition={{ duration: 0.5 }}
-    whileTap={{
-      scale:index === currentImageProg ? 2 : 1,
-    }}
-    transition={{ duration: 1 }}
-    style={{
-      position: 'absolute',
-      //background:'yellow',
-      top:0,
-      bottom:0,
-      left:0,
-      right:0,
-      //textAlign:'center'
-    }}
-  >
-    <Stack justifyContent={'center'} alignItems={'center'} sx={{
-      width:'100%',
-      height:'100%'
-    }}>
-    {image}
-    </Stack>
-  </motion.div>
-         ))}
-</Grid>
-       </AnimatePresence>
-</Stack>
+        <Stack
+          //mb={50}
+          py={10}
+          justifyContent={'center'} alignItems={'center'}
+          sx={{
+            opacity: 1,
+            //background:'cyan'
+          }}>
+          <Stack p={1} mt={3} direction={'row'} spacing={1} alignItems={'center'} justifyContent={'center'} sx={{
+            //background:'green',
+            //background:'cyan',
+            //width:'100%',
+            borderRadius: 10
+          }}>
+            <Stack justifyContent={'center'} alignItems={'center'} style={{
+              position: 'relative',
+              //background:'cyan',
+              //top: 0,
+              //left: 0,
+              width: 80,
+              height: 80,
+              objectFit: 'cover',
 
-<Stack justifyContent={'center'} alignItems={'center'} style={{
-      position: 'relative',
-      //background:'cyan',
-      //top: 0,
-      //left: 0,
-      width: 80,
-      height: 80,
-      objectFit: 'cover',
-    }}>
-<AnimatePresence style={{
-      position: 'relative',
-      //background:'red',
-      margin:'auto',
-      objectFit: 'cover',
-    }}>
-<Grid container justifyContent={'center'} alignItems={'center'}>
-{imgFramework.map((image, index) => (
-           <motion.div
-           key={index}
-    initial={{ opacity: 0 }}
-    animate={{ opacity: index === currentImageFramework ? 1 : 0 }}
-    exit={{ opacity: 0 }}
-    //transition={{ duration: 0.5 }}
-    transition={{ duration: 1 }}
-    whileTap={{
-      scale: index === currentImageFramework ? 2 : 1,
-    }}
-    style={{
-      position: 'absolute',
-      //background:'yellow',
-      top:0,
-      bottom:0,
-      left:0,
-      right:0,
-      //textAlign:'center'
-    }}
-  >
-    <Stack justifyContent={'center'} alignItems={'center'} sx={{
-      width:'100%',
-      height:'100%'
-    }}>
-    {image}
-    </Stack>
-  </motion.div>
-         ))}
-</Grid>
-       </AnimatePresence>
-</Stack>
+            }}>
+              <AnimatePresence style={{
+                position: 'relative',
+                //background:'red',
+                margin: 'auto',
+                objectFit: 'cover',
+              }}>
+                <Grid container justifyContent={'center'} alignItems={'center'}>
+                  {imgProg.map((image, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: index === currentImageProg ? 1 : 0 }}
+                      exit={{ opacity: 0 }}
+                      //transition={{ duration: 0.5 }}
+                      whileTap={{
+                        scale: index === currentImageProg ? 2 : 1,
+                      }}
+                      transition={{ duration: 1 }}
+                      style={{
+                        position: 'absolute',
+                        //background:'yellow',
+                        top: 0,
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        //textAlign:'center'
+                      }}
+                    >
+                      <Stack justifyContent={'center'} alignItems={'center'} sx={{
+                        width: '100%',
+                        height: '100%'
+                      }}>
+                        {image}
+                      </Stack>
+                    </motion.div>
+                  ))}
+                </Grid>
+              </AnimatePresence>
+            </Stack>
 
-<Stack justifyContent={'center'} alignItems={'center'} style={{
-      position: 'relative',
-      //background:'cyan',
-      //top: 0,
-      //left: 0,
-      width: 80,
-      height: 80,
-      objectFit: 'cover',
-    }}>
-<AnimatePresence style={{
-      position: 'relative',
-      //background:'red',
-      margin:'auto',
-      objectFit: 'cover',
-    }}>
-<Grid container justifyContent={'center'} alignItems={'center'}>
-{imgSoftware.map((image, index) => (
-           <motion.div
-           key={'img-software-' + index}
-    initial={{ opacity: 0 }}
-    animate={{ opacity: index === currentImageSoftware ? 1 : 0 }}
-    exit={{ opacity: 0 }}
-    //transition={{ duration: 0.5 }}
-    transition={{ duration: 1 }}
-    whileTap={{
-      scale: index === currentImageSoftware ? 2 : 1,
-    }}
-    style={{
-      position: 'absolute',
-      //background:'yellow',
-      top:0,
-      bottom:0,
-      left:0,
-      right:0,
-      //textAlign:'center'
-    }}
-  >
-    <Stack justifyContent={'center'} alignItems={'center'} sx={{
-      width:'100%',
-      height:'100%'
-    }}>
-    {image}
-    </Stack>
-  </motion.div>
-         ))}
-</Grid>
-       </AnimatePresence>
-</Stack>
+            <Stack justifyContent={'center'} alignItems={'center'} style={{
+              position: 'relative',
+              //background:'cyan',
+              //top: 0,
+              //left: 0,
+              width: 80,
+              height: 80,
+              objectFit: 'cover',
+            }}>
+              <AnimatePresence style={{
+                position: 'relative',
+                //background:'red',
+                margin: 'auto',
+                objectFit: 'cover',
+              }}>
+                <Grid container justifyContent={'center'} alignItems={'center'}>
+                  {imgFramework.map((image, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: index === currentImageFramework ? 1 : 0 }}
+                      exit={{ opacity: 0 }}
+                      //transition={{ duration: 0.5 }}
+                      transition={{ duration: 1 }}
+                      whileTap={{
+                        scale: index === currentImageFramework ? 2 : 1,
+                      }}
+                      style={{
+                        position: 'absolute',
+                        //background:'yellow',
+                        top: 0,
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        //textAlign:'center'
+                      }}
+                    >
+                      <Stack justifyContent={'center'} alignItems={'center'} sx={{
+                        width: '100%',
+                        height: '100%'
+                      }}>
+                        {image}
+                      </Stack>
+                    </motion.div>
+                  ))}
+                </Grid>
+              </AnimatePresence>
+            </Stack>
 
-</Stack>
-        <Stack alignItems={'center'} spacing={1} mb={2}>
-        <Bounce duration={3000}>
-        <Paper 
-        //elevation={theme.palette.mode === THEME_LIGHT ? 16 : 0} 
-        sx={{
-          p:1,
-          //px:2,
-          borderRadius:'50%',
-          border:'3px solid var(--primary)',
-          background:'transparent'
-        }}>
-        <Avatar src="/me-no-back.png" 
-        sx={{ width: 150, height: 150, }}
-         />
-          </Paper>
-        </Bounce>
-        
-        <SelectLangageComponent/>
-        </Stack>
-     
-
-          <Stack alignItems={'start'} sx={{
-            display:'none',
-            width:1920 / 3,
-            height:1080 / 3,
-            background:'yellow'}}>
-          <video width="100%" height="100%" style={{
-            objectFit:'fill'
-          }} controls>
-<source src="/videos/home.mp4" type="video/mp4" />
-Your browser does not support the video tag.
-</video>
+            <Stack justifyContent={'center'} alignItems={'center'} style={{
+              position: 'relative',
+              //background:'cyan',
+              //top: 0,
+              //left: 0,
+              width: 80,
+              height: 80,
+              objectFit: 'cover',
+            }}>
+              <AnimatePresence style={{
+                position: 'relative',
+                //background:'red',
+                margin: 'auto',
+                objectFit: 'cover',
+              }}>
+                <Grid container justifyContent={'center'} alignItems={'center'}>
+                  {imgSoftware.map((image, index) => (
+                    <motion.div
+                      key={'img-software-' + index}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: index === currentImageSoftware ? 1 : 0 }}
+                      exit={{ opacity: 0 }}
+                      //transition={{ duration: 0.5 }}
+                      transition={{ duration: 1 }}
+                      whileTap={{
+                        scale: index === currentImageSoftware ? 2 : 1,
+                      }}
+                      style={{
+                        position: 'absolute',
+                        //background:'yellow',
+                        top: 0,
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        //textAlign:'center'
+                      }}
+                    >
+                      <Stack justifyContent={'center'} alignItems={'center'} sx={{
+                        width: '100%',
+                        height: '100%'
+                      }}>
+                        {image}
+                      </Stack>
+                    </motion.div>
+                  ))}
+                </Grid>
+              </AnimatePresence>
+            </Stack>
           </Stack>
+
+          <Typography fontWeight={'bold'} pb={3}>{t('userPosition', { ns: _NAMESPACE_LANGAGE_HOME_ })}</Typography>
+
+          <Stack alignItems={'center'} spacing={1} mb={2}>
+            <Bounce duration={3000}>
+              <Paper
+                //elevation={theme.palette.mode === THEME_LIGHT ? 16 : 0} 
+                sx={{
+                  p: 1,
+                  //px:2,
+                  borderRadius: '50%',
+                  border: '3px solid var(--primary)',
+                  background: 'transparent'
+                }}>
+                <Avatar src="/me-no-back.png"
+                  sx={{ width: 150, height: 150, }}
+                />
+              </Paper>
+            </Bounce>
+
+            <SelectLangageComponent />
+          </Stack>
+
 
           <Stack my={5} p={1} alignItems={'center'}>
-          <Link href={PAGE_LINK_CHAT_BOT} target={'_blank'}>
-            <Button sx={{color:'var(--text)'}} startIcon={<ResumeIcon />} variant='contained'>{t('buttons.goChat',{ns:NAMESPACE_LANGAGE_HOME})}</Button>
-          </Link>
-          <Link href={PAGE_LINK_RESUME} target={'_blank'}>
-            <Button sx={{color:'var(--text)'}}>{t('buttons.goCv',{ns:NAMESPACE_LANGAGE_HOME})}</Button>
-          </Link>
+            <Link href={_PAGE_LINK_CHAT_BOT_} target={'_blank'}>
+              <Button sx={{ color: 'var(--text)' }} startIcon={<ResumeIcon />} variant='contained'>{t('buttons.goChat', { ns: _NAMESPACE_LANGAGE_HOME_ })}</Button>
+            </Link>
+            <Link href={_PAGE_LINK_RESUME_} target={'_blank'}>
+              <Button sx={{ color: 'var(--text)' }}>{t('buttons.goCv', { ns: _NAMESPACE_LANGAGE_HOME_ })}</Button>
+            </Link>
           </Stack>
 
-          
-      </Stack>
+
+        </Stack>
+        <div className="appFooter" style={{ position: 'relative', background: 'var(--background)' }}>
+          <div className="footer-title" style={{ color: 'var(--accents9)' }}>
+            <Stack style={{ fontSize: 12 }} spacing={0.3}>
+              <div>
+                {t('footer.deployedWith')} <a href={_NEXTJS_LINK_} target='_blank'>{`Next.js`} <NextJsIcon size={15} /></a>
+              </div>
+              <div>
+                {`${t('footer.copyright')}`}<span className="yearNow"></span>{` ${_WEBSITE_ADDRESS_}`}
+              </div>
+              <div>
+                {t('footer.allRightsReserved')}
+              </div>
+            </Stack>
+          </div>
+
+          <div className="mt-2">
+            <Tooltip sx={{
+              zIndex: 1
+            }} title={t('seeMyCV')} placement="top">
+              <a href={`/${lang}${_PAGE_LINK_RESUME_}`} target='_blank' className="btn btn-icon btn-sm" style={{
+                background: 'var(--accents6)',
+                color: 'black'
+              }}>
+                <ion-icon name="newspaper-outline"></ion-icon>
+              </a>
+            </Tooltip>
+
+            <Tooltip sx={{
+              zIndex: 1
+            }} title={t('sendMeMail')} placement="top">
+              <a href={`mailto:${_MY_PROFILE_.mail}`} className="btn btn-icon btn-sm" style={{
+                background: 'var(--primary)',
+                color: 'black'
+              }}>
+                <ion-icon name="mail"></ion-icon>
+              </a>
+            </Tooltip>
+
+            <Tooltip sx={{
+              zIndex: 1
+            }} title={t('profileLinkedin')} placement="top">
+              <a href={_MY_PROFILE_.socials.linkedin} target='_blank' className="btn btn-icon btn-sm" style={{
+                background: 'var(--blue-linkedin)',
+                color: 'white'
+              }}>
+                <ion-icon name="logo-linkedin"></ion-icon>
+              </a>
+            </Tooltip>
+
+            <Tooltip sx={{
+              zIndex: 1
+            }} title={t('profileGithub')} placement="top">
+              <a href={_MY_PROFILE_.socials.github} target='_blank' className="btn btn-icon btn-sm" style={{
+                background: 'black',
+                color: 'white'
+              }}>
+                <ion-icon name="logo-github"></ion-icon>
+              </a>
+            </Tooltip>
+          </div>
+        </div>
       </div>
     </Box>
   );
@@ -749,28 +771,30 @@ export default function HomePage() {
   const theme = useTheme();
   const { width } = useWindowSize();
   const { t } = useTranslation();
-const {isMobile} = useDeviceMode();
+  const { isMobile } = useDeviceMode();
+  const [lang] = useLangMode();
+
   return (
     <div style={{
       //background:'red', 
       //paddingTop:20,
       //backgroundImage: `url('/img/home/background-${theme.palette.mode}.gif')`,
-      backgroundSize:'cover',
-      backgroundRepeat:'no-repeat',
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
       //background:theme.palette.background.default,
-    overflow:'scroll', position:'absolute', bottom:0, top:0, left:0, right:0}}>
-    <Head>
-    <title>{t('titlePage', {ns:NAMESPACE_LANGAGE_HOME})}</title>
+      overflow: 'scroll', position: 'absolute', bottom: 0, top: 0, left: 0, right: 0
+    }}>
+      <Head>
+        <title>{t('titlePage', { ns: _NAMESPACE_LANGAGE_HOME_ })}</title>
         <meta
           name="description"
-          content={t('descriptionPage', {ns:NAMESPACE_LANGAGE_HOME})}
+          content={t('descriptionPage', { ns: _NAMESPACE_LANGAGE_HOME_ })}
         />
-    </Head>
-      
+      </Head>
+
       <WebAppBar />
       <CssBaseline />
       <WebHome />
-     
 
     </div>
   );

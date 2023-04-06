@@ -11,7 +11,7 @@ import useWindowSize from '@/hooks/useWindowSize';
 import { Box } from '@mui/system';
 import MobileHeader from '@/components/layouts/MobileHeader';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { ARRAY_NAMESPACES, ARRAY_LANGAGES, LANGAGE_FRENCH, LANGAGE_ENGLISH, _MY_PROFILE_, PAGE_LINK_RESUME } from '@/_mocks_/_settings_items_';
+import { ARRAY_NAMESPACES, ARRAY_LANGAGES, LANGAGE_FRENCH, LANGAGE_ENGLISH, _MY_PROFILE_, _PAGE_LINK_RESUME_ } from '@/_mocks_/_settings_items_';
 
 import { createChatBotMessage } from 'react-chatbot-kit';
 import Options from '@/components/molecules/Options';
@@ -149,7 +149,7 @@ const {t} = useTranslation();
         </Typography>
       </Box>
       <a
-        href={PAGE_LINK_RESUME}
+        href={_PAGE_LINK_RESUME_}
         target="_blank"
         rel="noreferrer"
         style={{display:'none'}}

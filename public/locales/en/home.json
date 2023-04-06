@@ -1,6 +1,7 @@
 {
     "titlePage": "Daniel Mbengui | Home",
     "descriptionPage": "Daniel Mbengui | Backend Developer | Web Developer",
+    "userPosition" : "Web Developer",
     "buttons": {
         "goChat": "Start the tour",
         "goCv": "See my resume"
