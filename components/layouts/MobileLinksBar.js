@@ -16,9 +16,11 @@ import { GITHUB_LINK, LINKEDIN_LINK } from '../../_mocks_/_links_items_';
 import { _PAGE_LINK_RESUME_, _MY_PROFILE_ } from '../../_mocks_/_settings_items_';
 import { useTranslation } from 'next-i18next';
 import { GithubIcon, LinkedinIcon, ResumeIcon } from '../icons/IconifiyIcons';
+import { useLangMode } from '@/contexts/LangModeProvider';
 
 function MobileLinksBar() {
   const {t} = useTranslation();
+  const [lang] = useLangMode();
   return (
     <Box flex flexDirection="column">
       <Typography variant="h6">{_MY_PROFILE_.name}</Typography>
@@ -51,7 +53,7 @@ function MobileLinksBar() {
       <List>
         <ListItem disablePadding>
           <a
-            href={_PAGE_LINK_RESUME_}
+            href={`/${lang}${_PAGE_LINK_RESUME_}`}
             target="_blank"
             rel="noreferrer"
           >

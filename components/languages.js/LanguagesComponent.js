@@ -15,7 +15,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Image from 'next/image';
-import { AngolanIcon, EnglishIcon, FrenchIcon } from '../icons/FlagIcons';
+import { AngolanIcon, EnglishIcon, FrenchIcon, SwissIcon } from '../icons/FlagIcons';
 import { AndroidIcon, AndroidStudioIcon, AtomIcon, CloseIcon, CssIcon, DiscordApiIcon, DjangoIcon, EclipseIcon, EtherJsIcon, FirebaseIcon, GanacheIcon, HtmlIcon, IonicIcon, JavaIcon, JavascriptIcon, MaterialUiIcon, MomentJsIcon, MongoDbIcon, MySqlIcon, NextJsIcon, NodeJsIcon, NotepadIcon, OpenAiIcon, PhotoshopIcon, PhpIcon, PrestashopIcon, PwaIcon, PythonIcon, ReactIcon, SolidityIcon, SpyderIcon, SqlLiteIcon, TruffleIcon, VimIcon, VisualStudioIcon, Web3JsIcon } from '../icons/IconifiyIcons';
 import { I18nIcon, MidjourneyIcon, NetbeansIcon, SynthesiaIcon } from '../icons/ImagesIcons';
 import { useDeviceMode } from '@/contexts/DeviceModeProvider';
@@ -249,7 +249,7 @@ const [lang] = useLangMode();
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#accordion01">
-                            <Stack direction={'row'} alignItems={'center'} spacing={1}><FrenchIcon /><Typography>{t('sections.skills.langs.fr.name')}</Typography></Stack>
+                            <Stack direction={'row'} alignItems={'center'} spacing={1}><SwissIcon /><Typography>{t('sections.skills.langs.fr.name')}</Typography></Stack>
                         </button>
                     </h2>
                     <div id="accordion01" class="accordion-collapse collapse" data-bs-parent="#accordionExample2">
@@ -268,7 +268,7 @@ const [lang] = useLangMode();
                     </h2>
                     <div id="accordion02" class="accordion-collapse collapse" data-bs-parent="#accordionExample2">
                         <div class="accordion-body" style={{textAlign:'justify'}}>
-                            {`En plus du français, je parle couramment le lingala, la langue de mes racines angolaises. Je suis particulièrement fier de maîtriser cette langue, car elle me permet de rester connecté à ma famille et à ma communauté d'origine. Le lingala joue un rôle précieux dans ma vie, renforçant les liens culturels et les échanges authentiques avec ceux qui partagent ce patrimoine linguistique.`}
+                            {`En plus du français, je parle couramment le lingala, et un peu de kikongo, la langue de mes racines angolaises. Je suis particulièrement fier de maîtriser ces langues, car elle me permettent de rester connecté à ma famille et à ma communauté d'origine. Le lingala (tout particulièrement) joue un rôle précieux dans ma vie, renforçant les liens culturels et les échanges authentiques avec ceux qui partagent ce patrimoine linguistique.`}
                         </div>
                     </div>
                 </div>
