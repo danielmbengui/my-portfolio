@@ -301,7 +301,7 @@ const slides = [
             </Grid>
 
 
-<Grid item>
+<Grid item xs={12}>
 <Carousel items={items} />
 </Grid>
 

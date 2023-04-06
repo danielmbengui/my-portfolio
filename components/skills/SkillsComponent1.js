@@ -271,7 +271,7 @@ const [lang] = useLangMode();
     borderTopRightRadius:'10px',
     fontWeight:'bold',
     fontSize:16,
-    py:2,px:2, color:'var(--text)', background:'var(--primary)', 
+    py:2,px:2, color:'var(--text)', background:'var(--background-menu)', 
    //position:'absolute', 
    //left:20,
    //right:20,
