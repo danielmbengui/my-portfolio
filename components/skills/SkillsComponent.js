@@ -27,6 +27,7 @@ import NewsCardDemo from '@/components/projects/CardNews';
 import { Carousel, CarouselItem } from 'react-round-carousel';
 import Carroussel from '../projects/Caroussel';
 import FooterComponent from '../footer/FooterComponent';
+import { useSwipeable } from 'react-swipeable';
 
 
 
@@ -220,13 +221,77 @@ export default function SkillsComponent() {
   const [selectedId, setSelectedId] = useState(1);
   const { isMobile } = useDeviceMode()
   const [lang] = useLangMode();
+  const [mouseDown, setMouseDown] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const handleMouseDown = (e) => {
+    setMouseDown(true);
+    setStartX(e.clientX);
+  };
+
+  const handleMouseUp = () => {
+    setMouseDown(false);
+  };
+  const handleMouseMove = (e) => {
+    if (!mouseDown) return;
+
+    const deltaX = e.clientX - startX;
+    if (Math.abs(deltaX) > 100) {
+      if (deltaX > 0) {
+        // Code pour gérer le balayage vers la droite
+        setSelectedId((prev) => {
+          if (prev - 1 >= 1) {
+            return prev - 1
+          } else {
+            return itemData.length
+          }
+        })
+        console.log("Mouse move right");
+      } else {
+        // Code pour gérer le balayage vers la gauche
+        setSelectedId((prev) => {
+          if (prev + 1 <= itemData.length) {
+            return prev + 1
+          } else {
+            return 1
+          }
+        })
+        console.log("Mouse move left");
+      }
+     setMouseDown(false);
+    }
+  };
+  const handlers = useSwipeable({
+    onSwipedLeft: () => {
+      setSelectedId((prev) => {
+        if (prev + 1 <= itemData.length) {
+          return prev + 1
+        } else {
+          return 1
+        }
+      })
+      console.log("Swiped left");
+    },
+    onSwipedRight: () => {
+      setSelectedId((prev) => {
+        if (prev - 1 >= 1) {
+          return prev - 1
+        } else {
+          return itemData.length
+        }
+      })
+      console.log("Swiped right");
+    },
+    onSwipedUp: () => console.log("Swiped up"),
+    onSwipedDown: () => console.log("Swiped down"),
+    // Vous pouvez également définir d'autres options, consultez la documentation pour plus de détails
+  });
 
   const items = itemData
     .map(({ img, title }, index) => ({
       alt: 'A random photo',
       image: img,
       content: (
-        <Grid container justifyContent={'center'} alignItems={'center'} key={index} onClick={() => setSelectedId(index + 1)}
+        <Grid container justifyContent={'center'} alignItems={'center'} key={index} 
           sx={{
             height: '100%',
             //background:'red'
@@ -270,9 +335,16 @@ export default function SkillsComponent() {
         </Grid>
 
         <Grid item xs={12}>
+          <div 
+          {...handlers} 
+          onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
+          onMouseMove={handleMouseMove}
+          >
           <Carousel
             //current={previousValue}
             //ref={previousValue}
+            
             items={items}
             itemWidth={250} //default : 210
             prevButtonContent={<Typography sx={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0, zIndex: 10, background: 'transparent' }} onClick={() => {
@@ -294,6 +366,8 @@ export default function SkillsComponent() {
               })
             }}>{``}</Typography>}
           />
+          </div>
+          
         </Grid>
 
         <Grid item xs={12}>

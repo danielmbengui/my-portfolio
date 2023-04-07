@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { CacheProvider } from '@emotion/react';
-
-
 import createEmotionCache from '../utility/createEmotionCache';
 import lightTheme from '../styles/theme/lightTheme';
 import '@/styles/globals.css';
