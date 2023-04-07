@@ -32,7 +32,7 @@ export default function Card(props) {
       style={{
         height: CARDSIZE,
         width: CARDWIDTH,
-        borderRadius: CARDBORDERRADIUS
+        borderRadius: CARDBORDERRADIUS,
       }}
     >
       <div className="titleContainer">
@@ -61,7 +61,7 @@ export default function Card(props) {
         }}
       >
         <img
-          src="https://picsum.photos/800/200/?random"
+          src="/img/logo/winnobearz.png"
           alt="1"
           style={{
             height: CARDIMGHEIGHT,

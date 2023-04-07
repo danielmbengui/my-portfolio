@@ -14,6 +14,7 @@
     },
     "sections" :{
         "skills" : {
+            "disclaimer" : "IMPORTANT : les compétences et les pourcentages indiqués ne représentent pas nécessairement mon niveau absolu, mais plutôt une estimation de ma maîtrise relative des sujets abordés.",
             "title": "Compétences",
             "langs" : {
                 "title" : "Langues",
@@ -42,7 +43,7 @@
                 }
             },
             "frameworks" : {
-                "title" : "Librairies / Outils"
+                "title" : "Librairies/Outils"
             },
             "software" : {
                 "title" : "Logiciels"
@@ -60,7 +61,7 @@
                 "title" : "Base de données"
             },
             "artificial" : {
-                "title" : "Intelligence artificielle"
+                "title" : "Intelligence Artificielle (IA)"
             }
         
             

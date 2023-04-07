@@ -35,15 +35,6 @@ export function AlertDialog({ selectedId, setSelectedId, item }) {
 
   const { t } = useTranslation();
 
-  const skill = {
-    name: 'sections.skills.langs.title',
-    skills: [
-      ['sections.skills.langs.ao.name', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><AngolanIcon size={20} /><Typography>{`Langue maternelle`}</Typography></Stack>],
-      ['sections.skills.langs.fr.name', 100, <Stack direction={'row'} alignItems={'center'} spacing={1}><FrenchIcon size={20} /><Typography>{`Langue maternelle`}</Typography></Stack>],
-      ['sections.skills.langs.en.name', 70, <Stack direction={'row'} alignItems={'center'} spacing={1}><EnglishIcon size={20} /><Typography>{`Niveau B1`}</Typography></Stack>],
-    ],
-  };
-
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -189,7 +180,7 @@ export function AlertDialog({ selectedId, setSelectedId, item }) {
             })}
           </div>
           <DialogContentText id="alert-dialog-description" sx={{ color: 'red', p: 3 }}>
-            {`IMPORTANT : les compétences et les pourcentages indiqués ne représentent pas nécessairement mon niveau absolu, mais plutôt une estimation de ma maîtrise relative des sujets abordés.`}
+            {t('sections.skills.disclaimer')}
           </DialogContentText>
         </DialogContent>
         <DialogActions sx={{ display: 'none' }}>
@@ -213,30 +204,13 @@ const Label = styled(Paper)(({ theme }) => ({
   borderBottomRightRadius: 0,
 }));
 
-export default function SkillsComponent() {
+export default function MobileSkillsComponent() {
   const { t } = useTranslation();
   const theme = useTheme();
-  const [selectedId, setSelectedId] = useState(1);
+  const [selectedId, setSelectedId] = useState(null);
   const { isMobile } = useDeviceMode()
   const [lang] = useLangMode();
 
-  const items = itemData
-    .map(({ img, title }, index) => ({
-      alt: 'A random photo',
-      image: img,
-      content: (
-        <Grid container justifyContent={'center'} alignItems={'center'} key={index} onClick={() => setSelectedId(index + 1)}
-          sx={{
-            height: '100%',
-            //background:'red'
-          }}
-        >
-          <Grid item>
-            <strong>{t(title)}</strong>
-          </Grid>
-        </Grid>
-      )
-    }));
 
 
   return (
@@ -268,118 +242,79 @@ export default function SkillsComponent() {
           </Stack>
         </Grid>
 
-        <Grid item xs={12}>
-          <Carousel
-            //current={previousValue}
-            //ref={previousValue}
-            items={items}
-            itemWidth={250} //default : 210
-            prevButtonContent={<Typography sx={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0, zIndex: 10, background: 'transparent' }} onClick={() => {
-              setSelectedId((prev) => {
-                if (prev - 1 >= 1) {
-                  return prev - 1
-                } else {
-                  return itemData.length
-                }
-              })
-            }}>{``}</Typography>}
-            nextButtonContent={<Typography sx={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0, zIndex: 10, background: 'transparent' }} onClick={() => {
-              setSelectedId((prev) => {
-                if (prev + 1 <= itemData.length) {
-                  return prev + 1
-                } else {
-                  return 1
-                }
-              })
-            }}>{``}</Typography>}
-          />
+        <Grid item xs={12} md={9}>
+        <Masonry columns={{xs:1, sm:3, }} spacing={{xs:0, sm:2}} sx={{
+ //width:'70%',
+ //height:'100%'
+}}>
+ 
+ {itemData.map((item, index) => (
+     <Slide key={index} direction='up' cascade damping={1} triggerOnce>
+        <div  style={{cursor:'pointer', color:'var(--text)', position:'relative', paddingTop: isMobile ? 10 : 0,}} >
+   <motion.div
+   layoutId={index + 1} onClick={() => setSelectedId(index + 1)}
+whileHover={{ scale: 1.05 }}
+style={{
+  border:'1px solid var(--accents2)',
+  borderRadius:'10px'
+}}
+//whileTap={{ scale: 0.9, background:'red' }}
+//whileFocus={{background:'red'}}
+>
+
+<motion.div
+whileHover={{ scale: 1.1 }}
+ 
+//whileTap={{ scale: 0.9, background:'red' }}
+//whileFocus={{background:'red'}}
+>
+<Label sx={{
+borderTopLeftRadius:'10px',
+borderTopRightRadius:'10px',
+fontWeight:'bold',
+fontSize:16,
+py:2,px:2, color:'var(--text)', background:'var(--background-menu)', 
+//position:'absolute', 
+//left:20,
+//right:20,
+//top:'50%',
+//bottom:'50%'
+my:'auto'
+}}>
+        {t(item.title)}
+        {item.subtitle && ` / ${t(item.subtitle)}`}
+    </Label>
+</motion.div>
+    <img
+       src={`${item.img}?w=81&auto=format`}
+       srcSet={`${item.img}?w=81&auto=format&dpr=2 2x`}
+       alt={item.title}
+       loading="lazy"
+       style={{
+         borderBottomLeftRadius: 10,
+         borderBottomRightRadius: 10,
+         display: 'block',
+         width: '100%',
+       }}
+     />
+</motion.div>        
+   </div>
+   </Slide>
+ ))}
+
+</Masonry>
+<AnimatePresence>
+        {selectedId && (
+          <motion.dialog layoutId={selectedId}>
+            <AlertDialog
+            selectedId={selectedId}
+            setSelectedId={setSelectedId}
+            item={itemData[selectedId-1]}
+            />
+          </motion.dialog>
+        )}
+      </AnimatePresence>
         </Grid>
-
-        <Grid item xs={12}>
-          <Stack alignItems={'center'}>
-          {
-            itemData[selectedId - 1] && <Typography fontSize={20} fontWeight={'bold'} mb={2}>{`${t(itemData[selectedId - 1].title)}`}</Typography>
-          }
-          <Grid container spacing={1} px={{ md: 10 }}>
-            {
-              itemData[selectedId - 1] && itemData[selectedId - 1].skills && itemData[selectedId - 1].skills.map(([name, val, icon], idx) => {
-                return (
-                  <Grid
-                    key={idx}
-                    item
-                    xs={6}
-                    sm={3}
-                    md
-                  //sx={{background:'cyan'}}
-                  >
-                    <Card sx={{
-                      py: 2,
-                      px: 1,
-                      height: '100%',
-                      width: '100%',
-                      border: '1px solid var(--accents2)',
-                      //background:'purple',
-                      textAlign: 'center'
-                    }}>
-                      <Stack alignItems={'center'} spacing={1} justifyContent={'center'} sx={{
-                        height: '100%',
-                        width: '100%',
-                        // background:'red',
-                        textAlign: 'center'
-                      }}>
-                        <Stack alignItems={'center'} justifyContent={{ xs: 'center', md: 'center' }}
-                          style={{
-                            height: '100%', width: '100%',
-                            //background:'green'
-                          }}>
-                          {
-                            icon
-                          }
-                          <Typography sx={{ fontWeight: 'bold' }}>{t(name)}</Typography>
-                        </Stack>
-                        <Box sx={{ position: 'relative', display: 'inline-flex', width: 100, height: 100 }}>
-                          <CircularProgress variant="determinate" value={val} style={{
-                            width: 100,
-                            height: 100
-                          }} />
-                          <Box
-                            sx={{
-                              top: 0,
-                              left: 0,
-                              bottom: 0,
-                              right: 0,
-                              position: 'absolute',
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              //background:'red'
-                            }}
-                          >
-
-                            <Typography variant="caption" component="div" color="text.primary">
-                              {`${Math.round(val)}%`}
-                            </Typography>
-                          </Box>
-                        </Box>
-                      </Stack>
-                    </Card>
-                  </Grid>
-                )
-              })
-            }
-          </Grid>
-          </Stack>
-        </Grid>
-
-       <Grid item xs={12} >
-       <Grid container px={{md:20}}>
-       <Grid item sx={{textAlign:'justify'}}>
-       <Typography id="alert-dialog-description" sx={{ color: 'red',}}>
-            {t('sections.skills.disclaimer')}
-          </Typography>
-       </Grid>
-       </Grid>
-       </Grid>
 
         <Grid item xs={12}>
           <div className="appFooter" style={{ marginTop: 150, background: 'var(--background)' }}>

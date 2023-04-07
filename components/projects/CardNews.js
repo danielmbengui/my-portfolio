@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import React from "react";
 import Card from "./Card";
 //import cx from "clsx";
@@ -62,6 +63,7 @@ export const NewsCardDemo = React.memo(function NewsCard() {
   return (
     <Card style={useStyles}>
       {
+        <Button>{`OK`}</Button>
         /*
         <TextInfoContent
           classes={textCardContentStyles}

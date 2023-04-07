@@ -14,6 +14,7 @@
     },
     "sections" :{
         "skills" : {
+            "disclaimer" : "IMPORTANT: the skills and percentages listed don't necessarily represent my absolute level, but rather an estimate of my relative mastery of the topics discussed.",
             "title": "Skills",
             "langs" : {
                 "title" : "Languages",
@@ -42,7 +43,7 @@
                 }
             },
             "frameworks" : {
-                "title" : "Frameworks / Tools",
+                "title" : "Frameworks/Tools",
                 "react" : {
                     "name": "ReactJS",
                     "value": 80
@@ -84,7 +85,7 @@
                 }
             },
             "artificial" : {
-                "title" : "Artificial intelligence",
+                "title" : "Artificial Intelligence (AI)",
                 "visualStudio" : {
                     "name": "Visual Studio Code",
                     "value": 80

@@ -243,44 +243,44 @@ const [lang] = useLangMode();
 <Grid item xs={12} sm={10}>
 <Grid container justifyContent={'center'} sx={{width:'100%',}}>
     <Grid item xs={12}>
-    <div class="section inset" >
-            <div class="accordion" id="accordionExample2" sx={{width:'100%', border:'3px solid yellow'}}>
-                <div class="accordion-item" style={{background:'var(--background-menu)'}}>
-                    <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+    <div className="section inset" >
+            <div className="accordion" id="accordionExample2" sx={{width:'100%', border:'3px solid yellow'}}>
+                <div className="accordion-item" style={{background:'var(--background-menu)'}}>
+                    <h2 className="accordion-header">
+                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#accordion01">
                             <Stack direction={'row'} alignItems={'center'} spacing={1}><SwissIcon /><Typography>{t('sections.skills.langs.fr.name')}</Typography></Stack>
                         </button>
                     </h2>
-                    <div id="accordion01" class="accordion-collapse collapse" data-bs-parent="#accordionExample2">
-                        <div class="accordion-body" style={{textAlign:'justify'}}>
+                    <div id="accordion01" className="accordion-collapse collapse" data-bs-parent="#accordionExample2">
+                        <div className="accordion-body" style={{textAlign:'justify'}}>
                             {`Le français est ma langue maternelle, et je suis fier de maîtriser cette belle langue avec aisance. Grâce à cette compétence, je suis en mesure de m'exprimer clairement et de communiquer efficacement dans diverses situations professionnelles et personnelles.`}
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item" style={{background:'var(--background-menu)'}}>
-                    <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                <div className="accordion-item" style={{background:'var(--background-menu)'}}>
+                    <h2 className="accordion-header">
+                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#accordion02">
                             <Stack direction={'row'} alignItems={'center'} spacing={1}><AngolanIcon /><Typography>{t('sections.skills.langs.ao.name')}</Typography></Stack>
 
                         </button>
                     </h2>
-                    <div id="accordion02" class="accordion-collapse collapse" data-bs-parent="#accordionExample2">
-                        <div class="accordion-body" style={{textAlign:'justify'}}>
+                    <div id="accordion02" className="accordion-collapse collapse" data-bs-parent="#accordionExample2">
+                        <div className="accordion-body" style={{textAlign:'justify'}}>
                             {`En plus du français, je parle couramment le lingala, et un peu de kikongo, la langue de mes racines angolaises. Je suis particulièrement fier de maîtriser ces langues, car elle me permettent de rester connecté à ma famille et à ma communauté d'origine. Le lingala (tout particulièrement) joue un rôle précieux dans ma vie, renforçant les liens culturels et les échanges authentiques avec ceux qui partagent ce patrimoine linguistique.`}
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item" style={{background:'var(--background-menu)'}}>
-                    <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                <div className="accordion-item" style={{background:'var(--background-menu)'}}>
+                    <h2 className="accordion-header">
+                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#accordion03">
                             <Stack direction={'row'} alignItems={'center'} spacing={1}><EnglishIcon /><Typography>{t('sections.skills.langs.en.name')}</Typography></Stack>
                         </button>
                     </h2>
-                    <div id="accordion03" class="accordion-collapse collapse" data-bs-parent="#accordionExample2">
-                        <div class="accordion-body" style={{textAlign:'justify'}}>
+                    <div id="accordion03" className="accordion-collapse collapse" data-bs-parent="#accordionExample2">
+                        <div className="accordion-body" style={{textAlign:'justify'}}>
                             {`Au fil du temps, j'ai développé une solide compétence en anglais, langue que je parle couramment aujourd'hui. Mon parcours m'a permis d'améliorer cette langue à travers une ancienne relation, ainsi que par ma passion pour la programmation informatique et les tutoriels disponibles sur YouTube. L'anglais est devenu un outil essentiel dans ma vie professionnelle et personnelle, me permettant d'accéder à de nouvelles opportunités et de communiquer avec un public international.`}
                         </div>
                     </div>

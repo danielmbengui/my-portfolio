@@ -51,7 +51,7 @@ import MobileSectionsBar from '@/components/layouts/MobileSectionsBar';
 import { styled } from '@mui/material/styles';
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 import { Fade } from 'react-awesome-reveal';
-import SkillsComponent1 from '@/components/skills/SkillsComponent1';
+import SkillsComponent from '@/components/skills/SkillsComponent';
 
 import stylesCarousel from "@/styles/Carousel.module.css"
 import CardSocial from '@/components/CardSocial';

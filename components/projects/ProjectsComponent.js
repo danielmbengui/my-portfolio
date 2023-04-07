@@ -39,7 +39,7 @@ const items = Array(20)
   .fill('')
   .map((_, index) => ({
     alt: 'A random photo',
-    image: `https://picsum.photos/${210 + index}`,
+    image: `/img/logos/winnobearzclub.png`,
     content: (
       <div>
         <strong>Round Carousel</strong>
