@@ -222,7 +222,7 @@ const [lang] = useLangMode();
         justifyContent={'center'}
         spacing={5}
         pt={5} 
-        pb={10}
+        pb={{xs:20, sm:10}}
         >
             <Grid item xs={12} sx={{textAlign:'center'}}>
             <Stack >

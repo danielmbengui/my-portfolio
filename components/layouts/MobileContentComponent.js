@@ -66,7 +66,8 @@ export default function MobileContentComponent({children}) {
 
   return (
     <div style={{
-      paddingTop: 10
+      paddingTop: 10,
+      paddingBottom: 20,
     }}>
       {children}
     </div>
