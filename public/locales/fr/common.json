@@ -20,11 +20,13 @@
                 "title" : "Langues",
                 "fr" : {
                     "name" : "Français",
-                    "value" : 100
+                    "value" : 100,
+                    "description" : "Le français est ma langue maternelle, et je suis fier de maîtriser cette belle langue avec aisance. Grâce à cette compétence, je suis en mesure de m'exprimer clairement et de communiquer efficacement dans diverses situations professionnelles et personnelles."
                 },
                 "en" : {
                     "name" : "Anglais",
-                    "value" : 80
+                    "value" : 80,
+                    "description" : "Au fil du temps, j'ai développé une solide compétence en anglais, langue que je parle couramment aujourd'hui. Mon parcours m'a permis d'améliorer cette langue à travers une ancienne relation, ainsi que par ma passion pour la programmation informatique et les tutoriels disponibles sur YouTube. L'anglais est devenu un outil essentiel dans ma vie professionnelle et personnelle, me permettant d'accéder à de nouvelles opportunités et de communiquer avec un public international."
                 },
                 "it" : {
                     "name" : "Italien",
@@ -32,7 +34,8 @@
                 },
                 "ao" : {
                     "name" : "Lingala",
-                    "value" : 70
+                    "value" : 70,
+                    "description" : "En plus du français, je parle couramment le lingala, et un peu de kikongo, la langue de mes racines angolaises. Je suis particulièrement fier de maîtriser ces langues, car elle me permettent de rester connecté à ma famille et à ma communauté d'origine. Le lingala (tout particulièrement) joue un rôle précieux dans ma vie, renforçant les liens culturels et les échanges authentiques avec ceux qui partagent ce patrimoine linguistique."
                 }
             },
             "programming" : {
@@ -86,5 +89,11 @@
     "profileLinkedin" : "Profil Linkedin",
     "profileGithub" : "Profil Github",
     "slogan" : "Parce que je suis un geek !",
-    "theme" : "thème"
+    "theme" : "thème",
+    "loadingDocument" : "Chargement du document...",
+    "buttons": {
+        "goChat": "Commencez votre visite",
+        "goCv": "Voir mon CV",
+        "downloadCv": "Télécharger mon CV"
+    }
 }

@@ -20,11 +20,13 @@
                 "title" : "Languages",
                 "fr" : {
                     "name" : "French",
-                    "value" : 100
+                    "value" : 100,
+                    "description" : "French is my native language, and I'm stoked to rock this beautiful language with ease. Thanks to this skill, I can express myself clearly and communicate effectively in all sorts of professional and personal situations, dude!"
                 },
                 "en" : {
                     "name" : "English",
-                    "value" : 80
+                    "value" : 80,
+                    "description" : "Over time, I've developed strong English skills and can now speak it fluently. My journey has allowed me to improve my English through a past relationship, as well as my passion for computer programming and the tutorials available on YouTube. English has become an essential tool in both my professional and personal life, opening up new opportunities and allowing me to communicate with an international audience."
                 },
                 "it" : {
                     "name" : "Italian",
@@ -32,7 +34,8 @@
                 },
                 "ao" : {
                     "name" : "Lingala",
-                    "value" : 70
+                    "value" : 70,
+                    "description" : "In addition to French, I speak fluent Lingala, and a bit of Kikongo, the language of my Angolan roots. I'm particularly proud to master these languages, as they allow me to stay connected to my family and my community of origin. Lingala (in particular) plays a precious role in my life, strengthening cultural ties and authentic exchanges with those who share this linguistic heritage."
                 }
             },
             "programming" : {
@@ -112,5 +115,11 @@
     "profileLinkedin" : "Linkedin profile",
     "profileGithub" : "Github profile",
     "slogan": "Because I'm a geek !",
-    "theme" : "theme"
+    "theme" : "theme",
+    "loadingDocument" : "Loading document...",
+    "buttons": {
+        "goChat": "Start the tour",
+        "goCv": "See my resume",
+        "downloadCv": "Download my resume"
+    }
 }

@@ -15,6 +15,7 @@ import { SSRProvider } from '@react-aria/ssr';
 import ThemeModeProvider from '../contexts/ThemeModeProvider';
 import Head from 'next/head';
 import Script from 'next/script';
+import { CssBaseline } from '@mui/material';
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -121,6 +122,7 @@ goTopButton.forEach(function (el) {
               <Script src="/assets/js/base.js" />
               */
             }  
+            <CssBaseline />
         <Component {...pageProps} />
           </DeviceModeProvider>
         </LangModeProvider>

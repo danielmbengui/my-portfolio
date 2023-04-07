@@ -22,6 +22,7 @@ import { useDeviceMode } from '@/contexts/DeviceModeProvider';
 import { blue } from '@mui/material/colors';
 import { _MY_PROFILE_, _NEXTJS_LINK_, _PAGE_LINK_RESUME_, _WEBSITE_ADDRESS_ } from '@/_mocks_/_settings_items_';
 import { useLangMode } from '@/contexts/LangModeProvider';
+import FooterComponent from '../footer/FooterComponent';
 
 export function AlertDialog({selectedId, setSelectedId, item}) {
   const [open, setOpen] = useState(selectedId > 0);
@@ -254,7 +255,7 @@ const [lang] = useLangMode();
                     </h2>
                     <div id="accordion01" className="accordion-collapse collapse" data-bs-parent="#accordionExample2">
                         <div className="accordion-body" style={{textAlign:'justify'}}>
-                            {`Le français est ma langue maternelle, et je suis fier de maîtriser cette belle langue avec aisance. Grâce à cette compétence, je suis en mesure de m'exprimer clairement et de communiquer efficacement dans diverses situations professionnelles et personnelles.`}
+                            {t('sections.skills.langs.fr.description')}
                         </div>
                     </div>
                 </div>
@@ -268,7 +269,7 @@ const [lang] = useLangMode();
                     </h2>
                     <div id="accordion02" className="accordion-collapse collapse" data-bs-parent="#accordionExample2">
                         <div className="accordion-body" style={{textAlign:'justify'}}>
-                            {`En plus du français, je parle couramment le lingala, et un peu de kikongo, la langue de mes racines angolaises. Je suis particulièrement fier de maîtriser ces langues, car elle me permettent de rester connecté à ma famille et à ma communauté d'origine. Le lingala (tout particulièrement) joue un rôle précieux dans ma vie, renforçant les liens culturels et les échanges authentiques avec ceux qui partagent ce patrimoine linguistique.`}
+                            {t('sections.skills.langs.ao.description')}
                         </div>
                     </div>
                 </div>
@@ -281,7 +282,7 @@ const [lang] = useLangMode();
                     </h2>
                     <div id="accordion03" className="accordion-collapse collapse" data-bs-parent="#accordionExample2">
                         <div className="accordion-body" style={{textAlign:'justify'}}>
-                            {`Au fil du temps, j'ai développé une solide compétence en anglais, langue que je parle couramment aujourd'hui. Mon parcours m'a permis d'améliorer cette langue à travers une ancienne relation, ainsi que par ma passion pour la programmation informatique et les tutoriels disponibles sur YouTube. L'anglais est devenu un outil essentiel dans ma vie professionnelle et personnelle, me permettant d'accéder à de nouvelles opportunités et de communiquer avec un public international.`}
+                            {t('sections.skills.langs.en.description')}
                         </div>
                     </div>
                 </div>
@@ -294,67 +295,7 @@ const [lang] = useLangMode();
 
 
             <Grid item xs={12}>
-            <div className="appFooter" style={{ marginTop:150, background: 'var(--background)' }}>
-          <div className="footer-title" style={{ color: 'var(--accents9)' }}>
-            <Stack style={{ fontSize: 12 }} spacing={0.3}>
-              <div>
-                {t('footer.deployedWith')} <a href={_NEXTJS_LINK_} target='_blank'>{`Next.js`} <NextJsIcon size={15} /></a>
-              </div>
-              <div>
-                {`${t('footer.copyright')}`}<span className="yearNow"></span>{` ${_WEBSITE_ADDRESS_}`}
-              </div>
-              <div>
-                {t('footer.allRightsReserved')}
-              </div>
-            </Stack>
-          </div>
-
-          <div className="mt-2">
-            <Tooltip sx={{
-              zIndex: 1
-            }} title={t('seeMyCV')} placement="top">
-              <a href={`/${lang}${_PAGE_LINK_RESUME_}`} target='_blank' className="btn btn-icon btn-sm" style={{
-                background: 'var(--accents6)',
-                color: 'black'
-              }}>
-                <ion-icon name="newspaper-outline"></ion-icon>
-              </a>
-            </Tooltip>
-
-            <Tooltip sx={{
-              zIndex: 1
-            }} title={t('sendMeMail')} placement="top">
-              <a href={`mailto:${_MY_PROFILE_.mail}`} className="btn btn-icon btn-sm" style={{
-                background: 'var(--primary)',
-                color: 'black'
-              }}>
-                <ion-icon name="mail"></ion-icon>
-              </a>
-            </Tooltip>
-
-            <Tooltip sx={{
-              zIndex: 1
-            }} title={t('profileLinkedin')} placement="top">
-              <a href={_MY_PROFILE_.socials.linkedin} target='_blank' className="btn btn-icon btn-sm" style={{
-                background: 'var(--blue-linkedin)',
-                color: 'white'
-              }}>
-                <ion-icon name="logo-linkedin"></ion-icon>
-              </a>
-            </Tooltip>
-
-            <Tooltip sx={{
-              zIndex: 1
-            }} title={t('profileGithub')} placement="top">
-              <a href={_MY_PROFILE_.socials.github} target='_blank' className="btn btn-icon btn-sm" style={{
-                background: 'black',
-                color: 'white'
-              }}>
-                <ion-icon name="logo-github"></ion-icon>
-              </a>
-            </Tooltip>
-          </div>
-        </div>
+            <FooterComponent />
             </Grid>
         </Grid>
         

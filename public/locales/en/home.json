@@ -4,6 +4,7 @@
     "userPosition" : "Web Developer",
     "buttons": {
         "goChat": "Start the tour",
-        "goCv": "See my resume"
+        "goCv": "See my resume",
+        "downloadCv": "Download my resume"
     }
 }

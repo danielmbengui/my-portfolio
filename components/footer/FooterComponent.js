@@ -74,7 +74,7 @@ export default function FooterComponent() {
     <div className="appFooter" style={{ position: 'relative', background: 'var(--background)' }}>
                 <div className="footer-title" style={{ color: 'var(--accents9)' }}>
           <Stack style={{ fontSize: 12 }} spacing={0.3}>
-            <Typography>{`Me contacter`}</Typography>
+            <Typography>{t('sendMeMail')}</Typography>
           </Stack>
         </div>
 

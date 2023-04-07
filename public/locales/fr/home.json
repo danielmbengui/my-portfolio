@@ -4,6 +4,7 @@
     "userPosition" : "Développeur Web",
     "buttons": {
         "goChat": "Commencez votre visite",
-        "goCv": "Voir mon CV"
+        "goCv": "Voir mon CV",
+        "downloadCv": "Télécharger mon CV"
     }
 }

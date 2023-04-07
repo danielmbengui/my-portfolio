@@ -39,7 +39,7 @@ if (router.isReady && window) {
                     
                 }} />} fileName={`cv-daniel-mbengui-${lang}.pdf`}>
         {({ blob, url, loading, error }) =>
-          loading ? 'Loading document...' : <Button variant='contained'>{`'Download my CV!'`}</Button>
+          loading ? t('loadingDocument') : <Button variant='contained'>{t('buttons.downloadCv')}</Button>
         }
       </PDFDownloadLink>
             </div>

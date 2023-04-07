@@ -164,13 +164,18 @@ function SectionsBar() {
             <Tooltip
               title={<Typography color={'white'}  style={{ fontSize: 13 }}>{t('sections.projects.title')}</Typography>}
               placement="right"
-            //sx={{ "&:hover": { color: "blue" } }}
+            sx={{ 
+              "&:hover": { display:'none' } 
+            }}
             >
               <IconButton
                 aria-label={t('sections.projects.title')}
                 //onClick={() => toggleDrawer(true, t('sections.skills.title'))}
                 onClick={() => router.push(`/${lang}/${_PAGE_LINK_PROJECTS_}`)}
-                sx={{ "&:hover": { color: "var(--primary)" } }}
+                sx={{ 
+                  display:'none',
+                  "&:hover": { color: "var(--primary)" } 
+                }}
                 color={router.asPath === _PAGE_LINK_PROJECTS_ ? 'var(--primary)' : 'var(--accents7)'}
               >
                 <ProjectIcon

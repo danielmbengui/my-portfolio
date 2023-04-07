@@ -301,8 +301,6 @@ export default function SkillsPage() {
   return (
     <>
       {!isMobile ? <AppBarComponent title={title} /> : <MobileAppBarComponent title={title} />}
-      <CssBaseline />
-
       {!isMobile ? <ContentComponent><SkillsComponent /></ContentComponent> : <MobileContentComponent><MobileSkillsComponent /></MobileContentComponent>}
     </>
   );

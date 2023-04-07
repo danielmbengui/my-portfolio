@@ -143,7 +143,7 @@ function MobileSectionsBar() {
           </ListItemButton>
         </ListItem>
 
-        <ListItem disablePadding>
+        <ListItem disablePadding sx={{display:'none'}}>
           <ListItemButton
             aria-label={t(`sections.projects.title`)}
             onClick={() => router.push(`/${lang}/${_PAGE_LINK_PROJECTS_}`)}
