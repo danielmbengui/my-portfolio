@@ -57,28 +57,85 @@ import CardSocial from '@/components/CardSocial';
 import { NextJsIcon } from '@/components/icons/IconifiyIcons';
 import AppBarComponent from '@/components/navigation/AppBarComponent';
 import MobileAppBarComponent from '@/components/navigation/MobileAppBarComponent';
-import FooterComponent from '../footer/FooterComponent';
+import ContentComponent from '@/components/layouts/ContentComponent';
+import MobileContentComponent from '@/components/layouts/MobileContentComponent';
+import MobileSkillsComponent from '@/components/skills/MobileSkillsComponent';
+import { useDeviceMode } from '@/contexts/DeviceModeProvider';
 
-export default function ContentComponent({children}) {
+export default function FooterComponent() {
+  const { width } = useWindowSize();
   const { t } = useTranslation();
-  const [lang,] = useLangMode();
+  const [lang] = useLangMode();
+  const {isMobile} = useDeviceMode();
+
+  const title = t('sections.skills.title');
 
   return (
-    <Box sx={{
-        py: '5px',
-        paddingBottom: 100,
-        background: 'transparent'
-      }}>
-        <Stack direction={'row'} justifyContent={'space-between'}>
-          <div className={styles.links}>
-            <SectionsBar />
-          </div>
+    <div className="appFooter" style={{ position: 'relative', background: 'var(--background)' }}>
+                <div className="footer-title" style={{ color: 'var(--accents9)' }}>
+          <Stack style={{ fontSize: 12 }} spacing={0.3}>
+            <Typography>{`Me contacter`}</Typography>
+          </Stack>
+        </div>
 
-          <div style={{ width: '100%' }}>
-          {children}
-          </div>
-        </Stack>
-      </Box>
-      
+        <div className="mb-5">
+          <Tooltip sx={{
+            zIndex: 1
+          }} title={t('seeMyCV')} placement="top">
+            <a href={`/${lang}${_PAGE_LINK_RESUME_}`} target='_blank' className="btn btn-icon btn-sm" style={{
+              background: 'var(--accents6)',
+              color: 'black'
+            }}>
+              <ion-icon name="newspaper-outline"></ion-icon>
+            </a>
+          </Tooltip>
+
+          <Tooltip sx={{
+            zIndex: 1
+          }} title={t('sendMeMail')} placement="top">
+            <a href={`mailto:${_MY_PROFILE_.mail}`} className="btn btn-icon btn-sm" style={{
+              background: 'var(--primary)',
+              color: 'black'
+            }}>
+              <ion-icon name="mail"></ion-icon>
+            </a>
+          </Tooltip>
+
+          <Tooltip sx={{
+            zIndex: 1
+          }} title={t('profileLinkedin')} placement="top">
+            <a href={_MY_PROFILE_.socials.linkedin} target='_blank' className="btn btn-icon btn-sm" style={{
+              background: 'var(--blue-linkedin)',
+              color: 'white'
+            }}>
+              <ion-icon name="logo-linkedin"></ion-icon>
+            </a>
+          </Tooltip>
+
+          <Tooltip sx={{
+            zIndex: 1
+          }} title={t('profileGithub')} placement="top">
+            <a href={_MY_PROFILE_.socials.github} target='_blank' className="btn btn-icon btn-sm" style={{
+              background: 'black',
+              color: 'white'
+            }}>
+              <ion-icon name="logo-github"></ion-icon>
+            </a>
+          </Tooltip>
+        </div>
+        <div className="footer-title" style={{ color: 'var(--accents9)' }}>
+          <Stack style={{ fontSize: 12 }} spacing={0.3}>
+            <div>
+              {t('footer.deployedWith')} <a href={_NEXTJS_LINK_} target='_blank'>{`Next.js`} <NextJsIcon size={15} /></a>
+            </div>
+            <div>
+              {`${t('footer.copyright')}`}<span className="yearNow"></span>{` ${_WEBSITE_ADDRESS_}`}
+            </div>
+            <div>
+              {t('footer.allRightsReserved')}
+            </div>
+          </Stack>
+        </div>
+      </div>
   );
-};
+}

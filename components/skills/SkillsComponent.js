@@ -26,6 +26,7 @@ import { useLangMode } from '@/contexts/LangModeProvider';
 import NewsCardDemo from '@/components/projects/CardNews';
 import { Carousel, CarouselItem } from 'react-round-carousel';
 import Carroussel from '../projects/Caroussel';
+import FooterComponent from '../footer/FooterComponent';
 
 
 
@@ -381,69 +382,9 @@ export default function SkillsComponent() {
        </Grid>
        </Grid>
 
-        <Grid item xs={12}>
-          <div className="appFooter" style={{ marginTop: 150, background: 'var(--background)' }}>
-            <div className="footer-title" style={{ color: 'var(--accents9)' }}>
-              <Stack style={{ fontSize: 12 }} spacing={0.3}>
-                <div>
-                  {t('footer.deployedWith')} <a href={_NEXTJS_LINK_} target='_blank'>{`Next.js`} <NextJsIcon size={15} /></a>
-                </div>
-                <div>
-                  {`${t('footer.copyright')}`}<span className="yearNow"></span>{` ${_WEBSITE_ADDRESS_}`}
-                </div>
-                <div>
-                  {t('footer.allRightsReserved')}
-                </div>
-              </Stack>
-            </div>
-
-            <div className="mt-2">
-              <Tooltip sx={{
-                zIndex: 1
-              }} title={t('seeMyCV')} placement="top">
-                <a href={`/${lang}${_PAGE_LINK_RESUME_}`} target='_blank' className="btn btn-icon btn-sm" style={{
-                  background: 'var(--accents6)',
-                  color: 'black'
-                }}>
-                  <ion-icon name="newspaper-outline"></ion-icon>
-                </a>
-              </Tooltip>
-
-              <Tooltip sx={{
-                zIndex: 1
-              }} title={t('sendMeMail')} placement="top">
-                <a href={`mailto:${_MY_PROFILE_.mail}`} className="btn btn-icon btn-sm" style={{
-                  background: 'var(--primary)',
-                  color: 'black'
-                }}>
-                  <ion-icon name="mail"></ion-icon>
-                </a>
-              </Tooltip>
-
-              <Tooltip sx={{
-                zIndex: 1
-              }} title={t('profileLinkedin')} placement="top">
-                <a href={_MY_PROFILE_.socials.linkedin} target='_blank' className="btn btn-icon btn-sm" style={{
-                  background: 'var(--blue-linkedin)',
-                  color: 'white'
-                }}>
-                  <ion-icon name="logo-linkedin"></ion-icon>
-                </a>
-              </Tooltip>
-
-              <Tooltip sx={{
-                zIndex: 1
-              }} title={t('profileGithub')} placement="top">
-                <a href={_MY_PROFILE_.socials.github} target='_blank' className="btn btn-icon btn-sm" style={{
-                  background: 'black',
-                  color: 'white'
-                }}>
-                  <ion-icon name="logo-github"></ion-icon>
-                </a>
-              </Tooltip>
-            </div>
-          </div>
-        </Grid>
+       <Grid item>
+  <FooterComponent />
+</Grid>
       </Grid>
 
     </Container>
