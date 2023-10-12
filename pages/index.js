@@ -7,7 +7,6 @@ import { ARRAY_NAMESPACES, ARRAY_LANGAGES, _MY_PROFILE_, _PAGE_LINK_CHAT_BOT_, _
 import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 import { useLangMode } from '../contexts/LangModeProvider';
-
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -23,7 +22,7 @@ import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import MobileSectionsBar from '../components/layouts/MobileSectionsBar';
 import Link from 'next/link';
 import { ResumeIcon } from '@/components/icons/IconMaterialUi';
-import {AndroidStudioIcon,XCodeIcon,FlutterIcon, CssIcon, HtmlIcon, JavascriptIcon, MaterialUiIcon, NextJsIcon, NodeJsIcon, PwaIcon, ReactIcon, VisualStudioIcon } from '@/components/icons/IconifiyIcons';
+import {AndroidIcon,XCodeIcon,FlutterIcon, CssIcon, HtmlIcon, JavascriptIcon, MaterialUiIcon, NextJsIcon, NodeJsIcon, PwaIcon, ReactIcon, VisualStudioIcon } from '@/components/icons/IconifiyIcons';
 import { motion, AnimatePresence } from "framer-motion"
 import { Bounce } from "react-awesome-reveal";
 import { useDeviceMode } from '@/contexts/DeviceModeProvider';
@@ -220,30 +219,28 @@ export const WebHome = () => {
   const [currentImageProg, setCurrentImageProg] = useState(0);
   const [currentImageFramework, setCurrentImageFramework] = useState(0);
   const [currentImageSoftware, setCurrentImageSoftware] = useState(0);
-  const [currentImageMobile, setCurrentImageMobile] = useState(0);
   const imgProg = [
     <JavascriptIcon size={60} />,
     <HtmlIcon size={60} />,
     <NodeJsIcon size={70} />,
+    <AndroidIcon size={60} />
   ]
 
   const imgFramework = [
     <ReactIcon size={60} />,
     <MaterialUiIcon size={60} />,
     <PwaIcon size={70} />,
+    <XCodeIcon size={60} />
   ]
 
   const imgSoftware = [
     <NextJsIcon size={60} />,
     <CssIcon size={60} />,
     <VisualStudioIcon size={60} />,
+    <FlutterIcon size={60} />
   ]
 
-  const imgMobile = [
-    <AndroidStudioIcon size={60} />,
-    <XCodeIcon size={60} />,
-    <FlutterIcon size={60} />,
-  ]
+
 
   useEffect(() => {
 
@@ -251,7 +248,6 @@ export const WebHome = () => {
       setCurrentImageProg((prevImage) => (prevImage + 1) % imgProg.length);
       setCurrentImageFramework((prevImage) => (prevImage + 1) % imgFramework.length);
       setCurrentImageSoftware((prevImage) => (prevImage + 1) % imgSoftware.length);
-      setCurrentImageMobile((prevImage) => (prevImage + 1) % imgMobile.length);
     }, 3000);
     return () => clearInterval(interval);
 
@@ -447,7 +443,9 @@ export const WebHome = () => {
               </AnimatePresence>
             </Stack>
 
-            <Stack justifyContent={'center'} alignItems={'center'} style={{
+            {
+              /*
+<Stack justifyContent={'center'} alignItems={'center'} style={{
               position: 'relative',
               //background:'cyan',
               //top: 0,
@@ -495,6 +493,8 @@ export const WebHome = () => {
                 </Grid>
               </AnimatePresence>
             </Stack>
+              */
+            }
           </Stack>
 
           <Typography fontWeight={'bold'} pb={3}>{t('userPosition', { ns: _NAMESPACE_LANGAGE_HOME_ })}</Typography>
