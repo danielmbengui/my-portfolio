@@ -543,10 +543,10 @@ export const WebHome = () => {
               zIndex: 1
             }} title={t('profilePlaystore')} placement="top">
               <a href={_MY_PROFILE_.socials.playstore} target='_blank' className="btn btn-icon btn-sm" style={{
-                background: 'black',
-                color: 'white'
+                background: "white",
+                //color: 'white'
               }}>
-                <PlayStoreIcon size={10} />
+                <PlayStoreIcon size={15} />
               </a>
             </Tooltip>
 
