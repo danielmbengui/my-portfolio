@@ -9,6 +9,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang={DEFAULT_LANGAGE}>
         <Head>
+        <meta name="google-site-verification" content="qMKQcpo5J5oX0vAZBgNZKrZ48CMP9Js_5zlH4Mnu_wY" />
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
