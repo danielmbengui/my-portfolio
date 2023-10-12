@@ -16,7 +16,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Image from 'next/image';
 import { AngolanIcon, EnglishIcon, FrenchIcon } from '../icons/FlagIcons';
-import { AndroidIcon, AndroidStudioIcon, AtomIcon, CloseIcon, CssIcon, DiscordApiIcon, DjangoIcon, EclipseIcon, EtherJsIcon, FirebaseIcon, GanacheIcon, HtmlIcon, IonicIcon, JavaIcon, JavascriptIcon, MaterialUiIcon, MomentJsIcon, MongoDbIcon, MySqlIcon, NextJsIcon, NodeJsIcon, NotepadIcon, OpenAiIcon, PhotoshopIcon, PhpIcon, PrestashopIcon, PwaIcon, PythonIcon, ReactIcon, SolidityIcon, SpyderIcon, SqlLiteIcon, TruffleIcon, VimIcon, VisualStudioIcon, Web3JsIcon } from '../icons/IconifiyIcons';
+import { AndroidIcon, AndroidStudioIcon, AtomIcon, CertificationIcon, CloseIcon, CssIcon, DiscordApiIcon, DjangoIcon, EclipseIcon, EtherJsIcon, FirebaseIcon, GanacheIcon, HtmlIcon, IonicIcon, JavaIcon, JavascriptIcon, MaterialUiIcon, MomentJsIcon, MongoDbIcon, MySqlIcon, NextJsIcon, NodeJsIcon, NotepadIcon, OpenAiIcon, PhotoshopIcon, PhpIcon, PrestashopIcon, PwaIcon, PythonIcon, ReactIcon, SolidityIcon, SpyderIcon, SqlLiteIcon, TruffleIcon, VimIcon, VisualStudioIcon, Web3JsIcon } from '../icons/IconifiyIcons';
 import { I18nIcon, MidjourneyIcon, NetbeansIcon, SynthesiaIcon } from '../icons/ImagesIcons';
 import { useDeviceMode } from '@/contexts/DeviceModeProvider';
 import { blue } from '@mui/material/colors';
@@ -377,7 +377,7 @@ export default function SkillsComponent() {
           }
           <Grid container spacing={1} px={{ md: 10 }}>
             {
-              itemData[selectedId - 1] && itemData[selectedId - 1].skills && itemData[selectedId - 1].skills.map(([name, val, icon], idx) => {
+              itemData[selectedId - 1] && itemData[selectedId - 1].skills && itemData[selectedId - 1].skills.map(([name, val, icon, certified], idx) => {
                 return (
                   <Grid
                     key={idx}
@@ -471,7 +471,7 @@ const itemData = [
     title: 'sections.skills.web.title',
     subtitle: 'sections.skills.mobile.title',
     skills: [
-      ['Javascript', 95, <Stack direction={'row'} alignItems={'center'} spacing={1}><JavascriptIcon size={30} /><Typography>{``}</Typography></Stack>],
+      ['Javascript', 95, <Stack direction={'row'} alignItems={'center'} spacing={1}><JavascriptIcon size={30} /><Typography>{``}</Typography></Stack>, true],
       ['Html', 95, <Stack direction={'row'} alignItems={'center'} spacing={1}><HtmlIcon size={30} /><Typography>{``}</Typography></Stack>],
       ['Css', 85, <Stack direction={'row'} alignItems={'center'} spacing={1}><CssIcon size={30} /><Typography>{``}</Typography></Stack>],
       ['Php', 80, <Stack direction={'row'} alignItems={'center'} spacing={1}><PhpIcon size={50} /><Typography>{``}</Typography></Stack>],

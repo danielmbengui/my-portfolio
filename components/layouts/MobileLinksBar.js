@@ -56,6 +56,7 @@ function MobileLinksBar() {
             href={`/${lang}${_PAGE_LINK_RESUME_}`}
             target="_blank"
             rel="noreferrer"
+            style={{ display: 'none' }}
           >
             <ListItemButton>
               <ListItemIcon>

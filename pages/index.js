@@ -493,7 +493,7 @@ export const WebHome = () => {
             <Link href={_PAGE_LINK_CHAT_BOT_} target={'_blank'}>
               <Button sx={{ color: 'var(--text)' }} startIcon={<ResumeIcon />} variant='contained'>{t('buttons.goChat', { ns: _NAMESPACE_LANGAGE_HOME_ })}</Button>
             </Link>
-            <Link href={_PAGE_LINK_RESUME_} target={'_blank'}>
+            <Link href={_PAGE_LINK_RESUME_} target={'_blank'} style={{ display: 'none' }}>
               <Button sx={{ color: 'var(--text)' }}>{t('buttons.goCv', { ns: _NAMESPACE_LANGAGE_HOME_ })}</Button>
             </Link>
           </Stack>

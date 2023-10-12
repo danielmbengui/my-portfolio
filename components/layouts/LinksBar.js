@@ -54,6 +54,7 @@ const [lang, setLang] = useLangMode();
       <Tooltip
         title={<span style={{ fontSize: 16 }}>{`Resume`}</span>}
         placement="left"
+        style={{ display: 'none' }}
         //sx={{display:'none'}}
       >
         <a

@@ -38,6 +38,13 @@ export function LanguagesIcon({size = 30, color = 'var(--text)', ...props}) {
     )
 }
 
+export function CertificationIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="vaadin:diploma-scroll" {...props} color={color} width={size}
+        />
+    )
+}
+
 export function SkillsIcon({size = 30, color = 'var(--text)', ...props}) {
     return(
         <Icon icon="material-symbols:code" {...props} color={color} width={size}
