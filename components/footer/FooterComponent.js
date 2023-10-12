@@ -79,7 +79,9 @@ export default function FooterComponent() {
         </div>
 
         <div className="mb-5">
-          <Tooltip sx={{
+          <Tooltip 
+          style={{ display: 'none' }}
+          sx={{
             zIndex: 1
           }} title={t('seeMyCV')} placement="top">
             <a href={`/${lang}${_PAGE_LINK_RESUME_}`} target='_blank' className="btn btn-icon btn-sm" style={{
