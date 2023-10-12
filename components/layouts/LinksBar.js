@@ -54,6 +54,7 @@ const [lang, setLang] = useLangMode();
       <Tooltip
         title={<span style={{ fontSize: 16 }}>{`Resume`}</span>}
         placement="left"
+        open={false}
         style={{ display: 'none' }}
         //sx={{display:'none'}}
       >
@@ -61,10 +62,10 @@ const [lang, setLang] = useLangMode();
         href={`/${lang}${_PAGE_LINK_RESUME_}`}
         target="_blank"
         rel="noreferrer"
-        //style={{display:'none'}}
+        style={{display:'none'}}
       >
-        <IconButton>
-          <ResumeIcon size={35} color={'var(--primary)'}  />
+        <IconButton style={{ display: 'none' }}>
+          <ResumeIcon style={{ display: 'none' }} size={35} color={'var(--primary)'}  />
         </IconButton>
       </a>
       </Tooltip>
