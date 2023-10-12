@@ -223,7 +223,7 @@ export const WebHome = () => {
     <JavascriptIcon size={60} />,
     <HtmlIcon size={60} />,
     <NodeJsIcon size={70} />,
-    <AndroidIcon size={60} />
+    <AndroidIcon size={70} />
   ]
 
   const imgFramework = [
@@ -237,7 +237,7 @@ export const WebHome = () => {
     <NextJsIcon size={60} />,
     <CssIcon size={60} />,
     <VisualStudioIcon size={60} />,
-    <FlutterIcon size={60} />
+    <FlutterIcon size={50} />
   ]
 
 
