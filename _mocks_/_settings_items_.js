@@ -52,5 +52,6 @@ export const _MY_PROFILE_ = {
         website: "https://danielmbengui.ch",
         linkedin: "https://www.linkedin.com/in/daniel-mbengui/",
         github: "https://github.com/danielmbengui",
+        playstore: "https://play.google.com/store/apps/dev?id=5041386544087051991",
     }
 }

@@ -118,6 +118,12 @@ export function FlutterIcon({size = 30, color = 'var(--text)', ...props}) {
     )
 }
 
+export function PlayStoreIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="logos:google-play-icon" {...props} color={color} width={size} />
+    )
+}
+
 export function HtmlIcon({size = 30, color = 'var(--text)', ...props}) {
     return(
         <Icon icon="vscode-icons:file-type-html" {...props} color={color} width={size} />

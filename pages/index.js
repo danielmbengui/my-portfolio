@@ -22,7 +22,7 @@ import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import MobileSectionsBar from '../components/layouts/MobileSectionsBar';
 import Link from 'next/link';
 import { ResumeIcon } from '@/components/icons/IconMaterialUi';
-import {AndroidIcon,XCodeIcon,FlutterIcon, CssIcon, HtmlIcon, JavascriptIcon, MaterialUiIcon, NextJsIcon, NodeJsIcon, PwaIcon, ReactIcon, VisualStudioIcon } from '@/components/icons/IconifiyIcons';
+import {PlayStoreIcon, AndroidIcon,XCodeIcon,FlutterIcon, CssIcon, HtmlIcon, JavascriptIcon, MaterialUiIcon, NextJsIcon, NodeJsIcon, PwaIcon, ReactIcon, VisualStudioIcon } from '@/components/icons/IconifiyIcons';
 import { motion, AnimatePresence } from "framer-motion"
 import { Bounce } from "react-awesome-reveal";
 import { useDeviceMode } from '@/contexts/DeviceModeProvider';
@@ -538,6 +538,19 @@ export const WebHome = () => {
                 <ion-icon name="logo-github"></ion-icon>
               </a>
             </Tooltip>
+
+            <Tooltip sx={{
+              zIndex: 1
+            }} title={t('profilePlaystore')} placement="top">
+              <a href={_MY_PROFILE_.socials.playstore} target='_blank' className="btn btn-icon btn-sm" style={{
+                background: 'black',
+                color: 'white'
+              }}>
+                <PlayStoreIcon size={10} />
+              </a>
+            </Tooltip>
+
+            
           </div>
         </div>
       </div>
