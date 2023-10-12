@@ -106,6 +106,18 @@ export function AndroidIcon({size = 30, color = 'var(--text)', ...props}) {
     )
 }
 
+export function XCodeIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="logos:xcode" {...props} color={color} width={size} />
+    )
+}
+
+export function FlutterIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="logos:flutter" {...props} color={color} width={size} />
+    )
+}
+
 export function HtmlIcon({size = 30, color = 'var(--text)', ...props}) {
     return(
         <Icon icon="vscode-icons:file-type-html" {...props} color={color} width={size} />

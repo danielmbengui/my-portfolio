@@ -1,57 +1,31 @@
 import React, { useRef } from 'react';
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
-import Chatbot from 'react-chatbot-kit';
-//import config from '../utility/chatbot/config';
-import ActionProvider from '../utility/chatbot/ActionProvider';
-import MessageParser from '../utility/chatbot/MessageParser';
-import LinksBar from '../components/layouts/LinksBar';
-import SectionsBar from '../components/layouts/SectionsBar';
 import useWindowSize from '../hooks/useWindowSize';
 import { Box } from '@mui/system';
-import MobileHeader from '../components/layouts/MobileHeader';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { ARRAY_NAMESPACES, ARRAY_LANGAGES, LANGAGE_FRENCH, LANGAGE_ENGLISH, _MY_PROFILE_, _PAGE_LINK_CHAT_BOT_, _PAGE_LINK_RESUME_, _NAMESPACE_LANGAGE_HOME_, THEME_DARK, THEME_LIGHT, _WEBSITE_ADDRESS_, _NEXTJS_LINK_ } from '@/_mocks_/_settings_items_';
-
-import { createChatBotMessage } from 'react-chatbot-kit';
-import Options from '../components/molecules/Options';
-import ExperienceCards from '../components/organisms/ExperienceCards';
-import ProjectCards from '../components/organisms/ProjectCards';
-import SkillCards from '../components/organisms/SkillCards';
-import BlogCards from '../components/organisms/BlogCards';
+import { ARRAY_NAMESPACES, ARRAY_LANGAGES, _MY_PROFILE_, _PAGE_LINK_CHAT_BOT_, _PAGE_LINK_RESUME_, _NAMESPACE_LANGAGE_HOME_, _WEBSITE_ADDRESS_, _NEXTJS_LINK_ } from '@/_mocks_/_settings_items_';
 import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 import { useLangMode } from '../contexts/LangModeProvider';
-import FrenchChatbot from '../components/chatbot/FrenchChatbot';
-import EnglishChatbot from '../components/chatbot/EnglishChatbot';
 
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import { Avatar, ButtonBase, Container, Drawer, Grid, Paper, Popover, Stack, Tooltip, useTheme } from '@mui/material';
+import { Avatar, Drawer, Grid, Paper, Stack, Tooltip, useTheme } from '@mui/material';
 import StyledBadge from '../components/atoms/StyledBadge';
-import { grey, blue } from '@mui/material/colors';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import PhoneIcon from '@mui/icons-material/Phone';
-import EmailIcon from '@mui/icons-material/Email';
-
 import SelectLangageComponent from "../components/contexts/SelectLangageComponent"
 import SwitchThemeComponent from '../components/contexts/SwitchThemeComponent';
 import { CssBaseline } from '@mui/material';
-import DesktopContent from '../components/layouts/DesktopContent';
 import MobileLinksBar from '../components/layouts/MobileLinksBar';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import MobileSectionsBar from '../components/layouts/MobileSectionsBar';
 import Link from 'next/link';
 import { ResumeIcon } from '@/components/icons/IconMaterialUi';
-import { AndroidIcon, AndroidStudioIcon, CssIcon, HtmlIcon, JavascriptIcon, MaterialUiIcon, MomentJsIcon, NextJsIcon, NodeJsIcon, PhotoshopIcon, PwaIcon, ReactIcon, SpyderIcon, SwrIcon, VisualStudioIcon } from '@/components/icons/IconifiyIcons';
+import {AndroidStudioIcon,XCodeIcon,FlutterIcon, CssIcon, HtmlIcon, JavascriptIcon, MaterialUiIcon, NextJsIcon, NodeJsIcon, PwaIcon, ReactIcon, VisualStudioIcon } from '@/components/icons/IconifiyIcons';
 import { motion, AnimatePresence } from "framer-motion"
-import { Fade, Bounce } from "react-awesome-reveal";
+import { Bounce } from "react-awesome-reveal";
 import { useDeviceMode } from '@/contexts/DeviceModeProvider';
 
 
@@ -246,6 +220,7 @@ export const WebHome = () => {
   const [currentImageProg, setCurrentImageProg] = useState(0);
   const [currentImageFramework, setCurrentImageFramework] = useState(0);
   const [currentImageSoftware, setCurrentImageSoftware] = useState(0);
+  const [currentImageMobile, setCurrentImageMobile] = useState(0);
   const imgProg = [
     <JavascriptIcon size={60} />,
     <HtmlIcon size={60} />,
@@ -264,12 +239,19 @@ export const WebHome = () => {
     <VisualStudioIcon size={60} />,
   ]
 
+  const imgMobile = [
+    <AndroidStudioIcon size={60} />,
+    <XCodeIcon size={60} />,
+    <FlutterIcon size={60} />,
+  ]
+
   useEffect(() => {
 
     const interval = setInterval(() => {
       setCurrentImageProg((prevImage) => (prevImage + 1) % imgProg.length);
       setCurrentImageFramework((prevImage) => (prevImage + 1) % imgFramework.length);
       setCurrentImageSoftware((prevImage) => (prevImage + 1) % imgSoftware.length);
+      setCurrentImageMobile((prevImage) => (prevImage + 1) % imgMobile.length);
     }, 3000);
     return () => clearInterval(interval);
 
@@ -464,6 +446,55 @@ export const WebHome = () => {
                 </Grid>
               </AnimatePresence>
             </Stack>
+
+            <Stack justifyContent={'center'} alignItems={'center'} style={{
+              position: 'relative',
+              //background:'cyan',
+              //top: 0,
+              //left: 0,
+              width: 80,
+              height: 80,
+              objectFit: 'cover',
+            }}>
+              <AnimatePresence style={{
+                position: 'relative',
+                //background:'red',
+                margin: 'auto',
+                objectFit: 'cover',
+              }}>
+                <Grid container justifyContent={'center'} alignItems={'center'}>
+                  {imgMobile.map((image, index) => (
+                    <motion.div
+                      key={'img-software-' + index}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: index === currentImageMobile ? 1 : 0 }}
+                      exit={{ opacity: 0 }}
+                      //transition={{ duration: 0.5 }}
+                      transition={{ duration: 1 }}
+                      whileTap={{
+                        scale: index === currentImageMobile ? 2 : 1,
+                      }}
+                      style={{
+                        position: 'absolute',
+                        //background:'yellow',
+                        top: 0,
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        //textAlign:'center'
+                      }}
+                    >
+                      <Stack justifyContent={'center'} alignItems={'center'} sx={{
+                        width: '100%',
+                        height: '100%'
+                      }}>
+                        {image}
+                      </Stack>
+                    </motion.div>
+                  ))}
+                </Grid>
+              </AnimatePresence>
+            </Stack>
           </Stack>
 
           <Typography fontWeight={'bold'} pb={3}>{t('userPosition', { ns: _NAMESPACE_LANGAGE_HOME_ })}</Typography>
@@ -564,207 +595,6 @@ export const WebHome = () => {
         </div>
       </div>
     </Box>
-  );
-};
-
-const MobileHome = () => {
-  const { t } = useTranslation();
-  const [lang,] = useLangMode();
-  const [config, setConfig] = useState({
-    botName: 'Jeffrey Yu',
-    initialMessages: [
-      createChatBotMessage(
-        t('welcome'),
-        {
-          widget: 'moodOptions',
-        }
-      ),
-    ],
-    // customStyles: {
-    //   botMessageBox: {
-    //     backgroundColor: '#147efb',
-    //   },
-    //   chatButton: {
-    //     backgroundColor: '#147efb',
-    //   },
-    // },
-    widgets: [
-      {
-        widgetName: 'moodOptions',
-        widgetFunc: ({ actionProvider }) => (
-          <Options actionProvider={actionProvider} getOptions={getMoodOptions} />
-        ),
-      },
-      {
-        widgetName: 'jokeOptions',
-        widgetFunc: ({ actionProvider }) => (
-          <Options actionProvider={actionProvider} getOptions={getJokeOptions} />
-        ),
-      },
-      {
-        widgetName: 'personalOptions',
-        widgetFunc: ({ actionProvider }) => (
-          <Options
-            actionProvider={actionProvider}
-            getOptions={getPersonalOptions}
-          />
-        ),
-      },
-      {
-        widgetName: 'experienceOptions',
-        widgetFunc: () => <ExperienceCards />,
-      },
-      {
-        widgetName: 'projectsOptions',
-        widgetFunc: () => <ProjectCards />,
-      },
-      {
-        widgetName: 'skillsOptions',
-        widgetFunc: () => <SkillCards />,
-      },
-      {
-        widgetName: 'blogsOptions',
-        widgetFunc: () => <BlogCards />,
-      },
-    ],
-  });
-  /*
-  const config = {
-    botName: 'Jeffrey Yu',
-    initialMessages: [
-      createChatBotMessage(
-        t('welcome'),
-        {
-          widget: 'moodOptions',
-        }
-      ),
-    ],
-    // customStyles: {
-    //   botMessageBox: {
-    //     backgroundColor: '#147efb',
-    //   },
-    //   chatButton: {
-    //     backgroundColor: '#147efb',
-    //   },
-    // },
-    widgets: [
-      {
-        widgetName: 'moodOptions',
-        widgetFunc: ({ actionProvider }) => (
-          <Options actionProvider={actionProvider} getOptions={getMoodOptions} />
-        ),
-      },
-      {
-        widgetName: 'jokeOptions',
-        widgetFunc: ({ actionProvider }) => (
-          <Options actionProvider={actionProvider} getOptions={getJokeOptions} />
-        ),
-      },
-      {
-        widgetName: 'personalOptions',
-        widgetFunc: ({ actionProvider }) => (
-          <Options
-            actionProvider={actionProvider}
-            getOptions={getPersonalOptions}
-          />
-        ),
-      },
-      {
-        widgetName: 'experienceOptions',
-        widgetFunc: () => <ExperienceCards />,
-      },
-      {
-        widgetName: 'projectsOptions',
-        widgetFunc: () => <ProjectCards />,
-      },
-      {
-        widgetName: 'skillsOptions',
-        widgetFunc: () => <SkillCards />,
-      },
-      {
-        widgetName: 'blogsOptions',
-        widgetFunc: () => <BlogCards />,
-      },
-    ],
-  };
-  */
-
-  useEffect(() => {
-    /*
-    setConfig({
-      botName: 'Jeffrey Yu',
-      initialMessages: [
-        createChatBotMessage(
-          t('welcome'),
-          {
-            widget: 'moodOptions',
-          }
-        ),
-      ],
-      // customStyles: {
-      //   botMessageBox: {
-      //     backgroundColor: '#147efb',
-      //   },
-      //   chatButton: {
-      //     backgroundColor: '#147efb',
-      //   },
-      // },
-      widgets: [
-        {
-          widgetName: 'moodOptions',
-          widgetFunc: ({ actionProvider }) => (
-            <Options actionProvider={actionProvider} getOptions={getMoodOptions} />
-          ),
-        },
-        {
-          widgetName: 'jokeOptions',
-          widgetFunc: ({ actionProvider }) => (
-            <Options actionProvider={actionProvider} getOptions={getJokeOptions} />
-          ),
-        },
-        {
-          widgetName: 'personalOptions',
-          widgetFunc: ({ actionProvider }) => (
-            <Options
-              actionProvider={actionProvider}
-              getOptions={getPersonalOptions}
-            />
-          ),
-        },
-        {
-          widgetName: 'experienceOptions',
-          widgetFunc: () => <ExperienceCards />,
-        },
-        {
-          widgetName: 'projectsOptions',
-          widgetFunc: () => <ProjectCards />,
-        },
-        {
-          widgetName: 'skillsOptions',
-          widgetFunc: () => <SkillCards />,
-        },
-        {
-          widgetName: 'blogsOptions',
-          widgetFunc: () => <BlogCards />,
-        },
-      ],
-    })
-    */
-  }, [lang])
-
-  return (
-    <div style={{
-      paddingTop: 10
-    }}>
-
-      {
-        lang && lang === LANGAGE_FRENCH && <FrenchChatbot />
-      }
-
-      {
-        lang && lang === LANGAGE_ENGLISH && <EnglishChatbot />
-      }
-    </div>
   );
 };
 
