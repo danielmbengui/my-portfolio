@@ -442,59 +442,6 @@ export const WebHome = () => {
                 </Grid>
               </AnimatePresence>
             </Stack>
-
-            {
-              /*
-<Stack justifyContent={'center'} alignItems={'center'} style={{
-              position: 'relative',
-              //background:'cyan',
-              //top: 0,
-              //left: 0,
-              width: 80,
-              height: 80,
-              objectFit: 'cover',
-            }}>
-              <AnimatePresence style={{
-                position: 'relative',
-                //background:'red',
-                margin: 'auto',
-                objectFit: 'cover',
-              }}>
-                <Grid container justifyContent={'center'} alignItems={'center'}>
-                  {imgMobile.map((image, index) => (
-                    <motion.div
-                      key={'img-software-' + index}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: index === currentImageMobile ? 1 : 0 }}
-                      exit={{ opacity: 0 }}
-                      //transition={{ duration: 0.5 }}
-                      transition={{ duration: 1 }}
-                      whileTap={{
-                        scale: index === currentImageMobile ? 2 : 1,
-                      }}
-                      style={{
-                        position: 'absolute',
-                        //background:'yellow',
-                        top: 0,
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                        //textAlign:'center'
-                      }}
-                    >
-                      <Stack justifyContent={'center'} alignItems={'center'} sx={{
-                        width: '100%',
-                        height: '100%'
-                      }}>
-                        {image}
-                      </Stack>
-                    </motion.div>
-                  ))}
-                </Grid>
-              </AnimatePresence>
-            </Stack>
-              */
-            }
           </Stack>
 
           <Typography fontWeight={'bold'} pb={3}>{t('userPosition', { ns: _NAMESPACE_LANGAGE_HOME_ })}</Typography>
