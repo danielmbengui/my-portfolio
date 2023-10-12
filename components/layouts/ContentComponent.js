@@ -57,7 +57,6 @@ import CardSocial from '@/components/CardSocial';
 import { NextJsIcon } from '@/components/icons/IconifiyIcons';
 import AppBarComponent from '@/components/navigation/AppBarComponent';
 import MobileAppBarComponent from '@/components/navigation/MobileAppBarComponent';
-import FooterComponent from '../footer/FooterComponent';
 
 export default function ContentComponent({children}) {
   const { t } = useTranslation();

@@ -81,6 +81,8 @@ export default function FooterComponent() {
         <div className="mb-5">
           <Tooltip 
           style={{ display: 'none' }}
+          display="none"
+          
           sx={{
             zIndex: 1
           }} title={t('seeMyCV')} placement="top">
