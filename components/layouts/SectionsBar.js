@@ -201,14 +201,15 @@ function SectionsBar() {
             <Tooltip
               title={<Typography color={'white'}  style={{ fontSize: 13 }}>{t('seeMyCV')}</Typography>}
               placement="right"
+              open={false}
             //sx={{ "&:hover": { color: "blue" } }}
             >
-              <a href={`/${lang}/${_PAGE_LINK_RESUME_}`} target="_blank">
+              <a href={`/${lang}/${_PAGE_LINK_RESUME_}`} target="_blank" style={{ display: 'none' }}>
                 <IconButton
                   aria-label={t('sections.skills.title')}
                   //onClick={() => toggleDrawer(true, t('sections.skills.title'))}
                   //onClick={() => router.push(`/${lang}/${PAGE_LINK_SKILLS}`)}
-                  sx={{ "&:hover": { color: "var(--primary)" } }}
+                  sx={{ "&:hover": { color: "var(--primary)" }, display:"none" }}
                 //color={router.asPath === PAGE_LINK_SKILLS ? 'var(--primary)' : 'var(--accents7)'} 
                 >
                   <ResumeIcon

@@ -518,10 +518,11 @@ export const WebHome = () => {
           <div className="mt-2">
             <Tooltip sx={{
               zIndex: 1
-            }} title={t('seeMyCV')} placement="top">
+            }} open={false} title={t('seeMyCV')} placement="top">
               <a href={`/${lang}${_PAGE_LINK_RESUME_}`} target='_blank' className="btn btn-icon btn-sm" style={{
                 background: 'var(--accents6)',
-                color: 'black'
+                color: 'black',
+                display: "none"
               }}>
                 <ion-icon name="newspaper-outline"></ion-icon>
               </a>
