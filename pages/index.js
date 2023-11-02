@@ -26,6 +26,7 @@ import {PlayStoreIcon, AndroidIcon,XCodeIcon,FlutterIcon, CssIcon, HtmlIcon, Jav
 import { motion, AnimatePresence } from "framer-motion"
 import { Bounce } from "react-awesome-reveal";
 import { useDeviceMode } from '@/contexts/DeviceModeProvider';
+import Image from 'next/image';
 
 
 export function WebAppBar() {
@@ -214,6 +215,8 @@ export const WebHome = () => {
     y: 0
   })
 
+  //const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const { isMobile } = useDeviceMode();
 
   const [isVisible, setIsVisible] = useState(true);
   const [currentImageProg, setCurrentImageProg] = useState(0);
@@ -467,7 +470,7 @@ export const WebHome = () => {
           </Stack>
 
 
-          <Stack my={5} p={1} alignItems={'center'}>
+          <Stack mb={5} p={1} alignItems={'center'}>
             <Link href={_PAGE_LINK_CHAT_BOT_} target={'_blank'}>
               <Button sx={{ color: 'var(--text)' }} startIcon={<ResumeIcon />} variant='contained'>{t('buttons.goChat', { ns: _NAMESPACE_LANGAGE_HOME_ })}</Button>
             </Link>
@@ -475,6 +478,41 @@ export const WebHome = () => {
               <Button sx={{ color: 'var(--text)' }}>{t('buttons.goCv', { ns: _NAMESPACE_LANGAGE_HOME_ })}</Button>
             </Link>
           </Stack>
+
+          <Stack mb={5} p={1} alignItems={'center'} alignContent={'center'}>
+            <Typography fontWeight={'bold'} mb={1}>Mon dernier projet</Typography>
+            <div style={{ width: '100%', }}>
+  <Link href={"https://playpadapp.com"} target='_blank'>
+  <Image alt="Description" src={"/img/playpad/playpad_banner.png"}
+              //fill="responsive"
+              sx={{width:'100%', height: '100%'}}
+              width={300}
+              height={100} style="cover" />
+  </Link>
+
+ <Stack mt={3} alignItems={'center'} justifyContent={'center'}>
+  <Stack direction={'row'} justifyContent={'center'} alignItems={'center'} spacing={1}>
+  <Link href={"https://play.google.com/store/apps/details?id=com.playpad.playpadapp"} target='_blank'>
+  <Image alt="Description" src={"/img/playpad/playstore.png"}
+              //fill="responsive"
+              sx={{width:'100%', height: '100%'}}
+              width={150}
+              height={50} style="cover" />
+              </Link>
+              <Link href={"https://apps.apple.com/app/id6450876480"} target='_blank'>
+               <Image alt="Description" src={"/img/playpad/appstore.png"}
+              //fill="responsive"
+              sx={{width:'100%', height: '100%'}}
+              width={150}
+              height={50} style="cover" />
+              </Link>
+  </Stack>
+ </Stack>
+</div>
+            
+          </Stack>
+
+
 
 
         </Stack>

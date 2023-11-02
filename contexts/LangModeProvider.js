@@ -35,19 +35,6 @@ useEffect(() => {
         window.localStorage.setItem(STORAGE_LANG_MODE, lang);
         router.replace(router.asPath, router.asPath, { locale: lang })
         moment.locale(lang);
-        
-        //console.log("ACTUAL locale website address DEFAULT lang", router.defaultLocale)
-      //console.log("ACTUAL locale website address", router.locale)
-        //router.push(url: router.asPath);
-        /*
-        router.push({
-          pathname: router.asPath,
-          query: { pid: post.id },
-          
-        })
-        */
-       
-      //console.log("Theme MaterialUI : ", themeMode);
     }, [lang]);
   
     return (
