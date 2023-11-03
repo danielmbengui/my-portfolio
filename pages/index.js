@@ -278,7 +278,7 @@ const ProjectPlayPad = () => {
   return(
     <Grid container sx={{width:'100%', height:'100%', background:'green'}} justifyContent={'center'}>
   <Grid item xs={12} sx={{textAlign:'center', background:backGround, width:'100%', border:'1px solid var(--primary)', borderBottomLeftRadius:'5px', borderBottomRightRadius: '5px'}}>
-  <Typography fontWeight={'bold'} mt={2}>{t('projects.drilldev.type')}</Typography>
+  <Typography fontWeight={'bold'} mt={2}>{t('projects.playpad.type')}</Typography>
   <Stack  pt={2} pb={5} alignItems={'center'} alignContent={'center'}>
   <Image alt="Description" src={"/img/playpad/playpad_banner.png"}
                 //fill="responsive"

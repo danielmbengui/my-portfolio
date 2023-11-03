@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { CacheProvider } from '@emotion/react';
 import createEmotionCache from '../utility/createEmotionCache';
-import lightTheme from '../styles/theme/lightTheme';
 import '@/styles/globals.css';
 import '@/styles/chatbox.css';
 import '@/styles/carousel.css';
 import LangModeProvider from '../contexts/LangModeProvider';
 import DeviceModeProvider from '../contexts/DeviceModeProvider';
-import { appWithTranslation, useTranslation } from "next-i18next";
+import { appWithTranslation } from "next-i18next";
 import { DEFAULT_LANGAGE, DEFAULT_THEME, STORAGE_LANG_MODE, STORAGE_THEME_MODE } from '../_mocks_/_settings_items_';
 import { SSRProvider } from '@react-aria/ssr';
 import ThemeModeProvider from '../contexts/ThemeModeProvider';
@@ -18,7 +17,6 @@ import { CssBaseline } from '@mui/material';
 const clientSideEmotionCache = createEmotionCache();
 
 const MyApp = (props) => {
-  const {t} = useTranslation();
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   const [themeMode, setThemeMode] = useState(DEFAULT_THEME);
   const [langMode, setLangMode] = useState(DEFAULT_LANGAGE);
@@ -101,7 +99,7 @@ goTopButton.forEach(function (el) {
         <LangModeProvider langMode={langMode}>
           <DeviceModeProvider>
           <Head>
-        <title>{t('titlePageHome')}</title>
+        <title>{"Daniel Mbengui"}</title>
         <meta
           name="description"
           content="Fullstack Developer | Mobile Developer "
