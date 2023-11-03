@@ -122,5 +122,20 @@
         "goChat": "Start the tour",
         "goCv": "See my resume",
         "downloadCv": "Download my resume"
+    },
+    "last_projects" : "My lastest projects", 
+    "projects": {
+        "winno" : {
+            "name" : "Winno Bearz Club",
+            "type" : "Blockain Project"
+        },
+        "drilldev" : {
+            "name" : "Drill Dev",
+            "type" : "Artificial Intelligence"
+        },
+        "playpad" : {
+            "name" : "PlayPad App",
+            "type" : "Mobile Project"
+        }
     }
 }

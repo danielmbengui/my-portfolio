@@ -104,7 +104,7 @@ goTopButton.forEach(function (el) {
         <title>{t('titlePageHome')}</title>
         <meta
           name="description"
-          content="Daniel Mbengui | Backend Developer | Web Developer "
+          content="Fullstack Developer | Mobile Developer "
         />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="/me.ico" />

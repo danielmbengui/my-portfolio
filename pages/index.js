@@ -12,7 +12,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import { Avatar, Drawer, Grid, Paper, Stack, Tooltip, useTheme } from '@mui/material';
+import { Avatar, Container, Drawer, Grid, Paper, Stack, Tooltip, useTheme } from '@mui/material';
 import StyledBadge from '../components/atoms/StyledBadge';
 import SelectLangageComponent from "../components/contexts/SelectLangageComponent"
 import SwitchThemeComponent from '../components/contexts/SwitchThemeComponent';
@@ -203,25 +203,124 @@ const getPersonalOptions = (actionProvider) => {
   ];
 };
 
+const ProjectWinnoBearz = () => {
+  const { t } = useTranslation();
+  const { isMobile, isTablet } = useDeviceMode();
+  const theme = useTheme();
+  const backGround = theme.palette.mode == 'light' ? 'white' : 'rgba(0,0,0, 0.1)';
+  return(
+    
+    <Grid container sx={{width:'100%', height:'100%',}} justifyContent={'center'}>
+  <Grid item xs={12} sx={{textAlign:'center', background: backGround, width:'100%', border:'1px solid var(--primary)', borderBottomLeftRadius:'5px', borderBottomRightRadius: '5px'}}>
+  
+  <Typography fontWeight={'bold'} mt={2}>{t('projects.winno.type')}</Typography>
+  <Stack  p={1} alignItems={'center'} alignContent={'center'}>
+              
+    <Image alt="Description" src={"/img/winno/winno_logo.png"}
+                //fill="responsive"
+                sx={{width:'100%', height: '100%'}}
+                width={isMobile ? 135 : 150}
+                height={isMobile ? 135 : 150} style="cover" />
+    
+    <Stack mt={2} direction={'row'} justifyContent={'center'} alignItems={'center'} spacing={3} display={'none'}>
+
+                <Image alt="Description" src={"/img/winno/twitter.png"}
+                //fill="responsive"
+                sx={{width:'100%', height: '100%'}}
+                width={isMobile ? 50 : 50}
+                height={isMobile ? 50 : 50} style="cover" />
+                <Image alt="Description" src={"/img/winno/opensea.png"}
+                //fill="responsive"
+                sx={{width:'100%', height: '100%'}}
+                width={isMobile ? 120 : 150}
+                height={isMobile ? 28 : 35} style="cover" />
+    </Stack>
+              
+            </Stack>
+  </Grid></Grid>
+  )
+}
+
+const ProjectDrillDev = () => {
+  const { t } = useTranslation();
+  const { isMobile, isTablet } = useDeviceMode();
+  const theme = useTheme();
+  const backGround = theme.palette.mode == 'light' ? 'white' : 'rgba(0,0,0, 0.1)';
+
+  return(
+    <Grid container sx={{width:'100%', height:'100%', background:'green'}} justifyContent={'center'}>
+  <Grid item xs={12} sx={{textAlign:'center', background:backGround, width:'100%', border:'1px solid var(--primary)', borderBottomLeftRadius:'5px', borderBottomRightRadius: '5px'}}>
+  <Typography fontWeight={'bold'} mt={2}>{t('projects.drilldev.type')}</Typography>
+  <Stack  p={2} alignItems={'center'} alignContent={'center'}>
+  <Stack justifyContent={'center'} alignItems={'center'} spacing={1}>
+    <Image alt="Description" src={"/img/drilldev/logo_drilldev.png"}
+                //fill="responsive"
+                sx={{width:'80%', height: '80%'}}
+                width={isMobile ? 75 : 85}
+                height={isMobile ? 75 : 85} style="cover" />
+                <Image alt="Description" src={"/img/drilldev/text_drilldev.png"}
+                //fill="responsive"
+                sx={{width:'100%', height: '100%'}}
+                width={isMobile ? 120 : 150}
+                height={isMobile ? 40 : 50} style="cover" />
+    </Stack>       
+            </Stack>
+  </Grid></Grid>
+  )
+}
+
+const ProjectPlayPad = () => {
+  const { t } = useTranslation();
+  const { isMobile, isTablet } = useDeviceMode();
+  const theme = useTheme();
+  const backGround = theme.palette.mode == 'light' ? 'white' : 'rgba(0,0,0, 0.1)';
+
+  return(
+    <Grid container sx={{width:'100%', height:'100%', background:'green'}} justifyContent={'center'}>
+  <Grid item xs={12} sx={{textAlign:'center', background:backGround, width:'100%', border:'1px solid var(--primary)', borderBottomLeftRadius:'5px', borderBottomRightRadius: '5px'}}>
+  <Typography fontWeight={'bold'} mt={2}>{t('projects.drilldev.type')}</Typography>
+  <Stack  pt={2} pb={5} alignItems={'center'} alignContent={'center'}>
+  <Image alt="Description" src={"/img/playpad/playpad_banner.png"}
+                //fill="responsive"
+                sx={{width:'80%', height: '80%'}}
+                width={isMobile ? 256 : 320}
+                height={isMobile ? 80 : 100} style="cover" />
+    <Stack mt={2} direction={'row'} justifyContent={'center'} alignItems={'center'} spacing={1} display={'none'}>
+    <Image alt="Description" src={"/img/playpad/playstore.png"}
+                //fill="responsive"
+                sx={{width:'100%', height: '100%'}}
+                width={isMobile ? 120 : 150}
+                height={isMobile ? 40 : 50} style="cover" />
+<Image alt="Description" src={"/img/playpad/appstore.png"}
+                //fill="responsive"
+                sx={{width:'100%', height: '100%'}}
+                width={isMobile ? 120 : 150}
+                height={isMobile ? 40 : 50} style="cover" />
+    </Stack>
+              
+            </Stack>
+  </Grid></Grid>
+  )
+}
 
 
-export const WebHome = () => {
+export const WebHome = ({currentYear}) => {
+  //const currentYear = {param};
   const { t } = useTranslation();
   const theme = useTheme();
   const [lang,] = useLangMode();
-  const refProgramm = useRef();
-  const [positionVisualStudio, setPositionVisualStudio] = useState({
-    x: 0,
-    y: 0
-  })
+  const { isMobile, isTablet } = useDeviceMode();
+
 
   //const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  const { isMobile } = useDeviceMode();
-
+  
   const [isVisible, setIsVisible] = useState(true);
   const [currentImageProg, setCurrentImageProg] = useState(0);
   const [currentImageFramework, setCurrentImageFramework] = useState(0);
   const [currentImageSoftware, setCurrentImageSoftware] = useState(0);
+  const [currentProject, setCurrentProject] = useState(0);
+  //const [currentProjectDrillDev, setCurrentProjectDrillDev] = useState(0);
+  //const [currentProjectPlayPad, setCurrentProjectPlayPad] = useState(0);
   const imgProg = [
     <JavascriptIcon size={60} />,
     <HtmlIcon size={60} />,
@@ -243,6 +342,21 @@ export const WebHome = () => {
     <FlutterIcon size={50} />
   ]
 
+  const componentProjects = [
+    {item:<ProjectWinnoBearz />, link: "https://winno.bearzclub.io/"},
+    {item:<ProjectDrillDev />},
+    {item:<ProjectPlayPad />},
+    
+    //projectPlayPad,
+  ]
+
+  const componentProjectsLinks = [
+    "https://winno.bearzclub.io/",
+    "https://drilldev.com/",
+    "https://playpadapp.com/",
+  ]
+
+
 
 
   useEffect(() => {
@@ -251,6 +365,9 @@ export const WebHome = () => {
       setCurrentImageProg((prevImage) => (prevImage + 1) % imgProg.length);
       setCurrentImageFramework((prevImage) => (prevImage + 1) % imgFramework.length);
       setCurrentImageSoftware((prevImage) => (prevImage + 1) % imgSoftware.length);
+      setCurrentProject((prevComponent) => (prevComponent + 1) % componentProjects.length);
+      //setCurrentProjectDrillDev((prevComponent) => (prevComponent + 1) % componentProjectDrillDev.length);
+      //setCurrentProjectPlayPad((prevComponent) => (prevComponent + 1) % componentProjectPlayPad.length);
     }, 3000);
     return () => clearInterval(interval);
 
@@ -261,6 +378,7 @@ export const WebHome = () => {
     <Box sx={{
       height: '100%',
       position: 'relative',
+      display:'flex',
       //my:30,
       //mb:50,
       overflowY: 'scroll',
@@ -286,10 +404,13 @@ export const WebHome = () => {
       }}>
         <Stack
           //mb={50}
-          py={10}
+         // py={10}
+          pt={10}
+          pb={5}
           justifyContent={'center'} alignItems={'center'}
           sx={{
             opacity: 1,
+            position:'relative',
             //background:'cyan'
           }}>
           <Stack p={1} mt={3} direction={'row'} spacing={1} alignItems={'center'} justifyContent={'center'} sx={{
@@ -479,42 +600,58 @@ export const WebHome = () => {
             </Link>
           </Stack>
 
-          <Stack mb={5} p={1} alignItems={'center'} alignContent={'center'}>
-            <Typography fontWeight={'bold'} mb={1}>Mon dernier projet</Typography>
-            <div style={{ width: '100%', }}>
-  <Link href={"https://playpadapp.com"} target='_blank'>
-  <Image alt="Description" src={"/img/playpad/playpad_banner.png"}
-              //fill="responsive"
-              sx={{width:'100%', height: '100%'}}
-              width={300}
-              height={100} style="cover" />
-  </Link>
+          <Grid container justifyContent={'center'} p={1}>
+            <Grid item xs={12} sm={6} md={4} sx={{textAlign:'center',}} >
+                <Grid container justifyContent={'center'}>
+<Grid item sx={{textAlign:'center', background: 'var(--primary)', borderTopLeftRadius:'5px', borderTopRightRadius:'5px'}} py={1} xs={12}>
+<Typography fontWeight={'bold'}>{t('last_projects')}</Typography>
+</Grid>
 
- <Stack mt={3} alignItems={'center'} justifyContent={'center'}>
-  <Stack direction={'row'} justifyContent={'center'} alignItems={'center'} spacing={1}>
-  <Link href={"https://play.google.com/store/apps/details?id=com.playpad.playpadapp"} target='_blank'>
-  <Image alt="Description" src={"/img/playpad/playstore.png"}
-              //fill="responsive"
-              sx={{width:'100%', height: '100%'}}
-              width={150}
-              height={50} style="cover" />
+
+<Grid item xs={12} sx={{position:'relative', minHeight:{xs:'205px', sm:'220px'} }}>
+<Link href={componentProjectsLinks[currentProject]} target='_blank' sx={{textAlign:'center'}}>
+<AnimatePresence id={'ok'} style={{
+                position: 'relative',
+                //background:'red',
+                //margin: 'auto',
+                //objectFit: 'cover',
+              }}>
+                <Grid container justifyContent={'center'} alignItems={'center'} sx={{width:'100%', position:'relative'}}>
+                  {componentProjects.map((component, index) => (
+                    
+                    <Grid item key={index} xs={12}>
+<motion.div
+                      
+                      initial={{ opacity: 0, position:'absolute', top:0, bottom:0}}
+                      animate={{ opacity: index === currentProject ? 1 : 0 }}
+                      exit={{ opacity: 0 }}
+                      //transition={{ duration: 0.5 }}
+                      whileTap={{
+                        scale: index === currentProject ? 2 : 1,
+                      }}
+                      transition={{ duration: 1 }}
+                      style={{
+                        width:'100%',
+                        //position: 'absolute', // Ajout de la position absolue ici
+              //top: 0,
+              //left: 0,
+              height: '100%',
+                      }}
+                    >
+                      {component.item}
+                    </motion.div>
+                      </Grid>
+                  ))}
+                </Grid>
+              </AnimatePresence>
               </Link>
-              <Link href={"https://apps.apple.com/app/id6450876480"} target='_blank'>
-               <Image alt="Description" src={"/img/playpad/appstore.png"}
-              //fill="responsive"
-              sx={{width:'100%', height: '100%'}}
-              width={150}
-              height={50} style="cover" />
-              </Link>
-  </Stack>
- </Stack>
-</div>
-            
-          </Stack>
+</Grid>
 
+                </Grid>
 
-
-
+      
+            </Grid>
+          </Grid>
         </Stack>
         <div className="appFooter" style={{ position: 'relative', background: 'var(--background)' }}>
           <div className="footer-title" style={{ color: 'var(--accents9)' }}>
@@ -523,8 +660,8 @@ export const WebHome = () => {
                 {t('footer.deployedWith')} <a href={_NEXTJS_LINK_} target='_blank'>{`Next.js`} <NextJsIcon size={15} /></a>
               </div>
               <div>
-                {`${t('footer.copyright')}`}<span className="yearNow"></span>{` ${_WEBSITE_ADDRESS_}`}
-              </div>
+              {`${t('footer.copyright')}`}<span>{currentYear == 2023 ? "2023" : `2023-${currentYear}`}</span>{` ${_WEBSITE_ADDRESS_}`}
+            </div>
               <div>
                 {t('footer.allRightsReserved')}
               </div>
@@ -602,6 +739,7 @@ export default function HomePage() {
   const { t } = useTranslation();
   const { isMobile } = useDeviceMode();
   const [lang] = useLangMode();
+  const currentYear = new Date().getFullYear();
 
   return (
     <div style={{
@@ -623,7 +761,7 @@ export default function HomePage() {
 
       <WebAppBar />
       <CssBaseline />
-      <WebHome />
+      <WebHome currentYear={currentYear} />
 
     </div>
   );

@@ -67,6 +67,8 @@ export default function FooterComponent() {
   const { t } = useTranslation();
   const [lang] = useLangMode();
   const {isMobile} = useDeviceMode();
+  //const now = new Date();
+  const currentYear = new Date().getFullYear();
 
   const title = t('sections.skills.title');
 
@@ -134,7 +136,7 @@ export default function FooterComponent() {
               {t('footer.deployedWith')} <a href={_NEXTJS_LINK_} target='_blank'>{`Next.js`} <NextJsIcon size={15} /></a>
             </div>
             <div>
-              {`${t('footer.copyright')}`}<span className="yearNow"></span>{` ${_WEBSITE_ADDRESS_}`}
+              {`${t('footer.copyright')}`}<span>{currentYear == 2023 ? "2023" : `2023-${currentYear}`}</span>{` ${_WEBSITE_ADDRESS_}`}
             </div>
             <div>
               {t('footer.allRightsReserved')}

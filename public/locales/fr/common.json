@@ -96,5 +96,20 @@
         "goChat": "Commencez votre visite",
         "goCv": "Voir mon CV",
         "downloadCv": "Télécharger mon CV"
+    },
+    "last_projects" : "Mes derniers projets", 
+    "projects": {
+        "winno" : {
+            "name" : "Winno Bearz Club",
+            "type" : "Projet Blockain"
+        },
+        "drilldev" : {
+            "name" : "Drill Dev",
+            "type" : "Intelligence Artificielle"
+        },
+        "playpad" : {
+            "name" : "PlayPad App",
+            "type" : "Projet Mobile"
+        }
     }
 }

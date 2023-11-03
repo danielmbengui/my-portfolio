@@ -19,13 +19,14 @@
         --orange200: #FCD2AC;
         --orange300: #F8B181;
         --orange400: #F19160;
-        --orange500: #E8602F;
+        --orange500: #e86130;
         --orange600: #C74222;
         --orange700: #A72917;
         --orange800: #86150E;
         --orange900: #6F090A;
 
         --primary: var(--orange500);
+        --primary-opacity: rgba(232, 97, 48, 0.8);
 
         --blue-linkedin:#0A66C2;
         
