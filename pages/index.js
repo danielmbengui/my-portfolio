@@ -211,7 +211,7 @@ const ProjectWinnoBearz = () => {
   return(
     
     <Grid container sx={{width:'100%', height:'100%',}} justifyContent={'center'}>
-  <Grid item xs={12} sx={{textAlign:'center', background: backGround, width:'100%', border:'1px solid var(--primary)', borderBottomLeftRadius:'5px', borderBottomRightRadius: '5px'}}>
+  <Grid item xs={12} sx={{textAlign:'center', width:'100%', /*background: backGround, border:'1px solid var(--primary)', borderBottomLeftRadius:'5px', borderBottomRightRadius: '5px'*/}}>
   
   <Typography fontWeight={'bold'} mt={2}>{t('projects.winno.type')}</Typography>
   <Stack  p={1} alignItems={'center'} alignContent={'center'}>
@@ -249,7 +249,7 @@ const ProjectDrillDev = () => {
 
   return(
     <Grid container sx={{width:'100%', height:'100%', background:'green'}} justifyContent={'center'}>
-  <Grid item xs={12} sx={{textAlign:'center', background:backGround, width:'100%', border:'1px solid var(--primary)', borderBottomLeftRadius:'5px', borderBottomRightRadius: '5px'}}>
+  <Grid item xs={12} sx={{textAlign:'center', width:'100%', /*background:backGround, border:'1px solid var(--primary)', borderBottomLeftRadius:'5px', borderBottomRightRadius: '5px'*/}}>
   <Typography fontWeight={'bold'} mt={2}>{t('projects.drilldev.type')}</Typography>
   <Stack  p={2} alignItems={'center'} alignContent={'center'}>
   <Stack justifyContent={'center'} alignItems={'center'} spacing={1}>
@@ -277,7 +277,7 @@ const ProjectPlayPad = () => {
 
   return(
     <Grid container sx={{width:'100%', height:'100%', background:'green'}} justifyContent={'center'}>
-  <Grid item xs={12} sx={{textAlign:'center', background:backGround, width:'100%', border:'1px solid var(--primary)', borderBottomLeftRadius:'5px', borderBottomRightRadius: '5px'}}>
+  <Grid item xs={12} sx={{textAlign:'center', width:'100%', /*background:backGround, border:'1px solid var(--primary)', borderBottomLeftRadius:'5px', borderBottomRightRadius: '5px'*/}}>
   <Typography fontWeight={'bold'} mt={2}>{t('projects.playpad.type')}</Typography>
   <Stack  pt={2} pb={5} alignItems={'center'} alignContent={'center'}>
   <Image alt="Description" src={"/img/playpad/playpad_banner.png"}
@@ -591,7 +591,7 @@ export const WebHome = ({currentYear}) => {
           </Stack>
 
 
-          <Stack mb={5} p={1} alignItems={'center'}>
+          <Stack mb={3} p={1} alignItems={'center'}>
             <Link href={_PAGE_LINK_CHAT_BOT_} target={'_blank'}>
               <Button sx={{ color: 'var(--text)' }} startIcon={<ResumeIcon />} variant='contained'>{t('buttons.goChat', { ns: _NAMESPACE_LANGAGE_HOME_ })}</Button>
             </Link>
@@ -603,7 +603,7 @@ export const WebHome = ({currentYear}) => {
           <Grid container justifyContent={'center'} p={1}>
             <Grid item xs={12} sm={6} md={4} sx={{textAlign:'center',}} >
                 <Grid container justifyContent={'center'}>
-<Grid item sx={{textAlign:'center', background: 'var(--primary)', borderTopLeftRadius:'5px', borderTopRightRadius:'5px'}} py={1} xs={12}>
+<Grid item sx={{textAlign:'center', display:'none' /*background: 'var(--primary)', borderTopLeftRadius:'5px', borderTopRightRadius:'5px'*/}} py={1} xs={12}>
 <Typography fontWeight={'bold'}>{t('last_projects')}</Typography>
 </Grid>
 
