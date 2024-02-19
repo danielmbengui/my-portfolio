@@ -116,9 +116,10 @@ goTopButton.forEach(function (el) {
               /*
               <Script src="/assets/js/plugins/splide/splide.min.js" />
               <Script src="/assets/js/base.js" />
+              <CssBaseline />
               */
             }  
-            <CssBaseline />
+            
         <Component {...pageProps} />
           </DeviceModeProvider>
         </LangModeProvider>
