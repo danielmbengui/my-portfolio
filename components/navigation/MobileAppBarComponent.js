@@ -56,6 +56,7 @@ import stylesCarousel from "@/styles/Carousel.module.css"
 import CardSocial from '@/components/CardSocial';
 import { NextJsIcon } from '@/components/icons/IconifiyIcons';
 import AppBarComponent from '@/components/navigation/AppBarComponent';
+import { MY_AVATAR_COLOR } from '@/constants';
 
 
 
@@ -116,7 +117,7 @@ const {t} = useTranslation();
       anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
       variant="dot"
     >
-      <Avatar src="/me-no-back.png" sx={{ width: 40, height: 40, background:'var(--primary)' }} />
+      <Avatar src={MY_AVATAR_COLOR} sx={{ width: 40, height: 40, background:'var(--primary)' }} />
     </StyledBadge>
     <Drawer
         anchor="left"

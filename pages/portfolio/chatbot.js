@@ -51,6 +51,7 @@ import MobileSectionsBar from '@/components/layouts/MobileSectionsBar';
 import { styled } from '@mui/material/styles';
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 import { Fade } from 'react-awesome-reveal';
+import {MY_AVATAR_BLACK_AND_WHITE, MY_AVATAR_COLOR} from "@/constants";
 
 const BootstrapTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} arrow classes={{ popper: className }} />
@@ -103,7 +104,7 @@ const {t} = useTranslation();
       anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
       variant="dot"
     >
-      <Avatar src="/me-no-back.png" sx={{ width: 40, height: 40, background:'var(--primary)' }} />
+      <Avatar src={MY_AVATAR_COLOR} sx={{ width: 40, height: 40, background:'var(--primary)' }} />
     </StyledBadge>
       </IconButton>
       </BootstrapTooltip>
@@ -228,7 +229,7 @@ const {t} = useTranslation();
       anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
       variant="dot"
     >
-      <Avatar src="/me-no-back.png" sx={{ width: 40, height: 40, background:'var(--primary)' }} />
+      <Avatar src={MY_AVATAR_COLOR} sx={{ width: 40, height: 40, background:'var(--primary)' }} />
     </StyledBadge>
 
     <Drawer

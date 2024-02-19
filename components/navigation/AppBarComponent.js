@@ -17,6 +17,7 @@ import SwitchThemeComponent from '@/components/contexts/SwitchThemeComponent';
 import { styled } from '@mui/material/styles';
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 import { Fade } from 'react-awesome-reveal';
+import { MY_AVATAR_COLOR } from '@/constants';
 
 
 const BootstrapTooltip = styled(({ className, ...props }) => (
@@ -72,7 +73,7 @@ export default function AppBarComponent({title}) {
       anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
       variant="dot"
     >
-      <Avatar src="/me-no-back.png" sx={{ width: 40, height: 40, background:'var(--primary)' }} />
+      <Avatar src={MY_AVATAR_COLOR} sx={{ width: 40, height: 40, background:'var(--primary)' }} />
     </StyledBadge>
       </IconButton>
       </BootstrapTooltip>

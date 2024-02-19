@@ -9,6 +9,9 @@ export const WEBSITE_PICTURES_ADDRESS = "https://pictures.dandela.com";
 export const GALLERY_MAX_PICTURES_PER_PAGE = 100;
 export const ADMIN_GALLERY_MAX_PICTURES_PER_PAGE = 300;
 
+export const MY_AVATAR_COLOR = "/me-color.png";
+export const MY_AVATAR_BLACK_AND_WHITE = "/me-black-and-white.png";
+
 /* --------------- API'S -------------- */
 /*                 Pages                */
 export const PAGE_LINK_API_PICTURES = "/api/pictures";
