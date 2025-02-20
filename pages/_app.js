@@ -105,7 +105,7 @@ goTopButton.forEach(function (el) {
           content="Fullstack Developer | Mobile Developer "
         />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" href="/me-color.png" />
+        <link rel="icon" href="/me-black-and-white.png" />
         
       </Head>
       <Script src="/assets/js/lib/bootstrap.min.js" />
