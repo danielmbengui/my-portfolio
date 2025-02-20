@@ -583,7 +583,7 @@ export const WebHome = ({currentYear}) => {
                   border: '3px solid var(--primary)',
                   background: 'transparent'
                 }}>
-                <Avatar src={MY_AVATAR_BLACK_AND_WHITE}
+                <Avatar src={MY_AVATAR_COLOR}
                   sx={{ width: 150, height: 150, }}
                 />
               </Paper>
