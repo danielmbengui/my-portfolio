@@ -27,7 +27,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Bounce } from "react-awesome-reveal";
 import { useDeviceMode } from '@/contexts/DeviceModeProvider';
 import Image from 'next/image';
-import {MY_AVATAR_BLACK_AND_WHITE} from "@/constants";
+import {MY_AVATAR_BLACK_AND_WHITE, MY_AVATAR_COLOR} from "@/constants";
 //const MY_AVATAR = "/me-black-and-white.png";
 //const MY_AVATAR = "/me-no-back.png";
 
@@ -94,7 +94,7 @@ export function MobileAppBar() {
                   anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
                   variant="dot"
                 >
-                  <Avatar src={MY_AVATAR_BLACK_AND_WHITE} sx={{ width: 40, height: 40, background: 'var(--primary)' }} />
+                  <Avatar src={MY_AVATAR_COLOR} sx={{ width: 40, height: 40, background: 'var(--primary)' }} />
                 </StyledBadge>
 
                 <Drawer
