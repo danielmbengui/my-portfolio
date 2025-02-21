@@ -13,8 +13,6 @@ import ThemeModeProvider from '../contexts/ThemeModeProvider';
 import Head from 'next/head';
 import Script from 'next/script';
 import { CssBaseline } from '@mui/material';
-import { SpeedInsights } from "@vercel/speed-insights/next";
-//insights
 
 const clientSideEmotionCache = createEmotionCache();
 
