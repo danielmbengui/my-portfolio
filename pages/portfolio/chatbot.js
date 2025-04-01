@@ -51,7 +51,7 @@ import MobileSectionsBar from '@/components/layouts/MobileSectionsBar';
 import { styled } from '@mui/material/styles';
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 import { Fade } from 'react-awesome-reveal';
-import {MY_AVATAR_BLACK_AND_WHITE, MY_AVATAR_COLOR} from "@/constants";
+import { MY_AVATAR_BLACK_AND_WHITE, MY_AVATAR_COLOR } from "@/constants";
 
 const BootstrapTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} arrow classes={{ popper: className }} />
@@ -70,7 +70,7 @@ export function WebAppBar() {
   const theme = useTheme();
   const avatarRef = useRef(null);
   const [popoverOpen, setPopoverOpen] = useState(false);
-const {t} = useTranslation();
+  const { t } = useTranslation();
 
   const handlePopoverClose = () => {
     setPopoverOpen(false);
@@ -123,8 +123,8 @@ const {t} = useTranslation();
           widgetIframe.style.height = "160px";
           //widgetIframe.style.transform = "translateY(-50%)";
 
-          widgetIframe.style.right= 0;
-          widgetIframe.style.bottom= 0;
+          widgetIframe.style.right = 0;
+          widgetIframe.style.bottom = 0;
           //widgetIframe.style.border= '5px solid cyan';
           //widgetIframe.style.width= '210px';
           //widgetIframe.style.maxWidth: '250px';
@@ -156,127 +156,127 @@ const {t} = useTranslation();
   }, []);
 
   return (
- <Box sx={{}}>
-  <head>
-  <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.esm.js"></script>
-  <script noModule src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.js"></script>
-  </head>
-     <AppBar position="static">
-     <iframe
-                  id="xeko-ai-widget"
-                  src="https://assistant.xeko.ai?assistant_id=67ea9d65dba8839eea322ea3"
-                  style={{
-                    position: 'fixed',
-                    right:0,bottom:0,
-                    //border: '5px solid cyan',
-                    //margin: 0, padding: 0, 
-                    zIndex: 9999
-                  }}
-                  scrolling="no"></iframe>
-    <Toolbar sx={{background:theme.palette.background.menu}}>
-     <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'} sx={{
-      width:'100%', 
-     //background:'pink'
-     }}>
-      <div>
+    <Box sx={{}}>
+      <head>
+        <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.esm.js"></script>
+        <script noModule src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.js"></script>
+      </head>
+      <AppBar position="static">
+        <iframe
+          id="xeko-ai-widget"
+          src="https://assistant.xeko.ai?assistant_id=67ea9d65dba8839eea322ea3"
+          style={{
+            position: 'fixed',
+            right: 0, bottom: 0,
+            //border: '5px solid cyan',
+            //margin: 0, padding: 0, 
+            zIndex: 9999
+          }}
+          scrolling="no"></iframe>
+        <Toolbar sx={{ background: theme.palette.background.menu }}>
+          <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'} sx={{
+            width: '100%',
+            //background:'pink'
+          }}>
+            <div>
 
-     
-      <BootstrapTooltip sx={{
-        zIndex:1
-      }} theme={theme} describeChild open={true} title={ <Fade cascade damping={0.2}>{t('slogan')}</Fade>} placement="right">
-      <IconButton
-        size="large"
-        edge="start"
-        color="inherit"
-        aria-label="menu"
-        //sx={{ mr: 2 }}
-        onClick={() => setPopoverOpen(!popoverOpen)}
-    ref={avatarRef}
-      >
-                <StyledBadge
-      overlap="circular"
-      anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-      variant="dot"
-    >
-      <Avatar src={MY_AVATAR_COLOR} sx={{ width: 40, height: 40, background:'var(--primary)' }} />
-    </StyledBadge>
-      </IconButton>
-      </BootstrapTooltip>
 
-      <Popover
-    open={popoverOpen}
-    onClose={handlePopoverClose}
-    anchorEl={avatarRef.current}
-    anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-    PaperProps={{
-      sx: {
-        border: 1,
-        borderColor: grey[200],
-        padding: 2,
-        marginLeft: 2,
-        borderRadius: '5%',
-      },
-    }}
-    elevation={0}
-  >
-    <Box flex flexDirection="column">
-      <Typography variant="h6">{_MY_PROFILE_.name}</Typography>
-      <Box
-        sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
-      >
-        <EmailIcon />
-        <Typography
-          variant="span"
-          sx={{ marginLeft: '8px', marginTop: '5px' }}
-        >
-          {_MY_PROFILE_.mail}
-        </Typography>
-      </Box>
-      <Box
-        sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
-      >
-        <PhoneIcon />
-        <Typography
-          variant="span"
-          sx={{ marginLeft: '8px', marginTop: '5px' }}
-        >
-          {_MY_PROFILE_.phone}
-        </Typography>
-      </Box>
-      <a
-        href={_PAGE_LINK_RESUME_}
-        target="_blank"
-        rel="noreferrer"
-        style={{display:'none'}}
-      >
-        <Button>{`See my resume`}</Button>
-      </a>
-      <a
-        href=""
-        //target="_blank"
-        rel="noreferrer"
-        style={{display:'none'}}
-      >
-        <Button variant='contained'>{`Chat with me`}</Button>
-      </a>
+              <BootstrapTooltip sx={{
+                zIndex: 1
+              }} theme={theme} describeChild open={true} title={<Fade cascade damping={0.2}>{t('slogan')}</Fade>} placement="right">
+                <IconButton
+                  size="large"
+                  edge="start"
+                  color="inherit"
+                  aria-label="menu"
+                  //sx={{ mr: 2 }}
+                  onClick={() => setPopoverOpen(!popoverOpen)}
+                  ref={avatarRef}
+                >
+                  <StyledBadge
+                    overlap="circular"
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                    variant="dot"
+                  >
+                    <Avatar src={MY_AVATAR_COLOR} sx={{ width: 40, height: 40, background: 'var(--primary)' }} />
+                  </StyledBadge>
+                </IconButton>
+              </BootstrapTooltip>
+
+              <Popover
+                open={popoverOpen}
+                onClose={handlePopoverClose}
+                anchorEl={avatarRef.current}
+                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                PaperProps={{
+                  sx: {
+                    border: 1,
+                    borderColor: grey[200],
+                    padding: 2,
+                    marginLeft: 2,
+                    borderRadius: '5%',
+                  },
+                }}
+                elevation={0}
+              >
+                <Box flex flexDirection="column">
+                  <Typography variant="h6">{_MY_PROFILE_.name}</Typography>
+                  <Box
+                    sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
+                  >
+                    <EmailIcon />
+                    <Typography
+                      variant="span"
+                      sx={{ marginLeft: '8px', marginTop: '5px' }}
+                    >
+                      {_MY_PROFILE_.mail}
+                    </Typography>
+                  </Box>
+                  <Box
+                    sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
+                  >
+                    <PhoneIcon />
+                    <Typography
+                      variant="span"
+                      sx={{ marginLeft: '8px', marginTop: '5px' }}
+                    >
+                      {_MY_PROFILE_.phone}
+                    </Typography>
+                  </Box>
+                  <a
+                    href={_PAGE_LINK_RESUME_}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{ display: 'none' }}
+                  >
+                    <Button>{`See my resume`}</Button>
+                  </a>
+                  <a
+                    href=""
+                    //target="_blank"
+                    rel="noreferrer"
+                    style={{ display: 'none' }}
+                  >
+                    <Button variant='contained'>{`Chat with me`}</Button>
+                  </a>
+                </Box>
+              </Popover>
+            </div>
+            <div>
+              <Stack direction={'row'} spacing={1} justifyContent={'center'} alignItems={'center'} sx={{
+                //background: 'red',
+                //mx:'auto',
+                //width: '100%'
+              }}>
+                <SelectLangageComponent
+                />
+                <SwitchThemeComponent />
+              </Stack>
+            </div>
+          </Stack>
+        </Toolbar>
+      </AppBar>
     </Box>
-  </Popover>
-      </div>
-      <div>
-      <Stack direction={'row'} spacing={1} justifyContent={'center'} alignItems={'center'} sx={{
-    //background: 'red',
-    //mx:'auto',
-    //width: '100%'
-  }}>
-    <SelectLangageComponent
-    />
-    <SwitchThemeComponent />
-  </Stack>
-      </div>
-     </Stack>
-    </Toolbar>
-  </AppBar>
- </Box>
   );
 }
 
@@ -284,7 +284,7 @@ export function MobileAppBar() {
   const theme = useTheme();
   const avatarRef = useRef(null);
   const [popoverOpen, setPopoverOpen] = useState(false);
-const {t} = useTranslation();
+  const { t } = useTranslation();
   const [linksBarOpen, setLinksBarOpen] = useState(false);
   const [sectionBarOpen, setSectionBarOpen] = useState(false);
 
@@ -293,80 +293,80 @@ const {t} = useTranslation();
   };
 
   return (
- <Box sx={{}}>
-     <AppBar position="static">
-    <Toolbar sx={{background:theme.palette.background.paper}}>
-     <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'} sx={{
-      width:'100%', 
-     //background:'pink'
-     }}>
-      <div>
-      <BootstrapTooltip 
-      theme={theme} describeChild open={true} 
-      sx={{
-        position:'relative',
-        zIndex:1
-      }}
-      title={ <Fade cascade damping={0.2}>{t('slogan')}</Fade>} placement="right">
-      <IconButton
-        size="large"
-        edge="start"
-        color="inherit"
-        aria-label="menu"
-        //sx={{ mr: 2 }}
-        //onClick={() => setPopoverOpen(!popoverOpen)}
-        onClick={() => setLinksBarOpen(!linksBarOpen)}
-    ref={avatarRef}
-      >
-                <StyledBadge
-      overlap="circular"
-      anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-      variant="dot"
-    >
-      <Avatar src={MY_AVATAR_COLOR} sx={{ width: 40, height: 40, background:'var(--primary)' }} />
-    </StyledBadge>
+    <Box sx={{}}>
+      <AppBar position="static">
+        <Toolbar sx={{ background: theme.palette.background.paper }}>
+          <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'} sx={{
+            width: '100%',
+            //background:'pink'
+          }}>
+            <div>
+              <BootstrapTooltip
+                theme={theme} describeChild open={true}
+                sx={{
+                  position: 'relative',
+                  zIndex: 1
+                }}
+                title={<Fade cascade damping={0.2}>{t('slogan')}</Fade>} placement="right">
+                <IconButton
+                  size="large"
+                  edge="start"
+                  color="inherit"
+                  aria-label="menu"
+                  //sx={{ mr: 2 }}
+                  //onClick={() => setPopoverOpen(!popoverOpen)}
+                  onClick={() => setLinksBarOpen(!linksBarOpen)}
+                  ref={avatarRef}
+                >
+                  <StyledBadge
+                    overlap="circular"
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                    variant="dot"
+                  >
+                    <Avatar src={MY_AVATAR_COLOR} sx={{ width: 40, height: 40, background: 'var(--primary)' }} />
+                  </StyledBadge>
 
-    <Drawer
-        anchor="left"
-        open={linksBarOpen}
-        onClose={() => setLinksBarOpen(false)}
-        PaperProps={{ sx: { padding: '20px', width: 'fit-content' } }}
-      >
-        <MobileLinksBar />
-      </Drawer>
+                  <Drawer
+                    anchor="left"
+                    open={linksBarOpen}
+                    onClose={() => setLinksBarOpen(false)}
+                    PaperProps={{ sx: { padding: '20px', width: 'fit-content' } }}
+                  >
+                    <MobileLinksBar />
+                  </Drawer>
 
 
-      </IconButton>
-      </BootstrapTooltip>
+                </IconButton>
+              </BootstrapTooltip>
 
-      </div>
-      <div>
-      <Box
-        component={IconButton}
-        onClick={() => setSectionBarOpen(!sectionBarOpen)}
-      >
-        <MenuRoundedIcon />
-      </Box>
-      <Drawer
-        anchor="right"
-        open={sectionBarOpen}
-        onClose={() => setSectionBarOpen(false)}
-        PaperProps={{
-          sx: {
-            paddingLeft: '5px',
-            paddingRight: '20px',
-            paddingY: '10px',
-            width: 'fit-content',
-          },
-        }}
-      >
-        <MobileSectionsBar />
-      </Drawer>
-      </div>
-     </Stack>
-    </Toolbar>
-  </AppBar>
- </Box>
+            </div>
+            <div>
+              <Box
+                component={IconButton}
+                onClick={() => setSectionBarOpen(!sectionBarOpen)}
+              >
+                <MenuRoundedIcon />
+              </Box>
+              <Drawer
+                anchor="right"
+                open={sectionBarOpen}
+                onClose={() => setSectionBarOpen(false)}
+                PaperProps={{
+                  sx: {
+                    paddingLeft: '5px',
+                    paddingRight: '20px',
+                    paddingY: '10px',
+                    width: 'fit-content',
+                  },
+                }}
+              >
+                <MobileSectionsBar />
+              </Drawer>
+            </div>
+          </Stack>
+        </Toolbar>
+      </AppBar>
+    </Box>
   );
 }
 
@@ -428,44 +428,44 @@ const getPersonalOptions = (actionProvider) => {
 
 
 const WebHome = () => {
-  const {t} = useTranslation();
-  const [lang, ] = useLangMode();
+  const { t } = useTranslation();
+  const [lang,] = useLangMode();
   return (
     <>
-    
-<Box sx={{
-  py:'5px',
-      paddingBottom:100,
-      background:'transparent'
-    }}>
-      
-<Stack direction={'row'} justifyContent={'space-between'}>
-<div className={styles.links}>
-        <SectionsBar />
-      </div>
 
-<Fade duration={5000}>
-<div style={{width:'100%'}}>
-{
-        lang && lang === LANGAGE_FRENCH && <FrenchChatbot />
-      }
+      <Box sx={{
+        py: '5px',
+        paddingBottom: 100,
+        background: 'transparent'
+      }}>
 
-{
-        lang && lang === LANGAGE_ENGLISH && <EnglishChatbot />
-      }
-</div>
-</Fade>
+        <Stack direction={'row'} justifyContent={'space-between'}>
+          <div className={styles.links}>
+            <SectionsBar />
+          </div>
+
+          <Fade duration={5000}>
+            <div style={{ width: '100%' }}>
+              {
+                lang && lang === LANGAGE_FRENCH && <FrenchChatbot />
+              }
+
+              {
+                lang && lang === LANGAGE_ENGLISH && <EnglishChatbot />
+              }
+            </div>
+          </Fade>
 
 
-    </Stack>
-</Box>
+        </Stack>
+      </Box>
     </>
   );
 };
 
 const MobileHome = () => {
-  const {t} = useTranslation();
-  const [lang, ] = useLangMode();
+  const { t } = useTranslation();
+  const [lang,] = useLangMode();
   const [config, setConfig] = useState({
     botName: 'Jeffrey Yu',
     initialMessages: [
@@ -650,14 +650,14 @@ const MobileHome = () => {
 
   return (
     <div style={{
-      paddingTop:10
+      paddingTop: 10
     }}>
 
       {
         lang && lang === LANGAGE_FRENCH && <FrenchChatbot />
       }
 
-{
+      {
         lang && lang === LANGAGE_ENGLISH && <EnglishChatbot />
       }
     </div>
@@ -666,25 +666,34 @@ const MobileHome = () => {
 
 export default function ChatbotPage() {
   const { width } = useWindowSize();
-const {t} = useTranslation();
+  const { t } = useTranslation();
 
   return (
-    <>      
+    <>
       {width > 740 ? <WebAppBar /> : <MobileAppBar />}
-    <CssBaseline />
-    
-    {width > 740 ? <WebHome /> : <MobileHome />}
-      
+      <CssBaseline />
+      {width > 740 ? <WebHome /> : <MobileHome />}
+      <iframe
+        id="xeko-ai-widget"
+        src="https://assistant.xeko.ai?assistant_id=67ea9d65dba8839eea322ea3"
+        style={{
+          position: 'fixed',
+          right: 0, bottom: 0,
+          //border: '5px solid cyan',
+          //margin: 0, padding: 0, 
+          zIndex: 9999
+        }}
+        scrolling="no"></iframe>
     </>
   );
 }
 
 export async function getStaticProps({ locale }) {
   return {
-      props: {
-        //tabPrice: response,
-          ...(await serverSideTranslations(locale, ARRAY_NAMESPACES, null, ARRAY_LANGAGES)),
-          // Will be passed to the page component as props
-      },
+    props: {
+      //tabPrice: response,
+      ...(await serverSideTranslations(locale, ARRAY_NAMESPACES, null, ARRAY_LANGAGES)),
+      // Will be passed to the page component as props
+    },
   }
 }
