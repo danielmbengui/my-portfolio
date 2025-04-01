@@ -176,7 +176,9 @@ const MyApp = (props) => {
 
               </Head>
               <Script src="/assets/js/lib/bootstrap.min.js" />
-              <Script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js" />
+
+
+
 
               <Script src="/assets/js/plugins/progressbar-js/progressbar.min.js" />
               {
@@ -198,6 +200,8 @@ const MyApp = (props) => {
                   }}
                   scrolling="no"></iframe>
               <Component {...pageProps} />
+              <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.esm.js"></script>
+<script noModule src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.js"></script>
             </DeviceModeProvider>
           </LangModeProvider>
         </ThemeModeProvider>
