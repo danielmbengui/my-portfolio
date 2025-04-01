@@ -242,7 +242,6 @@ const ProjectWinnoBearz = () => {
   </Grid></Grid>
   )
 }
-
 const ProjectDrillDev = () => {
   const { t } = useTranslation();
   const { isMobile, isTablet } = useDeviceMode();
@@ -270,7 +269,6 @@ const ProjectDrillDev = () => {
   </Grid></Grid>
   )
 }
-
 const ProjectPlayPad = () => {
   const { t } = useTranslation();
   const { isMobile, isTablet } = useDeviceMode();

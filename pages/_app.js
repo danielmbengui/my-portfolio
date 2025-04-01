@@ -24,9 +24,9 @@ const MyApp = (props) => {
   useEffect(() => {
     //firebase.initializeApp(firebaseConfig);
     // you can use any storage
-    var _theme =  DEFAULT_THEME;
+    var _theme = DEFAULT_THEME;
     if (!window.localStorage.getItem(STORAGE_THEME_MODE)) {
-    window.localStorage.setItem(STORAGE_THEME_MODE, _theme)
+      window.localStorage.setItem(STORAGE_THEME_MODE, _theme)
     } else {
       _theme = window.localStorage.getItem(STORAGE_THEME_MODE);
     }
@@ -41,89 +41,163 @@ const MyApp = (props) => {
     setLangMode(lang);
 
     var date = new Date();
-var nowYear = date.getFullYear();
-var copyrightYear = document.querySelectorAll('.yearNow');
-copyrightYear.forEach(function(el){
-    el.innerHTML = nowYear
-});
+    var nowYear = date.getFullYear();
+    var copyrightYear = document.querySelectorAll('.yearNow');
+    copyrightYear.forEach(function (el) {
+      el.innerHTML = nowYear
+    });
 
-//-----------------------------------------------------------------------
-// Go Top Button
-//-----------------------------------------------------------------------
-var goTopButton = document.querySelectorAll(".goTop");
-goTopButton.forEach(function (el) {
-    // show fixed button after some scrolling
-    window.addEventListener("scroll", function () {
+    //-----------------------------------------------------------------------
+    // Go Top Button
+    //-----------------------------------------------------------------------
+    var goTopButton = document.querySelectorAll(".goTop");
+    goTopButton.forEach(function (el) {
+      // show fixed button after some scrolling
+      window.addEventListener("scroll", function () {
         var scrolled = window.scrollY;
         if (scrolled > 100) {
-            el.classList.add("show")
+          el.classList.add("show")
         }
         else {
-            el.classList.remove("show")
+          el.classList.remove("show")
         }
-    })
-    // go top on click
-    el.addEventListener("click", function (e) {
+      })
+      // go top on click
+      el.addEventListener("click", function (e) {
         e.preventDefault();
         window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+          top: 0,
+          behavior: 'smooth'
         });
+      })
+
     })
+    //-----------------------------------------------------------------------
+  }, []);
 
-})
-//-----------------------------------------------------------------------
+  useEffect(() => {
+    function adjustIframeLayout(isOpen) {
+      const widgetIframe = document.getElementById("xeko-ai-widget");
+      if (!widgetIframe) return;
 
-/*
-    const observer = new MutationObserver(() => {
-      let newTheme = getDocumentTheme(document?.documentElement);
-      setIsDark(newTheme === THEME_MODE_DARK);
-      setThemeMode(newTheme === THEME_MODE_DARK ? THEME_MODE_DARK : THEME_MODE_LIGHT);
-      //document.documentElement.setAttribute(STORAGE_THEME_MODE, newTheme);
-    });
+      const isMobile = window.innerWidth < 768;
 
-    // Observe the document theme changes
-    observer.observe(document?.documentElement, {
-      attributes: true,
-      attributeFilter: [STORAGE_THEME_MODE, 'style']
-    });
+      if (isMobile) {
+        if (isOpen) {
+          widgetIframe.style.position = "fixed";
+          widgetIframe.style.top = 0;
+          widgetIframe.style.bottom = 0;
+          widgetIframe.style.left = 0;
+          widgetIframe.style.right = 0;
+          widgetIframe.style.width = "100%";
+          widgetIframe.style.height = "100%";
+          //widgetIframe.style.transform = "";
+        } else {
+          widgetIframe.style.position = "fixed";
+          widgetIframe.style.bottom = 0;
+          widgetIframe.style.right = 0;
+          widgetIframe.style.top = "auto";
+          widgetIframe.style.left = "auto";
+          widgetIframe.style.width = "200px";
+          widgetIframe.style.height = "160px";
+          //widgetIframe.style.transform = "";
+        }
+      } else {
+        if (isOpen) {
+          widgetIframe.style.position = "fixed";
+          widgetIframe.style.bottom = 0;
+          widgetIframe.style.right = 0;
+          widgetIframe.style.top = 0;
+          //widgetIframe.style.left = "auto";
+          widgetIframe.style.width = "450px";
+          widgetIframe.style.height = "100%";
+          //widgetIframe.style.transform = "";
+        } else {
+          widgetIframe.style.position = "fixed";
+          //widgetIframe.style.right = "0";
+          widgetIframe.style.top = "auto";
+          //widgetIframe.style.bottom = "0";
+          widgetIframe.style.left = "auto";
+          widgetIframe.style.width = "210px";
+          widgetIframe.style.height = "160px";
+          //widgetIframe.style.transform = "translateY(-50%)";
 
-    return () => observer.disconnect();
-    */
+          widgetIframe.style.right= 0;
+          widgetIframe.style.bottom= 0;
+          //widgetIframe.style.border= '5px solid cyan';
+          //widgetIframe.style.width= '210px';
+          //widgetIframe.style.maxWidth: '250px';
+        }
+      }
+    }
+
+    const handleResize = () => {
+      const currentState = window.xekoWidgetState !== undefined ? window.xekoWidgetState : false;
+      adjustIframeLayout(currentState);
+    };
+
+    const handleMessage = (event) => {
+      if (event.data?.type === "resize_widget") {
+        window.xekoWidgetState = event.data.isOpen;
+        adjustIframeLayout(event.data.isOpen);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    window.addEventListener("message", handleMessage);
+
+    adjustIframeLayout(false);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("message", handleMessage);
+    };
   }, []);
 
   return (
     <CacheProvider value={emotionCache}>
       <SSRProvider>
-      <ThemeModeProvider themeMode={themeMode}>
-        <LangModeProvider langMode={langMode}>
-          <DeviceModeProvider>
-          <Head>
-        <title>{"Daniel Mbengui"}</title>
-        <meta
-          name="description"
-          content="Fullstack Developer | Mobile Developer "
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" href="/me-color.png" />
-        
-      </Head>
-      <Script src="/assets/js/lib/bootstrap.min.js" />
-            <Script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js" />
-            
-            <Script src="/assets/js/plugins/progressbar-js/progressbar.min.js" />
-            {
-              /*
-              <Script src="/assets/js/plugins/splide/splide.min.js" />
-              <Script src="/assets/js/base.js" />
-              <CssBaseline />
-              */
-            }  
-            
-        <Component {...pageProps} />
-          </DeviceModeProvider>
-        </LangModeProvider>
-      </ThemeModeProvider>
+        <ThemeModeProvider themeMode={themeMode}>
+          <LangModeProvider langMode={langMode}>
+            <DeviceModeProvider>
+              <Head>
+                <title>{"Daniel Mbengui"}</title>
+                <meta
+                  name="description"
+                  content="Fullstack Developer | Mobile Developer "
+                />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <link rel="icon" href="/me-color.png" />
+
+
+
+              </Head>
+              <Script src="/assets/js/lib/bootstrap.min.js" />
+              <Script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js" />
+
+              <Script src="/assets/js/plugins/progressbar-js/progressbar.min.js" />
+              {
+                /*
+                <Script src="/assets/js/plugins/splide/splide.min.js" />
+                <Script src="/assets/js/base.js" />
+                <CssBaseline />
+                */
+              }
+               <iframe
+                  id="xeko-ai-widget"
+                  src="https://assistant.xeko.ai?assistant_id=67ea9d65dba8839eea322ea3"
+                  style={{
+                    position: 'fixed',
+                    right:0,bottom:0,
+                    //border: '5px solid cyan',
+                    //margin: 0, padding: 0, 
+                    zIndex: 9999
+                  }}
+                  scrolling="no"></iframe>
+              <Component {...pageProps} />
+            </DeviceModeProvider>
+          </LangModeProvider>
+        </ThemeModeProvider>
       </SSRProvider>
     </CacheProvider>
   );
