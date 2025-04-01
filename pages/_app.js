@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { CacheProvider } from '@emotion/react';
 import createEmotionCache from '../utility/createEmotionCache';
+import "@/styles/robotoMono-fonts.css";
+import '@/styles/globals.css';
 import '@/styles/globals.css';
 import '@/styles/chatbox.css';
 import '@/styles/carousel.css';
@@ -13,6 +15,7 @@ import ThemeModeProvider from '../contexts/ThemeModeProvider';
 import Head from 'next/head';
 import Script from 'next/script';
 import { CssBaseline } from '@mui/material';
+
 
 const clientSideEmotionCache = createEmotionCache();
 

@@ -30,6 +30,7 @@ import Image from 'next/image';
 import {MY_AVATAR_BLACK_AND_WHITE, MY_AVATAR_COLOR} from "@/constants";
 //const MY_AVATAR = "/me-black-and-white.png";
 //const MY_AVATAR = "/me-no-back.png";
+//import 'ionicons/dist/ionicons/ionicons.esm.js';
 
 export function WebAppBar() {
   const theme = useTheme();
