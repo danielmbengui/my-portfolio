@@ -98,7 +98,11 @@ export default function SkillsPage() {
     };
   }, []);
   return (
-    <>
+    <div>
+      <head>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.esm.js"></script>
+      <script noModule src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.js"></script>
+      </head>
       {!isMobile ? <AppBarComponent title={title} /> : <MobileAppBarComponent title={title} />}
       {!isMobile ? <ContentComponent><SkillsComponent /></ContentComponent> : <MobileContentComponent><MobileSkillsComponent /></MobileContentComponent>}
       <iframe
@@ -112,7 +116,7 @@ export default function SkillsPage() {
           zIndex: 9999
         }}
         scrolling="no"></iframe>
-    </>
+    </div>
   );
 }
 

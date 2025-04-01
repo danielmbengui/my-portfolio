@@ -94,6 +94,10 @@ export default function LanguagesPage() {
   }, []);
   return (
     <div>
+      <head>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.esm.js"></script>
+      <script noModule src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.js"></script>
+      </head>
       {!isMobile ? <AppBarComponent title={title} /> : <MobileAppBarComponent title={title} />}
       {!isMobile ? <ContentComponent><LanguagesComponent /></ContentComponent> : <MobileContentComponent><LanguagesComponent /></MobileContentComponent>}
       <iframe
