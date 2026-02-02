@@ -9,6 +9,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang={DEFAULT_LANGAGE}>
         <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
         <meta name="google-site-verification" content="qMKQcpo5J5oX0vAZBgNZKrZ48CMP9Js_5zlH4Mnu_wY" />
           <link
             rel="stylesheet"
@@ -21,8 +22,6 @@ export default class MyDocument extends Document {
   rel="stylesheet"
   href="https://unpkg.com/swiper/swiper-bundle.min.css"
 />
-
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 <link rel="stylesheet" href="/assets/css/style.css" />
         </Head>

@@ -53,8 +53,8 @@ export default function FloatingQuickMenu() {
         aria-expanded={open ? 'true' : undefined}
         sx={{
           position: 'fixed',
-          bottom: 24,
-          right: 24,
+          bottom: 'max(16px, env(safe-area-inset-bottom))',
+          right: 'max(16px, env(safe-area-inset-right))',
           zIndex: 1300,
           width: 52,
           height: 52,

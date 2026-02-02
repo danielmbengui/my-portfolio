@@ -297,24 +297,20 @@ export const WebHome = ({currentYear}) => {
     >
       <Box sx={{ position: 'relative', zIndex: 1, flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <Stack
-          pt={{ xs: 5.5, sm: 7 }}
-          pb={8}
-          px={3}
+          pt={{ xs: 4, sm: 7 }}
+          pb={{ xs: 6, sm: 8 }}
+          px={{ xs: 2, sm: 3 }}
           justifyContent="center"
           alignItems="center"
-          sx={{ maxWidth: 960, mx: 'auto', width: '100%' }}
+          sx={{ maxWidth: 960, mx: 'auto', width: '100%', boxSizing: 'border-box' }}
         >
           {/* Tech stack — icônes rotatives */}
-          <Stack py={2} direction="row" spacing={2} alignItems="center" justifyContent="center" flexWrap="wrap" useFlexGap sx={{ gap: 2 }}>
-            <Stack justifyContent={'center'} alignItems={'center'} style={{
+          <Stack py={{ xs: 1.5, sm: 2 }} direction="row" spacing={{ xs: 1, sm: 2 }} alignItems="center" justifyContent="center" flexWrap="wrap" useFlexGap sx={{ gap: { xs: 1, sm: 2 } }}>
+            <Stack justifyContent={'center'} alignItems={'center'} sx={{
               position: 'relative',
-              //background:'cyan',
-              //top: 0,
-              //left: 0,
-              width: 80,
-              height: 80,
+              width: { xs: 64, sm: 80 },
+              height: { xs: 64, sm: 80 },
               objectFit: 'cover',
-
             }}>
               <AnimatePresence style={{
                 position: 'relative',
@@ -356,18 +352,14 @@ export const WebHome = ({currentYear}) => {
               </AnimatePresence>
             </Stack>
 
-            <Stack justifyContent={'center'} alignItems={'center'} style={{
+            <Stack justifyContent={'center'} alignItems={'center'} sx={{
               position: 'relative',
-              //background:'cyan',
-              //top: 0,
-              //left: 0,
-              width: 80,
-              height: 80,
+              width: { xs: 64, sm: 80 },
+              height: { xs: 64, sm: 80 },
               objectFit: 'cover',
             }}>
               <AnimatePresence style={{
                 position: 'relative',
-                //background:'red',
                 margin: 'auto',
                 objectFit: 'cover',
               }}>
@@ -405,18 +397,14 @@ export const WebHome = ({currentYear}) => {
               </AnimatePresence>
             </Stack>
 
-            <Stack justifyContent={'center'} alignItems={'center'} style={{
+            <Stack justifyContent={'center'} alignItems={'center'} sx={{
               position: 'relative',
-              //background:'cyan',
-              //top: 0,
-              //left: 0,
-              width: 80,
-              height: 80,
+              width: { xs: 64, sm: 80 },
+              height: { xs: 64, sm: 80 },
               objectFit: 'cover',
             }}>
               <AnimatePresence style={{
                 position: 'relative',
-                //background:'red',
                 margin: 'auto',
                 objectFit: 'cover',
               }}>
@@ -477,20 +465,20 @@ export const WebHome = ({currentYear}) => {
               <Avatar
                 src={MY_AVATAR_COLOR}
                 sx={{
-                  width: 120,
-                  height: 120,
+                  width: { xs: 96, sm: 120 },
+                  height: { xs: 96, sm: 120 },
                   border: '1px solid var(--accents3)',
                   bgcolor: 'var(--background-card)',
                 }}
               />
             </motion.div>
-            <Typography
-              component="span"
-              sx={{
+<Typography
+            component="span"
+            sx={{
                 color: 'var(--text)',
                 fontWeight: 600,
                 letterSpacing: '0.02em',
-                fontSize: '0.9rem',
+                fontSize: { xs: '0.85rem', sm: '0.9rem' },
                 textAlign: 'center',
               }}
             >
@@ -514,7 +502,8 @@ export const WebHome = ({currentYear}) => {
             background: 'var(--background)',
             width: '100%',
             marginTop: 'auto',
-            padding: '32px 24px',
+            padding: '24px 16px',
+            paddingBottom: 'max(24px, env(safe-area-inset-bottom))',
             borderTop: '1px solid var(--accents3)',
           }}
         >
@@ -598,10 +587,12 @@ export default function HomePage() {
   return (
     <div style={{
       background: 'var(--background)',
-      overflow: 'auto',
-      position: 'absolute',
-      inset: 0,
+      overflowX: 'hidden',
+      overflowY: 'auto',
+      WebkitOverflowScrolling: 'touch',
+      position: 'relative',
       minHeight: '100vh',
+      width: '100%',
     }}>
       <Head>
         <title>{t('titlePage', { ns: _NAMESPACE_LANGAGE_HOME_ })}</title>

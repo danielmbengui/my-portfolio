@@ -92,15 +92,16 @@ export default function ProjectsComponent({ embedded = false }) {
           </Grid>
 
           {/* Carousel 3D — cliquable */}
-          <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', mt: embedded ? -3 : -8, overflow: 'visible' }}>
+          <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', mt: embedded ? -3 : -8, overflow: 'visible', px: { xs: 0.5, sm: 0 } }}>
             <Box
               {...handlers}
               ref={carouselRef}
               sx={{
                 position: 'relative',
-                width: CAROUSEL_VIEW_WIDTH,
-                minWidth: CAROUSEL_VIEW_WIDTH,
-                height: { xs: 300, sm: 360 },
+                width: { xs: '100%', sm: CAROUSEL_VIEW_WIDTH },
+                maxWidth: CAROUSEL_VIEW_WIDTH,
+                minWidth: 0,
+                height: { xs: 280, sm: 360 },
                 perspective: 1400,
                 touchAction: 'pan-y',
                 overflow: 'visible',
@@ -110,7 +111,7 @@ export default function ProjectsComponent({ embedded = false }) {
                 onClick={goPrev}
                 sx={{
                   position: 'absolute',
-                  left: { xs: -8, sm: -20 },
+                  left: { xs: 4, sm: -20 },
                   top: '50%',
                   transform: 'translateY(-50%)',
                   zIndex: 20,
@@ -123,15 +124,15 @@ export default function ProjectsComponent({ embedded = false }) {
                     boxShadow: '0 0 20px rgba(255, 215, 0, 0.35)',
                   },
                 }}
-                size="large"
+                size="small"
               >
-                <ChevronLeftIcon />
+                <ChevronLeftIcon fontSize="small" />
               </IconButton>
               <IconButton
                 onClick={goNext}
                 sx={{
                   position: 'absolute',
-                  right: { xs: -8, sm: -20 },
+                  right: { xs: 4, sm: -20 },
                   top: '50%',
                   transform: 'translateY(-50%)',
                   zIndex: 20,
@@ -144,9 +145,9 @@ export default function ProjectsComponent({ embedded = false }) {
                     boxShadow: '0 0 20px rgba(255, 215, 0, 0.35)',
                   },
                 }}
-                size="large"
+                size="small"
               >
-                <ChevronRightIcon />
+                <ChevronRightIcon fontSize="small" />
               </IconButton>
 
               <Box

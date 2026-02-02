@@ -94,11 +94,18 @@ const MyApp = (props) => {
                 />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <link rel="icon" href="/me-color.png" />
-                <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.esm.js"></script>
-                <script noModule src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.js"></script>
-
-
               </Head>
+              <Script
+                src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.esm.js"
+                strategy="afterInteractive"
+                type="module"
+              />
+              <Script
+                src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.js"
+                strategy="afterInteractive"
+                noModule
+              />
+              <Script src="https://unpkg.com/swiper/swiper-bundle.min.js" strategy="afterInteractive" />
               <Script src="/assets/js/lib/bootstrap.min.js" />
 
 

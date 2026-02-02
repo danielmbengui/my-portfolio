@@ -13,13 +13,11 @@ export default function ThemeModeProvider({ children, themeMode }) {
 
     useEffect(() => {
         setMode(themeMode);
-        console.log("Init theme", themeMode)
     }, [themeMode])
 
     useEffect(() => {
         document.documentElement.setAttribute(STORAGE_THEME_MODE, mode);
         //window.localStorage.setItem(STORAGE_THEME_MODE, mode);
-        console.log("Change theme", mode)
     }, [mode])
 
     const colorMode = useMemo(

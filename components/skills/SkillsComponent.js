@@ -509,54 +509,64 @@ export default function SkillsComponent({ embedded = false }) {
             )}
             <Grid container spacing={2} justifyContent="center" px={{ xs: 1, md: 4 }}>
               <AnimatePresence mode="wait">
-                {currentItem?.skills?.map((skill, idx) => {
-                  const [name, descriptionKey, icon] = skill;
-                  const cardLink = typeof skill[3] === 'string' ? skill[3] : null;
-                  const cardContent = (
-                    <Card
-                      component={cardLink ? 'a' : 'div'}
-                      href={cardLink || undefined}
-                      target={cardLink ? '_blank' : undefined}
-                      rel={cardLink ? 'noopener noreferrer' : undefined}
-                      sx={{
-                        py: 2,
-                        px: 1.5,
-                        height: '100%',
-                        minHeight: 220,
-                        border: '1px solid var(--accents3)',
-                        borderRadius: 1,
-                        bgcolor: 'var(--background-card)',
-                        textAlign: 'center',
-                        transition: 'border-color 0.2s ease',
-                        textDecoration: 'none',
-                        ...(cardLink ? { cursor: 'pointer', '&:hover': { borderColor: 'var(--accents5)' } } : { '&:hover': { borderColor: 'var(--accents5)' } }),
-                      }}
-                    >
-                      <Stack alignItems="center" spacing={1.5} justifyContent="center" sx={{ height: '100%', minHeight: 180 }}>
-                        <Stack alignItems="center" justifyContent="center" sx={{ minHeight: 48 }}>
-                          {icon}
-                        </Stack>
-                        <Typography sx={{ fontWeight: 500, fontSize: '0.875rem', color: 'var(--text)' }}>{t(name)}</Typography>
-                        <Typography variant="body2" sx={{ fontSize: '0.75rem', color: 'var(--accents6)', lineHeight: 1.4, px: 0.5 }}>
-                          {t(descriptionKey)}
-                        </Typography>
-                      </Stack>
-                    </Card>
-                  );
-                  return (
-                    <Grid key={`${selectedId}-${idx}`} item xs={6} sm={4} md={3} lg={2}>
-                      <motion.div
-                        variants={cardVariants}
-                        initial="hidden"
-                        animate="visible"
-                        exit="exit"
-                        custom={idx}
-                      >
-                        {cardContent}
-                      </motion.div>
-                    </Grid>
-                  );
-                })}
+                {currentItem?.skills && (
+                  <motion.div
+                    key={selectedId}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    style={{ display: 'contents' }}
+                  >
+                    {currentItem.skills.map((skill, idx) => {
+                      const [name, descriptionKey, icon] = skill;
+                      const cardLink = typeof skill[3] === 'string' ? skill[3] : null;
+                      const cardContent = (
+                        <Card
+                          component={cardLink ? 'a' : 'div'}
+                          href={cardLink || undefined}
+                          target={cardLink ? '_blank' : undefined}
+                          rel={cardLink ? 'noopener noreferrer' : undefined}
+                          sx={{
+                            py: 2,
+                            px: 1.5,
+                            height: '100%',
+                            minHeight: 220,
+                            border: '1px solid var(--accents3)',
+                            borderRadius: 1,
+                            bgcolor: 'var(--background-card)',
+                            textAlign: 'center',
+                            transition: 'border-color 0.2s ease',
+                            textDecoration: 'none',
+                            ...(cardLink ? { cursor: 'pointer', '&:hover': { borderColor: 'var(--accents5)' } } : { '&:hover': { borderColor: 'var(--accents5)' } }),
+                          }}
+                        >
+                          <Stack alignItems="center" spacing={1.5} justifyContent="center" sx={{ height: '100%', minHeight: 180 }}>
+                            <Stack alignItems="center" justifyContent="center" sx={{ minHeight: 48 }}>
+                              {icon}
+                            </Stack>
+                            <Typography sx={{ fontWeight: 500, fontSize: '0.875rem', color: 'var(--text)' }}>{t(name)}</Typography>
+                            <Typography variant="body2" sx={{ fontSize: '0.75rem', color: 'var(--accents6)', lineHeight: 1.4, px: 0.5 }}>
+                              {t(descriptionKey)}
+                            </Typography>
+                          </Stack>
+                        </Card>
+                      );
+                      return (
+                        <Grid key={`${selectedId}-${idx}`} item xs={6} sm={4} md={3} lg={2}>
+                          <motion.div
+                            variants={cardVariants}
+                            initial="hidden"
+                            animate="visible"
+                            custom={idx}
+                          >
+                            {cardContent}
+                          </motion.div>
+                        </Grid>
+                      );
+                    })}
+                  </motion.div>
+                )}
               </AnimatePresence>
             </Grid>
           </Stack>

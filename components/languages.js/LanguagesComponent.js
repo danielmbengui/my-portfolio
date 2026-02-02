@@ -137,9 +137,9 @@ export default function LanguagesComponent({ embedded = false }) {
                   <AccordionSummary
                     expandIcon={<ExpandMoreIcon sx={{ color: 'var(--primary)' }} />}
                     sx={{
-                      px: 3,
+                      px: { xs: 2, sm: 3 },
                       py: 1.5,
-                      minHeight: 72,
+                      minHeight: { xs: 64, sm: 72 },
                       '& .MuiAccordionSummary-content': {
                         my: 2,
                         alignItems: 'center',

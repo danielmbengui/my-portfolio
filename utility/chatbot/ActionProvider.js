@@ -47,7 +47,6 @@ class ActionProvider {
     const jokeData = await (
       await fetch(`https://v2.jokeapi.dev/joke/Any${_langStr}`)
     ).json();
-    console.log("joke", jokeData)
     const message = this.createChatBotMessage(
       `${_requestStr} : ${jokeData.type === 'single' ? jokeData.joke : `${jokeData.setup} ${jokeData.delivery}`}`,
       {
@@ -63,7 +62,6 @@ class ActionProvider {
     const jokeData = await (
       await fetch(`https://v2.jokeapi.dev/joke/Any${_langStr}`)
     ).json();
-    console.log("joke", jokeData)
     const message = this.createChatBotMessage(
       //`Here's another one: ${jokeData.joke}`,
       `${_requestStr} : ${jokeData.type === 'single' ? jokeData.joke : `${jokeData.setup} ${jokeData.delivery}`}`,

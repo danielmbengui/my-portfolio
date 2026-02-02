@@ -20,8 +20,6 @@ setLang(langMode);
 }, [langMode])
 
 useEffect(() => {
-  console.log("ACTUAL locale website address DEFAULT lang", router.defaultLocale);
-  console.log("ACTUAL locale website address", router.locale);
   if (router.locale) {
     setLang(router.locale);
     //moment.locale(lang);
