@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 
-import { Divider, Grid, IconButton, Stack, Tooltip, Typography } from '@mui/material';
+import { IconButton, Stack, Tooltip, Typography } from '@mui/material';
 import { Drawer } from '@mui/material';
-import { grey } from '@mui/material/colors';
 import { Box } from '@mui/system';
 
 import ExperienceCards from '../organisms/ExperienceCards';
@@ -10,19 +9,52 @@ import ProjectCards from '../organisms/ProjectCards';
 import SkillCards from '../organisms/SkillCards';
 import BlogCards from '../organisms/BlogCards';
 
-import ArchitectureRoundedIcon from '@mui/icons-material/ArchitectureRounded';
-import CodeOutlinedIcon from '@mui/icons-material/CodeOutlined';
-import BookOutlinedIcon from '@mui/icons-material/BookOutlined';
-import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
-import { ChatbotIcon, GithubIcon, LanguagesIcon, LinkedinIcon, ProjectIcon, ResumeIcon, SkillsIcon } from '@/components/icons/IconifiyIcons';
+import { ChatbotIcon, GithubIcon, LanguagesIcon, LinkedinIcon, PlayStoreIcon, ProjectIcon, SkillsIcon } from '@/components/icons/IconifiyIcons';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useLangMode } from '@/contexts/LangModeProvider';
-import { _PAGE_LINK_CHAT_BOT_, _PAGE_LINK_RESUME_, _PAGE_LINK_SKILLS_, _MY_PROFILE_, _PAGE_LINK_LANGUAGES_, _PAGE_LINK_PROJECTS_ } from '@/_mocks_/_settings_items_';
-import scintillate from "@/styles/Scintillating.module.css";
+import { _PAGE_LINK_CHAT_BOT_, _PAGE_LINK_SKILLS_, _MY_PROFILE_, _PAGE_LINK_LANGUAGES_, _PAGE_LINK_PROJECTS_ } from '@/_mocks_/_settings_items_';
 import EmailIcon from '@mui/icons-material/Email';
 import { Slide } from 'react-awesome-reveal';
+
+const ICON_SIZE = 20;
+const ICON_BTN_SIZE = 40;
+
+const navButtonSx = {
+  width: ICON_BTN_SIZE,
+  height: ICON_BTN_SIZE,
+  minWidth: ICON_BTN_SIZE,
+  color: 'var(--accents7)',
+  borderRadius: '12px',
+  transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
+  '&:hover': {
+    color: 'var(--primary)',
+    backgroundColor: 'var(--primary-opacity)',
+    transform: 'scale(1.06)',
+  },
+  '&.active': {
+    color: 'var(--primary)',
+    backgroundColor: 'var(--primary-opacity)',
+  },
+};
+
+const tooltipSlotProps = {
+  tooltip: {
+    sx: {
+      fontSize: 12,
+      fontWeight: 500,
+      padding: '6px 10px',
+      backgroundColor: 'var(--accents2)',
+      border: '1px solid var(--accents4)',
+      boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+      color: 'var(--text)',
+    },
+  },
+  arrow: {
+    sx: { color: 'var(--accents2)' },
+  },
+};
 
 
 
@@ -40,22 +72,35 @@ function SectionsBar() {
 
   const DrawerLayout = () => {
     return (
-      <div sx={{ padding: 20, }}>
+      <Box sx={{ p: 2, height: '100%', display: 'flex', flexDirection: 'column' }}>
         <Box
-          sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', pt: 3, }}
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 1.5,
+            py: 2,
+            px: 1,
+            borderBottom: '1px solid var(--accents3)',
+          }}
         >
           <IconButton
             onClick={() => toggleDrawer(false, '')}
-            sx={{ margin: 2 }}
+            size="small"
+            sx={{
+              color: 'var(--accents7)',
+              '&:hover': { color: 'var(--primary)', backgroundColor: 'var(--primary-opacity)' },
+            }}
           >
-            <ArrowBackIosNewRoundedIcon />
+            <ArrowBackIosNewRoundedIcon sx={{ fontSize: 20 }} />
           </IconButton>
-          <Typography variant="h6">{section}</Typography>
+          <Typography variant="h6" sx={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--text)' }}>
+            {section}
+          </Typography>
         </Box>
-        <Box sx={{ marginX: 2 }}>
+        <Box sx={{ flex: 1, overflow: 'auto', py: 2, px: 1 }}>
           <DrawerContent />
         </Box>
-      </div>
+      </Box>
     );
   };
 
@@ -74,246 +119,131 @@ function SectionsBar() {
     }
   };
 
+  const socialIconHoverSx = {
+    color: 'var(--accents7)',
+    transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
+    '&:hover': {
+      color: '#fff',
+      backgroundColor: 'var(--primary-opacity)',
+      boxShadow: '0 0 16px 2px var(--primary-opacity)',
+      transform: 'scale(1.06)',
+    },
+  };
+
+  const NavIconButton = ({ children, title, isActive, onClick, href, socialIcon, sx = {} }) => {
+    const btn = (
+      <IconButton
+        component={href ? 'span' : 'button'}
+        aria-label={title}
+        onClick={!href ? onClick : undefined}
+        className={isActive ? 'active' : ''}
+        sx={{
+          ...navButtonSx,
+          ...(socialIcon && socialIconHoverSx),
+          ...sx,
+        }}
+      >
+        {children}
+      </IconButton>
+    );
+
+    const wrapped = href ? (
+      <a href={href} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noopener noreferrer' : undefined} style={{ display: 'flex', textDecoration: 'none', color: 'inherit' }}>
+        {btn}
+      </a>
+    ) : btn;
+
+    return (
+      <Tooltip title={title} placement="right" arrow slotProps={tooltipSlotProps}>
+        <Box component="span" sx={{ display: 'flex' }}>
+          {wrapped}
+        </Box>
+      </Tooltip>
+    );
+  };
+
   return (
     <>
       <Stack
         direction="column"
         justifyContent="space-between"
         alignItems="center"
-        spacing={2}
-        sx={{
-          height: '100%',
-          //background:'green'
-        }}
+        spacing={1}
+        sx={{ height: '100%', py: 2 }}
       >
-        <Slide cascade direction='up' triggerOnce>
-          <Tooltip
-            title={<Typography color={'white'}  style={{ fontSize: 13 }}>{t('chatbot')}</Typography>}
-            placement="right"
-          //sx={{display:'none'}}
-          >
-            <IconButton
-              aria-label="experience"
+        <Slide cascade direction="up" triggerOnce>
+          <Stack direction="column" spacing={1} alignItems="center">
+            <NavIconButton
+              title={t('chatbot')}
+              isActive={router.asPath.includes(_PAGE_LINK_CHAT_BOT_)}
               onClick={() => router.push(`/${lang}/${_PAGE_LINK_CHAT_BOT_}`)}
-              color={router.asPath === _PAGE_LINK_CHAT_BOT_ ? 'var(--primary)' : 'var(--accents7)'}
-              sx={{ "&:hover": { color: "var(--primary)" } }}
-            //className={scintillate['container']}
             >
-              <ChatbotIcon
-                // className={scintillate.scintillatingBox}
-                //color={router.asPath === PAGE_LINK_CHAT_BOT ? 'var(--primary)' : 'var(--accents7)'} 
-                size={30}
-                color={router.asPath === _PAGE_LINK_CHAT_BOT_ ? 'var(--primary)' : 'inherit'}
-              //color={router.asPath === PAGE_LINK_SKILLS ? 'var(--primary)' : 'blue'} 
-              />
-            </IconButton>
-          </Tooltip>
+              <ChatbotIcon size={ICON_SIZE} color="inherit" />
+            </NavIconButton>
 
-          <Stack
-            direction="column"
-            justifyContent="center"
-            alignItems="center"
-          //spacing={1}
-          >
-            <Tooltip
-              title={<Typography color={'white'}  style={{ fontSize: 13 }}>{t('sections.skills.langs.title')}</Typography>}
-              placement="right"
-            //sx={{ "&:hover": { color: "blue" } }}
+            <NavIconButton
+              title={t('sections.skills.langs.title')}
+              isActive={router.asPath.includes(_PAGE_LINK_LANGUAGES_)}
+              onClick={() => router.push(`/${lang}/${_PAGE_LINK_LANGUAGES_}`)}
             >
-              <IconButton
-                aria-label={t('sections.skills.langs.title')}
-                //onClick={() => toggleDrawer(true, t('sections.skills.title'))}
-                onClick={() => router.push(`/${lang}/${_PAGE_LINK_LANGUAGES_}`)}
-                sx={{ "&:hover": { color: "var(--primary)" } }}
-                color={router.asPath === _PAGE_LINK_LANGUAGES_ ? 'var(--primary)' : 'var(--accents7)'}
-              >
-                <LanguagesIcon
-                  //color={'inherit'} 
-                  color={router.asPath === _PAGE_LINK_LANGUAGES_ ? 'var(--primary)' : 'inherit'}
-                  //sx={{ "&:hover": { color: "var(--primary)" } }} 
-                  size={30}
-                //sx={{ "&:hover": { background: "inherit" } }}
-                //hoverColor={'var(--primary)'}
-                />
-              </IconButton>
-            </Tooltip>
+              <LanguagesIcon size={ICON_SIZE} color="inherit" />
+            </NavIconButton>
 
-            <Tooltip
-              title={<Typography color={'white'}  style={{ fontSize: 13 }}>{t('sections.skills.title')}</Typography>}
-              placement="right"
-            //sx={{ "&:hover": { color: "blue" } }}
+            <NavIconButton
+              title={t('sections.skills.title')}
+              isActive={router.asPath.includes(_PAGE_LINK_SKILLS_)}
+              onClick={() => router.push(`/${lang}/${_PAGE_LINK_SKILLS_}`)}
             >
-              <IconButton
-                aria-label={t('sections.skills.title')}
-                //onClick={() => toggleDrawer(true, t('sections.skills.title'))}
-                onClick={() => router.push(`/${lang}/${_PAGE_LINK_SKILLS_}`)}
-                sx={{ "&:hover": { color: "var(--primary)" } }}
-                color={router.asPath === _PAGE_LINK_SKILLS_ ? 'var(--primary)' : 'var(--accents7)'}
-              >
-                <SkillsIcon
-                  //color={'inherit'} 
-                  color={router.asPath === _PAGE_LINK_SKILLS_ ? 'var(--primary)' : 'inherit'}
-                  //sx={{ "&:hover": { color: "var(--primary)" } }} 
-                  size={30}
-                //sx={{ "&:hover": { background: "inherit" } }}
-                //hoverColor={'var(--primary)'}
-                />
-              </IconButton>
-            </Tooltip>
+              <SkillsIcon size={ICON_SIZE} color="inherit" />
+            </NavIconButton>
 
-            <Tooltip
-              title={<Typography color={'white'}  style={{ fontSize: 13 }}>{t('sections.projects.title')}</Typography>}
-              placement="right"
-            sx={{ 
-              "&:hover": { display:'none' } 
-            }}
-            >
-              <IconButton
-                aria-label={t('sections.projects.title')}
-                //onClick={() => toggleDrawer(true, t('sections.skills.title'))}
+            {false && (
+              <NavIconButton
+                title={t('sections.projects.title')}
+                isActive={router.asPath.includes(_PAGE_LINK_PROJECTS_)}
                 onClick={() => router.push(`/${lang}/${_PAGE_LINK_PROJECTS_}`)}
-                sx={{ 
-                  display:'none',
-                  "&:hover": { color: "var(--primary)" } 
-                }}
-                color={router.asPath === _PAGE_LINK_PROJECTS_ ? 'var(--primary)' : 'var(--accents7)'}
               >
-                <ProjectIcon
-                  //color={'inherit'} 
-                  color={router.asPath === _PAGE_LINK_PROJECTS_ ? 'var(--primary)' : 'inherit'}
-                  //sx={{ "&:hover": { color: "var(--primary)" } }} 
-                  size={30}
-                //sx={{ "&:hover": { background: "inherit" } }}
-                //hoverColor={'var(--primary)'}
-                />
-              </IconButton>
-            </Tooltip>
-
-            
+                <ProjectIcon size={ICON_SIZE} color="inherit" />
+              </NavIconButton>
+            )}
           </Stack>
 
-          <Stack
-            direction="column"
-            justifyContent="center"
-            alignItems="center"
-          //spacing={1}
-          >
-            <Tooltip
-              title={<Typography color={'white'}  style={{ fontSize: 13 }}>{t('seeMyCV')}</Typography>}
-              placement="right"
-              open={false}
-            //sx={{ "&:hover": { color: "blue" } }}
-            >
-              <a href={`/${lang}/${_PAGE_LINK_RESUME_}`} target="_blank" style={{ display: 'none' }}>
-                <IconButton
-                  aria-label={t('sections.skills.title')}
-                  //onClick={() => toggleDrawer(true, t('sections.skills.title'))}
-                  //onClick={() => router.push(`/${lang}/${PAGE_LINK_SKILLS}`)}
-                  sx={{ "&:hover": { color: "var(--primary)" }, display:"none" }}
-                //color={router.asPath === PAGE_LINK_SKILLS ? 'var(--primary)' : 'var(--accents7)'} 
-                >
-                  <ResumeIcon
-                    //color={'inherit'} 
-                    color={'inherit'}
-                    //sx={{ "&:hover": { color: "var(--primary)" } }} 
-                    size={35}
-                  //sx={{ "&:hover": { background: "inherit" } }}
-                  //hoverColor={'var(--primary)'}
-                  />
-                </IconButton>
-              </a>
-            </Tooltip>
-
-            <Tooltip
-              title={<Typography color={'white'}  style={{ fontSize: 13 }}>{t('sendMeMail')}</Typography>}
-              placement="right"
-            //sx={{ "&:hover": { color: "blue" } }}
-            >
-              <a href={`mailto:${_MY_PROFILE_.mail}`}>
-                <IconButton
-                  aria-label={t('sections.skills.title')}
-                  //onClick={() => toggleDrawer(true, t('sections.skills.title'))}
-                  //onClick={() => router.push(`/${lang}/${PAGE_LINK_SKILLS}`)}
-                  sx={{ "&:hover": { color: "var(--primary)" } }}
-                //color={router.asPath === PAGE_LINK_SKILLS ? 'var(--primary)' : 'var(--accents7)'} 
-                >
-                  <EmailIcon
-                    //color={'inherit'} 
-                    color={'inherit'}
-                    //sx={{ "&:hover": { color: "var(--primary)" } }} 
-                    fontSize={'large'}
-                  //sx={{ "&:hover": { background: "inherit" } }}
-                  //hoverColor={'var(--primary)'}
-                  />
-                </IconButton>
-              </a>
-            </Tooltip>
-
-            <Tooltip
-              title={<Typography color={'white'}  style={{ fontSize: 13 }}>{t('profileLinkedin')}</Typography>}
-              placement="right"
-            //sx={{ "&:hover": { color: "blue" } }}
-            >
-              <a href={_MY_PROFILE_.socials.linkedin} target="_blank">
-                <IconButton
-                  aria-label={t('sections.skills.title')}
-                  //onClick={() => toggleDrawer(true, t('sections.skills.title'))}
-                  //onClick={() => router.push(`/${lang}/${PAGE_LINK_SKILLS}`)}
-                  sx={{ "&:hover": { color: "var(--blue-linkedin)" } }}
-                //color={router.asPath === PAGE_LINK_SKILLS ? 'var(--primary)' : 'var(--accents7)'} 
-                >
-                  <LinkedinIcon
-                    //color={'inherit'} 
-                    color={'inherit'}
-                    //sx={{ "&:hover": { color: "var(--primary)" } }} 
-                    size={30}
-                  //sx={{ "&:hover": { background: "inherit" } }}
-                  //hoverColor={'var(--primary)'}
-                  />
-                </IconButton>
-              </a>
-            </Tooltip>
-
-            <Tooltip
-              title={<Typography color={'white'} style={{ fontSize: 13 }}>{t('profileGithub')}</Typography>}
-              placement="right"
-            //sx={{ "&:hover": { color: "blue" } }}
-            >
-              <a href={_MY_PROFILE_.socials.github} target="_blank">
-                <IconButton
-                  aria-label={t('sections.skills.title')}
-                  //onClick={() => toggleDrawer(true, t('sections.skills.title'))}
-                  //onClick={() => router.push(`/${lang}/${PAGE_LINK_SKILLS}`)}
-                  sx={{ "&:hover": { color: "var(--text)" } }}
-                //color={router.asPath === PAGE_LINK_SKILLS ? 'var(--primary)' : 'var(--accents7)'} 
-                >
-                  <GithubIcon
-                    //color={'inherit'} 
-                    color={'inherit'}
-                    //sx={{ "&:hover": { color: "var(--primary)" } }} 
-                    size={35}
-                  //sx={{ "&:hover": { background: "inherit" } }}
-                  //hoverColor={'var(--primary)'}
-                  />
-                </IconButton>
-              </a>
-            </Tooltip>
-
-
-
-
+          <Stack direction="column" spacing={1} alignItems="center">
+            <Box
+              sx={{
+                width: 28,
+                height: 1,
+                backgroundColor: 'var(--accents4)',
+                borderRadius: 1,
+                my: 0.5,
+              }}
+            />
+            <NavIconButton title={t('sendMeMail')} href={`mailto:${_MY_PROFILE_.mail}`} socialIcon>
+              <EmailIcon sx={{ fontSize: ICON_SIZE }} color="inherit" />
+            </NavIconButton>
+            <NavIconButton title={t('profileLinkedin')} href={_MY_PROFILE_.socials.linkedin} socialIcon>
+              <LinkedinIcon size={ICON_SIZE} color="inherit" />
+            </NavIconButton>
+            <NavIconButton title={t('profileGithub')} href={_MY_PROFILE_.socials.github} socialIcon>
+              <GithubIcon size={ICON_SIZE} color="inherit" />
+            </NavIconButton>
+            <NavIconButton title={t('profilePlaystore')} href={_MY_PROFILE_.socials.playstore} socialIcon>
+              <PlayStoreIcon size={16} color="inherit" />
+            </NavIconButton>
           </Stack>
         </Slide>
       </Stack>
-
-
 
       <Drawer
         anchor="right"
         open={drawerOpen}
         onClose={() => toggleDrawer(false, '')}
-      //sx={{background:'red'}}
-
+        PaperProps={{
+          sx: {
+            backgroundColor: 'var(--background-card)',
+            borderLeft: '1px solid var(--accents3)',
+          },
+        }}
       >
         <DrawerLayout />
       </Drawer>

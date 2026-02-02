@@ -1,0 +1,176 @@
+{
+    "titlePageHome": "Portfolio · Daniel Mbengui",
+    "welcome" :  "Mbote 👋🏿, nazali Daan. Nasepeli koyeba yo! Ozali malamu lelo?",
+    "footer": {
+        "deployedWith" : "Esalemi na mawa mpe kokanga motema, esalemi na",
+        "copyright" : "Copyright©",
+        "allRightsReserved" : "Madinga nyonso na bomoi."
+    },
+    "langs": {
+        "title": "lokota",
+        "plural": "lokota",
+        "fr": "Lifalansé",
+        "en": "Lingelesa",
+        "pt": "Liputugalé",
+        "ao": "Lingala"
+    },
+    "sections" :{
+        "skills" : {
+            "disclaimer" : "Maloba oyo elobaka mosala mpe bopusi ya eloko nyonso na mosala na ngaï na mokolo na mokolo.",
+            "title": "Makoki",
+            "langs" : {
+                "title" : "Lokota",
+                "subtitle" : "Lokota mingi ezali kotonga ndenge nazali kotala mokili. Lokota nyonso nazali koloba efungola ekuke na lolenge, makanisi mpe ndenge ya kokabola sango.",
+                "fr" : {
+                    "name" : "Lifalansé",
+                    "value" : 100,
+                    "level" : "Lokota ya libota",
+                    "description" : "Lifalansé ezali lokota na ngaï ya libota — lokota nazali kolala, kokanisa mpe koloba na yango malamu. Nazali koloba yango na Suisse romande kowuta na moke. Ezali eloko ebele koleka kokabola sango: ekuke na litérési, diplomasi mpe lolenge ya kala. Na mosala, nakoma mokanda, nazali koteya reunion mpe kokoka kozwa malonga na lifalansé. Bopusi oyo epesaka ngaï nguya kokabola makanisi na ndenge malamu."
+                },
+                "en" : {
+                    "name" : "Lingelesa",
+                    "value" : 90,
+                    "level" : "Malamu",
+                    "description" : "Lingelesa ekomaki ndeko na ngaï na mokolo na mokolo, na mosala mpe na kotambola mokili. Nayebisi yango na koteya mingi: bato, kolia contenu (série, podcast, tutoriel tech), mpe na programmation wapi lingelesa ezali lokota ya mokili. Lelo nakoti mokanda technique, nakende na conférence mpe nasalaka na équipe ya mokili. Objectif na ngaï: koloba malamu mpe koyeba maloba mingi."
+                },
+                "it" : {
+                    "name" : "Liitalien",
+                    "value" : 50
+                },
+                "ao" : {
+                    "name" : "Lingala",
+                    "value" : 70,
+                    "level" : "Malamu",
+                    "description" : "Lingala, lokota ya libota na ngaï na Angola mpe Kongo, ezali na esika na identité na ngaï. Koloba lingala malamu ezali kotonga ngaï na libota, na story na ngaï mpe na communauté wapi bavaleur — solidarité, humour, résilience — ezali. Nayebi moke Kikongo mpe. Lokota ya Afrika oyo ezali te heritage: ezali kotonga nguya na ngaï kokanisa ndenge mosusu, kosala relation mpe kobongisa na contexte ya culture."
+                },
+                "pt" : {
+                    "name" : "Liputugalé",
+                    "value" : 30,
+                    "level" : "Nazali koyekola",
+                    "description" : "Liputugalé ezali lokota nazali koyekola mbala na mbala, na libota na ngaï ya Lusophone mpe maprojeti lokola Dandela Academy. Nazali koteya vocabulaire ya liboso, koyoka mpe kotanga, mpo nakoka kokabola mpe kosala na liputugalé na mosala."
+                }
+            },
+            "programming" : {
+                "title" : "Programmation",
+                "javascript" : {
+                    "name": "Javascript",
+                    "value": 50
+                }
+            },
+            "frameworks" : {
+                "title" : "Bibliothèque/Outils"
+            },
+            "software" : {
+                "title" : "Software"
+            },
+            "web" : {
+                "title" : "Web"
+            },
+            "mobile" : {
+                "title" : "Mobile"
+            },
+            "blockchain" : {
+                "title" : "Blockchain"
+            },
+            "database" : {
+                "title" : "Base de données"
+            },
+            "artificial" : {
+                "title" : "Intelligence Artificielle (IA)",
+                "apiCalls" : "Appels API",
+                "agents" : "Agents IA",
+                "contentCreation" : "Création de contenu",
+                "contentCreationSubtitle" : "OpenAI, Runway, Veo, etc.",
+                "vibeCoding" : "Vibe coding"
+            },
+            "desc" : {
+                "javascript" : "Lokota ya liboso na front-end mpe interface ya utilisateur.",
+                "typescript" : "Typage statique mpo na maprojeti maintenable mpe scalable.",
+                "reactjs" : "Bibliothèque UI mpo na kosala interface moderne mpe réactive.",
+                "nextjs" : "Framework full-stack mpo na rendu na serveur mpe déploiement.",
+                "ios" : "Kosala app native na écosystème Apple.",
+                "android" : "Kosala app na Android.",
+                "pwa" : "App web installable, offline-first mpe multi-appareils.",
+                "apiCalls" : "Intégration API (OpenAI, etc.) na application.",
+                "agents" : "Automatisation mpe flux assistés na IA.",
+                "contentCreation" : "Kosala image, vidéo mpe contenu na IA.",
+                "vibeCoding" : "Développement assisté na IA (ex. Cursor).",
+                "solidity" : "Lokota ya smart contracts na Ethereum mpe EVM.",
+                "web3js" : "Connexion front-end na réseau mpe contrats décentralisés.",
+                "bitcoin" : "Référence na crypto mpe blockchain.",
+                "ethereum" : "Plateforme ya contrats intelligents mpe écosystème DeFi/NFT.",
+                "etherjs" : "Bibliothèque mpo na kosala na Ethereum mpe wallets."
+            }
+        },
+        "projects" : {
+            "title" : "Maprojeti",
+            "viewProject" : "Kotala projeti",
+            "dandela" : {
+                "name" : "Dandela Academy",
+                "type" : "Formation & E-learning",
+                "description" : "Dandela Academy ezali école ya formation professionnelle certifiée na INEFOP (Angola), wapi innovation mpe digital ezali na kati ya boyekoli. Plateforme epesaka environnement moderne, flexible mpe interactif: cours ya structure 24h/24, formateurs qualifiés, mpe boyekoli guidé na IA mpo na personnaliser expérience. Mission: kopesa nguya na formation digitale mpe professionnelle mpo mwana-nyonso akoka kozwa makoki mpo asala malamu. Vision: projeti ya société mpo kopesa bana mpe professionnels nguya kotonga mokolo ya mboka na continent na bango. App ezali na PWA na lifalansé, liputugalé mpe lingelesa."
+            },
+            "winno" : {
+                "name" : "Winno Bearz Club",
+                "type" : "Projeti NFT",
+                "description" : "WinnoBearz Club ezali collection NFT générative na récit: sorcier Bearz BelzeBearz apesaki matoi ya WinnoBearz na mokili — okomonana na HolyBearz? NFT nyonso ezali unique, na combinaison 5 555 kowuta na 194 traits. Rareté ezali na calques (Raspberry, Picnic, Salmon, Honey, Beehive). Na programme: 5% ya retraits ya équipe na hasard mpo na moto moko, pleine propriété mpo na kobomba, kopesa to revendre, mpe na OpenSea mpe calendrier NFT. Esalemi na blockchain mpo na mint mpe communauté."
+            },
+            "drilldev" : {
+                "name" : "Drill Dev",
+                "type" : "Intelligence Artificielle",
+                "description" : "Drill Dev ezali projeti na croisée ya développement mpe intelligence artificielle. Epesaka outils mpe contenu mpo na kosalisa développeurs mpe bato ya tech kosala progrès na flux ya travail moderne assistés na IA. Plateforme ezali na tutoriels, ressources pratiques mpe approche centrée na boyekoli continu, mpo makoki technique avancés akoka mpe na maprojeti ya soló."
+            },
+            "playpad" : {
+                "name" : "PlayPad App",
+                "type" : "Projeti Mobile",
+                "description" : "PlayPad ezali app mpo na bato ya padel na Suisse. Zwa bato na niveau na yo, sala match ouvert to compétitif, tala club partenaires mpe terrain na région na yo, mpe zwa match ouvert na clic moko. App ezali na marketplace mpo na kosomba to koteka matériel, classement na statistiques mpe suivi ya performances, mpe nguya kokweya. Créateurs ya match bakoka kozwa to koboya bato mpe kokamba réservation. Nyonso 100% gratuit mpo na bato. Club Manager epesaka club partenaires nguya kokamba réservation mpe recettes na plateforme moko."
+            }
+        },
+        "education" : {
+            "title": "Formations",
+            "javascript" : {
+                "name" : "FreeCodeCamp",
+                "image" : "/logos/freecodecamp.jpeg",
+                "position" : "JavaScript Algorithms and Data Structures",
+                "date" : "2022-03-20",
+                "link": "https://www.freecodecamp.org/certification/fccef9a36a5-5f01-45d2-ad9e-88f37eac23d1/javascript-algorithms-and-data-structures"
+            }
+        }
+    },
+    "chatbot" : "Lobela ngaï",
+    "seeMyCV" : "Kotala CV na ngaï",
+    "sendMeMail" : "Kotanga ngaï",
+    "profileLinkedin" : "Profil Linkedin",
+    "profileGithub" : "Profil Github",
+    "profilePlaystore" : "Profil Playstore",
+    "quickMenuContact" : "Contact",
+    "slogan" : "Mpo nazali geek!",
+    "theme" : "thème",
+    "loadingDocument" : "Document ezali kozwa...",
+    "buttons": {
+        "goChat": "Kobanda visite",
+        "goCv": "Kotala CV na ngaï",
+        "downloadCv": "Kokweya CV na ngaï",
+        "viewProject": "Kotala projeti"
+    },
+    "viewProject": "Kotala projeti",
+    "last_projects" : "Maprojeti ya nsima",
+    "projects": {
+        "dandela" : {
+            "name" : "Dandela Academy",
+            "type" : "Formation & E-learning"
+        },
+        "winno" : {
+            "name" : "Winno Bearz Club",
+            "type" : "Projeti NFT"
+        },
+        "drilldev" : {
+            "name" : "Drill Dev",
+            "type" : "Intelligence Artificielle"
+        },
+        "playpad" : {
+            "name" : "PlayPad App",
+            "type" : "Projeti Mobile"
+        }
+    }
+}

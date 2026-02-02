@@ -9,24 +9,29 @@
     "langs": {
         "title": "langue",
         "plural": "langues",
-        "fr": "français",
-        "en": "anglais"
+        "fr": "Français",
+        "en": "Anglais", 
+        "pt": "Portugais",
+        "ao": "Lingala"
     },
     "sections" :{
         "skills" : {
-            "disclaimer" : "IMPORTANT : les compétences et les pourcentages indiqués ne représentent pas nécessairement mon niveau absolu, mais plutôt une estimation de ma maîtrise relative des sujets abordés.",
+            "disclaimer" : "Les descriptions indiquent le rôle et l’importance de chaque outil ou langage dans mon travail au quotidien.",
             "title": "Compétences",
             "langs" : {
                 "title" : "Langues",
+                "subtitle" : "Le multilinguisme façonne ma vision du monde. Chaque langue que je parle ouvre une porte vers une culture, une pensée et une manière unique de communiquer.",
                 "fr" : {
                     "name" : "Français",
                     "value" : 100,
-                    "description" : "Le français est ma langue maternelle, et je suis fier de maîtriser cette belle langue avec aisance. Grâce à cette compétence, je suis en mesure de m'exprimer clairement et de communiquer efficacement dans diverses situations professionnelles et personnelles."
+                    "level" : "Langue maternelle",
+                    "description" : "Le français est ma langue maternelle — celle dans laquelle je rêve, réfléchis et m'exprime avec la plus grande aisance. Parlé en Suisse romande depuis mon enfance, il incarne pour moi bien plus qu'un outil de communication : une clé d'accès à la littérature, à la diplomatie et à une culture millénaire. En contexte professionnel, je rédige des documents techniques, anime des réunions et négocie en français sans effort. Cette maîtrise me permet de transmettre des idées complexes avec précision et nuance, tant à l'écrit qu'à l'oral."
                 },
                 "en" : {
                     "name" : "Anglais",
-                    "value" : 80,
-                    "description" : "Au fil du temps, j'ai développé une solide compétence en anglais, langue que je parle couramment aujourd'hui. Mon parcours m'a permis d'améliorer cette langue à travers une ancienne relation, ainsi que par ma passion pour la programmation informatique et les tutoriels disponibles sur YouTube. L'anglais est devenu un outil essentiel dans ma vie professionnelle et personnelle, me permettant d'accéder à de nouvelles opportunités et de communiquer avec un public international."
+                    "value" : 90,
+                    "level" : "Courant",
+                    "description" : "L'anglais est devenu mon allié quotidien, tant pour le travail que pour explorer le monde. Je l'ai développé grâce à une immersion progressive : relations personnelles, consommation de contenus (séries, podcasts, tutoriels tech), et surtout la programmation, où l'anglais est la lingua franca. Aujourd'hui, je lis la documentation technique, participe à des conférences, et collabore avec des équipes internationales sans barrière. Mon objectif : affiner encore ma fluidité à l'oral et ma palette lexicale pour des échanges toujours plus naturels."
                 },
                 "it" : {
                     "name" : "Italien",
@@ -35,7 +40,14 @@
                 "ao" : {
                     "name" : "Lingala",
                     "value" : 70,
-                    "description" : "En plus du français, je parle couramment le lingala, et un peu de kikongo, la langue de mes racines angolaises. Je suis particulièrement fier de maîtriser ces langues, car elle me permettent de rester connecté à ma famille et à ma communauté d'origine. Le lingala (tout particulièrement) joue un rôle précieux dans ma vie, renforçant les liens culturels et les échanges authentiques avec ceux qui partagent ce patrimoine linguistique."
+                    "level" : "Courant",
+                    "description" : "Le lingala, langue de mes racines angolaises et congolaises, occupe une place particulière dans mon identité. Parler couramment le lingala me relie à ma famille, à mon histoire et à une communauté dont les valeurs — solidarité, humour, résilience — résonnent dans chaque échange. Je maîtrise aussi quelques bases de kikongo, autre langue du bassin du Congo. Ces langues africaines ne sont pas qu'un héritage : elles enrichissent ma capacité à penser autrement, à nouer des relations authentiques et à m'adapter à des contextes culturels variés. Elles incarnent ce que je suis : un pont entre plusieurs mondes."
+                },
+                "pt" : {
+                    "name" : "Portugais",
+                    "value" : 30,
+                    "level" : "En apprentissage",
+                    "description" : "Le portugais est une langue que j’apprends progressivement, en lien avec mes racines lusophones et les projets comme Dandela Academy. Je travaille le vocabulaire de base, la compréhension orale et écrite, avec l’objectif de pouvoir communiquer et collaborer en portugais dans un contexte professionnel."
                 }
             },
             "programming" : {
@@ -64,13 +76,55 @@
                 "title" : "Base de données"
             },
             "artificial" : {
-                "title" : "Intelligence Artificielle (IA)"
+                "title" : "Intelligence Artificielle (IA)",
+                "apiCalls" : "Appels API",
+                "agents" : "Agents IA",
+                "contentCreation" : "Création de contenu",
+                "contentCreationSubtitle" : "OpenAI, Runway, Veo, etc.",
+                "vibeCoding" : "Vibe coding"
+            },
+            "desc" : {
+                "javascript" : "Langage principal pour le front-end et les interfaces utilisateur.",
+                "typescript" : "Typage statique pour des projets plus maintenables et scalables.",
+                "reactjs" : "Bibliothèque UI pour construire des interfaces modernes et réactives.",
+                "nextjs" : "Framework full-stack pour le rendu côté serveur et le déploiement.",
+                "ios" : "Développement d’applications natives pour l’écosystème Apple.",
+                "android" : "Développement d’applications pour le parc Android.",
+                "pwa" : "Applications web installables, offline-first et multi-appareils.",
+                "apiCalls" : "Intégration d’API (OpenAI, etc.) dans les applications.",
+                "agents" : "Automatisation et flux assistés par l’IA.",
+                "contentCreation" : "Création d’images, vidéos et contenus avec l’IA.",
+                "vibeCoding" : "Développement assisté par l’IA (ex. Cursor).",
+                "solidity" : "Langage des smart contracts sur Ethereum et EVM.",
+                "web3js" : "Connexion front-end aux réseaux et contrats décentralisés.",
+                "bitcoin" : "Référence en crypto-monnaie et blockchain.",
+                "ethereum" : "Plateforme de contrats intelligents et écosystème DeFi/NFT.",
+                "etherjs" : "Librairie pour interagir avec Ethereum et les wallets."
             }
-        
-            
         },
         "projects" : {
-            "title" : "Projets"
+            "title" : "Projets",
+            "viewProject" : "Voir le projet",
+            "dandela" : {
+                "name" : "Dandela Academy",
+                "type" : "Formation & E-learning",
+                "description" : "Dandela Academy est une école de formation professionnelle certifiée et approuvée par l'INEFOP (Angola), qui place l'innovation et le digital au cœur de l'apprentissage. La plateforme offre un environnement moderne, flexible et interactif : cours structurés disponibles 24h/24, formateurs qualifiés, et apprentissage guidé par l'IA pour personnaliser l'expérience. La mission est de démocratiser l'accès à la formation digitale et professionnelle pour que chaque étudiant puisse acquérir les compétences nécessaires pour réussir. La vision dépasse la formation : un projet de société pour donner aux jeunes et aux professionnels les moyens de façonner l'avenir de leur pays et de leur continent. L'app est disponible en PWA en français, portugais et anglais."
+            },
+            "winno" : {
+                "name" : "Winno Bearz Club",
+                "type" : "Projet NFT",
+                "description" : "WinnoBearz Club est une collection NFT générative avec une narration ludique : le sorcier Bearz BelzeBearz a dispersé les têtes pixelisées des WinnoBearz à travers le globe — serez-vous l'un des HolyBearz ? Chaque NFT est unique, avec plus de 5 555 combinaisons possibles à partir de 194 traits. La rareté est définie par des calques (Raspberry, Picnic, Salmon, Honey, Beehive). Au programme : 5 % des retraits d'équipe attribués aléatoirement à un détenteur, pleine propriété pour garder, offrir ou revendre, et présence sur OpenSea et les grands calendriers NFT. Construit avec la blockchain pour le mint et l'engagement communautaire."
+            },
+            "drilldev" : {
+                "name" : "Drill Dev",
+                "type" : "Intelligence Artificielle",
+                "description" : "Drill Dev est un projet à la croisée du développement et de l'intelligence artificielle. Il propose des outils et du contenu pour aider les développeurs et passionnés de tech à progresser en s'appuyant sur des flux de travail modernes assistés par l'IA. La plateforme combine tutoriels, ressources pratiques et une approche centrée sur l'apprentissage continu, avec pour objectif de rendre les compétences techniques avancées accessibles et applicables dans des projets réels."
+            },
+            "playpad" : {
+                "name" : "PlayPad App",
+                "type" : "Projet Mobile",
+                "description" : "PlayPad est l'app pour les passionnés de padel en Suisse. Trouve des joueurs à ton niveau, crée des matchs ouverts ou compétitifs, consulte les clubs partenaires et les terrains dans ta région, et rejoins des matchs ouverts en un clic. L'app inclut aussi une marketplace pour acheter ou vendre du matériel, un classement avec statistiques et suivi des performances, et la possibilité de grimper au général. Les créateurs de match peuvent accepter ou refuser les joueurs et gérer les réservations. Le tout 100 % gratuit pour les joueurs. Une solution Club Manager permet aux clubs partenaires de gérer réservations et recettes depuis une seule plateforme."
+            }
         },
         "education" : {
             "title": "Formations",
@@ -89,16 +143,23 @@
     "profileLinkedin" : "Profil Linkedin",
     "profileGithub" : "Profil Github",
     "profilePlaystore" : "Profil Playstore",
+    "quickMenuContact" : "Contact",
     "slogan" : "Parce que je suis un geek !",
     "theme" : "thème",
     "loadingDocument" : "Chargement du document...",
     "buttons": {
         "goChat": "Commencez votre visite",
         "goCv": "Voir mon CV",
-        "downloadCv": "Télécharger mon CV"
+        "downloadCv": "Télécharger mon CV",
+        "viewProject": "Voir le projet"
     },
-    "last_projects" : "Mes derniers projets", 
+    "viewProject": "Voir le projet",
+    "last_projects" : "Projets récents", 
     "projects": {
+        "dandela" : {
+            "name" : "Dandela Academy",
+            "type" : "Formation & E-learning"
+        },
         "winno" : {
             "name" : "Winno Bearz Club",
             "type" : "Projet NFT"

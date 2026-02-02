@@ -6,140 +6,92 @@
   font-style: sans-serif;
 }
 
-:root { 
+/* --------------- Thème classique noir & or (mode sombre uniquement) --------------- */
+:root {
+  /* Or vif — type trophée */
+  --gold-100: #fff4d6;
+  --gold-200: #ffe9a8;
+  --gold-300: #ffd966;
+  --gold-400: #ffd700;
+  --gold-500: #e6c200;
+  --gold-600: #ccac00;
+  --gold-700: #b39600;
+  --gold-800: #997f00;
+  --gold-900: #806600;
 
-  --blue-padelaxe: #0D6FE5;
-  --green-light-padelaxe: #C1FF72;
-  --grey-padelaxe: #545454;
+  --primary: var(--gold-400);
+  --primary-opacity: rgba(255, 215, 0, 0.28);
+  --primary-hover: var(--gold-300);
 
-  --orange100: #FDEBD5;
-        --orange200: #FCD2AC;
-        --orange300: #F8B181;
-        --orange400: #F19160;
-        --orange500: #e86130;
-        --orange600: #C74222;
-        --orange700: #A72917;
-        --orange800: #86150E;
-        --orange900: #6F090A;
+  --blue-linkedin: #0A66C2;
 
-        --primary: var(--orange500);
-        --primary-opacity: rgba(232, 97, 48, 0.8);
+  /* Fonds et surfaces */
+  --accents0: #0a0a0a;
+  --accents1: #111111;
+  --accents2: #1a1a1a;
+  --accents3: #242424;
+  --accents4: #2e2e2e;
+  --accents5: #404040;
+  --accents6: #6b6b6b;
+  --accents7: #9a9a9a;
+  --accents8: #c4c4c4;
+  --accents9: #f0f0eb;
 
-        --blue-linkedin:#0A66C2;
-        
-
-
-        --green-bot100: #D9FBD0;
-        --green-bot200: #ADF8A3;
-        --green-bot300: #75EB73;
-        --green-bot400: #4DD857;
-        --green-bot500: #1CBF37;
-        --green-bot600: #14A439;
-        --green-bot700: #0E8939;
-        --green-bot800: #086E36;
-        --green-bot900: #055B34;
-        --green-bot-primary: var(--green-bot500);
-
-
-
-        --green-light-bot100: #E7FAE7;
-        --green-light-bot200: #CFF6D4;
-        --green-light-bot300: #AFE5BA;
-        --green-light-bot400: #8FCBA2;
-        --green-light-bot500: #67A982;
-        --green-light-bot600: #4B916E;
-        --green-light-bot700: #33795E;
-        --green-light-bot800: #20624E;
-        --green-light-bot900: #135145;
-        --green-light-bot-primary: var(--green-light-bot500);
-
-
-
-
-
-
-
-  --accents0: #F1F3F5;
-  --accents1: #ECEEF0;
-  --accents2: #E6E8EB;
-  --accents3: #DFE3E6;
-  --accents4: #D7DBDF;
-  --accents5: #C1C8CD;
-  --accents6: #889096;
-  --accents7: #7E868C;
-  --accents8: #687076;
-  --accents9: #11181C;
-
-  --text: black;
-  --text-secondary: white;
-  --background: white;
-  --background-card: white;
-
+  --text: #f0f0eb;
+  --text-secondary: #0a0a0a;
+  --background: #0a0a0a;
+  --background-menu: rgba(10, 10, 10, 0.92);
+  --background-card: #111111;
 }
 
-[data-theme="light"] {
-  --accents0: #F1F3F5;
-  --accents1: #ECEEF0;
-  --accents2: #E6E8EB;
-  --accents3: #DFE3E6;
-  --accents4: #D7DBDF;
-  --accents5: #C1C8CD;
-  --accents6: #889096;
-  --accents7: #7E868C;
-  --accents8: #687076;
-  --accents9: #11181C;
-
-  --orange100: #FDEBD5;
-  --orange200: #FCD2AC;
-  --orange300: #F8B181;
-  --orange400: #F19160;
-  --orange500: #FF5722;
-  --orange600: #C74222;
-  --orange700: #A72917;
-  --orange800: #86150E;
-  --orange900: #6F090A;
-
-  --primary: var(--orange500);
-
- 
-
-  --text: black;
-  --text-secondary: white;
-  --background: var(--accents2);
-  --background-menu: white;
-  --background-card: white;
-}
-
+/* Forcer le même thème si data-theme est présent (rétrocompat) */
+[data-theme="light"],
 [data-theme="dark"] {
-  --accents0: #16181A;
-  --accents1: #26292B;
-  --accents2: #2B2F31;
-  --accents3: #313538;
-  --accents4: #3A3F42;
-  --accents5: #4C5155;
-  --accents6: #697177;
-  --accents7: #787F85;
-  --accents8: #9BA1A6;
-  --accents9: #ECEDEE;
+  --primary: var(--gold-400);
+  --primary-opacity: rgba(255, 215, 0, 0.28);
+  --accents0: #0a0a0a;
+  --accents1: #111111;
+  --accents2: #1a1a1a;
+  --accents3: #242424;
+  --accents4: #2e2e2e;
+  --accents5: #404040;
+  --accents6: #6b6b6b;
+  --accents7: #9a9a9a;
+  --accents8: #c4c4c4;
+  --accents9: #f0f0eb;
+  --text: #f0f0eb;
+  --text-secondary: #0a0a0a;
+  --background: #0a0a0a;
+  --background-menu: rgba(10, 10, 10, 0.92);
+  --background-card: #111111;
+}
 
-  --orange900: #FDEBD5;
-  --orange800: #FCD2AC;
-  --orange700: #F8B181;
-  --orange600: #F19160;
-  --orange500: #FF5722;
-  --orange400: #C74222;
-  --orange300: #A72917;
-  --orange200: #86150E;
-  --orange100: #6F090A;
+/* --------------- Animations --------------- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes goldShimmer {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.25); }
+  50% { box-shadow: 0 0 20px 2px rgba(255, 215, 0, 0.45); }
+}
+@keyframes pulseSoft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
+}
 
-
-  --primary: var(--orange500);
-
-  --text: white;
-  --text-secondary: black;
-  --background: var(--accents0);
-  --background-menu: black;
-  --background-card: black;
+html {
+  scroll-behavior: smooth;
 }
 
 html,
@@ -148,17 +100,27 @@ body {
   background: var(--background);
   margin: 0;
   font-family: "Roboto", sans-serif;
-    
-    overflow: hidden;
+  overflow: hidden;
+  color: var(--text);
+  animation: fadeIn 0.5s ease-out;
 }
 
 a {
-  color: inherit;
+  color: var(--primary);
   text-decoration: none;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+a:hover {
+  color: var(--gold-300);
 }
 
 * {
   box-sizing: border-box;
+}
+
+/* Menu Paper du sélecteur de langue — fond sombre */
+.SelectLangage-menuPaper {
+  background-color: var(--background-menu) !important;
 }
 
 .MuiDrawer-paper {
@@ -195,11 +157,11 @@ a {
 }
 
 .react-chatbot-kit-user-chat-message {
-  background-color: #f1f1f1;
+  background-color: var(--accents3);
   padding: 10px;
   border-radius: 5px;
   font-size: 0.9rem;
-  color: #585858;
+  color: var(--text);
   font-weight: medium;
   position: relative;
   text-align: left;
@@ -210,7 +172,7 @@ a {
   height: 0;
   border-top: 8px solid transparent;
   border-bottom: 8px solid transparent;
-  border-left: 8px solid #f1f1f1;
+  border-left: 8px solid var(--accents3);
   position: absolute;
   right: -7px;
   top: 13px;
@@ -228,30 +190,30 @@ a {
   border-radius: 50%;
   font-size: 1.2rem;
   margin-right: 12.5px;
-  background-color: #d8d8d8;
+  background-color: var(--primary);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .react-chatbot-kit-chat-bot-avatar-icon {
-  fill: #494646;
+  fill: var(--text-secondary);
   width: 22.5px;
   height: 22.5px;
 }
 
 .react-chatbot-kit-chat-bot-avatar-letter {
-  color: #1d1d1d;
+  color: var(--text-secondary);
   margin: 0;
   padding: 0;
 }
 
 .react-chatbot-kit-chat-bot-message {
-  background-color: #2898ec;
+  background-color: var(--primary);
   padding: 10px;
   border-radius: 5px;
   font-size: 0.9rem;
-  color: #fff;
+  color: var(--text-secondary);
   font-weight: medium;
   position: relative;
   width: 184.5px;
@@ -264,7 +226,7 @@ a {
   height: 0;
   border-top: 8px solid transparent;
   border-bottom: 8px solid transparent;
-  border-right: 8px solid #2898ec;
+  border-right: 8px solid var(--primary);
   position: absolute;
   left: -7px;
   top: 13px;
@@ -314,20 +276,21 @@ a {
 
 .react-chatbot-kit-chat-inner-container {
   height: 500px;
-  background-color: #fff;
+  background-color: var(--background-card);
   border-radius: 3px;
   border-radius: 5px;
+  border: 1px solid var(--accents3);
 }
 
 .react-chatbot-kit-chat-header {
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
-  background-color: #efefef;
+  background-color: var(--accents2);
   font-family: Arial;
   display: flex;
   align-items: center;
   font-size: 0.85rem;
-  color: #514f4f;
+  color: var(--primary);
   padding: 12.5px;
   font-weight: bold;
 }
@@ -350,8 +313,10 @@ a {
   padding: 12.5px;
   border: none;
   font-size: 0.85rem;
-  border-top: 1px solid #d8d8d8;
+  border-top: 1px solid var(--accents3);
   border-bottom-left-radius: 5px;
+  background: var(--accents1);
+  color: var(--text);
 }
 
 .react-chatbot-kit-chat-input-form {
@@ -360,14 +325,14 @@ a {
 }
 
 .react-chatbot-kit-chat-input::placeholder {
-  color: #585858;
+  color: var(--accents6);
 }
 
 .react-chatbot-kit-chat-btn-send {
-  background-color: #2898ec;
+  background-color: var(--primary);
   width: 100px;
   border: none;
-  color: #fff;
+  color: var(--text-secondary);
   border-bottom-right-radius: 5px;
 }
 

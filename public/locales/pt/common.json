@@ -1,0 +1,176 @@
+{
+    "titlePageHome": "Portfólio · Daniel Mbengui",
+    "welcome" :  "Olá 👋🏿, sou o Daan. Prazer em te conhecer! Como você está hoje?",
+    "footer": {
+        "deployedWith" : "Feito com paixão e dedicação, desenvolvido com",
+        "copyright" : "Copyright©",
+        "allRightsReserved" : "Todos os direitos reservados."
+    },
+    "langs": {
+        "title": "idioma",
+        "plural": "idiomas",
+        "fr": "Francês",
+        "en": "Inglês",
+        "pt": "Português",
+        "ao": "Lingala"
+    },
+    "sections" :{
+        "skills" : {
+            "disclaimer" : "As descrições indicam o papel e a importância de cada ferramenta ou idioma no meu trabalho do dia a dia.",
+            "title": "Competências",
+            "langs" : {
+                "title" : "Idiomas",
+                "subtitle" : "O multilinguismo molda a minha visão do mundo. Cada idioma que falo abre uma porta para uma cultura, um pensamento e uma forma única de comunicar.",
+                "fr" : {
+                    "name" : "Francês",
+                    "value" : 100,
+                    "level" : "Língua materna",
+                    "description" : "O francês é a minha língua materna — aquela com que sonho, penso e me expresso com maior fluidez. Falado na Suíça romanda desde a infância, representa para mim muito mais do que uma ferramenta de comunicação: uma chave de acesso à literatura, à diplomacia e a uma cultura milenar. No contexto profissional, redijo documentos técnicos, animo reuniões e negocio em francês sem esforço. Este domínio permite-me transmitir ideias complexas com precisão e nuance, tanto por escrito como oralmente."
+                },
+                "en" : {
+                    "name" : "Inglês",
+                    "value" : 90,
+                    "level" : "Fluente",
+                    "description" : "O inglês tornou-se o meu aliado quotidiano, tanto no trabalho como para explorar o mundo. Desenvolvi-o através de uma imersão progressiva: relações pessoais, consumo de conteúdos (séries, podcasts, tutoriais de tech) e sobretudo a programação, onde o inglês é a língua franca. Hoje, leio documentação técnica, participo em conferências e colaboro com equipas internacionais sem barreiras. O meu objetivo: aperfeiçoar ainda a fluidez oral e o vocabulário para trocas cada vez mais naturais."
+                },
+                "it" : {
+                    "name" : "Italiano",
+                    "value" : 50
+                },
+                "ao" : {
+                    "name" : "Lingala",
+                    "value" : 70,
+                    "level" : "Fluente",
+                    "description" : "O lingala, língua das minhas raízes angolanas e congolesas, ocupa um lugar especial na minha identidade. Falar fluentemente o lingala liga-me à minha família, à minha história e a uma comunidade cujos valores — solidariedade, humor, resiliência — ressoam em cada troca. Também domino o básico do kikongo, outra língua da bacia do Congo. Estas línguas africanas não são só herança: enriquecem a minha capacidade de pensar de forma diferente, de criar relações autênticas e de me adaptar a contextos culturais variados. Encarnam o que sou: uma ponte entre vários mundos."
+                },
+                "pt" : {
+                    "name" : "Português",
+                    "value" : 30,
+                    "level" : "Em aprendizagem",
+                    "description" : "O português é uma língua que estou a aprender progressivamente, em ligação com as minhas raízes lusófonas e com projetos como a Dandela Academy. Trabalho o vocabulário básico, a compreensão oral e escrita, com o objetivo de poder comunicar e colaborar em português num contexto profissional."
+                }
+            },
+            "programming" : {
+                "title" : "Programação",
+                "javascript" : {
+                    "name": "Javascript",
+                    "value": 50
+                }
+            },
+            "frameworks" : {
+                "title" : "Bibliotecas/Ferramentas"
+            },
+            "software" : {
+                "title" : "Software"
+            },
+            "web" : {
+                "title" : "Web"
+            },
+            "mobile" : {
+                "title" : "Mobile"
+            },
+            "blockchain" : {
+                "title" : "Blockchain"
+            },
+            "database" : {
+                "title" : "Base de dados"
+            },
+            "artificial" : {
+                "title" : "Inteligência Artificial (IA)",
+                "apiCalls" : "Chamadas API",
+                "agents" : "Agentes IA",
+                "contentCreation" : "Criação de conteúdo",
+                "contentCreationSubtitle" : "OpenAI, Runway, Veo, etc.",
+                "vibeCoding" : "Vibe coding"
+            },
+            "desc" : {
+                "javascript" : "Linguagem principal para o front-end e interfaces de utilizador.",
+                "typescript" : "Tipagem estática para projetos mais maintaináveis e escaláveis.",
+                "reactjs" : "Biblioteca UI para construir interfaces modernas e reativas.",
+                "nextjs" : "Framework full-stack para renderização no servidor e deploy.",
+                "ios" : "Desenvolvimento de aplicações nativas para o ecossistema Apple.",
+                "android" : "Desenvolvimento de aplicações para o parque Android.",
+                "pwa" : "Aplicações web instaláveis, offline-first e multi-dispositivos.",
+                "apiCalls" : "Integração de APIs (OpenAI, etc.) nas aplicações.",
+                "agents" : "Automatização e fluxos assistidos por IA.",
+                "contentCreation" : "Criação de imagens, vídeos e conteúdos com IA.",
+                "vibeCoding" : "Desenvolvimento assistido por IA (ex. Cursor).",
+                "solidity" : "Linguagem de smart contracts na Ethereum e EVM.",
+                "web3js" : "Ligação do front-end a redes e contratos descentralizados.",
+                "bitcoin" : "Referência em criptomoeda e blockchain.",
+                "ethereum" : "Plataforma de contratos inteligentes e ecossistema DeFi/NFT.",
+                "etherjs" : "Biblioteca para interagir com a Ethereum e wallets."
+            }
+        },
+        "projects" : {
+            "title" : "Projetos",
+            "viewProject" : "Ver o projeto",
+            "dandela" : {
+                "name" : "Dandela Academy",
+                "type" : "Formação e E-learning",
+                "description" : "A Dandela Academy é uma escola de formação profissional certificada e aprovada pelo INEFOP (Angola), que coloca a inovação e o digital no centro da aprendizagem. A plataforma oferece um ambiente moderno, flexível e interativo: cursos estruturados disponíveis 24h/24, formadores qualificados e aprendizagem guiada por IA para personalizar a experiência. A missão é democratizar o acesso à formação digital e profissional para que cada estudante possa adquirir as competências necessárias para ter sucesso. A visão vai além da formação: um projeto de sociedade para dar aos jovens e profissionais os meios de moldar o futuro do seu país e do seu continente. A app está disponível em PWA em francês, português e inglês."
+            },
+            "winno" : {
+                "name" : "Winno Bearz Club",
+                "type" : "Projeto NFT",
+                "description" : "O WinnoBearz Club é uma coleção NFT generativa com uma narrativa lúdica: o feiticeiro Bearz BelzeBearz espalhou as cabeças pixelizadas dos WinnoBearz pelo globo — serás um dos HolyBearz? Cada NFT é único, com mais de 5 555 combinações possíveis a partir de 194 traços. A raridade é definida por camadas (Raspberry, Picnic, Salmon, Honey, Beehive). No programa: 5% dos resgates da equipa atribuídos aleatoriamente a um detentor, propriedade total para guardar, oferecer ou revender, e presença na OpenSea e nos grandes calendários NFT. Construído com blockchain para o mint e o envolvimento da comunidade."
+            },
+            "drilldev" : {
+                "name" : "Drill Dev",
+                "type" : "Inteligência Artificial",
+                "description" : "O Drill Dev é um projeto na encruzilhada do desenvolvimento e da inteligência artificial. Oferece ferramentas e conteúdo para ajudar programadores e entusiastas de tech a evoluir apoiando-se em fluxos de trabalho modernos assistidos por IA. A plataforma combina tutoriais, recursos práticos e uma abordagem centrada na aprendizagem contínua, com o objetivo de tornar as competências técnicas avançadas acessíveis e aplicáveis em projetos reais."
+            },
+            "playpad" : {
+                "name" : "PlayPad App",
+                "type" : "Projeto Mobile",
+                "description" : "O PlayPad é a app para os apaixonados de padel na Suíça. Encontra jogadores ao teu nível, cria jogos abertos ou competitivos, consulta os clubes parceiros e os campos na tua região e junta-te a jogos abertos num clique. A app inclui também uma marketplace para comprar ou vender material, um ranking com estatísticas e acompanhamento de desempenho, e a possibilidade de subir no geral. Os criadores de jogo podem aceitar ou recusar jogadores e gerir as reservas. Tudo 100% gratuito para os jogadores. Uma solução Club Manager permite aos clubes parceiros gerir reservas e receitas a partir de uma única plataforma."
+            }
+        },
+        "education" : {
+            "title": "Formações",
+            "javascript" : {
+                "name" : "FreeCodeCamp",
+                "image" : "/logos/freecodecamp.jpeg",
+                "position" : "JavaScript Algorithms and Data Structures",
+                "date" : "2022-03-20",
+                "link": "https://www.freecodecamp.org/certification/fccef9a36a5-5f01-45d2-ad9e-88f37eac23d1/javascript-algorithms-and-data-structures"
+            }
+        }
+    },
+    "chatbot" : "Fala comigo",
+    "seeMyCV" : "Ver o meu CV",
+    "sendMeMail" : "Contacta-me",
+    "profileLinkedin" : "Perfil Linkedin",
+    "profileGithub" : "Perfil Github",
+    "profilePlaystore" : "Perfil Playstore",
+    "quickMenuContact" : "Contacto",
+    "slogan" : "Porque sou um geek!",
+    "theme" : "tema",
+    "loadingDocument" : "A carregar o documento...",
+    "buttons": {
+        "goChat": "Começar a visita",
+        "goCv": "Ver o meu CV",
+        "downloadCv": "Descarregar o meu CV",
+        "viewProject": "Ver o projeto"
+    },
+    "viewProject": "Ver o projeto",
+    "last_projects" : "Projetos recentes",
+    "projects": {
+        "dandela" : {
+            "name" : "Dandela Academy",
+            "type" : "Formação e E-learning"
+        },
+        "winno" : {
+            "name" : "Winno Bearz Club",
+            "type" : "Projeto NFT"
+        },
+        "drilldev" : {
+            "name" : "Drill Dev",
+            "type" : "Inteligência Artificial"
+        },
+        "playpad" : {
+            "name" : "PlayPad App",
+            "type" : "Projeto Mobile"
+        }
+    }
+}

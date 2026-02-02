@@ -3,28 +3,27 @@ import Head from 'next/head';
 import useWindowSize from '../hooks/useWindowSize';
 import { Box } from '@mui/system';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { ARRAY_NAMESPACES, ARRAY_LANGAGES, _MY_PROFILE_, _PAGE_LINK_CHAT_BOT_, _PAGE_LINK_RESUME_, _NAMESPACE_LANGAGE_HOME_, _WEBSITE_ADDRESS_, _NEXTJS_LINK_ } from '@/_mocks_/_settings_items_';
+import { ARRAY_NAMESPACES, ARRAY_LANGAGES, _MY_PROFILE_, _PAGE_LINK_RESUME_, _NAMESPACE_LANGAGE_HOME_, _NAMESPACE_LANGAGE_COMMON_, _WEBSITE_ADDRESS_, _NEXTJS_LINK_ } from '@/_mocks_/_settings_items_';
 import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 import { useLangMode } from '../contexts/LangModeProvider';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import { Avatar, Container, Drawer, Grid, Paper, Stack, Tooltip, useTheme } from '@mui/material';
 import StyledBadge from '../components/atoms/StyledBadge';
-import SelectLangageComponent from "../components/contexts/SelectLangageComponent"
+import FloatingQuickMenu from "@/components/contexts/FloatingQuickMenu"
 import SwitchThemeComponent from '../components/contexts/SwitchThemeComponent';
 import { CssBaseline } from '@mui/material';
 import MobileLinksBar from '../components/layouts/MobileLinksBar';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import MobileSectionsBar from '../components/layouts/MobileSectionsBar';
-import Link from 'next/link';
-import { ResumeIcon } from '@/components/icons/IconMaterialUi';
-import {PlayStoreIcon, AndroidIcon,XCodeIcon,FlutterIcon, CssIcon, HtmlIcon, JavascriptIcon, MaterialUiIcon, NextJsIcon, NodeJsIcon, PwaIcon, ReactIcon, VisualStudioIcon } from '@/components/icons/IconifiyIcons';
-import { motion, AnimatePresence } from "framer-motion"
-import { Bounce } from "react-awesome-reveal";
+import ProjectsComponent from '@/components/projects/ProjectsComponent';
+import LanguagesComponent from '@/components/languages.js/LanguagesComponent';
+import SkillsComponent from '@/components/skills/SkillsComponent';
+import {PlayStoreIcon, AndroidIcon,XCodeIcon,FlutterIcon, CssIcon, HtmlIcon, JavascriptIcon, MaterialUiIcon, NextJsIcon, NodeJsIcon, PwaIcon, ReactIcon, VisualStudioIcon, BitcoinIcon, EthereumIcon, CursorIcon } from '@/components/icons/IconifiyIcons';
+import { motion, AnimatePresence } from "framer-motion";
 import { useDeviceMode } from '@/contexts/DeviceModeProvider';
 import Image from 'next/image';
 import {MY_AVATAR_BLACK_AND_WHITE, MY_AVATAR_COLOR} from "@/constants";
@@ -43,14 +42,17 @@ export function WebAppBar() {
 
   return (
     <Box sx={{ background: 'transparent' }}>
-      <AppBar position="fixed" sx={{ background: 'var(--background-menu)' }}>
-        <Toolbar
-          sx={{ background: 'transparent' }}
-        >
-          <Stack direction={'row'} justifyContent={'center'} spacing={1} alignItems={'center'} sx={{
-            width: '100%',
-            //background:'pink'
-          }}>
+      <AppBar
+        position="fixed"
+        elevation={0}
+        sx={{
+          background: 'var(--background-menu)',
+          backdropFilter: 'saturate(180%) blur(12px)',
+          borderBottom: '1px solid var(--accents3)',
+        }}
+      >
+        <Toolbar sx={{ background: 'transparent', minHeight: { xs: 56, sm: 64 } }}>
+          <Stack direction="row" justifyContent="center" spacing={1} alignItems="center" sx={{ width: '100%' }}>
             <SwitchThemeComponent />
           </Stack>
         </Toolbar>
@@ -206,105 +208,6 @@ const getPersonalOptions = (actionProvider) => {
   ];
 };
 
-const ProjectWinnoBearz = () => {
-  const { t } = useTranslation();
-  const { isMobile, isTablet } = useDeviceMode();
-  const theme = useTheme();
-  const backGround = theme.palette.mode == 'light' ? 'white' : 'rgba(0,0,0, 0.1)';
-  return(
-    
-    <Grid container sx={{width:'100%', height:'100%',}} justifyContent={'center'}>
-  <Grid item xs={12} sx={{textAlign:'center', width:'100%', /*background: backGround, border:'1px solid var(--primary)', borderBottomLeftRadius:'5px', borderBottomRightRadius: '5px'*/}}>
-  
-  <Typography fontWeight={'bold'} mt={2}>{t('projects.winno.type')}</Typography>
-  <Stack  p={1} alignItems={'center'} alignContent={'center'}>
-              
-    <Image alt="Description" src={"/img/winno/winno_logo.png"}
-                //fill="responsive"
-                sx={{width:'100%', height: '100%'}}
-                width={isMobile ? 135 : 150}
-                height={isMobile ? 135 : 150} style="cover" />
-    
-    <Stack mt={2} direction={'row'} justifyContent={'center'} alignItems={'center'} spacing={3} display={'none'}>
-
-                <Image alt="Description" src={"/img/winno/twitter.png"}
-                //fill="responsive"
-                sx={{width:'100%', height: '100%'}}
-                width={isMobile ? 50 : 50}
-                height={isMobile ? 50 : 50} style="cover" />
-                <Image alt="Description" src={"/img/winno/opensea.png"}
-                //fill="responsive"
-                sx={{width:'100%', height: '100%'}}
-                width={isMobile ? 120 : 150}
-                height={isMobile ? 28 : 35} style="cover" />
-    </Stack>
-              
-            </Stack>
-  </Grid></Grid>
-  )
-}
-const ProjectDrillDev = () => {
-  const { t } = useTranslation();
-  const { isMobile, isTablet } = useDeviceMode();
-  const theme = useTheme();
-  const backGround = theme.palette.mode == 'light' ? 'white' : 'rgba(0,0,0, 0.1)';
-
-  return(
-    <Grid container sx={{width:'100%', height:'100%', background:'green'}} justifyContent={'center'}>
-  <Grid item xs={12} sx={{textAlign:'center', width:'100%', /*background:backGround, border:'1px solid var(--primary)', borderBottomLeftRadius:'5px', borderBottomRightRadius: '5px'*/}}>
-  <Typography fontWeight={'bold'} mt={2}>{t('projects.drilldev.type')}</Typography>
-  <Stack  p={2} alignItems={'center'} alignContent={'center'}>
-  <Stack justifyContent={'center'} alignItems={'center'} spacing={1}>
-    <Image alt="Description" src={"/img/drilldev/logo_drilldev.png"}
-                //fill="responsive"
-                sx={{width:'80%', height: '80%'}}
-                width={isMobile ? 75 : 85}
-                height={isMobile ? 75 : 85} style="cover" />
-                <Image alt="Description" src={"/img/drilldev/text_drilldev.png"}
-                //fill="responsive"
-                sx={{width:'100%', height: '100%'}}
-                width={isMobile ? 120 : 150}
-                height={isMobile ? 40 : 50} style="cover" />
-    </Stack>       
-            </Stack>
-  </Grid></Grid>
-  )
-}
-const ProjectPlayPad = () => {
-  const { t } = useTranslation();
-  const { isMobile, isTablet } = useDeviceMode();
-  const theme = useTheme();
-  const backGround = theme.palette.mode == 'light' ? 'white' : 'rgba(0,0,0, 0.1)';
-
-  return(
-    <Grid container sx={{width:'100%', height:'100%', background:'green'}} justifyContent={'center'}>
-  <Grid item xs={12} sx={{textAlign:'center', width:'100%', /*background:backGround, border:'1px solid var(--primary)', borderBottomLeftRadius:'5px', borderBottomRightRadius: '5px'*/}}>
-  <Typography fontWeight={'bold'} mt={2}>{t('projects.playpad.type')}</Typography>
-  <Stack  pt={2} pb={5} alignItems={'center'} alignContent={'center'}>
-  <Image alt="Description" src={"/img/playpad/playpad_banner.png"}
-                //fill="responsive"
-                sx={{width:'80%', height: '80%'}}
-                width={isMobile ? 256 : 320}
-                height={isMobile ? 80 : 100} style="cover" />
-    <Stack mt={2} direction={'row'} justifyContent={'center'} alignItems={'center'} spacing={1} display={'none'}>
-    <Image alt="Description" src={"/img/playpad/playstore.png"}
-                //fill="responsive"
-                sx={{width:'100%', height: '100%'}}
-                width={isMobile ? 120 : 150}
-                height={isMobile ? 40 : 50} style="cover" />
-<Image alt="Description" src={"/img/playpad/appstore.png"}
-                //fill="responsive"
-                sx={{width:'100%', height: '100%'}}
-                width={isMobile ? 120 : 150}
-                height={isMobile ? 40 : 50} style="cover" />
-    </Stack>
-              
-            </Stack>
-  </Grid></Grid>
-  )
-}
-
-
 export const WebHome = ({currentYear}) => {
   //const currentYear = {param};
   const { t } = useTranslation();
@@ -319,43 +222,41 @@ export const WebHome = ({currentYear}) => {
   const [currentImageProg, setCurrentImageProg] = useState(0);
   const [currentImageFramework, setCurrentImageFramework] = useState(0);
   const [currentImageSoftware, setCurrentImageSoftware] = useState(0);
-  const [currentProject, setCurrentProject] = useState(0);
-  //const [currentProjectDrillDev, setCurrentProjectDrillDev] = useState(0);
-  //const [currentProjectPlayPad, setCurrentProjectPlayPad] = useState(0);
-  const imgProg = [
-    <JavascriptIcon size={60} />,
-    <HtmlIcon size={60} />,
-    <NodeJsIcon size={70} />,
-    <AndroidIcon size={70} />
-  ]
+  
+  // Fonction pour mélanger un tableau aléatoirement
+  const shuffleArray = (array) => {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
 
-  const imgFramework = [
-    <ReactIcon size={60} />,
-    <MaterialUiIcon size={60} />,
-    <PwaIcon size={70} />,
-    <XCodeIcon size={60} />
-  ]
+  // Initialiser les tableaux mélangés une seule fois au montage
+  const [imgProg] = useState(() => shuffleArray([
+    <JavascriptIcon size={60} key="js" />,
+    <HtmlIcon size={60} key="html" />,
+    <NodeJsIcon size={70} key="node" />,
+    <AndroidIcon size={70} key="android" />,
+    <BitcoinIcon size={65} key="btc" />,
+  ]));
 
-  const imgSoftware = [
-    <NextJsIcon size={60} />,
-    <CssIcon size={60} />,
-    <VisualStudioIcon size={60} />,
-    <FlutterIcon size={50} />
-  ]
+  const [imgFramework] = useState(() => shuffleArray([
+    <ReactIcon size={60} key="react" />,
+    <MaterialUiIcon size={60} key="mui" />,
+    <PwaIcon size={70} key="pwa" />,
+    <XCodeIcon size={60} key="xcode" />,
+    <EthereumIcon size={65} key="eth" />,
+  ]));
 
-  const componentProjects = [
-    {item:<ProjectWinnoBearz />, link: "https://winno.bearzclub.io/"},
-    {item:<ProjectDrillDev />},
-    {item:<ProjectPlayPad />},
-    
-    //projectPlayPad,
-  ]
-
-  const componentProjectsLinks = [
-    "https://winno.bearzclub.io/",
-    "https://drilldev.com/",
-    "https://playpadapp.com/",
-  ]
+  const [imgSoftware] = useState(() => shuffleArray([
+    <NextJsIcon size={60} key="next" />,
+    <CssIcon size={60} key="css" />,
+    <VisualStudioIcon size={60} key="vscode" />,
+    <FlutterIcon size={50} key="flutter" />,
+    <CursorIcon size={60} key="cursor" />,
+  ]));
 
 
 
@@ -366,9 +267,6 @@ export const WebHome = ({currentYear}) => {
       setCurrentImageProg((prevImage) => (prevImage + 1) % imgProg.length);
       setCurrentImageFramework((prevImage) => (prevImage + 1) % imgFramework.length);
       setCurrentImageSoftware((prevImage) => (prevImage + 1) % imgSoftware.length);
-      setCurrentProject((prevComponent) => (prevComponent + 1) % componentProjects.length);
-      //setCurrentProjectDrillDev((prevComponent) => (prevComponent + 1) % componentProjectDrillDev.length);
-      //setCurrentProjectPlayPad((prevComponent) => (prevComponent + 1) % componentProjectPlayPad.length);
     }, 3000);
     return () => clearInterval(interval);
 
@@ -376,50 +274,38 @@ export const WebHome = ({currentYear}) => {
 
 
   return (
-    <Box sx={{
-      height: '100%',
-      position: 'relative',
-      display:'flex',
-      //my:30,
-      //mb:50,
-      overflowY: 'scroll',
-      //backgroundColor: `rgba(${theme.palette.mode === THEME_LIGHT ? '255,255,255' : '0,0,0'}, 0.7)`, /* Black w/opacity/see-through */
-      //opacity:0.5,
-      //zIndex:0
-      //mt: 3,
-      //paddingBottom: 100
-    }}>
-      <div style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        //paddingTop:50
-        //background:'red',
-
-        //opacity:1,
-        //zIndex:10000
-        //opacity:0.5
-
-      }}>
+    <Box
+      sx={{
+        minHeight: '100vh',
+        position: 'relative',
+        display: 'flex',
+        flexDirection: 'column',
+        overflowY: 'auto',
+        background: 'var(--background)',
+        '&::before': {
+          content: '""',
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'radial-gradient(ellipse 70% 40% at 50% 0%, rgba(255,255,255,0.03) 0%, transparent 50%), radial-gradient(ellipse 50% 30% at 100% 50%, var(--accents2), transparent), radial-gradient(ellipse 50% 30% at 0% 50%, var(--accents2), transparent)',
+          pointerEvents: 'none',
+          zIndex: 0,
+        },
+      }}
+    >
+      <Box sx={{ position: 'relative', zIndex: 1, flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <Stack
-          //mb={50}
-         // py={10}
-          pt={10}
-          pb={5}
-          justifyContent={'center'} alignItems={'center'}
-          sx={{
-            opacity: 1,
-            position:'relative',
-            //background:'cyan'
-          }}>
-          <Stack p={1} mt={3} direction={'row'} spacing={1} alignItems={'center'} justifyContent={'center'} sx={{
-            //background:'green',
-            //background:'cyan',
-            //width:'100%',
-            borderRadius: 10
-          }}>
+          pt={{ xs: 5.5, sm: 7 }}
+          pb={8}
+          px={3}
+          justifyContent="center"
+          alignItems="center"
+          sx={{ maxWidth: 960, mx: 'auto', width: '100%' }}
+        >
+          {/* Tech stack — icônes rotatives */}
+          <Stack py={2} direction="row" spacing={2} alignItems="center" justifyContent="center" flexWrap="wrap" useFlexGap sx={{ gap: 2 }}>
             <Stack justifyContent={'center'} alignItems={'center'} style={{
               position: 'relative',
               //background:'cyan',
@@ -569,107 +455,71 @@ export const WebHome = ({currentYear}) => {
             </Stack>
           </Stack>
 
-          <Typography fontWeight={'bold'} pb={3}>{t('userPosition', { ns: _NAMESPACE_LANGAGE_HOME_ })}</Typography>
+          <Typography
+            variant="subtitle1"
+            sx={{
+              color: 'var(--accents7)',
+              fontWeight: 500,
+              letterSpacing: '0.04em',
+              fontSize: '0.85rem',
+              mt: 3,
+            }}
+          >
+            {t('userPosition', { ns: _NAMESPACE_LANGAGE_HOME_ })}
+          </Typography>
 
-          <Stack alignItems={'center'} spacing={1} mb={2}>
-            <Bounce duration={3000}>
-              <Paper
-                //elevation={theme.palette.mode === THEME_LIGHT ? 16 : 0} 
+          <Stack alignItems="center" spacing={2} my={4}>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+            >
+              <Avatar
+                src={MY_AVATAR_COLOR}
                 sx={{
-                  p: 1,
-                  //px:2,
-                  borderRadius: '50%',
-                  border: '3px solid var(--primary)',
-                  background: 'transparent'
-                }}>
-                <Avatar src={MY_AVATAR_COLOR}
-                  sx={{ width: 150, height: 150, }}
-                />
-              </Paper>
-            </Bounce>
-
-            <SelectLangageComponent />
+                  width: 120,
+                  height: 120,
+                  border: '1px solid var(--accents3)',
+                  bgcolor: 'var(--background-card)',
+                }}
+              />
+            </motion.div>
+            <Typography
+              component="span"
+              sx={{
+                color: 'var(--text)',
+                fontWeight: 600,
+                letterSpacing: '0.02em',
+                fontSize: '0.9rem',
+                textAlign: 'center',
+              }}
+            >
+              MBENGUI Daniel Slaver
+            </Typography>
           </Stack>
 
+          {/* Langues — titre, sous-titre et accordéons (même composant que /portfolio/languages) */}
+          <LanguagesComponent embedded />
 
-          <Stack mb={3} p={1} alignItems={'center'}>
-            <Link href={_PAGE_LINK_CHAT_BOT_} target={'_blank'}>
-              <Button sx={{ color: 'var(--text)' }} startIcon={<ResumeIcon />} variant='contained'>{t('buttons.goChat', { ns: _NAMESPACE_LANGAGE_HOME_ })}</Button>
-            </Link>
-            <Link href={_PAGE_LINK_RESUME_} target={'_blank'} style={{ display: 'none' }}>
-              <Button sx={{ color: 'var(--text)' }}>{t('buttons.goCv', { ns: _NAMESPACE_LANGAGE_HOME_ })}</Button>
-            </Link>
-          </Stack>
+          {/* Projets — carousel 3D + présentation (même composant que /portfolio/projects) */}
+          <ProjectsComponent embedded />
 
-          <Grid container justifyContent={'center'} p={1}>
-            <Grid item xs={12} sm={6} md={4} sx={{textAlign:'center',}} >
-                <Grid container justifyContent={'center'}>
-<Grid item sx={{textAlign:'center', display:'none' /*background: 'var(--primary)', borderTopLeftRadius:'5px', borderTopRightRadius:'5px'*/}} py={1} xs={12}>
-<Typography fontWeight={'bold'}>{t('last_projects')}</Typography>
-</Grid>
-
-
-<Grid item xs={12} sx={{position:'relative', minHeight:{xs:'205px', sm:'220px'} }}>
-<Link href={componentProjectsLinks[currentProject]} target='_blank' sx={{textAlign:'center'}}>
-<AnimatePresence id={'ok'} style={{
-                position: 'relative',
-                //background:'red',
-                //margin: 'auto',
-                //objectFit: 'cover',
-              }}>
-                <Grid container justifyContent={'center'} alignItems={'center'} sx={{width:'100%', position:'relative'}}>
-                  {componentProjects.map((component, index) => (
-                    
-                    <Grid item key={index} xs={12}>
-<motion.div
-                      
-                      initial={{ opacity: 0, position:'absolute', top:0, bottom:0}}
-                      animate={{ opacity: index === currentProject ? 1 : 0 }}
-                      exit={{ opacity: 0 }}
-                      //transition={{ duration: 0.5 }}
-                      whileTap={{
-                        scale: index === currentProject ? 2 : 1,
-                      }}
-                      transition={{ duration: 1 }}
-                      style={{
-                        width:'100%',
-                        //position: 'absolute', // Ajout de la position absolue ici
-              //top: 0,
-              //left: 0,
-              height: '100%',
-                      }}
-                    >
-                      {component.item}
-                    </motion.div>
-                      </Grid>
-                  ))}
-                </Grid>
-              </AnimatePresence>
-              </Link>
-</Grid>
-
-                </Grid>
-
-      
-            </Grid>
-          </Grid>
+          {/* Compétences — pills de catégories + cartes (même composant que /portfolio/skills, sans carousel) */}
+          <SkillsComponent embedded />
         </Stack>
-        <div className="appFooter" style={{ position: 'relative', background: 'var(--background)' }}>
-          <div className="footer-title" style={{ color: 'var(--accents9)' }}>
-            <Stack style={{ fontSize: 12 }} spacing={0.3}>
-              <div>
-                {t('footer.deployedWith')} <a href={_NEXTJS_LINK_} target='_blank'>{`Next.js`} <NextJsIcon size={15} /></a>
-              </div>
-              <div>
-              {`${t('footer.copyright')}`}<span>{currentYear == 2023 ? "2023" : `2023-${currentYear}`}</span>{` ${_WEBSITE_ADDRESS_}`}
-            </div>
-              <div>
-                {t('footer.allRightsReserved')}
-              </div>
-            </Stack>
-          </div>
-
-          <div className="mt-2">
+        <footer
+          className="appFooter"
+          style={{
+            position: 'relative',
+            background: 'var(--background)',
+            width: '100%',
+            marginTop: 'auto',
+            padding: '32px 24px',
+            borderTop: '1px solid var(--accents3)',
+          }}
+        >
+          <Stack alignItems="center" spacing={3}>
+            <Stack direction="row" spacing={2} alignItems="center" flexWrap="wrap" useFlexGap sx={{ gap: 2, justifyContent: 'center' }}>
             <Tooltip sx={{
               zIndex: 1
             }} open={false} title={t('seeMyCV')} placement="top">
@@ -687,7 +537,7 @@ export const WebHome = ({currentYear}) => {
             }} title={t('sendMeMail')} placement="top">
               <a href={`mailto:${_MY_PROFILE_.mail}`} className="btn btn-icon btn-sm" style={{
                 background: 'var(--primary)',
-                color: 'black'
+                color: 'var(--text-secondary)'
               }}>
                 <ion-icon name="mail"></ion-icon>
               </a>
@@ -715,21 +565,24 @@ export const WebHome = ({currentYear}) => {
               </a>
             </Tooltip>
 
-            <Tooltip sx={{
-              zIndex: 1
-            }} title={t('profilePlaystore')} placement="top">
-              <a href={_MY_PROFILE_.socials.playstore} target='_blank' className="btn btn-icon btn-sm" style={{
-                background: "white",
-                //color: 'white'
-              }}>
+            <Tooltip sx={{ zIndex: 1 }} title={t('profilePlaystore')} placement="top">
+              <a href={_MY_PROFILE_.socials.playstore} target="_blank" className="btn btn-icon btn-sm" style={{ background: 'white' }}>
                 <PlayStoreIcon size={15} />
               </a>
             </Tooltip>
-
-            
-          </div>
-        </div>
-      </div>
+            </Stack>
+            <Stack alignItems="center" spacing={0.5} sx={{ fontSize: 12, color: 'var(--accents7)' }}>
+              <div>
+                {t('footer.deployedWith')} <a href={_NEXTJS_LINK_} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary)' }}>Next.js <NextJsIcon size={14} /></a>
+              </div>
+              <div>
+                {t('footer.copyright')} <span>{currentYear === 2023 ? '2023' : `2023–${currentYear}`}</span> {_WEBSITE_ADDRESS_}
+              </div>
+              <div>{t('footer.allRightsReserved')}</div>
+            </Stack>
+          </Stack>
+        </footer>
+      </Box>
     </Box>
   );
 };
@@ -744,13 +597,11 @@ export default function HomePage() {
 
   return (
     <div style={{
-      //background:'red', 
-      //paddingTop:20,
-      //backgroundImage: `url('/img/home/background-${theme.palette.mode}.gif')`,
-      backgroundSize: 'cover',
-      backgroundRepeat: 'no-repeat',
-      //background:theme.palette.background.default,
-      overflow: 'scroll', position: 'absolute', bottom: 0, top: 0, left: 0, right: 0
+      background: 'var(--background)',
+      overflow: 'auto',
+      position: 'absolute',
+      inset: 0,
+      minHeight: '100vh',
     }}>
       <Head>
         <title>{t('titlePage', { ns: _NAMESPACE_LANGAGE_HOME_ })}</title>
@@ -760,10 +611,12 @@ export default function HomePage() {
         />
       </Head>
 
-      <WebAppBar />
+    
       <CssBaseline />
       <WebHome currentYear={currentYear} />
 
+      {/* Menu rapide fixe (langue + contact) en bas à droite */}
+      <FloatingQuickMenu />
     </div>
   );
   /*

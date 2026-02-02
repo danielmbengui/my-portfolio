@@ -52,6 +52,8 @@ import { styled } from '@mui/material/styles';
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 import { Fade } from 'react-awesome-reveal';
 import { MY_AVATAR_BLACK_AND_WHITE, MY_AVATAR_COLOR } from "@/constants";
+import { NextJsIcon, PlayStoreIcon } from '@/components/icons/IconifiyIcons';
+import { _NEXTJS_LINK_, _WEBSITE_ADDRESS_ } from '@/_mocks_/_settings_items_';
 
 const BootstrapTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} arrow classes={{ popper: className }} />
@@ -76,103 +78,9 @@ export function WebAppBar() {
     setPopoverOpen(false);
   };
 
-  useEffect(() => {
-    function adjustIframeLayout(isOpen) {
-      const widgetIframe = document.getElementById("xeko-ai-widget");
-      if (!widgetIframe) return;
-
-      const isMobile = window.innerWidth < 768;
-
-      if (isMobile) {
-        if (isOpen) {
-          widgetIframe.style.position = "fixed";
-          widgetIframe.style.top = 0;
-          widgetIframe.style.bottom = 0;
-          widgetIframe.style.left = 0;
-          widgetIframe.style.right = 0;
-          widgetIframe.style.width = "100%";
-          widgetIframe.style.height = "100%";
-          //widgetIframe.style.transform = "";
-        } else {
-          widgetIframe.style.position = "fixed";
-          widgetIframe.style.bottom = 0;
-          widgetIframe.style.right = 0;
-          widgetIframe.style.top = "auto";
-          widgetIframe.style.left = "auto";
-          widgetIframe.style.width = "200px";
-          widgetIframe.style.height = "160px";
-          //widgetIframe.style.transform = "";
-        }
-      } else {
-        if (isOpen) {
-          widgetIframe.style.position = "fixed";
-          widgetIframe.style.bottom = 0;
-          widgetIframe.style.right = 0;
-          widgetIframe.style.top = 0;
-          //widgetIframe.style.left = "auto";
-          widgetIframe.style.width = "450px";
-          widgetIframe.style.height = "100%";
-          //widgetIframe.style.transform = "";
-        } else {
-          widgetIframe.style.position = "fixed";
-          //widgetIframe.style.right = "0";
-          widgetIframe.style.top = "auto";
-          //widgetIframe.style.bottom = "0";
-          widgetIframe.style.left = "auto";
-          widgetIframe.style.width = "210px";
-          widgetIframe.style.height = "160px";
-          //widgetIframe.style.transform = "translateY(-50%)";
-
-          widgetIframe.style.right = 0;
-          widgetIframe.style.bottom = 0;
-          //widgetIframe.style.border= '5px solid cyan';
-          //widgetIframe.style.width= '210px';
-          //widgetIframe.style.maxWidth: '250px';
-        }
-      }
-    }
-
-    const handleResize = () => {
-      const currentState = window.xekoWidgetState !== undefined ? window.xekoWidgetState : false;
-      adjustIframeLayout(currentState);
-    };
-
-    const handleMessage = (event) => {
-      if (event.data?.type === "resize_widget") {
-        window.xekoWidgetState = event.data.isOpen;
-        adjustIframeLayout(event.data.isOpen);
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-    window.addEventListener("message", handleMessage);
-
-    adjustIframeLayout(false);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      window.removeEventListener("message", handleMessage);
-    };
-  }, []);
-
   return (
     <Box sx={{}}>
-      <head>
-        <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.esm.js"></script>
-        <script noModule src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.js"></script>
-      </head>
       <AppBar position="static">
-        <iframe
-          id="xeko-ai-widget"
-          src="https://assistant.xeko.ai?assistant_id=67ea9d65dba8839eea322ea3"
-          style={{
-            position: 'fixed',
-            right: 0, bottom: 0,
-            //border: '5px solid cyan',
-            //margin: 0, padding: 0, 
-            zIndex: 9999
-          }}
-          scrolling="no"></iframe>
         <Toolbar sx={{ background: theme.palette.background.menu }}>
           <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'} sx={{
             width: '100%',
@@ -424,9 +332,6 @@ const getPersonalOptions = (actionProvider) => {
     },
   ];
 };
-
-
-
 const WebHome = () => {
   const { t } = useTranslation();
   const [lang,] = useLangMode();
@@ -462,7 +367,6 @@ const WebHome = () => {
     </>
   );
 };
-
 const MobileHome = () => {
   const { t } = useTranslation();
   const [lang,] = useLangMode();
@@ -667,101 +571,71 @@ const MobileHome = () => {
 export default function ChatbotPage() {
   const { width } = useWindowSize();
   const { t } = useTranslation();
-  useEffect(() => {
-    function adjustIframeLayout(isOpen) {
-      const widgetIframe = document.getElementById("xeko-ai-widget");
-      if (!widgetIframe) return;
-
-      const isMobile = window.innerWidth < 768;
-
-      if (isMobile) {
-        if (isOpen) {
-          widgetIframe.style.position = "fixed";
-          widgetIframe.style.top = 0;
-          widgetIframe.style.bottom = 0;
-          widgetIframe.style.left = 0;
-          widgetIframe.style.right = 0;
-          widgetIframe.style.width = "100%";
-          widgetIframe.style.height = "100%";
-          //widgetIframe.style.transform = "";
-        } else {
-          widgetIframe.style.position = "fixed";
-          widgetIframe.style.bottom = 0;
-          widgetIframe.style.right = 0;
-          widgetIframe.style.top = "auto";
-          widgetIframe.style.left = "auto";
-          widgetIframe.style.width = "200px";
-          widgetIframe.style.height = "160px";
-          //widgetIframe.style.transform = "";
-        }
-      } else {
-        if (isOpen) {
-          widgetIframe.style.position = "fixed";
-          widgetIframe.style.bottom = 0;
-          widgetIframe.style.right = 0;
-          widgetIframe.style.top = 0;
-          //widgetIframe.style.left = "auto";
-          widgetIframe.style.width = "450px";
-          widgetIframe.style.height = "100%";
-          //widgetIframe.style.transform = "";
-        } else {
-          widgetIframe.style.position = "fixed";
-          //widgetIframe.style.right = "0";
-          widgetIframe.style.top = "auto";
-          //widgetIframe.style.bottom = "0";
-          widgetIframe.style.left = "auto";
-          widgetIframe.style.width = "210px";
-          widgetIframe.style.height = "160px";
-          //widgetIframe.style.transform = "translateY(-50%)";
-
-          widgetIframe.style.right = 0;
-          widgetIframe.style.bottom = 0;
-          //widgetIframe.style.border= '5px solid cyan';
-          //widgetIframe.style.width= '210px';
-          //widgetIframe.style.maxWidth: '250px';
-        }
-      }
-    }
-
-    const handleResize = () => {
-      const currentState = window.xekoWidgetState !== undefined ? window.xekoWidgetState : false;
-      adjustIframeLayout(currentState);
-    };
-
-    const handleMessage = (event) => {
-      if (event.data?.type === "resize_widget") {
-        window.xekoWidgetState = event.data.isOpen;
-        adjustIframeLayout(event.data.isOpen);
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-    window.addEventListener("message", handleMessage);
-
-    adjustIframeLayout(false);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      window.removeEventListener("message", handleMessage);
-    };
-  }, []);
+  const [lang] = useLangMode();
+  const currentYear = new Date().getFullYear();
 
   return (
     <>
       {width > 740 ? <WebAppBar /> : <MobileAppBar />}
       <CssBaseline />
       {width > 740 ? <WebHome /> : <MobileHome />}
-      <iframe
-        id="xeko-ai-widget"
-        src="https://assistant.xeko.ai?assistant_id=67ea9d65dba8839eea322ea3"
+      <footer
+        className="appFooter"
         style={{
-          position: 'fixed',
-          right: 0, bottom: 0,
-          //border: '5px solid cyan',
-          //margin: 0, padding: 0, 
-          zIndex: 9999
+          position: 'relative',
+          background: 'var(--background)',
+          width: '100%',
+          marginTop: 'auto',
+          padding: '32px 24px',
+          borderTop: '1px solid var(--accents3)',
         }}
-        scrolling="no"></iframe>
+      >
+        <Stack alignItems="center" spacing={3}>
+          <Stack direction="row" spacing={2} alignItems="center" flexWrap="wrap" useFlexGap sx={{ gap: 2, justifyContent: 'center' }}>
+            <Tooltip sx={{ zIndex: 1 }} title={t('sendMeMail')} placement="top">
+              <a href={`mailto:${_MY_PROFILE_.mail}`} className="btn btn-icon btn-sm" style={{
+                background: 'var(--primary)',
+                color: 'var(--text-secondary)'
+              }}>
+                <ion-icon name="mail"></ion-icon>
+              </a>
+            </Tooltip>
+
+            <Tooltip sx={{ zIndex: 1 }} title={t('profileLinkedin')} placement="top">
+              <a href={_MY_PROFILE_.socials.linkedin} target='_blank' className="btn btn-icon btn-sm" style={{
+                background: 'var(--blue-linkedin)',
+                color: 'white'
+              }}>
+                <ion-icon name="logo-linkedin"></ion-icon>
+              </a>
+            </Tooltip>
+
+            <Tooltip sx={{ zIndex: 1 }} title={t('profileGithub')} placement="top">
+              <a href={_MY_PROFILE_.socials.github} target='_blank' className="btn btn-icon btn-sm" style={{
+                background: 'black',
+                color: 'white'
+              }}>
+                <ion-icon name="logo-github"></ion-icon>
+              </a>
+            </Tooltip>
+
+            <Tooltip sx={{ zIndex: 1 }} title={t('profilePlaystore')} placement="top">
+              <a href={_MY_PROFILE_.socials.playstore} target="_blank" className="btn btn-icon btn-sm" style={{ background: 'white' }}>
+                <PlayStoreIcon size={15} />
+              </a>
+            </Tooltip>
+          </Stack>
+          <Stack alignItems="center" spacing={0.5} sx={{ fontSize: 12, color: 'var(--accents7)' }}>
+            <div>
+              {t('footer.deployedWith')} <a href={_NEXTJS_LINK_} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary)' }}>Next.js <NextJsIcon size={14} /></a>
+            </div>
+            <div>
+              {t('footer.copyright')} <span>{currentYear === 2023 ? '2023' : `2023–${currentYear}`}</span> {_WEBSITE_ADDRESS_}
+            </div>
+            <div>{t('footer.allRightsReserved')}</div>
+          </Stack>
+        </Stack>
+      </footer>
     </>
   );
 }

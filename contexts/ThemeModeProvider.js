@@ -5,8 +5,6 @@ import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { DEFAULT_THEME, GENERAL_FONT_FAMILY, STORAGE_THEME_MODE, THEME_DARK, THEME_LIGHT } from '../_mocks_/_settings_items_';
-import { amber, green, grey, deepOrange } from '@mui/material/colors';
-
 export const ColorModeContext = createContext({ toggleColorMode: () => { } });
 
 
@@ -51,14 +49,11 @@ export default function ThemeModeProvider({ children, themeMode }) {
                       },
                   },
                 components: {
-                    // Name of the component
                     MuiTypography: {
                         styleOverrides: {
-                            // Name of the slot
                             root: {
-                              // Some CSS
                               fontFamily: "Roboto",
-                              color:'var(--text)',
+                              color: '#f0f0eb',
                             },
                           },
                     },
@@ -73,33 +68,25 @@ export default function ThemeModeProvider({ children, themeMode }) {
                     }
                   },
                 palette: {
-                    mode,
-                    background: {
-                        default: 'var(--background)',
-                        menu: 'var(--background-menu)',
-                        paper: 'var(--background-menu)',
-                        card: 'var(--background-menu)',
-                        drawer: 'var(--background-menu)',
+                    mode: 'dark',
+                    primary: {
+                        main: '#ffd700',
+                        light: '#ffdf33',
+                        dark: '#e6c200',
+                        contrastText: '#0a0a0a',
                     },
-                    ...(mode === 'light'
-                        ? {
-                            // palette values for light mode
-                            primary: deepOrange,
-                            divider: 'var(--primary)',
-                            text: {
-                                primary: '#000000',
-                                secondary: '#ffffff',
-                            },
-                        }
-                        : {
-                            // palette values for dark mode
-                            primary: deepOrange,
-                            divider: 'var(--primary)',
-                            text: {
-                                primary: '#fff',
-                                secondary: "#000000",
-                            },
-                        }),
+                    background: {
+                        default: '#0a0a0a',
+                        menu: 'rgba(10, 10, 10, 0.92)',
+                        paper: 'rgba(10, 10, 10, 0.92)',
+                        card: 'rgba(10, 10, 10, 0.92)',
+                        drawer: 'rgba(10, 10, 10, 0.92)',
+                    },
+                    divider: '#ffd700',
+                    text: {
+                        primary: '#f0f0eb',
+                        secondary: '#9a9a9a',
+                    },
                 },
             }),
         [mode],

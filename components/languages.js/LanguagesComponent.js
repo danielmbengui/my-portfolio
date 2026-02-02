@@ -1,96 +1,242 @@
-import React from 'react';
-import { Container, Grid, Stack, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+  Container,
+  Grid,
+  LinearProgress,
+  Stack,
+  Typography,
+} from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useTranslation } from 'next-i18next';
-import { Bounce } from 'react-awesome-reveal';
-import { AngolanIcon, EnglishIcon, SwissIcon } from '../icons/FlagIcons';
-import { _MY_PROFILE_, _NEXTJS_LINK_, _PAGE_LINK_RESUME_, _WEBSITE_ADDRESS_ } from '@/_mocks_/_settings_items_';
+import { Fade } from 'react-awesome-reveal';
+import { AngolanIcon, EnglishIcon, FrenchIcon, PortugueseIcon } from '../icons/FlagIcons';
 import FooterComponent from '../footer/FooterComponent';
 
-export default function LanguagesComponent() {
+const languages = [
+  {
+    id: 'fr',
+    Icon: FrenchIcon,
+    nameKey: 'sections.skills.langs.fr.name',
+    descKey: 'sections.skills.langs.fr.description',
+    valueKey: 'sections.skills.langs.fr.value',
+    levelKey: 'sections.skills.langs.fr.level',
+  },
+  {
+    id: 'en',
+    Icon: EnglishIcon,
+    nameKey: 'sections.skills.langs.en.name',
+    descKey: 'sections.skills.langs.en.description',
+    valueKey: 'sections.skills.langs.en.value',
+    levelKey: 'sections.skills.langs.en.level',
+  },
+  {
+    id: 'ao',
+    Icon: AngolanIcon,
+    nameKey: 'sections.skills.langs.ao.name',
+    descKey: 'sections.skills.langs.ao.description',
+    valueKey: 'sections.skills.langs.ao.value',
+    levelKey: 'sections.skills.langs.ao.level',
+  },
+  {
+    id: 'pt',
+    Icon: PortugueseIcon,
+    nameKey: 'sections.skills.langs.pt.name',
+    descKey: 'sections.skills.langs.pt.description',
+    valueKey: 'sections.skills.langs.pt.value',
+    levelKey: 'sections.skills.langs.pt.level',
+  },
+];
+
+export default function LanguagesComponent({ embedded = false }) {
   const { t } = useTranslation();
+  const [expanded, setExpanded] = useState('fr');
+
+  const handleChange = (panel) => (_, isExpanded) => {
+    setExpanded(isExpanded ? panel : false);
+  };
 
   return (
-    <Container sx={{
-      height: '100vh', position: 'relative', overflowY: 'scroll',
-    }}
+    <Container
+      sx={{
+        position: 'relative',
+        overflow: 'visible',
+        mt: '20px',
+        ...(embedded ? { px: 0, py: 0 } : {}),
+      }}
     >
       <Grid
         container
-        justifyContent={'center'}
-        spacing={5}
-        pt={5}
-        pb={{ xs: 20, sm: 10 }}
+        justifyContent="center"
+        spacing={embedded ? 3 : 4}
+        pt={embedded ? 3 : 4}
+        pb={embedded ? 4 : { xs: 20, sm: 10 }}
       >
-        <Grid item xs={12} sx={{ textAlign: 'center' }}>
-          <Stack >
-            <Bounce triggerOnce duration={2500}><Typography
-              fontSize={26}
-              fontWeight={'bold'}
+        {/* En-tête */}
+        <Grid item xs={12} sx={{ textAlign: 'center', ...(embedded ? { mt: 0 } : {}) }}>
+          <Stack spacing={1} alignItems="center">
+            <Typography
+              component="h1"
               sx={{
-                //background:theme.palette.primary.main, 
-                //opacity:0.8, 
-                margin: 'auto',
-                px: 1,
-                //borderRadius:1.5,
-                color: 'var(--text)'
-              }}>{t('sections.skills.langs.title')}</Typography></Bounce>
+                fontSize: { xs: 24, sm: 28 },
+                fontWeight: 600,
+                letterSpacing: '0.02em',
+                color: 'var(--text)',
+                mb: 0.5,
+              }}
+            >
+              {t('sections.skills.langs.title')}
+            </Typography>
+            <Fade triggerOnce delay={100}>
+              <Typography
+                variant="body1"
+                sx={{
+                  color: 'var(--accents7)',
+                  maxWidth: 800,
+                  fontSize: { xs: '0.95rem', sm: '1.05rem' },
+                  lineHeight: 1.6,
+                }}
+              >
+                {t('sections.skills.langs.subtitle')}
+              </Typography>
+            </Fade>
           </Stack>
         </Grid>
 
-        <Grid item xs={12} sm={10}>
-          <Grid container justifyContent={'center'} sx={{ width: '100%', }}>
-            <Grid item xs={12}>
-              <div className="section inset" >
-                <div className="accordion" id="accordionExample2" sx={{ width: '100%', border: '3px solid yellow' }}>
-                  <div className="accordion-item" style={{ background: 'var(--background-menu)' }}>
-                    <h2 className="accordion-header">
-                      <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#accordion01">
-                        <Stack direction={'row'} alignItems={'center'} spacing={1}><SwissIcon /><Typography>{t('sections.skills.langs.fr.name')}</Typography></Stack>
-                      </button>
-                    </h2>
-                    <div id="accordion01" className="accordion-collapse collapse" data-bs-parent="#accordionExample2">
-                      <div className="accordion-body" style={{ textAlign: 'justify' }}>
-                        {t('sections.skills.langs.fr.description')}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="accordion-item" style={{ background: 'var(--background-menu)' }}>
-                    <h2 className="accordion-header">
-                      <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#accordion02">
-                        <Stack direction={'row'} alignItems={'center'} spacing={1}><AngolanIcon /><Typography>{t('sections.skills.langs.ao.name')}</Typography></Stack>
+        {/* Cartes des langues */}
+        <Grid item xs={12} sm={12} md={10}>
+          <Fade triggerOnce cascade delay={300}>
+            {languages.map((lang, index) => {
+              const Icon = lang.Icon;
+              const rawValue = t(lang.valueKey);
+              const numericValue = typeof rawValue === 'number' ? rawValue : (parseInt(rawValue, 10) || 80);
 
-                      </button>
-                    </h2>
-                    <div id="accordion02" className="accordion-collapse collapse" data-bs-parent="#accordionExample2">
-                      <div className="accordion-body" style={{ textAlign: 'justify' }}>
-                        {t('sections.skills.langs.ao.description')}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="accordion-item" style={{ background: 'var(--background-menu)' }}>
-                    <h2 className="accordion-header">
-                      <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#accordion03">
-                        <Stack direction={'row'} alignItems={'center'} spacing={1}><EnglishIcon /><Typography>{t('sections.skills.langs.en.name')}</Typography></Stack>
-                      </button>
-                    </h2>
-                    <div id="accordion03" className="accordion-collapse collapse" data-bs-parent="#accordionExample2">
-                      <div className="accordion-body" style={{ textAlign: 'justify' }}>
-                        {t('sections.skills.langs.en.description')}
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              return (
+                <Accordion
+                  key={lang.id}
+                  expanded={expanded === lang.id}
+                  onChange={handleChange(lang.id)}
+                  sx={{
+                    mb: 2,
+                    background: 'var(--background-card)',
+                    border: '1px solid var(--accents3)',
+                    borderRadius: '8px !important',
+                    overflow: 'hidden',
+                    '&:before': { display: 'none' },
+                    boxShadow: 'none',
+                    transition: 'border-color 0.2s ease',
+                    borderColor: expanded === lang.id ? 'var(--accents5)' : undefined,
+                    '&:hover': {
+                      borderColor: 'var(--accents5)',
+                    },
+                  }}
+                >
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon sx={{ color: 'var(--primary)' }} />}
+                    sx={{
+                      px: 3,
+                      py: 1.5,
+                      minHeight: 72,
+                      '& .MuiAccordionSummary-content': {
+                        my: 2,
+                        alignItems: 'center',
+                      },
+                    }}
+                  >
+                    <Stack direction="row" alignItems="center" spacing={2} sx={{ width: '100%' }}>
+                      <Box
+                        sx={{
+                          width: 48,
+                          height: 48,
+                          borderRadius: '12px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          background: 'linear-gradient(135deg, var(--accents3) 0%, var(--accents2) 100%)',
+                          border: '1px solid var(--accents4)',
+                          overflow: 'hidden',
+                        }}
+                      >
+                        <Icon size={28} />
+                      </Box>
+                      <Box sx={{ flex: 1, minWidth: 0 }}>
+                        <Typography
+                          sx={{
+                            //fontWeight: 700,
+                            fontSize: '0.75rem',
+                            color: 'var(--text-color)',
+                          }}
+                        >
+                          {t(`langs.${lang.id}`)}
+                        </Typography>
+                        <Stack direction="row" alignItems="center" spacing={1.5}>
+                          <LinearProgress
+                            variant="determinate"
+                            value={numericValue}
+                            sx={{
+                              width: 100,
+                              height: 6,
+                              borderRadius: 3,
+                              backgroundColor: 'var(--accents4)',
+                              '& .MuiLinearProgress-bar': {
+                                background: 'linear-gradient(90deg, var(--gold-600), var(--gold-400))',
+                              },
+                            }}
+                          />
+                          <Typography
+                            variant="caption"
+                            sx={{
+                              color: 'var(--primary)',
+                              fontWeight: 600,
+                              minWidth: 36,
+                            }}
+                          >
+                            {numericValue}%
+                          </Typography>
+                        </Stack>
+                      </Box>
+                      <Typography
+                        variant="caption"
+                        sx={{
+                          px: 1.5,
+                          py: 0.5,
+                          borderRadius: 2,
+                          background: 'var(--primary-opacity)',
+                          color: 'var(--gold-300)',
+                          fontWeight: 600,
+                          display: { xs: 'none', sm: 'block' },
+                        }}
+                      >
+                        {t(lang.levelKey)}
+                      </Typography>
+                    </Stack>
+                  </AccordionSummary>
+                  <AccordionDetails sx={{ px: 3, pb: 3, pt: 0 }}>
+                    <Typography
+                      sx={{
+                        color: 'var(--accents8)',
+                        lineHeight: 1.8,
+                        textAlign: 'justify',
+                        fontSize: { xs: '0.95rem', sm: '1rem' },
+                      }}
+                    >
+                      {t(lang.descKey)}
+                    </Typography>
+                  </AccordionDetails>
+                </Accordion>
+              );
+            })}
+          </Fade>
+        </Grid>
 
-              </div>
-            </Grid>
+        {!embedded && (
+          <Grid item xs={12}>
+            <FooterComponent />
           </Grid>
-        </Grid>
-        <Grid item xs={12}>
-          <FooterComponent />
-        </Grid>
+        )}
       </Grid>
     </Container>
   );

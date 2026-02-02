@@ -9,6 +9,7 @@ import '@/styles/carousel.css';
 import LangModeProvider from '../contexts/LangModeProvider';
 import DeviceModeProvider from '../contexts/DeviceModeProvider';
 import { appWithTranslation } from "next-i18next";
+import nextI18NextConfig from "../next-i18next.config";
 import { DEFAULT_LANGAGE, DEFAULT_THEME, STORAGE_LANG_MODE, STORAGE_THEME_MODE } from '../_mocks_/_settings_items_';
 import { SSRProvider } from '@react-aria/ssr';
 import ThemeModeProvider from '../contexts/ThemeModeProvider';
@@ -86,10 +87,10 @@ const MyApp = (props) => {
           <LangModeProvider langMode={langMode}>
             <DeviceModeProvider>
               <Head>
-                <title>{"Daniel Mbengui"}</title>
+                <title>{"Daniel Mbengui | Vibe Developer"}</title>
                 <meta
                   name="description"
-                  content="Fullstack Developer | Mobile Developer "
+                  content="Vibe Developer | Fullstack Developer | Mobile Developer "
                 />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <link rel="icon" href="/me-color.png" />
@@ -122,4 +123,4 @@ const MyApp = (props) => {
 };
 
 //export default MyApp;
-export default appWithTranslation(MyApp);
+export default appWithTranslation(MyApp, nextI18NextConfig);

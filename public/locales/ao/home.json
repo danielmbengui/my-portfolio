@@ -1,0 +1,11 @@
+{
+    "titlePage": "Daniel Mbengui | Liboso",
+    "descriptionPage": "Développeur Fullstack | Développeur Mobile",
+    "userPosition" : "Vibe Developer",
+    "buttons": {
+        "goChat": "Kobanda visite",
+        "goCv": "Kotala CV na ngaï",
+        "downloadCv": "Kokweya CV na ngaï",
+        "viewProject": "Kotala projeti"
+    }
+}

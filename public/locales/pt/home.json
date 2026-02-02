@@ -1,0 +1,11 @@
+{
+    "titlePage": "Daniel Mbengui | Início",
+    "descriptionPage": "Desenvolvedor Fullstack | Desenvolvedor Mobile",
+    "userPosition" : "Vibe Developer",
+    "buttons": {
+        "goChat": "Começar a visita",
+        "goCv": "Ver o meu CV",
+        "downloadCv": "Descarregar o meu CV",
+        "viewProject": "Ver o projeto"
+    }
+}

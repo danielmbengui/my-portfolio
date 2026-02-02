@@ -1,10 +1,11 @@
 {
     "titlePage": "Daniel Mbengui | Accueil",
     "descriptionPage": "Développeur Fullstack | Développeur Mobile",
-    "userPosition" : "Développeur Freelance",
+    "userPosition" : "Vibe Developer",
     "buttons": {
         "goChat": "Commencez votre visite",
         "goCv": "Voir mon CV",
-        "downloadCv": "Télécharger mon CV"
+        "downloadCv": "Télécharger mon CV",
+        "viewProject": "Voir le projet"
     }
 }

@@ -55,11 +55,9 @@ const styleSelect = {
         color: 'var(--primary)'
     },
     ".MuiSelect-select": {
-        //borderColor:'var(--primary)',
         color: 'var(--primary)',
         fontWeight: 'bold',
         fontSize: 14,
-        //height: 20,
         background: 'transparent',
         "&:hover, &:focus, &:active": {
             background: 'transparent',
@@ -69,27 +67,55 @@ const styleSelect = {
     },
 };
 
-const styleMenu = {
-    '.MuiList-root': {
-        //backgroundColor: 'red', // ou la couleur de fond que vous souhaitez utiliser
-        backgroundColor: 'var(--background-menu)', // ou la couleur de fond que vous souhaitez utiliser
-    },
-    '.MuiMenuItem-root': {
-        //backgroundColor:'yellow',
-        "&:hover": {
-            background: 'var(--orange600)',
-            color: 'black',
-            border: 'none'
-        },
+const MENU_PAPER_CLASS = 'SelectLangage-menuPaper';
 
-        "&:focus, &:active": {
-            background: 'var(--primary)',
-            color: 'black',
-            border: 'none'
+const menuSlotProps = {
+    paper: {
+        className: MENU_PAPER_CLASS,
+        sx: {
+            backgroundColor: '#ffffff',
+            border: '1px solid rgba(0,0,0,0.12)',
+            boxShadow: '0 8px 24px rgba(0,0,0,0.2)',
+            mt: 1.5,
         },
-    }
+        style: { backgroundColor: '#ffffff' },
+    },
+    list: {
+        sx: {
+            py: 0.5,
+            '& .MuiMenuItem-root': {
+                color: '#1a1a1a',
+                fontSize: 14,
+                fontWeight: 500,
+                minHeight: 44,
+                '&:hover': {
+                    backgroundColor: 'rgba(255, 215, 0, 0.25)',
+                    color: '#1a1a1a',
+                },
+                '&.Mui-selected': {
+                    backgroundColor: 'rgba(255, 215, 0, 0.4)',
+                    color: '#1a1a1a',
+                    fontWeight: 600,
+                },
+                '&.Mui-selected:hover': {
+                    backgroundColor: 'rgba(255, 215, 0, 0.5)',
+                    color: '#1a1a1a',
+                },
+                '&:focus, &:active': {
+                    backgroundColor: 'rgba(255, 215, 0, 0.2)',
+                    color: '#1a1a1a',
+                },
+            },
+        },
+    },
 };
 
+// MenuProps : privilégier slotProps ; en v5 on mappe aussi vers PaperProps/MenuListProps pour que les styles s'appliquent
+const menuProps = {
+    slotProps: menuSlotProps,
+    PaperProps: menuSlotProps.paper,
+    MenuListProps: menuSlotProps.list,
+};
 
 export default function DropdownLangageComponent() {
     const { t, i18n } = useTranslation();
@@ -133,10 +159,7 @@ export default function DropdownLangageComponent() {
             onChange={handleChange}
             input={<BootstrapInput />}
             sx={styleSelect}
-            MenuProps={{
-                sx: styleMenu,
-            }}
-            
+            MenuProps={menuProps}
         >
             {
                 ARRAY_LANGAGES && ARRAY_LANGAGES.map((_lang, index) => {

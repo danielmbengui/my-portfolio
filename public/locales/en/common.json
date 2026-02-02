@@ -9,24 +9,29 @@
     "langs": {
         "title": "language",
         "plural": "languages",
-        "fr": "french",
-        "en": "english"
+        "fr": "French",
+        "en": "English",
+        "pt": "Portuguese",
+        "ao": "Lingala"
     },
     "sections" :{
         "skills" : {
-            "disclaimer" : "IMPORTANT: the skills and percentages listed don't necessarily represent my absolute level, but rather an estimate of my relative mastery of the topics discussed.",
+            "disclaimer" : "The descriptions indicate the role and importance of each tool or language in my day-to-day work.",
             "title": "Skills",
             "langs" : {
                 "title" : "Languages",
+                "subtitle" : "Multilingualism shapes my worldview. Each language I speak opens a door to a culture, a way of thinking, and a unique way of communicating.",
                 "fr" : {
                     "name" : "French",
                     "value" : 100,
-                    "description" : "French is my native language, and I'm stoked to rock this beautiful language with ease. Thanks to this skill, I can express myself clearly and communicate effectively in all sorts of professional and personal situations, dude!"
+                    "level" : "Native",
+                    "description" : "French is my native language — the one in which I dream, think, and express myself with the greatest ease. Spoken in French-speaking Switzerland since childhood, it represents much more than a communication tool: a gateway to literature, diplomacy, and a millennia-old culture. In a professional context, I write technical documents, run meetings, and negotiate in French effortlessly. This mastery allows me to convey complex ideas with precision and nuance, both in writing and speech."
                 },
                 "en" : {
                     "name" : "English",
-                    "value" : 80,
-                    "description" : "Over time, I've developed strong English skills and can now speak it fluently. My journey has allowed me to improve my English through a past relationship, as well as my passion for computer programming and the tutorials available on YouTube. English has become an essential tool in both my professional and personal life, opening up new opportunities and allowing me to communicate with an international audience."
+                    "value" : 90,
+                    "level" : "Fluent",
+                    "description" : "English has become my daily ally, both for work and for exploring the world. I developed it through progressive immersion: personal relationships, consuming content (series, podcasts, tech tutorials), and especially programming, where English is the lingua franca. Today, I read technical documentation, attend conferences, and collaborate with international teams without barriers. My goal: to refine my oral fluency and expand my vocabulary for increasingly natural exchanges."
                 },
                 "it" : {
                     "name" : "Italian",
@@ -35,7 +40,14 @@
                 "ao" : {
                     "name" : "Lingala",
                     "value" : 70,
-                    "description" : "In addition to French, I speak fluent Lingala, and a bit of Kikongo, the language of my Angolan roots. I'm particularly proud to master these languages, as they allow me to stay connected to my family and my community of origin. Lingala (in particular) plays a precious role in my life, strengthening cultural ties and authentic exchanges with those who share this linguistic heritage."
+                    "level" : "Fluent",
+                    "description" : "Lingala, the language of my Angolan and Congolese roots, holds a special place in my identity. Speaking it fluently connects me to my family, my history, and a community whose values — solidarity, humour, resilience — resonate in every conversation. I also have basic knowledge of Kikongo, another language from the Congo basin. These African languages are not just a heritage: they enrich my ability to think differently, build authentic relationships, and adapt to diverse cultural contexts. They embody who I am: a bridge between different worlds."
+                },
+                "pt" : {
+                    "name" : "Portuguese",
+                    "value" : 30,
+                    "level" : "Learning",
+                    "description" : "Portuguese is a language I am learning gradually, in connection with my Lusophone roots and projects such as Dandela Academy. I am working on basic vocabulary, listening and reading comprehension, with the aim of being able to communicate and collaborate in Portuguese in a professional context."
                 }
             },
             "programming" : {
@@ -89,14 +101,58 @@
             },
             "artificial" : {
                 "title" : "Artificial Intelligence (AI)",
+                "apiCalls" : "API calls",
+                "agents" : "AI Agents",
+                "contentCreation" : "Content creation",
+                "contentCreationSubtitle" : "OpenAI, Runway, Veo, etc.",
+                "vibeCoding" : "Vibe coding",
                 "visualStudio" : {
                     "name": "Visual Studio Code",
                     "value": 80
                 }
+            },
+            "desc" : {
+                "javascript" : "Main language for front-end and user interfaces.",
+                "typescript" : "Static typing for more maintainable and scalable projects.",
+                "reactjs" : "UI library for building modern, reactive interfaces.",
+                "nextjs" : "Full-stack framework for server-side rendering and deployment.",
+                "ios" : "Native app development for the Apple ecosystem.",
+                "android" : "App development for the Android ecosystem.",
+                "pwa" : "Installable web apps, offline-first and cross-device.",
+                "apiCalls" : "API integration (OpenAI, etc.) into applications.",
+                "agents" : "Automation and AI-assisted workflows.",
+                "contentCreation" : "Creating images, video and content with AI.",
+                "vibeCoding" : "AI-assisted development (e.g. Cursor).",
+                "solidity" : "Smart contract language on Ethereum and EVM.",
+                "web3js" : "Connecting front-ends to decentralized networks and contracts.",
+                "bitcoin" : "Reference in cryptocurrency and blockchain.",
+                "ethereum" : "Smart contract platform and DeFi/NFT ecosystem.",
+                "etherjs" : "Library for interacting with Ethereum and wallets."
             }
         },
         "projects" : {
-            "title" : "Projects"
+            "title" : "Projects",
+            "viewProject" : "View project",
+            "dandela" : {
+                "name" : "Dandela Academy",
+                "type" : "Training & E-learning",
+                "description" : "Dandela Academy is a professional training school certified by INEFOP (Angola), placing innovation and digital at the heart of learning. The platform offers a modern, flexible and interactive environment: structured courses available 24/7, qualified trainers, and AI-guided learning to personalize the experience. The mission is to democratize access to digital and professional training so that every student can acquire the skills needed to succeed. The vision extends beyond training: a societal project to give young people and professionals the means to shape the future of their country and continent. The app is available as a PWA in French, Portuguese and English."
+            },
+            "winno" : {
+                "name" : "Winno Bearz Club",
+                "type" : "NFT Project",
+                "description" : "WinnoBearz Club is a generative NFT collection with a playful narrative: the Bearz wizard BelzeBearz has scattered pixelated WinnoBearz heads around the globe — will you be one of the HolyBearz? Each NFT is unique, with over 5,555 possible combinations from 194 traits. Rarity is defined by layers (Raspberry, Picnic, Salmon, Honey, Beehive). Features include a 5% random reward on team withdrawals for one lucky holder, full ownership to keep, gift or resell, and presence on OpenSea and major NFT calendars. Built with blockchain tech for minting and community engagement."
+            },
+            "drilldev" : {
+                "name" : "Drill Dev",
+                "type" : "Artificial Intelligence",
+                "description" : "Drill Dev is a project at the crossroads of development and artificial intelligence. It offers tools and content to help developers and tech enthusiasts level up their skills using modern AI-assisted workflows. The platform combines tutorials, practical resources and an approach focused on continuous learning, with the aim of making advanced technical skills accessible and applicable in real projects."
+            },
+            "playpad" : {
+                "name" : "PlayPad App",
+                "type" : "Mobile Project",
+                "description" : "PlayPad is the app for padel enthusiasts in Switzerland. Find players at your level, create open or competitive matches, browse partner clubs and courts in your region, and join open matches in one click. The app also includes a marketplace to buy or sell equipment, a ranking system with stats and performance tracking, and the ability to climb the leaderboard. Match creators can accept or refuse players and manage bookings. Everything is 100% free for players. A Club Manager solution allows partner clubs to manage reservations and revenue from a single platform."
+            }
         },
         "education" : {
             "title": "Education",
@@ -115,16 +171,23 @@
     "profileLinkedin" : "Linkedin profile",
     "profileGithub" : "Github profile",
     "profilePlaystore" : "Playstore profile",
+    "quickMenuContact" : "Contact",
     "slogan": "Because I'm a geek !",
     "theme" : "theme",
     "loadingDocument" : "Loading document...",
     "buttons": {
         "goChat": "Start the tour",
         "goCv": "See my resume",
-        "downloadCv": "Download my resume"
+        "downloadCv": "Download my resume",
+        "viewProject": "View project"
     },
-    "last_projects" : "My lastest projects", 
+    "viewProject": "View project",
+    "last_projects" : "Recent projects", 
     "projects": {
+        "dandela" : {
+            "name" : "Dandela Academy",
+            "type" : "Training & E-learning"
+        },
         "winno" : {
             "name" : "Winno Bearz Club",
             "type" : "NFT Project"

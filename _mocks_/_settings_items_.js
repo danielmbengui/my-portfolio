@@ -12,20 +12,25 @@ export const ARRAY_NAMEPACES = [
     _NAMESPACE_LANGAGE_COMMON_,
     _NAMESPACE_LANGAGE_HOME_,
 ];
+export const ARRAY_NAMESPACES = ARRAY_NAMEPACES;
 
 /* --------------- LANGS -------------- */
 export const LANGAGE_FRENCH = 'fr';
 export const LANGAGE_ENGLISH = 'en';
+export const LANGAGE_PORTUGUESE = 'pt';
+export const LANGAGE_LINGALA = 'ao';
 export const DEFAULT_LANGAGE = LANGAGE_FRENCH;
 export const ARRAY_LANGAGES = [
     LANGAGE_FRENCH,
     LANGAGE_ENGLISH,
+    LANGAGE_PORTUGUESE,
+    LANGAGE_LINGALA,
 ];
 
 /* --------------- THEMES -------------- */
 export const THEME_LIGHT = 'light';
 export const THEME_DARK = 'dark';
-export const DEFAULT_THEME = THEME_LIGHT;
+export const DEFAULT_THEME = THEME_DARK;
 /* --------------- STORAGE -------------- */
 export const STORAGE_THEME_MODE = "data-theme";
 export const STORAGE_LANG_MODE = 'lang';

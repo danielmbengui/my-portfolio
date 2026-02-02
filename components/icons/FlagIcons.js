@@ -1,6 +1,6 @@
 import React from 'react';
-import { FR, GB, IT, AO, CH} from "country-flag-icons/react/3x2";
-import { DEFAULT_LANGAGE, LANGAGE_ENGLISH, LANGAGE_FRENCH } from '../../_mocks_/_settings_items_';
+import { FR, GB, IT, AO, CH, PT } from "country-flag-icons/react/3x2";
+import { DEFAULT_LANGAGE, LANGAGE_ENGLISH, LANGAGE_FRENCH, LANGAGE_PORTUGUESE, LANGAGE_LINGALA } from '../../_mocks_/_settings_items_';
 
 export const FlagIcon = ({ fill, size, height, width, lang, ...props }) => {
     function getFlag(_lang) {
@@ -39,6 +39,16 @@ export const FlagIcon = ({ fill, size, height, width, lang, ...props }) => {
         style={{
             //cursor: 'pointer',
             //border: langage === 'fr' ? '3px solid var(--primary)' : '',
+            borderRadius: '50%',
+            width: 30,
+            height: 30
+        }}
+        />
+                )
+                case LANGAGE_LINGALA:
+                return (
+                    <AO
+        style={{
             borderRadius: '50%',
             width: 30,
             height: 30
@@ -128,7 +138,7 @@ export const FlagIcon = ({ fill, size, height, width, lang, ...props }) => {
 
   export const SwissIcon = ({ size = 30, ...props }) => {
     return (
-        <CH
+      <CH
             //title={t('langEnglish')}
             {...props}
             style={{
@@ -136,19 +146,39 @@ export const FlagIcon = ({ fill, size, height, width, lang, ...props }) => {
                 width: size,
                 height: size
             }}
-            />
+      />
+    );
+  };
+
+  export const PortugueseIcon = ({ size = 30, ...props }) => {
+    return (
+      <PT
+            {...props}
+            style={{
+                borderRadius: '50%',
+                width: size,
+                height: size
+            }}
+      />
     );
   };
 
   export function getFlag(lang = DEFAULT_LANGAGE) {
     switch(lang) {
         case LANGAGE_FRENCH:
+        case 'fr':
             return(<FrenchIcon />)
-            case LANGAGE_ENGLISH:
-                return(<EnglishIcon />)
-                default :
-                    return(<FrenchIcon />)
-                    
+        case LANGAGE_ENGLISH:
+        case 'en':
+            return(<EnglishIcon />)
+        case LANGAGE_LINGALA:
+        case 'ao':
+            return(<AngolanIcon />)
+        case LANGAGE_PORTUGUESE:
+        case 'pt':
+            return(<PortugueseIcon />)
+        default:
+            return(<FrenchIcon />)
     }
   }
   

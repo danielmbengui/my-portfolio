@@ -106,6 +106,12 @@ export function AndroidIcon({size = 30, color = 'var(--text)', ...props}) {
     )
 }
 
+export function IosIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="simple-icons:apple" {...props} color={color} width={size} />
+    )
+}
+
 export function XCodeIcon({size = 30, color = 'var(--text)', ...props}) {
     return(
         <Icon icon="logos:xcode" {...props} color={color} width={size} />
@@ -348,6 +354,54 @@ export function OpenAiIcon({size = 30, color = 'var(--text)', ...props}) {
 export function PrestashopIcon({size = 30, color = blue[500], ...props}) {
     return(
         <Icon icon="logos:prestashop" {...props} color={color} width={size} />
+    )
+}
+
+export function BitcoinIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="cryptocurrency:btc" {...props} color={color} width={size} />
+    )
+}
+
+export function EthereumIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="cryptocurrency:eth" {...props} color={color} width={size} />
+    )
+}
+
+export function CursorIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="simple-icons:cursor" {...props} color={color} width={size} />
+    )
+}
+
+export function ApiCallsIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="mdi:api" {...props} color={color} width={size} />
+    )
+}
+
+export function AgentsAiIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="mdi:robot-outline" {...props} color={color} width={size} />
+    )
+}
+
+export function ContentCreationIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="mdi:image-multiple-outline" {...props} color={color} width={size} />
+    )
+}
+
+export function VibeCodingIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="simple-icons:cursor" {...props} color={color} width={size} />
+    )
+}
+
+export function TradingBotIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="ph:chart-line-up" {...props} color={color} width={size} />
     )
 }
 /*
