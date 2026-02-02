@@ -111,6 +111,20 @@
                     "value": 80
                 }
             },
+            "names" : {
+                "javascript" : "Javascript",
+                "typescript" : "TypeScript",
+                "reactjs" : "ReactJS",
+                "nextjs" : "NextJS",
+                "ios" : "iOS",
+                "android" : "Android",
+                "pwa" : "PWA",
+                "solidity" : "Solidity",
+                "etherjs" : "EtherJS",
+                "web3js" : "Web3JS",
+                "bitcoin" : "Bitcoin",
+                "ethereum" : "Ethereum"
+            },
             "desc" : {
                 "javascript" : "Main language for front-end and user interfaces.",
                 "typescript" : "Static typing for more maintainable and scalable projects.",

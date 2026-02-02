@@ -83,6 +83,20 @@
                 "contentCreationSubtitle" : "OpenAI, Runway, Veo, etc.",
                 "vibeCoding" : "Vibe coding"
             },
+            "names" : {
+                "javascript" : "Javascript",
+                "typescript" : "TypeScript",
+                "reactjs" : "ReactJS",
+                "nextjs" : "NextJS",
+                "ios" : "iOS",
+                "android" : "Android",
+                "pwa" : "PWA",
+                "solidity" : "Solidity",
+                "etherjs" : "EtherJS",
+                "web3js" : "Web3JS",
+                "bitcoin" : "Bitcoin",
+                "ethereum" : "Ethereum"
+            },
             "desc" : {
                 "javascript" : "Linguagem principal para o front-end e interfaces de utilizador.",
                 "typescript" : "Tipagem estática para projetos mais maintaináveis e escaláveis.",

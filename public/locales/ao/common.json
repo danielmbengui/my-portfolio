@@ -16,7 +16,7 @@
     },
     "sections" :{
         "skills" : {
-            "disclaimer" : "Maloba oyo elobaka mosala mpe bopusi ya eloko nyonso na mosala na ngaï na mokolo na mokolo.",
+            "disclaimer" : "Maloba oyo elobaka mosala mpe bopusi ya eloko nyonso na mosala na ngai na mokolo na mokolo.",
             "title": "Makoki",
             "langs" : {
                 "title" : "Lokota",
@@ -25,13 +25,13 @@
                     "name" : "Lifalansé",
                     "value" : 100,
                     "level" : "Lokota ya libota",
-                    "description" : "Lifalansé ezali lokota na ngaï ya libota — lokota nazali kolala, kokanisa mpe koloba na yango malamu. Nazali koloba yango na Suisse romande kowuta na moke. Ezali eloko ebele koleka kokabola sango: ekuke na litérési, diplomasi mpe lolenge ya kala. Na mosala, nakoma mokanda, nazali koteya reunion mpe kokoka kozwa malonga na lifalansé. Bopusi oyo epesaka ngaï nguya kokabola makanisi na ndenge malamu."
+                    "description" : "Lifalansé ezali lokota na ngai ya libota — lokota nazali kolala, kokanisa mpe koloba na yango malamu. Nazali koloba yango na Suisse romande kowuta na moke. Ezali eloko ebele koleka kokabola sango: ekuke na litérési, diplomasi mpe lolenge ya kala. Na mosala, nakoma mokanda, nazali koteya reunion mpe kokoka kozwa malonga na lifalansé. Bopusi oyo epesaka ngai nguya kokabola makanisi na ndenge malamu."
                 },
                 "en" : {
                     "name" : "Lingelesa",
                     "value" : 90,
                     "level" : "Malamu",
-                    "description" : "Lingelesa ekomaki ndeko na ngaï na mokolo na mokolo, na mosala mpe na kotambola mokili. Nayebisi yango na koteya mingi: bato, kolia contenu (série, podcast, tutoriel tech), mpe na programmation wapi lingelesa ezali lokota ya mokili. Lelo nakoti mokanda technique, nakende na conférence mpe nasalaka na équipe ya mokili. Objectif na ngaï: koloba malamu mpe koyeba maloba mingi."
+                    "description" : "Lingelesa ekomaki ndeko na ngai na mokolo na mokolo, na mosala mpe na kotambola mokili. Nayebisi yango na koteya mingi: bato, kolia contenu (série, podcast, tutoriel tech), mpe na programmation wapi lingelesa ezali lokota ya mokili. Lelo nakoti mokanda technique, nakende na conférence mpe nasalaka na équipe ya mokili. Objectif na ngai: koloba malamu mpe koyeba maloba mingi."
                 },
                 "it" : {
                     "name" : "Liitalien",
@@ -41,13 +41,13 @@
                     "name" : "Lingala",
                     "value" : 70,
                     "level" : "Malamu",
-                    "description" : "Lingala, lokota ya libota na ngaï na Angola mpe Kongo, ezali na esika na identité na ngaï. Koloba lingala malamu ezali kotonga ngaï na libota, na story na ngaï mpe na communauté wapi bavaleur — solidarité, humour, résilience — ezali. Nayebi moke Kikongo mpe. Lokota ya Afrika oyo ezali te heritage: ezali kotonga nguya na ngaï kokanisa ndenge mosusu, kosala relation mpe kobongisa na contexte ya culture."
+                    "description" : "Lingala, lokota ya libota na ngai na Angola mpe Kongo, ezali na esika na identité na ngai. Koloba lingala malamu ezali kotonga ngai na libota, na story na ngai mpe na communauté wapi bavaleur — solidarité, humour, résilience — ezali. Nayebi moke Kikongo mpe. Lokota ya Afrika oyo ezali te heritage: ezali kotonga nguya na ngai kokanisa ndenge mosusu, kosala relation mpe kobongisa na contexte ya culture."
                 },
                 "pt" : {
                     "name" : "Liputugalé",
                     "value" : 30,
                     "level" : "Nazali koyekola",
-                    "description" : "Liputugalé ezali lokota nazali koyekola mbala na mbala, na libota na ngaï ya Lusophone mpe maprojeti lokola Dandela Academy. Nazali koteya vocabulaire ya liboso, koyoka mpe kotanga, mpo nakoka kokabola mpe kosala na liputugalé na mosala."
+                    "description" : "Liputugalé ezali lokota nazali koyekola mbala na mbala, na libota na ngai ya Lusophone mpe maprojeti lokola Dandela Academy. Nazali koteya vocabulaire ya liboso, koyoka mpe kotanga, mpo nakoka kokabola mpe kosala na liputugalé na mosala."
                 }
             },
             "programming" : {
@@ -82,6 +82,20 @@
                 "contentCreation" : "Création de contenu",
                 "contentCreationSubtitle" : "OpenAI, Runway, Veo, etc.",
                 "vibeCoding" : "Vibe coding"
+            },
+            "names" : {
+                "javascript" : "Javascript",
+                "typescript" : "TypeScript",
+                "reactjs" : "ReactJS",
+                "nextjs" : "NextJS",
+                "ios" : "iOS",
+                "android" : "Android",
+                "pwa" : "PWA",
+                "solidity" : "Solidity",
+                "etherjs" : "EtherJS",
+                "web3js" : "Web3JS",
+                "bitcoin" : "Bitcoin",
+                "ethereum" : "Ethereum"
             },
             "desc" : {
                 "javascript" : "Lokota ya liboso na front-end mpe interface ya utilisateur.",
@@ -137,9 +151,9 @@
             }
         }
     },
-    "chatbot" : "Lobela ngaï",
-    "seeMyCV" : "Kotala CV na ngaï",
-    "sendMeMail" : "Kotanga ngaï",
+    "chatbot" : "Lobela ngai",
+    "seeMyCV" : "Kotala CV na ngai",
+    "sendMeMail" : "Benga ngai",
     "profileLinkedin" : "Profil Linkedin",
     "profileGithub" : "Profil Github",
     "profilePlaystore" : "Profil Playstore",
@@ -149,8 +163,8 @@
     "loadingDocument" : "Document ezali kozwa...",
     "buttons": {
         "goChat": "Kobanda visite",
-        "goCv": "Kotala CV na ngaï",
-        "downloadCv": "Kokweya CV na ngaï",
+        "goCv": "Kotala CV na ngai",
+        "downloadCv": "Kokweya CV na ngai",
         "viewProject": "Kotala projeti"
     },
     "viewProject": "Kotala projeti",

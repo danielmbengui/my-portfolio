@@ -596,27 +596,8 @@ export default function SkillsComponent({ embedded = false }) {
   );
 }
 
+// Ordre des rubriques : IA (1er), Mobile (2e), Web (3e), Blockchain (4e)
 const itemData = [
-  {
-    img: '/img/skills/prog.gif',
-    title: 'sections.skills.web.title',
-    subtitle: 'sections.skills.mobile.title',
-    skills: [
-      ['Javascript', 'sections.skills.desc.javascript', <Stack direction="row" alignItems="center" justifyContent="center" spacing={0.5}><JavascriptIcon size={28} /></Stack>],
-      ['TypeScript', 'sections.skills.desc.typescript', <Stack direction="row" alignItems="center" justifyContent="center"><TypescriptIcon size={28} /></Stack>],
-      ['ReactJS', 'sections.skills.desc.reactjs', <Stack direction="row" alignItems="center" justifyContent="center"><ReactIcon size={32} /></Stack>],
-      ['NextJS', 'sections.skills.desc.nextjs', <Stack direction="row" alignItems="center" justifyContent="center"><NextJsIcon size={32} /></Stack>],
-    ],
-  },
-  {
-    img: '/img/skills/prog.gif',
-    title: 'sections.skills.mobile.title',
-    skills: [
-      ['iOS', 'sections.skills.desc.ios', <Stack direction="row" alignItems="center" justifyContent="center"><IosIcon size={36} /></Stack>],
-      ['Android', 'sections.skills.desc.android', <Stack direction="row" alignItems="center" justifyContent="center"><AndroidIcon size={40} /></Stack>],
-      ['PWA', 'sections.skills.desc.pwa', <Stack direction="row" alignItems="center" justifyContent="center"><PwaIcon size={40} /></Stack>],
-    ],
-  },
   {
     img: '/img/skills/ai.gif',
     title: 'sections.skills.artificial.title',
@@ -628,14 +609,34 @@ const itemData = [
     ],
   },
   {
+    img: '/img/skills/prog.gif',
+    title: 'sections.skills.mobile.title',
+    skills: [
+      ['sections.skills.names.ios', 'sections.skills.desc.ios', <Stack direction="row" alignItems="center" justifyContent="center"><IosIcon size={36} /></Stack>],
+      ['sections.skills.names.android', 'sections.skills.desc.android', <Stack direction="row" alignItems="center" justifyContent="center"><AndroidIcon size={40} /></Stack>],
+      ['sections.skills.names.pwa', 'sections.skills.desc.pwa', <Stack direction="row" alignItems="center" justifyContent="center"><PwaIcon size={40} /></Stack>],
+    ],
+  },
+  {
+    img: '/img/skills/prog.gif',
+    title: 'sections.skills.web.title',
+    subtitle: 'sections.skills.mobile.title',
+    skills: [
+      ['sections.skills.names.javascript', 'sections.skills.desc.javascript', <Stack direction="row" alignItems="center" justifyContent="center" spacing={0.5}><JavascriptIcon size={28} /></Stack>],
+      ['sections.skills.names.typescript', 'sections.skills.desc.typescript', <Stack direction="row" alignItems="center" justifyContent="center"><TypescriptIcon size={28} /></Stack>],
+      ['sections.skills.names.reactjs', 'sections.skills.desc.reactjs', <Stack direction="row" alignItems="center" justifyContent="center"><ReactIcon size={32} /></Stack>],
+      ['sections.skills.names.nextjs', 'sections.skills.desc.nextjs', <Stack direction="row" alignItems="center" justifyContent="center"><NextJsIcon size={32} /></Stack>],
+    ],
+  },
+  {
     img: WINNO_IMAGE_PATH,
     title: 'sections.skills.blockchain.title',
     skills: [
-      ['Solidity', 'sections.skills.desc.solidity', <Stack direction="row" alignItems="center" justifyContent="center"><SolidityIcon size={24} /></Stack>],
-      ['EtherJS', 'sections.skills.desc.etherjs', <Stack direction="row" alignItems="center" justifyContent="center"><EtherJsIcon size={40} /></Stack>],
-      ['Web3JS', 'sections.skills.desc.web3js', <Stack direction="row" alignItems="center" justifyContent="center"><Web3JsIcon size={40} /></Stack>],
-      ['Bitcoin', 'sections.skills.desc.bitcoin', <Stack direction="row" alignItems="center" justifyContent="center"><BitcoinIcon size={36} /></Stack>],
-      ['Ethereum', 'sections.skills.desc.ethereum', <Stack direction="row" alignItems="center" justifyContent="center"><EthereumIcon size={36} /></Stack>],
+      ['sections.skills.names.solidity', 'sections.skills.desc.solidity', <Stack direction="row" alignItems="center" justifyContent="center"><SolidityIcon size={24} /></Stack>],
+      ['sections.skills.names.etherjs', 'sections.skills.desc.etherjs', <Stack direction="row" alignItems="center" justifyContent="center"><EtherJsIcon size={40} /></Stack>],
+      ['sections.skills.names.web3js', 'sections.skills.desc.web3js', <Stack direction="row" alignItems="center" justifyContent="center"><Web3JsIcon size={40} /></Stack>],
+      ['sections.skills.names.bitcoin', 'sections.skills.desc.bitcoin', <Stack direction="row" alignItems="center" justifyContent="center"><BitcoinIcon size={36} /></Stack>],
+      ['sections.skills.names.ethereum', 'sections.skills.desc.ethereum', <Stack direction="row" alignItems="center" justifyContent="center"><EthereumIcon size={36} /></Stack>],
     ],
   },
 ];
