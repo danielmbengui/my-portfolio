@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
   Box,
   Chip,
+  CircularProgress,
   Drawer,
   IconButton,
+  Link,
   TextField,
   Tooltip,
   Typography,
@@ -21,7 +23,33 @@ import { useTranslation } from 'next-i18next';
 import { _NAMESPACE_LANGAGE_COMMON_ } from '@/_mocks_/_settings_items_';
 
 const DRAWER_WIDTH = 380;
-const DRAWER_HEIGHT_MOBILE = '70vh';
+const DRAWER_HEIGHT_MOBILE = '100vh';
+
+/** Détecte les liens Markdown [texte](url) et les URLs brutes, retourne un tableau de segments { type: 'text'|'link', content, href? }. */
+function parseMessageWithLinks(text) {
+  if (!text || typeof text !== 'string') return [{ type: 'text', content: text || '' }];
+  const segments = [];
+  // D'abord les liens Markdown [label](url)
+  const mdRe = /\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g;
+  let lastEnd = 0;
+  let match;
+  while ((match = mdRe.exec(text)) !== null) {
+    if (match.index > lastEnd) segments.push({ type: 'text', content: text.slice(lastEnd, match.index) });
+    segments.push({ type: 'link', content: match[1], href: match[2] });
+    lastEnd = mdRe.lastIndex;
+  }
+  let rest = lastEnd > 0 ? text.slice(lastEnd) : text;
+  // Puis les URLs brutes dans le reste
+  const urlRe = /(https?:\/\/[^\s]+)/g;
+  lastEnd = 0;
+  while ((match = urlRe.exec(rest)) !== null) {
+    if (match.index > lastEnd) segments.push({ type: 'text', content: rest.slice(lastEnd, match.index) });
+    segments.push({ type: 'link', content: match[1], href: match[1] });
+    lastEnd = urlRe.lastIndex;
+  }
+  if (lastEnd < rest.length) segments.push({ type: 'text', content: rest.slice(lastEnd) });
+  return segments.length ? segments : [{ type: 'text', content: text }];
+}
 
 export default function AiAssistantPanel({ open, onClose }) {
   const { t, i18n } = useTranslation(_NAMESPACE_LANGAGE_COMMON_);
@@ -31,6 +59,7 @@ export default function AiAssistantPanel({ open, onClose }) {
   const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [typingVisibleLength, setTypingVisibleLength] = useState(0);
+  const messagesScrollRef = useRef(null);
 
   const TYPING_MS_PER_CHAR = 18;
 
@@ -39,43 +68,50 @@ export default function AiAssistantPanel({ open, onClose }) {
     return Array.isArray(raw) ? raw : [];
   })();
 
+  const lastMsg = messages[messages.length - 1];
+  const isTypingInProgress = lastMsg?.role === 'assistant' && lastMsg?.typing === true;
+  const inputDisabled = isLoading || isTypingInProgress;
+
   const sendMessage = async (text) => {
     const trimmed = typeof text === 'string' ? text.trim() : inputValue?.trim();
-    if (!trimmed || isLoading) return;
-    const nextMessages = [...messages, { role: 'user', text: trimmed }];
+    if (!trimmed || inputDisabled) return;
+    const nextMessages = [...messages, { role: 'user', text: trimmed }, { role: 'assistant', text: '', typing: true }];
     setMessages(nextMessages);
     setInputValue('');
+    setTypingVisibleLength(0);
     setIsLoading(true);
     try {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          messages: nextMessages,
+          messages: nextMessages.slice(0, -1),
           language: i18n.language || 'fr',
         }),
       });
       const data = await res.json();
       if (!res.ok) {
-        setMessages((prev) => [
-          ...prev,
-          {
-            role: 'assistant',
-            text: data?.error || t('assistant.errorReply', { ns: _NAMESPACE_LANGAGE_COMMON_, defaultValue: 'Une erreur est survenue. Réessaie ou contacte-moi directement.' }),
-          },
-        ]);
+        const errorText = data?.error || t('assistant.errorReply', { ns: _NAMESPACE_LANGAGE_COMMON_, defaultValue: 'Une erreur est survenue. Réessaie ou contacte-moi directement.' });
+        setMessages((prev) => {
+          const n = [...prev];
+          n[n.length - 1] = { role: 'assistant', text: errorText };
+          return n;
+        });
         return;
       }
-      setMessages((prev) => [...prev, { role: 'assistant', text: data?.text || '', typing: true }]);
+      setMessages((prev) => {
+        const n = [...prev];
+        n[n.length - 1] = { role: 'assistant', text: data?.text || '', typing: true };
+        return n;
+      });
       setTypingVisibleLength(0);
     } catch (err) {
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: 'assistant',
-          text: t('assistant.errorReply', { ns: _NAMESPACE_LANGAGE_COMMON_, defaultValue: 'Une erreur est survenue. Réessaie ou contacte-moi directement.' }),
-        },
-      ]);
+      const errorText = t('assistant.errorReply', { ns: _NAMESPACE_LANGAGE_COMMON_, defaultValue: 'Une erreur est survenue. Réessaie ou contacte-moi directement.' });
+      setMessages((prev) => {
+        const n = [...prev];
+        n[n.length - 1] = { role: 'assistant', text: errorText };
+        return n;
+      });
     } finally {
       setIsLoading(false);
     }
@@ -100,6 +136,12 @@ export default function AiAssistantPanel({ open, onClose }) {
     return () => clearTimeout(t);
   }, [messages, typingVisibleLength]);
 
+  // Scroll vers le bas à chaque nouveau message ou avancement du typing
+  useEffect(() => {
+    const el = messagesScrollRef.current;
+    if (el) el.scrollTop = el.scrollHeight;
+  }, [messages, typingVisibleLength]);
+
   const handleSend = () => sendMessage(inputValue);
   const handleSuggestionClick = (suggestionText) => () => sendMessage(suggestionText);
 
@@ -116,12 +158,15 @@ export default function AiAssistantPanel({ open, onClose }) {
         display: 'flex',
         flexDirection: 'column',
         height: '100%',
+        minHeight: 0,
+        overflow: 'hidden',
         bgcolor: 'var(--background)',
       }}
     >
-      {/* Header */}
+      {/* Header — fixe, ne scrolle pas */}
       <Box
         sx={{
+          flexShrink: 0,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
@@ -133,9 +178,22 @@ export default function AiAssistantPanel({ open, onClose }) {
       >
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           <SmartToyIcon sx={{ color: 'var(--primary)', fontSize: 28 }} />
-          <Typography variant="h6" sx={{ fontWeight: 700, color: 'var(--text)' }}>
-            {t('assistant.title', { ns: _NAMESPACE_LANGAGE_COMMON_, defaultValue: 'Assistant IA' })}
-          </Typography>
+          <Box sx={{ display: 'flex', flexDirection: 'column', lineHeight: 1.2 }}>
+            <Typography variant="subtitle1" sx={{ fontWeight: 700, color: 'var(--text)', fontSize: '1rem' }}>
+              Pudgy
+            </Typography>
+            <Typography
+              variant="caption"
+              sx={{
+                fontWeight: 600,
+                color: 'var(--primary)',
+                textShadow: '0 0 12px var(--primary), 0 0 24px rgba(255, 215, 0, 0.4)',
+                letterSpacing: '0.02em',
+              }}
+            >
+              {t('assistant.title', { ns: _NAMESPACE_LANGAGE_COMMON_, defaultValue: 'Assistant IA' })}
+            </Typography>
+          </Box>
         </Box>
         <IconButton
           onClick={onClose}
@@ -146,10 +204,12 @@ export default function AiAssistantPanel({ open, onClose }) {
         </IconButton>
       </Box>
 
-      {/* Messages */}
+      {/* Messages — seule zone scrollable */}
       <Box
+        ref={messagesScrollRef}
         sx={{
           flex: 1,
+          minHeight: 0,
           overflow: 'auto',
           p: 2,
           display: 'flex',
@@ -251,26 +311,11 @@ export default function AiAssistantPanel({ open, onClose }) {
             </Accordion>
           )
         )}
-        {isLoading && (
-          <Box
-            sx={{
-              alignSelf: 'flex-start',
-              maxWidth: '85%',
-              px: 2,
-              py: 1.25,
-              borderRadius: 2,
-              bgcolor: 'var(--background-card)',
-              border: '1px solid var(--accents3)',
-            }}
-          >
-            <Typography variant="body2" sx={{ color: 'var(--text)' }}>
-              …
-            </Typography>
-          </Box>
-        )}
         {messages.map((msg, i) => {
           const isTyping = msg.role === 'assistant' && msg.typing && i === messages.length - 1;
-          const displayText = isTyping ? msg.text.slice(0, typingVisibleLength) : msg.text;
+          const displayText = isTyping
+            ? (msg.text ? msg.text.slice(0, typingVisibleLength) : '…')
+            : msg.text;
           return (
             <Box
               key={i}
@@ -284,34 +329,63 @@ export default function AiAssistantPanel({ open, onClose }) {
                 border: '1px solid var(--accents3)',
               }}
             >
-              <Typography variant="body2" sx={{ color: 'var(--text)', whiteSpace: 'pre-wrap' }}>
-                {displayText}
-                {isTyping && (
-                  <Box
-                    component="span"
-                    sx={{
-                      display: 'inline-block',
-                      width: 2,
-                      height: '1em',
-                      bgcolor: 'var(--primary)',
-                      animation: 'blink 0.8s step-end infinite',
-                      '@keyframes blink': {
-                        '50%': { opacity: 0 },
-                      },
-                      verticalAlign: 'text-bottom',
-                      ml: 0.25,
-                    }}
-                  />
-                )}
-              </Typography>
+              {isTyping && !msg.text ? (
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, py: 0.5 }}>
+                  <CircularProgress size={16} thickness={4} sx={{ color: 'var(--primary)' }} />
+                  <Typography variant="body2" sx={{ color: 'var(--accents6)', fontSize: '0.875rem' }}>
+                    …
+                  </Typography>
+                </Box>
+              ) : (
+                <Typography variant="body2" component="span" sx={{ color: 'var(--text)', whiteSpace: 'pre-wrap' }}>
+                  {parseMessageWithLinks(displayText).map((seg, k) =>
+                    seg.type === 'link' ? (
+                      <Link
+                        key={k}
+                        href={seg.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        sx={{
+                          color: 'var(--primary)',
+                          fontWeight: 600,
+                          textDecoration: 'underline',
+                          '&:hover': { textDecoration: 'underline', opacity: 0.9 },
+                        }}
+                      >
+                        {seg.content}
+                      </Link>
+                    ) : (
+                      <span key={k}>{seg.content}</span>
+                    )
+                  )}
+                  {isTyping && (
+                    <Box
+                      component="span"
+                      sx={{
+                        display: 'inline-block',
+                        width: 2,
+                        height: '1em',
+                        bgcolor: 'var(--primary)',
+                        animation: 'blink 0.8s step-end infinite',
+                        '@keyframes blink': {
+                          '50%': { opacity: 0 },
+                        },
+                        verticalAlign: 'text-bottom',
+                        ml: 0.25,
+                      }}
+                    />
+                  )}
+                </Typography>
+              )}
             </Box>
           );
         })}
       </Box>
 
-      {/* Input */}
+      {/* Input — fixe, ne scrolle pas */}
       <Box
         sx={{
+          flexShrink: 0,
           p: 2,
           borderTop: '1px solid var(--accents3)',
           bgcolor: 'var(--background-card)',
@@ -327,7 +401,7 @@ export default function AiAssistantPanel({ open, onClose }) {
             onKeyDown={handleKeyDown}
             multiline
             maxRows={3}
-            disabled={isLoading}
+            disabled={inputDisabled}
             sx={{
               '& .MuiOutlinedInput-root': {
                 bgcolor: 'var(--background)',
@@ -342,7 +416,7 @@ export default function AiAssistantPanel({ open, onClose }) {
               <IconButton
                 type="button"
                 onClick={handleSend}
-                disabled={!inputValue?.trim() || isLoading}
+                disabled={!inputValue?.trim() || inputDisabled}
                 aria-label={t('assistant.send', { ns: _NAMESPACE_LANGAGE_COMMON_, defaultValue: 'Envoyer la question' })}
                 sx={{
                   bgcolor: 'var(--primary)',
