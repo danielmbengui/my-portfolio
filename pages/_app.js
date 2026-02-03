@@ -15,8 +15,6 @@ import { SSRProvider } from '@react-aria/ssr';
 import ThemeModeProvider from '../contexts/ThemeModeProvider';
 import Head from 'next/head';
 import Script from 'next/script';
-import { CssBaseline } from '@mui/material';
-
 
 const clientSideEmotionCache = createEmotionCache();
 
