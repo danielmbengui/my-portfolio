@@ -27,12 +27,12 @@ export default function FloatingQuickMenu({ hideCvLink = false }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
-  // Liste des langues triée selon le libellé traduit
-  const sortedLangs = [...ARRAY_LANGAGES].sort((a, b) =>
-    t(`langs.${a}`, { ns: _NAMESPACE_LANGAGE_COMMON_ }).localeCompare(
-      t(`langs.${b}`, { ns: _NAMESPACE_LANGAGE_COMMON_ })
-    )
-  );
+  // Liste des langues triée selon la valeur (niveau de maîtrise) décroissante
+  const sortedLangs = [...ARRAY_LANGAGES].sort((a, b) => {
+    const valA = parseInt(t(`sections.skills.langs.${a}.value`, { ns: _NAMESPACE_LANGAGE_COMMON_ }), 10) || 0;
+    const valB = parseInt(t(`sections.skills.langs.${b}.value`, { ns: _NAMESPACE_LANGAGE_COMMON_ }), 10) || 0;
+    return valB - valA;
+  });
 
   const handleOpen = (event) => {
     setAnchorEl(event.currentTarget);

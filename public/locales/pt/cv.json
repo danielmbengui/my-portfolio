@@ -41,21 +41,31 @@
       "period": "09/2024 – presente",
       "location": "Luanda, Angola",
       "titlePrefix": "Fundador e Diretor, ",
+      "linkSite": "Site Dandela Academy",
+      "linkApp": "Web App Dandela Academy",
       "items": {
         "0": "Fundador da Dandela Academy.",
         "1": "Associado principal da Dandela Academy.",
-        "2": "Criação do site da Dandela Academy.",
-        "3": "Criação da Web App Dandela Academy."
+        "2Prefix": "Criação do site da ",
+        "2Suffix": ".",
+        "3Prefix": "Criação da ",
+        "3Suffix": "."
       }
     },
     "playpad": {
       "period": "04/2024 – presente",
       "location": "Genebra, Suíça",
       "titlePrefix": "Desenvolvedor Web e Mobile, ",
+      "linkGooglePlay": "Google Play",
+      "linkAppStore": "App Store",
+      "linkSite": "site PlayPad",
       "items": {
         "0": "Co-fundador da empresa.",
-        "1": "Criação do app PlayPad no Google Play e na App Store.",
-        "2": "Criação do site PlayPad."
+        "1Prefix": "Criação do app PlayPad no ",
+        "1Between": " e na ",
+        "1Suffix": ".",
+        "2Prefix": "Criação do ",
+        "2Suffix": "."
       }
     },
     "mdandela": {

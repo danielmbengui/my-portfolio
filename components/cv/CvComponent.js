@@ -38,6 +38,9 @@ import { AndroidIcon, C_LangageIcon, CssIcon, EtherJsIcon, FigmaIcon, FlutterIco
 
 const getCvPdfFilename = (lang) => `cv-daniel-mbengui-${lang || 'fr'}.pdf`;
 
+const LINK_GOOGLE_PLAY_PLAYPAD = 'https://play.google.com/store/apps/details?id=com.playpad.playpadapp';
+const LINK_APP_STORE_PLAYPAD = 'https://apps.apple.com/app/playpad-app-padel/id6450876480';
+
 const CvSectionAccordion = ({ sectionId, title, children, expanded, onChange }) => (
   <Accordion
     className="cv-section cv-accordion"
@@ -541,14 +544,33 @@ export default function CvComponent({ embedded = false }) {
         <CvEntry
           period={t('cv:experiences.dandela.period')}
           location={t('cv:experiences.dandela.location')}
-          title={<>{t('cv:experiences.dandela.titlePrefix')}<a href="https://academy.dandela.com" target="_blank" rel="noopener noreferrer" className="cv-link">Dandela Academy</a></>}
-          items={[t('cv:experiences.dandela.items.0'), t('cv:experiences.dandela.items.1'), t('cv:experiences.dandela.items.2'), t('cv:experiences.dandela.items.3')]}
+          title={<>{t('cv:experiences.dandela.titlePrefix')}Dandela Academy</>}
+          items={[
+            t('cv:experiences.dandela.items.0'),
+            t('cv:experiences.dandela.items.1'),
+            <React.Fragment key="dandela-2">{t('cv:experiences.dandela.items.2Prefix')}<a href="https://academy.dandela.com" target="_blank" rel="noopener noreferrer" className="cv-link">{t('cv:experiences.dandela.linkSite')}</a>{t('cv:experiences.dandela.items.2Suffix')}</React.Fragment>,
+            <React.Fragment key="dandela-3">{t('cv:experiences.dandela.items.3Prefix')}<a href="https://academy.dandela.com" target="_blank" rel="noopener noreferrer" className="cv-link">{t('cv:experiences.dandela.linkApp')}</a>{t('cv:experiences.dandela.items.3Suffix')}</React.Fragment>,
+          ]}
         />
         <CvEntry
           period={t('cv:experiences.playpad.period')}
           location={t('cv:experiences.playpad.location')}
-          title={<>{t('cv:experiences.playpad.titlePrefix')}<a href="https://playpadapp.com" target="_blank" rel="noopener noreferrer" className="cv-link">PlayPad Sàrl</a></>}
-          items={[t('cv:experiences.playpad.items.0'), t('cv:experiences.playpad.items.1'), t('cv:experiences.playpad.items.2')]}
+          title={<>{t('cv:experiences.playpad.titlePrefix')}PlayPad Sàrl</>}
+          items={[
+            t('cv:experiences.playpad.items.0'),
+            <React.Fragment key="playpad-1">
+              {t('cv:experiences.playpad.items.1Prefix')}
+              <a href={LINK_GOOGLE_PLAY_PLAYPAD} target="_blank" rel="noopener noreferrer" className="cv-link">{t('cv:experiences.playpad.linkGooglePlay')}</a>
+              {t('cv:experiences.playpad.items.1Between')}
+              <a href={LINK_APP_STORE_PLAYPAD} target="_blank" rel="noopener noreferrer" className="cv-link">{t('cv:experiences.playpad.linkAppStore')}</a>
+              {t('cv:experiences.playpad.items.1Suffix')}
+            </React.Fragment>,
+            <React.Fragment key="playpad-2">
+              {t('cv:experiences.playpad.items.2Prefix')}
+              <a href="https://playpadapp.com" target="_blank" rel="noopener noreferrer" className="cv-link">{t('cv:experiences.playpad.linkSite')}</a>
+              {t('cv:experiences.playpad.items.2Suffix')}
+            </React.Fragment>,
+          ]}
         />
         <CvEntry
           period={t('cv:experiences.mdandela.period')}

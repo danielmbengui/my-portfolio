@@ -63,6 +63,13 @@ export default function LanguagesComponent({ embedded = false }) {
   const { t } = useTranslation();
   const [expanded, setExpanded] = useState('fr');
 
+  // Langues triées par valeur (niveau de maîtrise) décroissante
+  const sortedLanguages = [...languages].sort((a, b) => {
+    const valA = parseInt(t(a.valueKey), 10) || 0;
+    const valB = parseInt(t(b.valueKey), 10) || 0;
+    return valB - valA;
+  });
+
   const handleChange = (panel) => (_, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
@@ -126,7 +133,7 @@ export default function LanguagesComponent({ embedded = false }) {
         {/* Cartes des langues */}
         <Grid item xs={12} sm={12} md={10}>
           <Fade triggerOnce cascade delay={300}>
-            {languages.map((lang, index) => {
+            {sortedLanguages.map((lang, index) => {
               const Icon = lang.Icon;
               const rawValue = t(lang.valueKey);
               const numericValue = typeof rawValue === 'number' ? rawValue : (parseInt(rawValue, 10) || 80);

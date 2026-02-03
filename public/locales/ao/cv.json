@@ -41,21 +41,31 @@
       "period": "09/2024 – lelo",
       "location": "Luanda, Angola",
       "titlePrefix": "Mobandi & Mokonzi, ",
+      "linkSite": "Site Dandela Academy",
+      "linkApp": "Web App Dandela Academy",
       "items": {
         "0": "Mobandi ya Dandela Academy.",
         "1": "Associé ya liboso ya Dandela Academy.",
-        "2": "Kosala site ya Dandela Academy.",
-        "3": "Kosala Web App ya Dandela Academy."
+        "2Prefix": "Kosala site ya ",
+        "2Suffix": ".",
+        "3Prefix": "Kosala ",
+        "3Suffix": "."
       }
     },
     "playpad": {
       "period": "04/2024 – lelo",
       "location": "Genève, Suisse",
       "titlePrefix": "Moto ya Web & Mobile, ",
+      "linkGooglePlay": "Google Play",
+      "linkAppStore": "App Store",
+      "linkSite": "site PlayPad",
       "items": {
         "0": "Co-fondateur ya société.",
-        "1": "Kosala app PlayPad na Google Play mpe App Store.",
-        "2": "Kosala site PlayPad."
+        "1Prefix": "Kosala app PlayPad na ",
+        "1Between": " mpe ",
+        "1Suffix": ".",
+        "2Prefix": "Kosala ",
+        "2Suffix": "."
       }
     },
     "mdandela": {
@@ -81,7 +91,7 @@
     "schneider": {
       "period": "2008 – 2011",
       "location": "Genève, Suisse",
-      "title": "Apprenti commercial, Schneider & Cie SA",
+      "titlePrefix": "Apprenti commercial, ",
       "items": {
         "0": "Apprentissage commercial na transport ya marchandise."
       }
