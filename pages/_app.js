@@ -4,7 +4,7 @@ import createEmotionCache from '../utility/createEmotionCache';
 import "@/styles/robotoMono-fonts.css";
 import '@/styles/globals.css';
 import '@/styles/globals.css';
-import '@/styles/chatbox.css';
+import '@/styles/cv-print.css';
 import '@/styles/carousel.css';
 import LangModeProvider from '../contexts/LangModeProvider';
 import DeviceModeProvider from '../contexts/DeviceModeProvider';

@@ -1,0 +1,314 @@
+/* --------------- CV : style minimaliste (écran + impression) --------------- */
+
+.cv-article {
+  box-sizing: border-box;
+}
+
+/* Style écran : liens discrets, sections avec barre latérale */
+.cv-article .cv-link {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.cv-article .cv-link:hover {
+  color: var(--gold-300);
+  text-decoration: underline;
+}
+
+.cv-article .cv-accordion {
+  position: relative;
+}
+.cv-article .cv-section-title {
+  border-left: none;
+  padding-left: 0;
+}
+
+.cv-article .cv-tagline {
+  border-left: 3px solid var(--accents4);
+  padding-left: 12px;
+  font-style: italic;
+}
+
+.cv-article .cv-photo {
+  flex-shrink: 0;
+}
+
+/* Masquer les boutons "Retour" et "Télécharger mon CV" à l'impression et en mode PDF */
+@media print {
+  [data-cv-download-btn],
+  [data-cv-back-btn] {
+    display: none !important;
+  }
+
+  .cv-article {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 12mm 0 14mm !important;
+    background: #fff !important;
+    color: #1a1a1a !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    border-top: 4px solid #1e40af !important;
+    border-left: 3px solid #1e40af !important;
+  }
+
+  .cv-article a {
+    color: #1e40af !important;
+  }
+
+  .cv-article h1,
+  .cv-article h2 {
+    color: #1e40af !important;
+  }
+
+  .cv-article .cv-photo {
+    border-color: #1e40af !important;
+  }
+
+  /* Éviter les coupures de section au milieu d’une page */
+  .cv-article section,
+  .cv-article .cv-accordion {
+    page-break-inside: avoid;
+  }
+
+  .cv-article ul {
+    page-break-inside: avoid;
+  }
+
+  /* Accordion : tout ouvert en impression */
+  .cv-article .MuiCollapse-root {
+    height: auto !important;
+    overflow: visible !important;
+    visibility: visible !important;
+  }
+  .cv-article .MuiAccordionSummary-expandIconWrapper {
+    display: none !important;
+  }
+  .cv-article .MuiAccordion-root {
+    box-shadow: none !important;
+    border-bottom: 1px solid #e5e7eb !important;
+  }
+  .cv-article .cv-section-title {
+    border-left: 3px solid #1e40af !important;
+    padding-left: 10px !important;
+  }
+  .cv-article .cv-tagline {
+    border-left: 3px solid #94a3b8 !important;
+  }
+
+  /* Masquer le menu flottant et éléments hors CV sur la page /cv */
+  body:has(.cv-article) .appFooter,
+  body:has(.cv-article) [class*="FloatingQuickMenu"],
+  body:has(.cv-article) [class*="floating"] {
+    display: none !important;
+  }
+}
+
+/*
+ * Version PDF (html2pdf) : thème bleu + décorations style CV minimaliste ingénieur.
+ */
+.cv-article.cv-print-mode {
+  max-width: 210mm !important;
+  margin: 0 auto !important;
+  padding: 10mm 14mm !important;
+  background: #fff !important;
+  color: #1a1a1a !important;
+  box-shadow: none !important;
+  position: relative !important;
+  overflow: visible !important;
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust: exact !important;
+  /* Décoration : bande bleue en haut */
+  border-top: 4px solid #1e40af !important;
+  /* Décoration : fine ligne verticale à gauche (style ingénieur) */
+  border-left: 3px solid #1e40af !important;
+}
+
+/* Texte PDF : noir / gris très foncé pour une bonne lisibilité */
+.cv-article.cv-print-mode p,
+.cv-article.cv-print-mode li,
+.cv-article.cv-print-mode span {
+  color: #1a1a1a !important;
+}
+.cv-article.cv-print-mode .cv-tagline {
+  color: #2d2d2d !important;
+}
+.cv-article.cv-print-mode::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  border-top: 2px solid #3b82f6;
+  border-right: 2px solid #3b82f6;
+  opacity: 0.6;
+}
+.cv-article.cv-print-mode::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  border-bottom: 2px solid #93c5fd;
+  border-left: 2px solid #93c5fd;
+  opacity: 0.5;
+}
+
+.cv-article.cv-print-mode [data-cv-download-btn],
+.cv-article.cv-print-mode [data-cv-back-btn] {
+  display: none !important;
+}
+.cv-article.cv-print-mode .cv-photo-link {
+  pointer-events: none;
+  cursor: default;
+}
+.cv-article.cv-print-mode .cv-photo-link:hover .cv-photo {
+  opacity: 1;
+  box-shadow: none;
+}
+
+.cv-article.cv-print-mode a {
+  color: #1e40af !important;
+}
+
+/* Icône de lien externe à côté des liens cliquables en mode PDF */
+.cv-article.cv-print-mode .cv-link::after {
+  content: " ↗";
+  font-size: 0.75em;
+  vertical-align: super;
+  opacity: 0.7;
+}
+
+.cv-article.cv-print-mode h1,
+.cv-article.cv-print-mode h2 {
+  color: #1e40af !important;
+}
+
+.cv-article.cv-print-mode [class*="MuiTypography"]:not(h1):not(h2) {
+  color: #1a1a1a !important;
+}
+
+.cv-article.cv-print-mode section {
+  page-break-inside: avoid;
+}
+/* Accordions : éviter la coupure au milieu, sauf Skills qui peut s’étendre sur plusieurs pages */
+.cv-article.cv-print-mode .cv-accordion {
+  page-break-inside: avoid;
+}
+.cv-article.cv-print-mode .cv-accordion[data-section-id="skills"] {
+  page-break-inside: auto;
+}
+.cv-article.cv-print-mode .cv-accordion[data-section-id="skills"] .MuiAccordionDetails-root,
+.cv-article.cv-print-mode .cv-accordion[data-section-id="skills"] .MuiCollapse-root {
+  overflow: visible !important;
+}
+.cv-article.cv-print-mode .cv-skills-content {
+  overflow: visible !important;
+}
+/* Chaque barre de compétence reste sur une même page */
+.cv-article.cv-print-mode .cv-skill-bar {
+  page-break-inside: avoid;
+}
+
+.cv-article.cv-print-mode ul {
+  page-break-inside: avoid;
+}
+
+.cv-article.cv-print-mode .cv-photo {
+  border: 2px solid #1e40af !important;
+}
+
+/* Accordion : tout ouvert en PDF, style section avec barre gauche */
+.cv-article.cv-print-mode .MuiCollapse-root {
+  height: auto !important;
+  overflow: visible !important;
+  visibility: visible !important;
+}
+.cv-article.cv-print-mode .MuiAccordionDetails-root {
+  overflow: visible !important;
+}
+.cv-article.cv-print-mode .MuiAccordionSummary-expandIconWrapper {
+  display: none !important;
+}
+.cv-article.cv-print-mode .MuiAccordion-root {
+  box-shadow: none !important;
+  border: none !important;
+  border-bottom: 1px solid #e5e7eb !important;
+}
+.cv-article.cv-print-mode .cv-section-title-wrap {
+  pointer-events: none;
+}
+.cv-article.cv-print-mode .cv-section-title {
+  border-left: 3px solid #1e40af !important;
+  padding-left: 10px !important;
+}
+
+.cv-article.cv-print-mode .cv-tagline {
+  border-left: 3px solid #93c5fd !important;
+}
+
+/* Barres de progression en bleu en mode PDF */
+.cv-article.cv-print-mode .MuiLinearProgress-bar {
+  background-color: #1e40af !important;
+}
+
+/* Logos / icônes en noir (gris foncé) en mode PDF */
+.cv-article.cv-print-mode svg {
+  fill: #1a1a1a !important;
+  color: #1a1a1a !important;
+  stroke: #1a1a1a !important;
+}
+
+/* Étoiles (niveau des langues) en bleu en mode PDF */
+.cv-article.cv-print-mode .MuiSvgIcon-root {
+  fill: #1e40af !important;
+  color: #1e40af !important;
+}
+
+/* Grille soft skills : layout garanti en PDF */
+.cv-article.cv-print-mode .cv-softskills-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 12px !important;
+}
+
+/* Cartes soft skills : bordure et fond lisibles en PDF */
+.cv-article.cv-print-mode .cv-softskill-card {
+  border: 1px solid #e5e7eb !important;
+  background: #f8fafc !important;
+  page-break-inside: avoid;
+}
+.cv-article.cv-print-mode .cv-softskill-card .MuiChip-root {
+  background: rgba(30, 64, 175, 0.12) !important;
+  color: #1e40af !important;
+}
+/* Icônes des cartes soft skills en bleu en PDF */
+.cv-article.cv-print-mode .cv-softskill-card .MuiSvgIcon-root {
+  fill: #1e40af !important;
+  color: #1e40af !important;
+}
+.cv-article.cv-print-mode .cv-softskill-card p {
+  color: #1a1a1a !important;
+}
+
+/* Hobbies : style carte (ombre + icône primary) en mode PDF */
+.cv-article.cv-print-mode .cv-hobby-item .cv-hobby-icon-wrap {
+  border: 1px solid #e5e7eb !important;
+  background: #f8fafc !important;
+  box-shadow: 0 2px 8px rgba(30, 64, 175, 0.15) !important;
+}
+.cv-article.cv-print-mode .cv-hobby-item .cv-hobby-icon-wrap .MuiSvgIcon-root {
+  fill: #1e40af !important;
+  color: #1e40af !important;
+}
+.cv-article.cv-print-mode .cv-hobby-item .cv-hobby-title {
+  color: #1e40af !important;
+}
+.cv-article.cv-print-mode .cv-hobby-item [class*="MuiTypography"]:not(.cv-hobby-title) {
+  color: #374151 !important;
+}
+.cv-article.cv-print-mode .cv-hobby-item {
+  page-break-inside: avoid;
+}

@@ -17,12 +17,14 @@ export const ARRAY_NAMESPACES = ARRAY_NAMEPACES;
 /* --------------- LANGS -------------- */
 export const LANGAGE_FRENCH = 'fr';
 export const LANGAGE_ENGLISH = 'en';
+export const LANGAGE_ITALIAN = 'it';
 export const LANGAGE_PORTUGUESE = 'pt';
 export const LANGAGE_LINGALA = 'ao';
 export const DEFAULT_LANGAGE = LANGAGE_FRENCH;
 export const ARRAY_LANGAGES = [
     LANGAGE_FRENCH,
     LANGAGE_ENGLISH,
+    LANGAGE_ITALIAN,
     LANGAGE_PORTUGUESE,
     LANGAGE_LINGALA,
 ];
@@ -40,6 +42,9 @@ export const GENERAL_FONT_FAMILY = "Roboto";
 /* --------------- PAGES -------------- */
 export const _PAGE_LINK_HOME_ = "/";
 export const _PAGE_LINK_RESUME_ = "/portfolio/resume";
+export const _PAGE_LINK_CV_ = "/cv";
+/** CV anglais (image ou PDF) — fichier dans assets, pas dans certification */
+export const _CV_EN_ASSET_ = "/assets/cv-en.png";
 export const _PAGE_LINK_CHAT_BOT_ = "/portfolio/chatbot";
 export const _PAGE_LINK_SKILLS_ = "/portfolio/skills";
 export const _PAGE_LINK_LANGUAGES_ = "/portfolio/languages";
@@ -58,5 +63,6 @@ export const _MY_PROFILE_ = {
         linkedin: "https://www.linkedin.com/in/daniel-mbengui/",
         github: "https://github.com/danielmbengui",
         playstore: "https://play.google.com/store/apps/dev?id=5041386544087051991",
+        appstore: "https://apps.apple.com/ch/developer/mbengui-daniel-slaver/id1695490329?l=fr-FR",
     }
 }

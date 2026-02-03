@@ -1,6 +1,6 @@
 import React from 'react';
 import { FR, GB, IT, AO, CH, PT } from "country-flag-icons/react/3x2";
-import { DEFAULT_LANGAGE, LANGAGE_ENGLISH, LANGAGE_FRENCH, LANGAGE_PORTUGUESE, LANGAGE_LINGALA } from '../../_mocks_/_settings_items_';
+import { DEFAULT_LANGAGE, LANGAGE_ENGLISH, LANGAGE_FRENCH, LANGAGE_ITALIAN, LANGAGE_PORTUGUESE, LANGAGE_LINGALA } from '../../_mocks_/_settings_items_';
 
 export const FlagIcon = ({ fill, size, height, width, lang, ...props }) => {
     function getFlag(_lang) {
@@ -32,7 +32,17 @@ export const FlagIcon = ({ fill, size, height, width, lang, ...props }) => {
             />
                     )
         
-                    case LANGAGE_PORTUGUESE:
+                    case LANGAGE_ITALIAN:
+                return (
+                    <IT
+        style={{
+            borderRadius: '50%',
+            width: 30,
+            height: 30
+        }}
+        />
+                )
+                case LANGAGE_PORTUGUESE:
                 return (
                     <PT
         //title={t('langEnglish')}
@@ -171,6 +181,9 @@ export const FlagIcon = ({ fill, size, height, width, lang, ...props }) => {
         case LANGAGE_ENGLISH:
         case 'en':
             return(<EnglishIcon />)
+        case LANGAGE_ITALIAN:
+        case 'it':
+            return(<ItalianIcon />)
         case LANGAGE_LINGALA:
         case 'ao':
             return(<AngolanIcon />)

@@ -11,6 +11,7 @@
         "plural": "lokota",
         "fr": "Lifalansé",
         "en": "Lingelesa",
+        "it": "Liitalien",
         "pt": "Liputugalé",
         "ao": "Lingala"
     },
@@ -18,6 +19,7 @@
         "skills" : {
             "disclaimer" : "Maloba oyo elobaka mosala mpe bopusi ya eloko nyonso na mosala na ngai na mokolo na mokolo.",
             "title": "Makoki",
+            "subtitle" : "Web, mobile, IA mpe blockchain — outils mpe lokota nazali kosalela na mokolo na mokolo.",
             "langs" : {
                 "title" : "Lokota",
                 "subtitle" : "Lokota mingi ezali kotonga ndenge nazali kotala mokili. Lokota nyonso nazali koloba efungola ekuke na lolenge, makanisi mpe ndenge ya kokabola sango.",
@@ -35,18 +37,20 @@
                 },
                 "it" : {
                     "name" : "Liitalien",
-                    "value" : 50
+                    "value" : 40,
+                    "level" : "Elementaire (A2)",
+                    "description" : "Liitalien ezali lokota nazali kosalela mingi na Suisse romande, wapi ezali moko ya lokota ya ekolo. Nakoki kolanda conversation ya mokolo, kotanga mokanda mpe koloba na situation ya mokolo. Nazali kobongisa yango na kosala mpe kotala contenu na liitalien."
                 },
                 "ao" : {
                     "name" : "Lingala",
                     "value" : 70,
                     "level" : "Malamu",
-                    "description" : "Lingala, lokota ya libota na ngai na Angola mpe Kongo, ezali na esika na identité na ngai. Koloba lingala malamu ezali kotonga ngai na libota, na story na ngai mpe na communauté wapi bavaleur — solidarité, humour, résilience — ezali. Nayebi moke Kikongo mpe. Lokota ya Afrika oyo ezali te heritage: ezali kotonga nguya na ngai kokanisa ndenge mosusu, kosala relation mpe kobongisa na contexte ya culture."
+                    "description" : "Lingala, lokota ya libota na ngai na Angola mpe Kongo, ezali na esika na identité na ngai. Koloba lingala malamu ezali kotonga ngai na libota, na mokanda na ngai mpe na communauté wapi makanisi — solidarité, humour, résilience — ezali. Nayebi moke Kikongo mpe. Lokota ya Afrika oyo ezali te bomoyi ya kala kaka: ezali kotonga nguya na ngai kokanisa ndenge mosusu, kosala relation mpe kobongisa na contexte ya culture."
                 },
                 "pt" : {
                     "name" : "Liputugalé",
-                    "value" : 30,
-                    "level" : "Nazali koyekola",
+                    "value" : 20,
+                    "level" : "Ya liboso (A1)",
                     "description" : "Liputugalé ezali lokota nazali koyekola mbala na mbala, na libota na ngai ya Lusophone mpe maprojeti lokola Dandela Academy. Nazali koteya vocabulaire ya liboso, koyoka mpe kotanga, mpo nakoka kokabola mpe kosala na liputugalé na mosala."
                 }
             },
@@ -116,8 +120,54 @@
                 "etherjs" : "Bibliothèque mpo na kosala na Ethereum mpe wallets."
             }
         },
+        "defineMe" : {
+            "title" : "Oyo etongaka ngai",
+            "subtitle" : "Makambo minei oyo ezali kotonga ndenge nazali kotala mpe ndenge nazali kosala.",
+            "video1" : {
+                "axeTitle" : "🧩 AXE 1 — Kosala na IA, kotiya te",
+                "title" : "Kosala elongo moto–IA",
+                "description" : "Nazali kotala IA te lokola outil passif, kasi lokola ndeko actif. Nazali kotonga, kokomisa mpe kosala elongo na yango — na logique ya collaboration, te substitution."
+            },
+            "video2" : {
+                "axeTitle" : "🧩 AXE 2 — Vision, instinct mpe conviction",
+                "title" : "Kokanisa liboso kosala",
+                "description" : "Kozwa hauteur, kotuna sens, kozwa conviction na ngai. Technologie sans vision ezali outil mosusu."
+            },
+            "video3" : {
+                "axeTitle" : "🧩 AXE 3 — Kosala elongo",
+                "title" : "Collaboration lokola fondation",
+                "description" : "Maprojeti ya malamu basalaka te na moto moko. Nazali koteya bopusi na intelligence collective mpe na technologie."
+            },
+            "video4" : {
+                "axeTitle" : "🧩 AXE 4 — Kopesa mosala mpo kosala malamu",
+                "title" : "Kotya machine na utile mpo kopesa liberté na essentiel",
+                "description" : "Nazebi kopesa mosala, kotya automate mpe kobongisa. Moke charge mentale, mingi espace mpo na création, réflexion mpe impact.",
+                "bullets" : ["Vibe coding ✔", "Architecte ya systèmes ✔", "Esprit \"CEO / builder\" ✔"]
+            }
+        },
+        "universeAndValues" : {
+            "title" : "Univers na ngai mpe bato ya ngai",
+            "subtitle" : "Piliers oyo ezali kokamba ndenge nazali kosala mpe kovivre.",
+            "video1" : {
+                "title" : "Loyauté & responsabilité",
+                "description" : "Nazali kobatela oyo nazali kotonga. IA ezali outil ya makasi — esengeli kotya na cadre, kobatela mpe kosalela na conscience."
+            },
+            "video2" : {
+                "title" : "Kopesa mosala na confiance",
+                "description" : "Koyeba tango kokota, mpe tango kopesa systèmes kosala mosala na yango."
+            },
+            "video3" : {
+                "title" : "Équilibre mpe respiration",
+                "description" : "Performance ya durable ezali mpe na repos, transmission mpe confiance oyo topesaka bato mosusu."
+            },
+            "video4" : {
+                "title" : "Kobatela vision",
+                "description" : "Koyeba koyoka, kasi mpe koyeba kozwa decision. Likano ya makasi esengeli mbala mosusu kobatelama na fermeté."
+            }
+        },
         "projects" : {
             "title" : "Maprojeti",
+            "subtitle" : "Mosala ya soló na croisée ya digital, IA mpe mobile.",
             "viewProject" : "Kotala projeti",
             "dandela" : {
                 "name" : "Dandela Academy",
@@ -149,22 +199,52 @@
                 "date" : "2022-03-20",
                 "link": "https://www.freecodecamp.org/certification/fccef9a36a5-5f01-45d2-ad9e-88f37eac23d1/javascript-algorithms-and-data-structures"
             }
+        },
+        "contactMe" : {
+            "title" : "Benga ngai",
+            "subtitle" : "Likano, proje to collaboration? Kotinda ngai message to kozwa ngai na réseaux."
         }
     },
     "chatbot" : "Lobela ngai",
+    "cvTitlePage": "Mbengui Daniel Slaver | Vibe Developer",
+    "cvDescriptionPage": "CV ya Mbengui Daniel Slaver — Développeur Web, Mobile & IA. Expériences, makoki technique mpe formations.",
     "seeMyCV" : "Kotala CV na ngai",
     "sendMeMail" : "Benga ngai",
     "profileLinkedin" : "Profil Linkedin",
     "profileGithub" : "Profil Github",
     "profilePlaystore" : "Profil Playstore",
+    "profileAppstore" : "Développeur App Store",
     "quickMenuContact" : "Contact",
     "slogan" : "Mpo nazali geek!",
     "theme" : "thème",
+    "assistant": {
+        "title": "Mosalí IA",
+        "open": "Fungola mosalí IA",
+        "close": "Funga",
+        "send": "Tinda",
+        "placeholder": "Soma mokanda na yo…",
+        "placeholderReply": "Nazwaki mokanda na yo. Mosalí IA akokotama na mokolo.",
+        "errorReply": "Eloko mabe esalemi. Linga mbala mosusu to benga ngai.",
+        "suggestionsTitle": "Likanisi",
+        "suggestions": [
+            "Olingi kolya nini?",
+            "Olingi kotambola? Wapi?",
+            "Dandela Academy ebandaki ndenge nini?",
+            "Projeti PlayPad ebimaki ndenge nini?",
+            "Mpo na nini ozali koloba portugais te?",
+            "Ozali na likanisi nini na banyama?",
+            "Ozali na joke moko?",
+            "Ozali koyoka miziki nini?",
+            "Olandi équipe ya foot nini?",
+            "Olandi moto nini na Formule 1?"
+        ]
+    },
     "loadingDocument" : "Document ezali kozwa...",
     "buttons": {
         "goChat": "Kobanda visite",
         "goCv": "Kotala CV na ngai",
         "downloadCv": "Kokweya CV na ngai",
+        "generatingPdf": "Kobongisa…",
         "viewProject": "Kotala projeti"
     },
     "viewProject": "Kotala projeti",

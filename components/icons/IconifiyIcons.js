@@ -88,6 +88,12 @@ export function MongoDbIcon({size = 30, color = 'var(--text)', ...props}) {
     )
 }
 
+export function PostgresIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="logos:postgresql" {...props} color={color} width={size} />
+    )
+}
+
 export function PythonIcon({size = 30, color = 'var(--text)', ...props}) {
     return(
         <Icon icon="vscode-icons:file-type-python" {...props} color={color} width={size} />
@@ -336,6 +342,24 @@ export function PwaIcon({size = 30, color = 'var(--text)', ...props}) {
 export function MaterialUiIcon({size = 30, color = blue[500], ...props}) {
     return(
         <Icon icon="simple-icons:mui" {...props} color={color} width={size} />
+    )
+}
+
+export function TailwindIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="logos:tailwindcss-icon" {...props} color={color} width={size} />
+    )
+}
+
+export function FigmaIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="logos:figma" {...props} color={color} width={size} />
+    )
+}
+
+export function HeroUIIcon({size = 30, color = 'var(--text)', ...props}) {
+    return(
+        <Icon icon="simple-icons:nextui" {...props} color={color} width={size} />
     )
 }
 

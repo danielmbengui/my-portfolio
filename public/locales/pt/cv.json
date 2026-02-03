@@ -1,0 +1,237 @@
+{
+  "name": "Mbengui Daniel Slaver",
+  "role": "Desenvolvedor Web e Mobile",
+  "tagline": "Apaixonado por programação, combino tecnologia e criatividade para impulsionar os seus projetos. Entre tech e negócios, sou o seu parceiro de inovação!",
+  "aiToolsLabel": "IA e ferramentas modernas:",
+  "aiTools": "LLM e APIs de chat · Agentes IA · Programação assistida por IA · Imagem, som e vídeo IA",
+  "alsoLabel": "Também:",
+  "also": "Domínio de chamadas API · Terminal (Bash, macOS, Homebrew) · Noções da linguagem C.",
+  "sections": {
+    "languages": "Idiomas",
+    "experiences": "Experiências",
+    "education": "Formação",
+    "certificates": "Certificados",
+    "projects": "Projetos",
+    "skills": "Competências",
+    "softSkills": "Soft skills",
+    "hobbies": "Lazer",
+    "publications": "Publicações"
+  },
+  "backToHome": "Voltar ao início",
+  "links": {
+    "portfolio": "Portfólio",
+    "linkedin": "LinkedIn",
+    "github": "Github",
+    "googlePlay": "Google Play"
+  },
+  "languages": {
+    "french": "Francês",
+    "english": "Inglês",
+    "lingala": "Lingala",
+    "italian": "Italiano",
+    "portuguese": "Português",
+    "levelNative": "Língua materna (C2)",
+    "levelFluent": "Fluente (C1)",
+    "levelFluentB2": "Fluente (B2)",
+    "levelElementary": "Elementar (A2)",
+    "levelBeginner": "Iniciante (A1)"
+  },
+  "experiences": {
+    "dandela": {
+      "period": "09/2024 – presente",
+      "location": "Luanda, Angola",
+      "titlePrefix": "Fundador e Diretor, ",
+      "items": {
+        "0": "Fundador da Dandela Academy.",
+        "1": "Associado principal da Dandela Academy.",
+        "2": "Criação do site da Dandela Academy.",
+        "3": "Criação da Web App Dandela Academy."
+      }
+    },
+    "playpad": {
+      "period": "04/2024 – presente",
+      "location": "Genebra, Suíça",
+      "titlePrefix": "Desenvolvedor Web e Mobile, ",
+      "items": {
+        "0": "Co-fundador da empresa.",
+        "1": "Criação do app PlayPad no Google Play e na App Store.",
+        "2": "Criação do site PlayPad."
+      }
+    },
+    "mdandela": {
+      "period": "2016 – presente",
+      "location": "Luanda, Angola",
+      "title": "Funcionário, M. Dandela",
+      "items": {
+        "0": "Co-fundador do negócio familiar.",
+        "1": "Instalação do equipamento necessário para criar um cibercafé.",
+        "2": "Prospecção de imóveis para aluguel, ofertas e acompanhamento de inquilinos."
+      }
+    },
+    "imad": {
+      "period": "02/2015 – 08/2015",
+      "location": "Genebra, Suíça",
+      "titlePrefix": "Funcionário administrativo, ",
+      "items": {
+        "0": "Funcionário administrativo.",
+        "1": "Implementação de uma base de dados de gestão de itens de configuração (CMDB).",
+        "2": "Ferramenta comparável a um inventário dos recursos informáticos da empresa."
+      }
+    },
+    "schneider": {
+      "period": "2008 – 2011",
+      "location": "Genebra, Suíça",
+      "titlePrefix": "Aprendiz comercial, ",
+      "items": {
+        "0": "Aprendizagem comercial no setor de transporte de mercadorias."
+      }
+    }
+  },
+  "education": {
+    "fortytwo": {
+      "period": "2022 – 2024",
+      "location": "Renens, Suíça",
+      "titleSuffix": ", Estudante",
+      "items": {
+        "0": "Aprender de forma diferente, desenvolvendo projetos reais em equipa, com um currículo gamificado onde os estudantes ganham pontos para subir de nível."
+      }
+    },
+    "esig": {
+      "period": "2013 – 2015",
+      "location": "Genebra, Suíça",
+      "titleSuffix": ", Diplomado",
+      "items": {
+        "0": "Diploma federal em informática de gestão."
+      }
+    },
+    "stael": {
+      "period": "2008 – 2011",
+      "location": "Genebra, Suíça",
+      "title": "Ecole de commerce Madame De Staël, Diplomado",
+      "items": {
+        "0": "CFC Employé de commerce",
+        "1": "Formação em alternância, entre escola e empresa."
+      }
+    }
+  },
+  "certificates": {
+    "react": {
+      "period": "03/2025",
+      "location": "Online",
+      "title": "Front-End Engineering with React",
+      "desc": "Este percurso prepara um iniciante para dominar React na engenharia front-end. Do básico aos tópicos avançados, para criar aplicações web interativas e escaláveis."
+    },
+    "jsAlgo": {
+      "period": "03/2022",
+      "location": "Online",
+      "title": "JavaScript Algorithms and Data Structures, freeCodeCamp",
+      "desc": "Aprendizagem de otimização de algoritmos e estruturas de dados em JavaScript."
+    },
+    "responsive": {
+      "period": "03/2022",
+      "location": "Online",
+      "title": "Responsive Web Design, freeCodeCamp",
+      "desc": "Regras UI/UX para design em diferentes dispositivos."
+    },
+    "javaSe11": {
+      "period": "02/2020 – 03/2020",
+      "location": "Genebra, Suíça",
+      "title": "Certificado de formação Java SE11, IT Training Academy",
+      "desc": "Cursos iniciados em fevereiro de 2020 no local antes da pandemia Covid-19, depois por videoconferência."
+    },
+    "python": {
+      "period": "08/2019 – 10/2019",
+      "location": "Genebra, Suíça",
+      "title": "Certificado de competência em linguagem Python, IT Training Academy",
+      "desc": "Aprendizagem da linguagem Python e obtenção do certificado."
+    },
+    "psm1": {
+      "period": "07/2019",
+      "location": "Genebra, Suíça",
+      "title": "Professional Scrum Master I (PSM I), IT Training Academy",
+      "desc": "Curso de uma semana (~40 h). Certificado não finalizado."
+    },
+    "ifage": {
+      "period": "09/2018 – 03/2019",
+      "location": "Genebra, Suíça",
+      "title": "Certificat Développeur JEE & Android, Ifage",
+      "desc": "Aprendizagem de Java para Android Studio • Framework Ionic."
+    },
+    "esigDip": {
+      "period": "2013 – 2015",
+      "location": "Genebra, Suíça",
+      "title": "Diplôme Fédéral d'Informaticien de Gestion",
+      "desc": "Diploma federal obtido na Ecole Supérieure d'Informatique de Gestion (ESIG)."
+    },
+    "cfc": {
+      "period": "2008 – 2011",
+      "location": "Genebra, Suíça",
+      "title": "CFC Employé de commerce",
+      "desc": "Certificado federal de capacidade em comércio, obtido em alternância na Ecole de commerce Madame De Staël."
+    }
+  },
+  "projects": {
+    "drilldev": {
+      "period": "02/2023 – 04/2023",
+      "title": "Drill Dev",
+      "desc": "Site dedicado à criação de imagens por IA e criações originais. Ferramentas e conteúdo para ajudar desenvolvedores a evoluir com fluxos de trabalho modernos assistidos por IA."
+    },
+    "winno": {
+      "period": "04/2022 – 08/2022",
+      "title": "Winno Bearz Club",
+      "desc": "Coleção de 5.555 NFTs gerativos (ursos pixelizados) na rede Polygon. Cada NFT é único com mais de 194 traços combináveis. Bot interativo, listagem OpenSea e envolvimento comunitário."
+    }
+  },
+  "skills": {
+    "webDevelopment": "Desenvolvimento Web",
+    "mobileDevelopment": "Desenvolvimento Mobile",
+    "databases": "Bases de dados",
+    "blockchain": "Blockchain",
+    "design": "Design",
+    "otherLanguagesTools": "Outras linguagens e ferramentas"
+  },
+  "softSkills": {
+    "teamwork": "Trabalho em equipa",
+    "teamworkDesc": "Gosto de colaborar, seja numa grande instituição ou numa equipa pequena.",
+    "problemSolving": "Resolução de problemas",
+    "problemSolvingDesc": "Sou hábil a identificar, analisar e resolver problemas rapidamente.",
+    "adaptability": "Adaptabilidade",
+    "adaptabilityDesc": "Adapto-me facilmente a mudanças, sejam evoluções tecnológicas ou de equipa.",
+    "creativity": "Criatividade",
+    "creativityDesc": "Gosto de inventar coisas novas e de me lançar em projetos que se destacam do mercado.",
+    "autonomy": "Autonomia",
+    "autonomyDesc": "Autodidata por natureza, sei trabalhar com autonomia respeitando as diretrizes do projeto.",
+    "curiosity": "Curiosidade",
+    "curiosityDesc": "Estou sempre atento às últimas novidades do mundo tech.",
+    "resilience": "Resiliência",
+    "resilienceDesc": "\"Ou perco, ou aprendo.\"",
+    "patience": "Paciência",
+    "patienceDesc": "Bugs? Desafios técnicos? É isso que me motiva a resolvê-los."
+  },
+  "hobbies": {
+    "it": "IT",
+    "itDesc": "Crio muitos projetos por prazer.",
+    "gaming": "Gaming",
+    "gamingDesc": "Estou à espera do GTA VI.",
+    "multimedia": "Multimédia",
+    "multimediaDesc": "Edição de vídeo por prazer.",
+    "sports": "Desporto",
+    "sportsDesc": "Televisão.",
+    "padel": "Padel",
+    "padelDesc": "Prática regular.",
+    "writing": "Escrita",
+    "writingDesc": "Publicação de 2 artigos no jornal Actu Vernier."
+  },
+  "publications": {
+    "actu2010": {
+      "period": "02/2010",
+      "title": "Actu Vernier Fevereiro 2010, Daniel Mbengui",
+      "desc": "Artigo sobre a primeira noite oficial da associação Jeunesse&Co em Genebra."
+    },
+    "actu2009": {
+      "period": "11/2009",
+      "title": "Actu Vernier Novembro 2009, Daniel Mbengui",
+      "desc": "Artigo que descreve a criação da associação Jeunesse&Co em Genebra."
+    }
+  }
+}

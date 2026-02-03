@@ -9,7 +9,6 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import PublicIcon from '@mui/icons-material/Public';
-import FooterComponent from '@/components/footer/FooterComponent';
 import { AngolanIcon, SwissIcon } from '@/components/icons/FlagIcons';
 
 // ——— Constantes carousel 3D (4 slides visibles : plus de marge pour éviter le clipping) ———
@@ -73,11 +72,24 @@ export default function ProjectsComponent({ embedded = false }) {
           pt={embedded ? 1 : 2}
           pb={embedded ? 4 : { xs: 8, sm: 6 }}
         >
-          {/* Titre Projets */}
+          {/* Titre Projets + sous-titre — animation d'entrée */}
           <Grid item xs={12} sx={{ textAlign: 'center', mt: embedded ? 4 : 12 }}>
-            <Stack spacing={1} alignItems="center">
+            <Stack
+              spacing={1}
+              alignItems="center"
+              component={motion.div}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-50px' }}
+              variants={{ visible: { transition: { staggerChildren: 0.12 } } }}
+            >
               <Typography
-                component="h1"
+                component={motion.h1}
+                variants={{
+                  hidden: { opacity: 0, y: 20, scale: 0.96 },
+                  visible: { opacity: 1, y: 0, scale: 1 },
+                }}
+                transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
                 sx={{
                   fontSize: { xs: 24, sm: 28 },
                   fontWeight: 600,
@@ -87,6 +99,23 @@ export default function ProjectsComponent({ embedded = false }) {
                 }}
               >
                 {t('sections.projects.title')}
+              </Typography>
+              <Typography
+                component={motion.p}
+                variants={{
+                  hidden: { opacity: 0, y: 16 },
+                  visible: { opacity: 1, y: 0 },
+                }}
+                transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+                variant="body1"
+                sx={{
+                  color: 'var(--accents7)',
+                  maxWidth: 800,
+                  fontSize: { xs: '0.95rem', sm: '1.05rem' },
+                  lineHeight: 1.6,
+                }}
+              >
+                {t('sections.projects.subtitle')}
               </Typography>
             </Stack>
           </Grid>
@@ -400,12 +429,6 @@ export default function ProjectsComponent({ embedded = false }) {
               )}
             </AnimatePresence>
           </Grid>
-
-          {!embedded && (
-            <Grid item xs={12}>
-              <FooterComponent />
-            </Grid>
-          )}
         </Grid>
       </Container>
     </Box>

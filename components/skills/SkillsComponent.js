@@ -12,7 +12,6 @@ import { blue } from '@mui/material/colors';
 import { useSwipeable } from 'react-swipeable';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import FooterComponent from '../footer/FooterComponent';
 
 // ——— Liens apps (rubrique Mobile) — PlayPad ———
 const APP_STORE_APP_ID = 'id6450876480';
@@ -98,11 +97,24 @@ export default function SkillsComponent({ embedded = false }) {
     >
       <Container sx={{ position: 'relative', py: embedded ? { xs: 2, md: 3 } : { xs: 3, md: 5 }, minHeight: embedded ? 0 : '100%' }}>
       <Grid container justifyContent="center" spacing={embedded ? 2 : 4} pt={embedded ? 1 : 2} pb={embedded ? 4 : { xs: 8, sm: 6 }}>
-        {/* Titre Compétences */}
+        {/* Titre Compétences + sous-titre — animation d'entrée */}
         <Grid item xs={12} sx={{ textAlign: 'center', ...(embedded ? { mt: 4 } : {}) }}>
-          <Stack spacing={1} alignItems="center">
+          <Stack
+            spacing={1}
+            alignItems="center"
+            component={motion.div}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-50px' }}
+            variants={{ visible: { transition: { staggerChildren: 0.12 } } }}
+          >
             <Typography
-              component="h1"
+              component={motion.h1}
+              variants={{
+                hidden: { opacity: 0, y: 20, scale: 0.96 },
+                visible: { opacity: 1, y: 0, scale: 1 },
+              }}
+              transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
               sx={{
                 fontSize: { xs: 24, sm: 28 },
                 fontWeight: 600,
@@ -112,6 +124,23 @@ export default function SkillsComponent({ embedded = false }) {
               }}
             >
               {t('sections.skills.title')}
+            </Typography>
+            <Typography
+              component={motion.p}
+              variants={{
+                hidden: { opacity: 0, y: 16 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+              variant="body1"
+              sx={{
+                color: 'var(--accents7)',
+                maxWidth: 800,
+                fontSize: { xs: '0.95rem', sm: '1.05rem' },
+                lineHeight: 1.6,
+              }}
+            >
+              {t('sections.skills.subtitle')}
             </Typography>
           </Stack>
         </Grid>
@@ -594,12 +623,6 @@ export default function SkillsComponent({ embedded = false }) {
             </Typography>
           </motion.div>
         </Grid>
-
-        {!embedded && (
-        <Grid item xs={12}>
-          <FooterComponent />
-        </Grid>
-        )}
       </Grid>
       </Container>
     </Box>

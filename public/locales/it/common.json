@@ -1,0 +1,270 @@
+{
+    "titlePageHome": "Portfolio · Daniel Mbengui",
+    "welcome" : "Ciao 👋🏿, sono Daan. Piacere di conoscerti! Come stai oggi?",
+    "footer": {
+        "deployedWith" : "Realizzato con passione e dedizione, powered by",
+        "copyright" : "Copyright©",
+        "allRightsReserved" : "Tutti i diritti riservati."
+    },
+    "langs": {
+        "title": "lingua",
+        "plural": "lingue",
+        "fr": "Francese",
+        "en": "Inglese",
+        "it": "Italiano",
+        "pt": "Portoghese",
+        "ao": "Lingala"
+    },
+    "sections" :{
+        "skills" : {
+            "disclaimer" : "Le descrizioni indicano il ruolo e l'importanza di ogni strumento o linguaggio nel mio lavoro quotidiano.",
+            "title": "Competenze",
+            "subtitle" : "Web, mobile, IA e blockchain — gli strumenti e i linguaggi che uso ogni giorno.",
+            "langs" : {
+                "title" : "Lingue",
+                "subtitle" : "Il multilinguismo plasma la mia visione del mondo. Ogni lingua che parlo apre una porta verso una cultura, un pensiero e un modo unico di comunicare.",
+                "fr" : {
+                    "name" : "Francese",
+                    "value" : 100,
+                    "level" : "Madrelingua",
+                    "description" : "Il francese è la mia lingua madre — quella in cui sogno, penso e mi esprimo con la massima facilità. Parlato in Svizzera romanda dall'infanzia, rappresenta per me molto più di uno strumento di comunicazione: una chiave d'accesso alla letteratura, alla diplomazia e a una cultura millenaria. In contesto professionale redigo documenti tecnici, animo riunioni e negozio in francese senza sforzo. Questa padronanza mi permette di trasmettere idee complesse con precisione e nuance, sia per iscritto che a livello orale."
+                },
+                "en" : {
+                    "name" : "Inglese",
+                    "value" : 90,
+                    "level" : "Fluente",
+                    "description" : "L'inglese è diventato il mio alleato quotidiano, sia per il lavoro che per esplorare il mondo. L'ho sviluppato grazie a un'immersione progressiva: relazioni personali, consumo di contenuti (serie, podcast, tutorial tech) e soprattutto la programmazione, dove l'inglese è la lingua franca. Oggi leggo documentazione tecnica, partecipo a conferenze e collaboro con team internazionali senza barriere. Il mio obiettivo: affinare ancora la fluidità orale e il lessico per scambi sempre più naturali."
+                },
+                "it" : {
+                    "name" : "Italiano",
+                    "value" : 40,
+                    "level" : "Elementare (A2)",
+                    "description" : "L'italiano è una lingua che pratico in particolare in Svizzera romanda, dove è una delle lingue nazionali. Riesco a seguire conversazioni quotidiane, leggere testi ed esprimermi in situazioni di tutti i giorni. Continuo a migliorarlo con la pratica e l'esposizione a contenuti in italiano."
+                },
+                "ao" : {
+                    "name" : "Lingala",
+                    "value" : 70,
+                    "level" : "Fluente",
+                    "description" : "Il lingala, lingua delle mie radici angolane e congolesi, occupa un posto particolare nella mia identità. Parlarlo fluentemente mi lega alla mia famiglia, alla mia storia e a una comunità i cui valori — solidarietà, humour, resilienza — risuonano in ogni scambio. Conosco anche le basi del kikongo, un'altra lingua del bacino del Congo. Queste lingue africane non sono solo un'eredità: arricchiscono la mia capacità di pensare in modo diverso, di tessere relazioni autentiche e di adattarmi a contesti culturali vari. Incarnano ciò che sono: un ponte tra mondi diversi."
+                },
+                "pt" : {
+                    "name" : "Portoghese",
+                    "value" : 20,
+                    "level" : "Principiante (A1)",
+                    "description" : "Il portoghese è una lingua che sto imparando progressivamente, in collegamento con le mie radici lusofone e progetti come Dandela Academy. Lavoro sul vocabolario di base, sulla comprensione orale e scritta, con l'obiettivo di poter comunicare e collaborare in portoghese in un contesto professionale."
+                }
+            },
+            "programming" : {
+                "title" : "Programmazione",
+                "javascript" : {
+                    "name": "Javascript",
+                    "value": 50
+                }
+            },
+            "frameworks" : {
+                "title" : "Librerie/Strumenti"
+            },
+            "software" : {
+                "title" : "Software"
+            },
+            "web" : {
+                "title" : "Web"
+            },
+            "mobile" : {
+                "title" : "Mobile"
+            },
+            "blockchain" : {
+                "title" : "Blockchain"
+            },
+            "database" : {
+                "title" : "Database"
+            },
+            "artificial" : {
+                "title" : "Intelligenza Artificiale (IA)",
+                "apiCalls" : "Chiamate API",
+                "agents" : "Agenti IA",
+                "contentCreation" : "Creazione di contenuti",
+                "contentCreationSubtitle" : "OpenAI, Runway, Veo, ecc.",
+                "vibeCoding" : "Vibe coding"
+            },
+            "names" : {
+                "javascript" : "Javascript",
+                "typescript" : "TypeScript",
+                "reactjs" : "ReactJS",
+                "nextjs" : "NextJS",
+                "ios" : "iOS",
+                "android" : "Android",
+                "pwa" : "PWA",
+                "solidity" : "Solidity",
+                "etherjs" : "EtherJS",
+                "web3js" : "Web3JS",
+                "bitcoin" : "Bitcoin",
+                "ethereum" : "Ethereum"
+            },
+            "desc" : {
+                "javascript" : "Linguaggio principale per il front-end e le interfacce utente.",
+                "typescript" : "Tipizzazione statica per progetti più manutenibili e scalabili.",
+                "reactjs" : "Libreria UI per costruire interfacce moderne e reattive.",
+                "nextjs" : "Framework full-stack per il rendering lato server e il deploy.",
+                "ios" : "Sviluppo di app native per l'ecosistema Apple.",
+                "android" : "Sviluppo di app per il parco Android.",
+                "pwa" : "Applicazioni web installabili, offline-first e multi-dispositivo.",
+                "apiCalls" : "Integrazione di API (OpenAI, ecc.) nelle applicazioni.",
+                "agents" : "Automazione e flussi assistiti dall'IA.",
+                "contentCreation" : "Creazione di immagini, video e contenuti con l'IA.",
+                "vibeCoding" : "Sviluppo assistito dall'IA (es. Cursor).",
+                "solidity" : "Linguaggio degli smart contract su Ethereum ed EVM.",
+                "web3js" : "Connessione front-end a reti e contratti decentralizzati.",
+                "bitcoin" : "Riferimento in criptovalute e blockchain.",
+                "ethereum" : "Piattaforma di smart contract ed ecosistema DeFi/NFT.",
+                "etherjs" : "Libreria per interagire con Ethereum e i wallet."
+            }
+        },
+        "defineMe" : {
+            "title" : "Ciò che mi definisce",
+            "subtitle" : "Quattro aspetti che plasmano la mia visione e il mio approccio.",
+            "video1" : {
+                "axeTitle" : "🧩 ASSE 1 — Creare con l'IA, non subirla",
+                "title" : "Co-creazione uomo–IA",
+                "description" : "Non vedo l'IA come uno strumento passivo, ma come un partner attivo. Progetto, orchestra e costruisco con essa — in una logica di collaborazione, non di sostituzione."
+            },
+            "video2" : {
+                "axeTitle" : "🧩 ASSE 2 — Visione, istinto e convinzioni",
+                "title" : "Pensare prima di agire",
+                "description" : "Prendere distanza, interrogare il senso, assumere le proprie convinzioni. La tecnologia senza visione è solo un altro strumento."
+            },
+            "video3" : {
+                "axeTitle" : "🧩 ASSE 3 — Costruire insieme",
+                "title" : "La collaborazione come fondamento",
+                "description" : "I migliori progetti non si costruiscono mai da soli. Do tanto valore all'intelligenza collettiva quanto alla tecnologia."
+            },
+            "video4" : {
+                "axeTitle" : "🧩 ASSE 4 — Delegare per creare meglio",
+                "title" : "Automatizzare l'utile per liberare l'essenziale",
+                "description" : "So delegare, automatizzare e ottimizzare. Meno carico mentale, più spazio per la creazione, la riflessione e l'impatto.",
+                "bullets" : ["Vibe coding ✔", "Architetto di sistemi ✔", "Mentalità \"CEO / builder\" ✔"]
+            }
+        },
+        "universeAndValues" : {
+            "title" : "Il mio universo e i miei valori",
+            "subtitle" : "Alcuni pilastri che guidano il mio modo di lavorare e di vivere.",
+            "video1" : {
+                "title" : "Lealtà e responsabilità",
+                "description" : "Proteggo ciò che costruisco. L'IA è uno strumento potente — deve essere inquadrata, difesa e usata con consapevolezza."
+            },
+            "video2" : {
+                "title" : "Delegare con fiducia",
+                "description" : "Sapere quando intervenire e quando lasciare che i sistemi facciano il loro lavoro."
+            },
+            "video3" : {
+                "title" : "Equilibrio e respiro",
+                "description" : "La performance duratura passa anche dal riposo, dalla trasmissione e dalla fiducia accordata agli altri."
+            },
+            "video4" : {
+                "title" : "Difendere una visione",
+                "description" : "Saper ascoltare, ma anche saper decidere. Le idee forti meritano a volte di essere difese con fermezza."
+            }
+        },
+        "projects" : {
+            "title" : "Progetti",
+            "subtitle" : "Realizzazioni concrete all'incrocio tra digitale, IA e mobile.",
+            "viewProject" : "Vedi il progetto",
+            "dandela" : {
+                "name" : "Dandela Academy",
+                "type" : "Formazione e E-learning",
+                "description" : "Dandela Academy è una scuola di formazione professionale certificata e approvata dall'INEFOP (Angola), che mette l'innovazione e il digitale al centro dell'apprendimento. La piattaforma offre un ambiente moderno, flessibile e interattivo: corsi strutturati disponibili 24h/24, formatori qualificati e apprendimento guidato dall'IA per personalizzare l'esperienza. La missione è democratizzare l'accesso alla formazione digitale e professionale affinché ogni studente possa acquisire le competenze necessarie per avere successo. La visione va oltre la formazione: un progetto di società per dare ai giovani e ai professionisti i mezzi per plasmare il futuro del loro paese e del loro continente. L'app è disponibile in PWA in francese, portoghese e inglese."
+            },
+            "winno" : {
+                "name" : "Winno Bearz Club",
+                "type" : "Progetto NFT",
+                "description" : "WinnoBearz Club è una collezione NFT generativa con una narrazione ludica: il mago Bearz BelzeBearz ha disperso le teste pixelate dei WinnoBearz in tutto il globo — sarai uno degli HolyBearz? Ogni NFT è unico, con oltre 5.555 combinazioni possibili da 194 tratti. La rarità è definita da livelli (Raspberry, Picnic, Salmon, Honey, Beehive). In programma: 5% dei prelievi del team attribuiti casualmente a un detentore, piena proprietà per tenere, regalare o rivendere, e presenza su OpenSea e sui grandi calendari NFT. Costruito con la blockchain per il mint e l'engagement della community."
+            },
+            "drilldev" : {
+                "name" : "Drill Dev",
+                "type" : "Intelligenza Artificiale",
+                "description" : "Drill Dev è un progetto all'incrocio tra sviluppo e intelligenza artificiale. Propone strumenti e contenuti per aiutare sviluppatori e appassionati di tech a progredire grazie a flussi di lavoro moderni assistiti dall'IA. La piattaforma combina tutorial, risorse pratiche e un approccio centrato sull'apprendimento continuo, con l'obiettivo di rendere le competenze tecniche avanzate accessibili e applicabili in progetti reali."
+            },
+            "playpad" : {
+                "name" : "PlayPad App",
+                "type" : "Progetto Mobile",
+                "description" : "PlayPad è l'app per gli appassionati di padel in Svizzera. Trova giocatori al tuo livello, crea partite aperte o competitive, consulta i club partner e i campi nella tua regione e unisciti alle partite aperte in un clic. L'app include anche una marketplace per comprare o vendere attrezzature, una classifica con statistiche e monitoraggio delle performance e la possibilità di salire in graduatoria. I creatori di partite possono accettare o rifiutare i giocatori e gestire le prenotazioni. Il tutto 100% gratuito per i giocatori. Una soluzione Club Manager permette ai club partner di gestire prenotazioni e incassi da un'unica piattaforma."
+            }
+        },
+        "education" : {
+            "title": "Formazione",
+            "javascript" : {
+                "name" : "FreeCodeCamp",
+                "image" : "/logos/freecodecamp.jpeg",
+                "position" : "JavaScript Algorithms and Data Structures",
+                "date" : "2022-03-20",
+                "link": "https://www.freecodecamp.org/certification/fccef9a36a5-5f01-45d2-ad9e-88f37eac23d1/javascript-algorithms-and-data-structures"
+            }
+        },
+        "contactMe" : {
+            "title" : "Contattami",
+            "subtitle" : "Un'idea, un progetto o una collaborazione? Inviami un messaggio o trovami sui social."
+        }
+    },
+    "chatbot" : "Chatta con me",
+    "cvTitlePage": "Mbengui Daniel Slaver | Vibe Developer",
+    "cvDescriptionPage": "Curriculum Vitae di Mbengui Daniel Slaver — Sviluppatore Web, Mobile e IA. Esperienze, competenze tecniche e formazione.",
+    "seeMyCV" : "Vedi il mio CV",
+    "sendMeMail" : "Contattami",
+    "profileLinkedin" : "Profilo Linkedin",
+    "profileGithub" : "Profilo Github",
+    "profilePlaystore" : "Profilo Playstore",
+    "profileAppstore" : "Sviluppatore App Store",
+    "quickMenuContact" : "Contatto",
+    "slogan" : "Perché sono un geek!",
+    "theme" : "tema",
+    "assistant": {
+        "title": "Assistente IA",
+        "open": "Apri l'assistente IA",
+        "close": "Chiudi",
+        "send": "Invia",
+        "placeholder": "Scrivi il tuo messaggio…",
+        "placeholderReply": "Ho ricevuto il tuo messaggio. L'assistente IA sarà connesso a breve.",
+        "errorReply": "Si è verificato un errore. Riprova o contattami direttamente.",
+        "suggestionsTitle": "Suggerimenti",
+        "suggestions": [
+            "Cosa ti piace mangiare?",
+            "Ti piace viaggiare? Dove?",
+            "Come è nata Dandela Academy?",
+            "Come è nato il progetto PlayPad?",
+            "Come mai non parli portoghese?",
+            "Qual è la tua posizione sugli animali?",
+            "Hai una barzelletta da raccontare?",
+            "Che musica ascolti?",
+            "Quale squadra di calcio tifi?",
+            "Quale pilota di Formula 1 preferisci?"
+        ]
+    },
+    "loadingDocument" : "Caricamento del documento...",
+    "buttons": {
+        "goChat": "Inizia la visita",
+        "goCv": "Vedi il mio CV",
+        "downloadCv": "Scarica il mio CV",
+        "generatingPdf": "Generazione…",
+        "viewProject": "Vedi il progetto"
+    },
+    "viewProject": "Vedi il progetto",
+    "last_projects" : "Progetti recenti",
+    "projects": {
+        "dandela" : {
+            "name" : "Dandela Academy",
+            "type" : "Formazione e E-learning"
+        },
+        "winno" : {
+            "name" : "Winno Bearz Club",
+            "type" : "Progetto NFT"
+        },
+        "drilldev" : {
+            "name" : "Drill Dev",
+            "type" : "Intelligenza Artificiale"
+        },
+        "playpad" : {
+            "name" : "PlayPad App",
+            "type" : "Progetto Mobile"
+        }
+    }
+}

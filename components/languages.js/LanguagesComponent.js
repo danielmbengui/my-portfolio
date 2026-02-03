@@ -13,7 +13,8 @@ import {
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useTranslation } from 'next-i18next';
 import { Fade } from 'react-awesome-reveal';
-import { AngolanIcon, EnglishIcon, FrenchIcon, PortugueseIcon } from '../icons/FlagIcons';
+import { motion } from 'framer-motion';
+import { AngolanIcon, EnglishIcon, FrenchIcon, ItalianIcon, PortugueseIcon } from '../icons/FlagIcons';
 import FooterComponent from '../footer/FooterComponent';
 
 const languages = [
@@ -32,6 +33,14 @@ const languages = [
     descKey: 'sections.skills.langs.en.description',
     valueKey: 'sections.skills.langs.en.value',
     levelKey: 'sections.skills.langs.en.level',
+  },
+  {
+    id: 'it',
+    Icon: ItalianIcon,
+    nameKey: 'sections.skills.langs.it.name',
+    descKey: 'sections.skills.langs.it.description',
+    valueKey: 'sections.skills.langs.it.value',
+    levelKey: 'sections.skills.langs.it.level',
   },
   {
     id: 'ao',
@@ -75,11 +84,16 @@ export default function LanguagesComponent({ embedded = false }) {
         pt={embedded ? 3 : 4}
         pb={embedded ? 4 : { xs: 20, sm: 10 }}
       >
-        {/* En-tête */}
+        {/* En-tête — animation d'entrée titre + sous-titre */}
         <Grid item xs={12} sx={{ textAlign: 'center', ...(embedded ? { mt: 0 } : {}) }}>
-          <Stack spacing={1} alignItems="center">
+          <Stack spacing={1} alignItems="center" component={motion.div} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-50px' }} variants={{ visible: { transition: { staggerChildren: 0.12 } } }}>
             <Typography
-              component="h1"
+              component={motion.h1}
+              variants={{
+                hidden: { opacity: 0, y: 20, scale: 0.96 },
+                visible: { opacity: 1, y: 0, scale: 1 },
+              }}
+              transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
               sx={{
                 fontSize: { xs: 24, sm: 28 },
                 fontWeight: 600,
@@ -90,19 +104,23 @@ export default function LanguagesComponent({ embedded = false }) {
             >
               {t('sections.skills.langs.title')}
             </Typography>
-            <Fade triggerOnce delay={100}>
-              <Typography
-                variant="body1"
-                sx={{
-                  color: 'var(--accents7)',
-                  maxWidth: 800,
-                  fontSize: { xs: '0.95rem', sm: '1.05rem' },
-                  lineHeight: 1.6,
-                }}
-              >
-                {t('sections.skills.langs.subtitle')}
-              </Typography>
-            </Fade>
+            <Typography
+              component={motion.p}
+              variants={{
+                hidden: { opacity: 0, y: 16 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+              variant="body1"
+              sx={{
+                color: 'var(--accents7)',
+                maxWidth: 800,
+                fontSize: { xs: '0.95rem', sm: '1.05rem' },
+                lineHeight: 1.6,
+              }}
+            >
+              {t('sections.skills.langs.subtitle')}
+            </Typography>
           </Stack>
         </Grid>
 

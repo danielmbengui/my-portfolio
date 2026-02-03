@@ -10,7 +10,8 @@
         "title": "langue",
         "plural": "langues",
         "fr": "Français",
-        "en": "Anglais", 
+        "en": "Anglais",
+        "it": "Italien",
         "pt": "Portugais",
         "ao": "Lingala"
     },
@@ -18,6 +19,7 @@
         "skills" : {
             "disclaimer" : "Les descriptions indiquent le rôle et l’importance de chaque outil ou langage dans mon travail au quotidien.",
             "title": "Compétences",
+            "subtitle" : "Web, mobile, IA et blockchain — les outils et langages que j'utilise au quotidien.",
             "langs" : {
                 "title" : "Langues",
                 "subtitle" : "Le multilinguisme façonne ma vision du monde. Chaque langue que je parle ouvre une porte vers une culture, une pensée et une manière unique de communiquer.",
@@ -35,7 +37,9 @@
                 },
                 "it" : {
                     "name" : "Italien",
-                    "value" : 50
+                    "value" : 40,
+                    "level" : "Élémentaire (A2)",
+                    "description" : "L'italien est une langue que je pratique notamment en Suisse romande, où elle est l'une des langues nationales. Je peux suivre des conversations courantes, lire des textes et m'exprimer dans des situations du quotidien. Je continue à l'améliorer par la pratique et l'exposition au contenu en italien."
                 },
                 "ao" : {
                     "name" : "Lingala",
@@ -45,8 +49,8 @@
                 },
                 "pt" : {
                     "name" : "Portugais",
-                    "value" : 30,
-                    "level" : "En apprentissage",
+                    "value" : 20,
+                    "level" : "Débutant (A1)",
                     "description" : "Le portugais est une langue que j’apprends progressivement, en lien avec mes racines lusophones et les projets comme Dandela Academy. Je travaille le vocabulaire de base, la compréhension orale et écrite, avec l’objectif de pouvoir communiquer et collaborer en portugais dans un contexte professionnel."
                 }
             },
@@ -116,8 +120,54 @@
                 "etherjs" : "Librairie pour interagir avec Ethereum et les wallets."
             }
         },
+        "defineMe" : {
+            "title" : "Ce qui me définit",
+            "subtitle" : "Quatre aspects qui façonnent ma vision et mon approche.",
+            "video1" : {
+                "axeTitle" : "🧩 AXE 1 — Créer avec l'IA, pas la subir",
+                "title" : "Co-création homme–IA",
+                "description" : "Je ne vois pas l'IA comme un outil passif, mais comme un partenaire actif. Je conçois, j'orchestre et je construis avec elle — dans une logique de collaboration, pas de substitution."
+            },
+            "video2" : {
+                "axeTitle" : "🧩 AXE 2 — Vision, instinct et convictions",
+                "title" : "Penser avant d'agir",
+                "description" : "Prendre de la hauteur, questionner le sens, assumer ses convictions. La technologie sans vision n'est qu'un outil de plus."
+            },
+            "video3" : {
+                "axeTitle" : "🧩 AXE 3 — Construire ensemble",
+                "title" : "La collaboration comme fondation",
+                "description" : "Les meilleurs projets ne se construisent jamais seul. J'accorde autant d'importance à l'intelligence collective qu'à la technologie."
+            },
+            "video4" : {
+                "axeTitle" : "🧩 AXE 4 — Déléguer pour mieux créer",
+                "title" : "Automatiser l'utile pour libérer l'essentiel",
+                "description" : "Je sais déléguer, automatiser et optimiser. Moins de charge mentale, plus d'espace pour la création, la réflexion et l'impact.",
+                "bullets" : ["Vibe coding ✔", "Architecte de systèmes ✔", "Esprit \"CEO / builder\" ✔"]
+            }
+        },
+        "universeAndValues" : {
+            "title" : "Mon univers et mes valeurs",
+            "subtitle" : "Quelques piliers qui guident ma façon de travailler et de vivre.",
+            "video1" : {
+                "title" : "Loyauté & responsabilité",
+                "description" : "Je protège ce que je construis. L'IA est un outil puissant — elle doit être encadrée, défendue et utilisée avec conscience."
+            },
+            "video2" : {
+                "title" : "Déléguer avec confiance",
+                "description" : "Savoir quand intervenir, et quand laisser les systèmes faire leur travail."
+            },
+            "video3" : {
+                "title" : "Équilibre et respiration",
+                "description" : "La performance durable passe aussi par le repos, la transmission et la confiance accordée aux autres."
+            },
+            "video4" : {
+                "title" : "Défendre une vision",
+                "description" : "Savoir écouter, mais aussi savoir trancher. Les idées fortes méritent parfois d'être défendues avec fermeté."
+            }
+        },
         "projects" : {
             "title" : "Projets",
+            "subtitle" : "Des réalisations concrètes à l'intersection du digital, de l'IA et du mobile.",
             "viewProject" : "Voir le projet",
             "dandela" : {
                 "name" : "Dandela Academy",
@@ -149,22 +199,52 @@
                 "date" : "2022-03-20",
                 "link": "https://www.freecodecamp.org/certification/fccef9a36a5-5f01-45d2-ad9e-88f37eac23d1/javascript-algorithms-and-data-structures"
             }
+        },
+        "contactMe" : {
+            "title" : "Contacte-moi",
+            "subtitle" : "Une idée, un projet ou une collaboration ? Envoie-moi un message ou retrouve-moi sur les réseaux."
         }
     },
     "chatbot" : "Discutes avec moi",
+    "cvTitlePage": "Mbengui Daniel Slaver | Vibe Developer",
+    "cvDescriptionPage": "Curriculum Vitae de Mbengui Daniel Slaver — Développeur Web, Mobile & IA. Expériences, compétences techniques et formations.",
     "seeMyCV" : "Voir mon CV",
     "sendMeMail" : "Contactes moi",
     "profileLinkedin" : "Profil Linkedin",
     "profileGithub" : "Profil Github",
     "profilePlaystore" : "Profil Playstore",
+    "profileAppstore" : "Développeur App Store",
     "quickMenuContact" : "Contact",
     "slogan" : "Parce que je suis un geek !",
     "theme" : "thème",
+    "assistant": {
+        "title": "Assistant IA",
+        "open": "Ouvrir l'assistant IA",
+        "close": "Fermer",
+        "send": "Envoyer",
+        "placeholder": "Écris ton message…",
+        "placeholderReply": "J'ai bien reçu ton message. L'assistant IA sera connecté prochainement.",
+        "errorReply": "Une erreur est survenue. Réessaie ou contacte-moi directement.",
+        "suggestionsTitle": "Suggestions",
+        "suggestions": [
+            "Qu'est-ce que tu aimes manger ?",
+            "Tu aimes voyager ? Où ?",
+            "Comment s'est créée Dandela Academy ?",
+            "Comment est né le projet PlayPad ?",
+            "Comment ça se fait que tu ne parles pas portugais ?",
+            "Ta position sur les animaux ?",
+            "Tu as une blague à nous raconter ?",
+            "Quelles musiques tu écoutes ?",
+            "Quelle équipe de foot tu supportes ?",
+            "Tu supportes quel pilote en Formule 1 ?"
+        ]
+    },
     "loadingDocument" : "Chargement du document...",
     "buttons": {
         "goChat": "Commencez votre visite",
         "goCv": "Voir mon CV",
         "downloadCv": "Télécharger mon CV",
+        "generatingPdf": "Génération…",
         "viewProject": "Voir le projet"
     },
     "viewProject": "Voir le projet",

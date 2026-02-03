@@ -1,11 +1,12 @@
 {
-    "titlePage": "Daniel Mbengui | Liboso",
-    "descriptionPage": "Développeur Fullstack | Développeur Mobile",
+    "titlePage": "Mbengui Daniel Slaver | Vibe Developer",
+    "descriptionPage": "Portfolio ya Mbengui Daniel Slaver — Développeur Web, Mobile & IA. Tala maprojeti, makoki mpe nzela na ngai.",
     "userPosition" : "Vibe Developer",
     "buttons": {
         "goChat": "Kobanda visite",
         "goCv": "Kotala CV na ngai",
         "downloadCv": "Kokweya CV na ngai",
-        "viewProject": "Kotala projeti"
+        "viewProject": "Kotala projeti",
+        "discoverProjects": "Kotala maprojeti na ngai"
     }
 }

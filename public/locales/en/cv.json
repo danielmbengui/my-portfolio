@@ -1,0 +1,237 @@
+{
+  "name": "Mbengui Daniel Slaver",
+  "role": "Web & Mobile Developer",
+  "tagline": "Passionate about coding, I combine technology and creativity to boost your projects. Between tech and business, I'm your innovation partner!",
+  "aiToolsLabel": "AI & modern tools:",
+  "aiTools": "LLM & chat APIs · AI agents · AI-assisted coding · AI image, sound, video",
+  "alsoLabel": "Also:",
+  "also": "Full mastery of API calls · Terminal (Bash, macOS, Homebrew) · Basic knowledge of the C language.",
+  "sections": {
+    "languages": "Languages",
+    "experiences": "Experiences",
+    "education": "Education",
+    "certificates": "Certificates",
+    "projects": "Projects",
+    "skills": "Skills",
+    "softSkills": "Soft skills",
+    "hobbies": "Hobbies",
+    "publications": "Publications"
+  },
+  "backToHome": "Back to home",
+  "links": {
+    "portfolio": "Portfolio",
+    "linkedin": "LinkedIn",
+    "github": "Github",
+    "googlePlay": "Google Play"
+  },
+  "languages": {
+    "french": "French",
+    "english": "English",
+    "lingala": "Lingala",
+    "italian": "Italian",
+    "portuguese": "Portuguese",
+    "levelNative": "Native (C2)",
+    "levelFluent": "Fluent (C1)",
+    "levelFluentB2": "Fluent (B2)",
+    "levelElementary": "Elementary (A2)",
+    "levelBeginner": "Beginner (A1)"
+  },
+  "experiences": {
+    "dandela": {
+      "period": "09/2024 – present",
+      "location": "Luanda, Angola",
+      "titlePrefix": "Founder & Director, ",
+      "items": {
+        "0": "Founder of Dandela Academy.",
+        "1": "Main associate of Dandela Academy.",
+        "2": "Creation of Dandela Academy website.",
+        "3": "Creation of Dandela Academy Web App."
+      }
+    },
+    "playpad": {
+      "period": "04/2024 – present",
+      "location": "Geneva, Switzerland",
+      "titlePrefix": "Web & Mobile Developer, ",
+      "items": {
+        "0": "Co-founder of the company.",
+        "1": "Creation of the PlayPad App on Google Play and App Store.",
+        "2": "Creation of the PlayPad website."
+      }
+    },
+    "mdandela": {
+      "period": "2016 – present",
+      "location": "Luanda, Angola",
+      "title": "Employee, M. Dandela",
+      "items": {
+        "0": "Co-founder of the family business.",
+        "1": "Installed the necessary equipment to create an internet cafe.",
+        "2": "Prospected for rental properties, made offers, and monitored tenants."
+      }
+    },
+    "imad": {
+      "period": "02/2015 – 08/2015",
+      "location": "Geneva, Switzerland",
+      "titlePrefix": "Administrative employee, ",
+      "items": {
+        "0": "Administrative Employee",
+        "1": "Implementation of a Configuration Item (CI) management database (CMDB).",
+        "2": "A tool comparable to an inventory of the company's IT tools."
+      }
+    },
+    "schneider": {
+      "period": "2008 – 2011",
+      "location": "Geneva, Switzerland",
+      "titlePrefix": "Commercial apprentice, ",
+      "items": {
+        "0": "Commercial apprenticeship in the freight transport sector."
+      }
+    }
+  },
+  "education": {
+    "fortytwo": {
+      "period": "2022 – 2024",
+      "location": "Renens, Switzerland",
+      "titleSuffix": ", Student",
+      "items": {
+        "0": "Learn in a different way, by developing real team projects, based on a gamified curriculum where students earn points that allow them to level up."
+      }
+    },
+    "esig": {
+      "period": "2013 – 2015",
+      "location": "Geneva, Switzerland",
+      "titleSuffix": ", Graduate",
+      "items": {
+        "0": "Federal Diploma in Management Information Technology"
+      }
+    },
+    "stael": {
+      "period": "2008 – 2011",
+      "location": "Geneva, Switzerland",
+      "title": "Ecole de commerce Madame De Stael, Graduate",
+      "items": {
+        "0": "CFC Employé de commerce",
+        "1": "Alternating learning, between school and work."
+      }
+    }
+  },
+  "certificates": {
+    "react": {
+      "period": "03/2025",
+      "location": "Online",
+      "title": "Front-End Engineering with React",
+      "desc": "This learning path carefully prepares a beginner to master React for frontend engineering. Gradually advancing from the basics to more complex topics, this pathway endows learners to create interactive, and scalable web applications using React by the end."
+    },
+    "jsAlgo": {
+      "period": "03/2022",
+      "location": "Online",
+      "title": "JavaScript Algorithms and Data Structures, freeCodeCamp",
+      "desc": "Learning to optimize algorithms and data structures in the Javascript language."
+    },
+    "responsive": {
+      "period": "03/2022",
+      "location": "Online",
+      "title": "Responsive Web Design, freeCodeCamp",
+      "desc": "Learning UI/UX rules for design on different devices."
+    },
+    "javaSe11": {
+      "period": "02/2020 – 03/2020",
+      "location": "Geneva, Switzerland",
+      "title": "Certificat of training Java SE11, IT Training Academy",
+      "desc": "Courses began in February 2020 on-site before the Covid-19 pandemic, then by videoconference for the remainder of the year."
+    },
+    "python": {
+      "period": "08/2019 – 10/2019",
+      "location": "Geneva, Switzerland",
+      "title": "Certificate of proficiency in the Python programming language, IT Training Academy",
+      "desc": "Learning the Python language and obtaining the certificate"
+    },
+    "psm1": {
+      "period": "07/2019",
+      "location": "Geneva, Switzerland",
+      "title": "Professional Scrum Master I (PSM I), IT Training Academy",
+      "desc": "Followed by a one-week course (~40 hours). Certificate not completed."
+    },
+    "ifage": {
+      "period": "09/2018 – 03/2019",
+      "location": "Geneva, Switzerland",
+      "title": "Certificat Développeur JEE & Android, Ifage",
+      "desc": "Learning the Java language for Android Studio • Learning the Ionic framework"
+    },
+    "esigDip": {
+      "period": "2013 – 2015",
+      "location": "Geneva, Switzerland",
+      "title": "Diplôme Fédéral d'Informaticien de Gestion",
+      "desc": "Federal Diploma in Management Information Technology obtained at Ecole Supérieure d'Informatique de Gestion (ESIG)."
+    },
+    "cfc": {
+      "period": "2008 – 2011",
+      "location": "Geneva, Switzerland",
+      "title": "CFC Employé de commerce",
+      "desc": "Federal Certificate of Capacity in Commerce obtained through alternating learning between school and work at Ecole de commerce Madame De Staël."
+    }
+  },
+  "projects": {
+    "drilldev": {
+      "period": "02/2023 – 04/2023",
+      "title": "Drill Dev",
+      "desc": "A website dedicated to artificial intelligence image creation and its original creations. Tools and content to help developers progress with modern AI-assisted workflows."
+    },
+    "winno": {
+      "period": "04/2022 – 08/2022",
+      "title": "Winno Bearz Club",
+      "desc": "Collection of 5,555 generative NFTs (pixelated bears) on the Polygon network. Each NFT is unique with over 194 combinable traits. Interactive bot, OpenSea listing, and community engagement."
+    }
+  },
+  "skills": {
+    "webDevelopment": "Web Development",
+    "mobileDevelopment": "Mobile Development",
+    "databases": "Databases",
+    "blockchain": "Blockchain",
+    "design": "Design",
+    "otherLanguagesTools": "Other Languages & Tools"
+  },
+  "softSkills": {
+    "teamwork": "Teamwork",
+    "teamworkDesc": "I enjoy collaborating, whether within a large institution or in a smaller team.",
+    "problemSolving": "Problem Solving",
+    "problemSolvingDesc": "I am adept at identifying, analyzing, and resolving problems quickly.",
+    "adaptability": "Adaptability",
+    "adaptabilityDesc": "I adapt easily to changes, whether technological developments or changes in team members.",
+    "creativity": "Creativity",
+    "creativityDesc": "I really enjoy inventing new things and embarking on projects that offer functionalities that are different from the market.",
+    "autonomy": "Autonomy",
+    "autonomyDesc": "I'm self-taught by nature, and I know how to work independently while respecting project guidelines.",
+    "curiosity": "Curiosity",
+    "curiosityDesc": "I'm always on the lookout for the latest news in the tech world.",
+    "resilience": "Resilience",
+    "resilienceDesc": "\"Either I lose, or I learn.\"",
+    "patience": "Patience",
+    "patienceDesc": "Bugs? Technical challenges? That's what always keeps me going when it comes to solving them."
+  },
+  "hobbies": {
+    "it": "IT",
+    "itDesc": "I create a lot of projects for fun.",
+    "gaming": "Gaming",
+    "gamingDesc": "I'm waiting for GTA VI.",
+    "multimedia": "Multimedia",
+    "multimediaDesc": "Editing videos for fun.",
+    "sports": "Sports",
+    "sportsDesc": "TV.",
+    "padel": "Padel",
+    "padelDesc": "Regular practice.",
+    "writing": "Writing",
+    "writingDesc": "Publication of 2 articles in the journal Actu Vernier."
+  },
+  "publications": {
+    "actu2010": {
+      "period": "02/2010",
+      "title": "Actu Vernier February 2010, Daniel Mbengui",
+      "desc": "An article about the first official evening of the Jeunesse&Co association in Geneva."
+    },
+    "actu2009": {
+      "period": "11/2009",
+      "title": "Actu Vernier November 2009, Daniel Mbengui",
+      "desc": "An article summarizing the creation of the Jeunesse&Co association in Geneva."
+    }
+  }
+}

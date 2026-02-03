@@ -11,6 +11,7 @@
         "plural": "languages",
         "fr": "French",
         "en": "English",
+        "it": "Italian",
         "pt": "Portuguese",
         "ao": "Lingala"
     },
@@ -18,6 +19,7 @@
         "skills" : {
             "disclaimer" : "The descriptions indicate the role and importance of each tool or language in my day-to-day work.",
             "title": "Skills",
+            "subtitle" : "Web, mobile, AI and blockchain — the tools and languages I use every day.",
             "langs" : {
                 "title" : "Languages",
                 "subtitle" : "Multilingualism shapes my worldview. Each language I speak opens a door to a culture, a way of thinking, and a unique way of communicating.",
@@ -35,7 +37,9 @@
                 },
                 "it" : {
                     "name" : "Italian",
-                    "value" : 50
+                    "value" : 40,
+                    "level" : "Elementary (A2)",
+                    "description" : "Italian is a language I use especially in French-speaking Switzerland, where it is one of the national languages. I can follow everyday conversations, read texts and express myself in daily situations. I continue to improve it through practice and exposure to Italian content."
                 },
                 "ao" : {
                     "name" : "Lingala",
@@ -45,8 +49,8 @@
                 },
                 "pt" : {
                     "name" : "Portuguese",
-                    "value" : 30,
-                    "level" : "Learning",
+                    "value" : 20,
+                    "level" : "Beginner (A1)",
                     "description" : "Portuguese is a language I am learning gradually, in connection with my Lusophone roots and projects such as Dandela Academy. I am working on basic vocabulary, listening and reading comprehension, with the aim of being able to communicate and collaborate in Portuguese in a professional context."
                 }
             },
@@ -144,8 +148,54 @@
                 "etherjs" : "Library for interacting with Ethereum and wallets."
             }
         },
+        "defineMe" : {
+            "title" : "What defines me",
+            "subtitle" : "Four aspects that shape my vision and approach.",
+            "video1" : {
+                "axeTitle" : "🧩 AXIS 1 — Create with AI, don't suffer it",
+                "title" : "Human–AI co-creation",
+                "description" : "I don't see AI as a passive tool, but as an active partner. I design, orchestrate and build with it — in a logic of collaboration, not substitution."
+            },
+            "video2" : {
+                "axeTitle" : "🧩 AXIS 2 — Vision, instinct and convictions",
+                "title" : "Think before acting",
+                "description" : "Step back, question the meaning, own your convictions. Technology without vision is just another tool."
+            },
+            "video3" : {
+                "axeTitle" : "🧩 AXIS 3 — Build together",
+                "title" : "Collaboration as foundation",
+                "description" : "The best projects are never built alone. I value collective intelligence as much as technology."
+            },
+            "video4" : {
+                "axeTitle" : "🧩 AXIS 4 — Delegate to create better",
+                "title" : "Automate the useful to free the essential",
+                "description" : "I know how to delegate, automate and optimise. Less mental load, more space for creation, reflection and impact.",
+                "bullets" : ["Vibe coding ✔", "Systems architect ✔", "\"CEO / builder\" mindset ✔"]
+            }
+        },
+        "universeAndValues" : {
+            "title" : "My universe and my values",
+            "subtitle" : "A few pillars that guide how I work and live.",
+            "video1" : {
+                "title" : "Loyalty & responsibility",
+                "description" : "I protect what I build. AI is a powerful tool — it must be framed, defended and used with awareness."
+            },
+            "video2" : {
+                "title" : "Delegate with trust",
+                "description" : "Knowing when to step in, and when to let systems do their job."
+            },
+            "video3" : {
+                "title" : "Balance and breathing",
+                "description" : "Sustainable performance also comes from rest, passing on knowledge and the trust we place in others."
+            },
+            "video4" : {
+                "title" : "Defend a vision",
+                "description" : "Knowing how to listen, but also how to decide. Strong ideas sometimes deserve to be defended with firmness."
+            }
+        },
         "projects" : {
             "title" : "Projects",
+            "subtitle" : "Concrete work at the intersection of digital, AI and mobile.",
             "viewProject" : "View project",
             "dandela" : {
                 "name" : "Dandela Academy",
@@ -177,22 +227,52 @@
                 "date" : "2022-03-20",
                 "link": "https://www.freecodecamp.org/certification/fccef9a36a5-5f01-45d2-ad9e-88f37eac23d1/javascript-algorithms-and-data-structures"
             }
+        },
+        "contactMe" : {
+            "title" : "Contact me",
+            "subtitle" : "Have an idea, a project or want to collaborate? Drop me a message or find me on the networks."
         }
     },
     "chatbot" : "Chat with me",
+    "cvTitlePage": "Mbengui Daniel Slaver | Vibe Developer",
+    "cvDescriptionPage": "Resume of Mbengui Daniel Slaver — Web, Mobile & AI Developer. Experience, technical skills and education.",
     "seeMyCV" : "See my resume",
     "sendMeMail" : "Contact me",
     "profileLinkedin" : "Linkedin profile",
     "profileGithub" : "Github profile",
     "profilePlaystore" : "Playstore profile",
+    "profileAppstore" : "App Store Developer",
     "quickMenuContact" : "Contact",
     "slogan": "Because I'm a geek !",
     "theme" : "theme",
+    "assistant": {
+        "title": "AI Assistant",
+        "open": "Open AI assistant",
+        "close": "Close",
+        "send": "Send",
+        "placeholder": "Type your message…",
+        "placeholderReply": "I received your message. The AI assistant will be connected soon.",
+        "errorReply": "Something went wrong. Please try again or contact me directly.",
+        "suggestionsTitle": "Suggestions",
+        "suggestions": [
+            "What do you like to eat?",
+            "Do you like to travel? Where?",
+            "How was Dandela Academy created?",
+            "How did the PlayPad project start?",
+            "How come you don't speak Portuguese?",
+            "What's your take on animals?",
+            "Got any joke to share?",
+            "What music do you listen to?",
+            "Which football team do you support?",
+            "Who's your favourite Formula 1 driver?"
+        ]
+    },
     "loadingDocument" : "Loading document...",
     "buttons": {
         "goChat": "Start the tour",
         "goCv": "See my resume",
         "downloadCv": "Download my resume",
+        "generatingPdf": "Generating…",
         "viewProject": "View project"
     },
     "viewProject": "View project",

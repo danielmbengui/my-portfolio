@@ -1,0 +1,237 @@
+{
+  "name": "Mbengui Daniel Slaver",
+  "role": "Moto ya Web & Mobile",
+  "tagline": "Nazali na mawa na code, nazali kosangisa tech mpe créativité mpo na kosalisa maprojeti na bino. Kati na tech mpe business, nazali ndeko na bino ya innovation!",
+  "aiToolsLabel": "IA mpe outils ya mokolo:",
+  "aiTools": "LLM & APIs chat · Agents IA · Code esalemi na IA · Image, son, vidéo na IA",
+  "alsoLabel": "Mpe:",
+  "also": "Bopusi ya API calls · Terminal (Bash, macOS, Homebrew) · Boyebi ya C language.",
+  "sections": {
+    "languages": "Lokota",
+    "experiences": "Makambo nasalaka",
+    "education": "Boyekoli",
+    "certificates": "Certificat",
+    "projects": "Maprojeti",
+    "skills": "Makoki",
+    "softSkills": "Soft skills",
+    "hobbies": "Bisengo",
+    "publications": "Makanda ebimisami"
+  },
+  "backToHome": "Kozonga na ndako",
+  "links": {
+    "portfolio": "Portfolio",
+    "linkedin": "LinkedIn",
+    "github": "Github",
+    "googlePlay": "Google Play"
+  },
+  "languages": {
+    "french": "Lifalansé",
+    "english": "Lingelesa",
+    "lingala": "Lingala",
+    "italian": "Liitalien",
+    "portuguese": "Liputugalé",
+    "levelNative": "Lokota ya libota (C2)",
+    "levelFluent": "Malamu (C1)",
+    "levelFluentB2": "Malamu (B2)",
+    "levelElementary": "Elementaire (A2)",
+    "levelBeginner": "Ya liboso (A1)"
+  },
+  "experiences": {
+    "dandela": {
+      "period": "09/2024 – lelo",
+      "location": "Luanda, Angola",
+      "titlePrefix": "Mobandi & Mokonzi, ",
+      "items": {
+        "0": "Mobandi ya Dandela Academy.",
+        "1": "Associé ya liboso ya Dandela Academy.",
+        "2": "Kosala site ya Dandela Academy.",
+        "3": "Kosala Web App ya Dandela Academy."
+      }
+    },
+    "playpad": {
+      "period": "04/2024 – lelo",
+      "location": "Genève, Suisse",
+      "titlePrefix": "Moto ya Web & Mobile, ",
+      "items": {
+        "0": "Co-fondateur ya société.",
+        "1": "Kosala app PlayPad na Google Play mpe App Store.",
+        "2": "Kosala site PlayPad."
+      }
+    },
+    "mdandela": {
+      "period": "2016 – lelo",
+      "location": "Luanda, Angola",
+      "title": "Mosalí, M. Dandela",
+      "items": {
+        "0": "Co-fondateur ya business ya libota.",
+        "1": "Kotya équipement mpo na kosala cybercafé.",
+        "2": "Kosala prospection ya ndako, ofre mpe kolanda bato ya kofanda."
+      }
+    },
+    "imad": {
+      "period": "02/2015 – 08/2015",
+      "location": "Genève, Suisse",
+      "titlePrefix": "Mosalí administratif, ",
+      "items": {
+        "0": "Mosalí administratif.",
+        "1": "Kotya base de données ya CMDB (Configuration Item).",
+        "2": "Outils lokola inventaire ya outils IT ya société."
+      }
+    },
+    "schneider": {
+      "period": "2008 – 2011",
+      "location": "Genève, Suisse",
+      "title": "Apprenti commercial, Schneider & Cie SA",
+      "items": {
+        "0": "Apprentissage commercial na transport ya marchandise."
+      }
+    }
+  },
+  "education": {
+    "fortytwo": {
+      "period": "2022 – 2024",
+      "location": "Renens, Suisse",
+      "titleSuffix": ", Moyekoli",
+      "items": {
+        "0": "Koyekola na ndenge mosusu, kosala maprojeti na équipe ya soló, na cursus gamifié wapi bateya bazui points mpo na komontera."
+      }
+    },
+    "esig": {
+      "period": "2013 – 2015",
+      "location": "Genève, Suisse",
+      "titleSuffix": ", Diplômé",
+      "items": {
+        "0": "Diplôme fédéral d'informaticien de gestion."
+      }
+    },
+    "stael": {
+      "period": "2008 – 2011",
+      "location": "Genève, Suisse",
+      "title": "Ecole de commerce Madame De Staël, Diplômé",
+      "items": {
+        "0": "CFC Employé de commerce",
+        "1": "Boyekoli na alternance, kati na kelasi mpe mosala."
+      }
+    }
+  },
+  "certificates": {
+    "react": {
+      "period": "03/2025",
+      "location": "En ligne",
+      "title": "Front-End Engineering with React",
+      "desc": "Parcours mpo na koyekola React mpo na frontend. Kowuta na basics tii na sujets ya avanzé."
+    },
+    "jsAlgo": {
+      "period": "03/2022",
+      "location": "En ligne",
+      "title": "JavaScript Algorithms and Data Structures, freeCodeCamp",
+      "desc": "Koyekola algorithms mpe data structures na Javascript."
+    },
+    "responsive": {
+      "period": "03/2022",
+      "location": "En ligne",
+      "title": "Responsive Web Design, freeCodeCamp",
+      "desc": "Règles UI/UX mpo na design na appareils ya ndenge na ndenge."
+    },
+    "javaSe11": {
+      "period": "02/2020 – 03/2020",
+      "location": "Genève, Suisse",
+      "title": "Certificat Java SE11, IT Training Academy",
+      "desc": "Cours na février 2020 sur site, sima na videoconference."
+    },
+    "python": {
+      "period": "08/2019 – 10/2019",
+      "location": "Genève, Suisse",
+      "title": "Certificat Python, IT Training Academy",
+      "desc": "Koyekola Python mpe kozwa certificat."
+    },
+    "psm1": {
+      "period": "07/2019",
+      "location": "Genève, Suisse",
+      "title": "Professional Scrum Master I (PSM I), IT Training Academy",
+      "desc": "Cours ya semaine moko (~40 h). Certificat non finalisé."
+    },
+    "ifage": {
+      "period": "09/2018 – 03/2019",
+      "location": "Genève, Suisse",
+      "title": "Certificat Développeur JEE & Android, Ifage",
+      "desc": "Koyekola Java mpo na Android Studio · Framework Ionic."
+    },
+    "esigDip": {
+      "period": "2013 – 2015",
+      "location": "Genève, Suisse",
+      "title": "Diplôme Fédéral d'Informaticien de Gestion",
+      "desc": "Diplôme fédéral na ESIG."
+    },
+    "cfc": {
+      "period": "2008 – 2011",
+      "location": "Genève, Suisse",
+      "title": "CFC Employé de commerce",
+      "desc": "Certificat fédéral na commerce, formation en alternance na Madame De Staël."
+    }
+  },
+  "projects": {
+    "drilldev": {
+      "period": "02/2023 – 04/2023",
+      "title": "Drill Dev",
+      "desc": "Site mpo na création ya image na IA. Outils mpe contenu mpo na kosalisa bato ya code na AI-assisted workflows."
+    },
+    "winno": {
+      "period": "04/2022 – 08/2022",
+      "title": "Winno Bearz Club",
+      "desc": "Collection ya 5.555 NFTs (bears ya pixel) na réseau Polygon. NFT nyonso ezali unique na 194+ traits. Bot, OpenSea mpe communauté."
+    }
+  },
+  "skills": {
+    "webDevelopment": "Développement Web",
+    "mobileDevelopment": "Développement Mobile",
+    "databases": "Bases de données",
+    "blockchain": "Blockchain",
+    "design": "Design",
+    "otherLanguagesTools": "Lokota mosusu & Outils"
+  },
+  "softSkills": {
+    "teamwork": "Travail d'équipe",
+    "teamworkDesc": "Nalíngi kosala na bato, na institution ya monene to équipe ya moke.",
+    "problemSolving": "Résolution de problèmes",
+    "problemSolvingDesc": "Nayebi koyeba, kokanisa mpe kobongisa problème na nguya.",
+    "adaptability": "Adaptabilité",
+    "adaptabilityDesc": "Nakokí kobongwana malamu, tech to équipe.",
+    "creativity": "Créativité",
+    "creativityDesc": "Nalíngi kosala eloko ya sika mpe maprojeti ya ndenge ya sika.",
+    "autonomy": "Autonomie",
+    "autonomyDesc": "Nayekoli na ngai moko, nasalaka na ngai moko mpe nazali kolanda cadre ya projet.",
+    "curiosity": "Curiosité",
+    "curiosityDesc": "Nazali kolanda sango ya tech na mokolo na mokolo.",
+    "resilience": "Résilience",
+    "resilienceDesc": "\"Nazangi to nayekoli.\"",
+    "patience": "Patience",
+    "patienceDesc": "Bugs? Défis technique? Wana nde epesaka ngai nguya kobongisa."
+  },
+  "hobbies": {
+    "it": "IT",
+    "itDesc": "Nasalaka maprojeti mingi mpo na kosepela.",
+    "gaming": "Gaming",
+    "gamingDesc": "Nazali kozela GTA VI.",
+    "multimedia": "Multimédia",
+    "multimediaDesc": "Montage vidéo mpo na kosepela.",
+    "sports": "Sport",
+    "sportsDesc": "Télé.",
+    "padel": "Padel",
+    "padelDesc": "Pratique régulière.",
+    "writing": "Écriture",
+    "writingDesc": "Publication ya 2 articles na journal Actu Vernier."
+  },
+  "publications": {
+    "actu2010": {
+      "period": "02/2010",
+      "title": "Actu Vernier Février 2010, Daniel Mbengui",
+      "desc": "Article na soirée ya liboso ya association Jeunesse&Co na Genève."
+    },
+    "actu2009": {
+      "period": "11/2009",
+      "title": "Actu Vernier Novembre 2009, Daniel Mbengui",
+      "desc": "Article na création ya association Jeunesse&Co na Genève."
+    }
+  }
+}

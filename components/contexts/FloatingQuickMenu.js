@@ -12,22 +12,27 @@ import {
   Typography,
 } from '@mui/material';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
+import DescriptionIcon from '@mui/icons-material/Description';
 import EmailIcon from '@mui/icons-material/Email';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import { _MY_PROFILE_, _NAMESPACE_LANGAGE_COMMON_ } from '@/_mocks_/_settings_items_';
+import { _MY_PROFILE_, _NAMESPACE_LANGAGE_COMMON_, _PAGE_LINK_CV_ } from '@/_mocks_/_settings_items_';
 import { getFlag } from '@/components/icons/FlagIcons';
-import { PlayStoreIcon } from '@/components/icons/IconifiyIcons';
+import { PlayStoreIcon, IosIcon } from '@/components/icons/IconifiyIcons';
 import { ARRAY_LANGAGES } from '@/_mocks_/_settings_items_';
 
-// Langues disponibles pour l’interface (locales de l’app)
-const QUICK_MENU_LANGS = ARRAY_LANGAGES;
-
-export default function FloatingQuickMenu() {
+export default function FloatingQuickMenu({ hideCvLink = false }) {
   const { t, i18n } = useTranslation();
   const [lang, setLang] = useLangMode();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+
+  // Liste des langues triée selon le libellé traduit
+  const sortedLangs = [...ARRAY_LANGAGES].sort((a, b) =>
+    t(`langs.${a}`, { ns: _NAMESPACE_LANGAGE_COMMON_ }).localeCompare(
+      t(`langs.${b}`, { ns: _NAMESPACE_LANGAGE_COMMON_ })
+    )
+  );
 
   const handleOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -110,7 +115,7 @@ export default function FloatingQuickMenu() {
         >
           {t('sections.skills.langs.title', { ns: _NAMESPACE_LANGAGE_COMMON_ })}
         </Typography>
-        {QUICK_MENU_LANGS.map((langCode) => {
+        {sortedLangs.map((langCode) => {
           const isSelected = lang === langCode;
           return (
             <MenuItem
@@ -157,6 +162,22 @@ export default function FloatingQuickMenu() {
         >
           {t('quickMenuContact', { ns: _NAMESPACE_LANGAGE_COMMON_ })}
         </Typography>
+{!hideCvLink && (
+          <MenuItem
+            component="a"
+            href={_PAGE_LINK_CV_}
+            onClick={handleClose}
+            sx={{ py: 1.25 }}
+          >
+            <ListItemIcon sx={{ minWidth: 36, color: 'var(--primary)' }}>
+              <DescriptionIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText
+              primary={t('seeMyCV', { ns: _NAMESPACE_LANGAGE_COMMON_ })}
+              primaryTypographyProps={{ fontSize: '0.9rem', color: 'var(--text)' }}
+            />
+          </MenuItem>
+        )}
         <MenuItem
           component="a"
           href={`mailto:${_MY_PROFILE_.mail}`}
@@ -221,6 +242,24 @@ export default function FloatingQuickMenu() {
             primaryTypographyProps={{ fontSize: '0.9rem', color: 'var(--text)' }}
           />
         </MenuItem>
+        {_MY_PROFILE_.socials.appstore ? (
+          <MenuItem
+            component="a"
+            href={_MY_PROFILE_.socials.appstore}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={handleClose}
+            sx={{ py: 1.25 }}
+          >
+            <ListItemIcon sx={{ minWidth: 36, color: 'var(--text)' }}>
+              <IosIcon size={22} />
+            </ListItemIcon>
+            <ListItemText
+              primary={t('profileAppstore', { ns: _NAMESPACE_LANGAGE_COMMON_ })}
+              primaryTypographyProps={{ fontSize: '0.9rem', color: 'var(--text)' }}
+            />
+          </MenuItem>
+        ) : null}
       </Menu>
     </>
   );

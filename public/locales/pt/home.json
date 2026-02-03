@@ -1,11 +1,12 @@
 {
-    "titlePage": "Daniel Mbengui | Início",
-    "descriptionPage": "Desenvolvedor Fullstack | Desenvolvedor Mobile",
+    "titlePage": "Mbengui Daniel Slaver | Vibe Developer",
+    "descriptionPage": "Portfólio de Mbengui Daniel Slaver — Desenvolvedor Web, Mobile & IA. Descobre os meus projetos, competências e percurso.",
     "userPosition" : "Vibe Developer",
     "buttons": {
         "goChat": "Começar a visita",
         "goCv": "Ver o meu CV",
         "downloadCv": "Descarregar o meu CV",
-        "viewProject": "Ver o projeto"
+        "viewProject": "Ver o projeto",
+        "discoverProjects": "Descobrir os meus projetos"
     }
 }
