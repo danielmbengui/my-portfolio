@@ -9,6 +9,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang={DEFAULT_LANGAGE}>
         <Head>
+        <link rel="icon" href="/me-black-and-white.png" />
         <meta name="google-site-verification" content="qMKQcpo5J5oX0vAZBgNZKrZ48CMP9Js_5zlH4Mnu_wY" />
           <link
             rel="stylesheet"

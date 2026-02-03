@@ -91,7 +91,7 @@ const MyApp = (props) => {
                   content="Vibe Developer | Fullstack Developer | Mobile Developer "
                 />
                 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
-                <link rel="icon" href="/me-color.png" />
+                <link rel="icon" href="/me-black-and-white.png" />
               </Head>
               <Script
                 src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.esm.js"
