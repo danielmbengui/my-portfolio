@@ -351,16 +351,31 @@ export default function CvComponent({ embedded = false }) {
       requestAnimationFrame(async () => {
         try {
           const html2pdf = (await import('html2pdf.js')).default;
-          const blob = await html2pdf()
+          const pdfWorker = html2pdf()
             .set({
-              margin: [10, 10, 10, 10],
+              margin: [10, 10, 18, 10],
               image: { type: 'jpeg', quality: 0.98 },
               html2canvas: { scale: 2, useCORS: true, letterRendering: true },
               jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
               pagebreak: { mode: ['avoid-all', 'css', 'legacy'] },
             })
-            .from(clone)
-            .outputPdf('blob');
+            .from(clone);
+          const pdf = await pdfWorker.toPdf().get('pdf');
+          const totalPages = pdf.internal.getNumberOfPages();
+          const pageWidth = pdf.internal.pageSize.getWidth();
+          const pageHeight = pdf.internal.pageSize.getHeight();
+          const footerText = 'Généré depuis : https://danielmbengui.ch/cv';
+          const footerUrl = 'https://danielmbengui.ch/cv';
+          for (let i = 1; i <= totalPages; i++) {
+            pdf.setPage(i);
+            pdf.setFontSize(8);
+            pdf.setTextColor(120, 120, 120);
+            const textWidth = pdf.getStringUnitWidth(footerText) * 8 / pdf.internal.scaleFactor;
+            const xPos = (pageWidth - textWidth) / 2;
+            const yPos = pageHeight - 8;
+            pdf.textWithLink(footerText, xPos, yPos, { url: footerUrl });
+          }
+          const blob = pdf.output('blob');
           const url = URL.createObjectURL(blob);
           const a = document.createElement('a');
           a.href = url;
@@ -709,35 +724,47 @@ export default function CvComponent({ embedded = false }) {
         onChange={handleSectionChange('skills')}
       >
         <Stack className="cv-skills-content" spacing={1.5}>
-          <Typography variant="subtitle2" sx={{ fontWeight: 600, color: 'var(--primary)', fontSize: '0.85rem', mb: 0.5 }}>{t('cv:skills.webDevelopment')}</Typography>
-          <SkillBar name="JavaScript" value={90} Icon={JavascriptIcon} />
-          <SkillBar name="Next.js" value={90} Icon={NextJsIcon} />
-          <SkillBar name="React.js" value={80} Icon={ReactIcon} />
-          <SkillBar name="TypeScript" value={70} Icon={TypescriptIcon} />
-          <Typography variant="subtitle2" sx={{ fontWeight: 600, color: 'var(--primary)', fontSize: '0.85rem', mt: 2, mb: 0.5 }}>{t('cv:skills.mobileDevelopment')}</Typography>
-          <SkillBar name="PWA" value={100} Icon={PwaIcon} />
-          <SkillBar name="Flutter" value={80} Icon={FlutterIcon} />
-          <SkillBar name="Android (Java)" value={80} Icon={AndroidIcon} />
-          <SkillBar name="React Native" value={70} Icon={ReactIcon} />
-          <Typography variant="subtitle2" sx={{ fontWeight: 600, color: 'var(--primary)', fontSize: '0.85rem', mt: 2, mb: 0.5 }}>{t('cv:skills.databases')}</Typography>
-          <SkillBar name="Firebase" value={90} Icon={FirebaseIcon} />
-          <SkillBar name="SQLite" value={90} Icon={SqlLiteIcon} />
-          <SkillBar name="PostgreSQL" value={80} Icon={PostgresIcon} />
-          <SkillBar name="MySQL" value={80} Icon={MySqlIcon} />
-          <Typography variant="subtitle2" sx={{ fontWeight: 600, color: 'var(--primary)', fontSize: '0.85rem', mt: 2, mb: 0.5 }}>{t('cv:skills.blockchain')}</Typography>
-          <SkillBar name="Ethers.js" value={85} Icon={EtherJsIcon} />
-          <SkillBar name="Web3.js" value={85} Icon={Web3JsIcon} />
-          <SkillBar name="Solidity" value={70} Icon={SolidityIcon} />
-          <Typography variant="subtitle2" sx={{ fontWeight: 600, color: 'var(--primary)', fontSize: '0.85rem', mt: 2, mb: 0.5 }}>{t('cv:skills.design')}</Typography>
-          <SkillBar name="CSS" value={100} Icon={CssIcon} />
-          <SkillBar name="Material UI" value={95} Icon={MaterialUiIcon} />
-          <SkillBar name="Tailwind CSS" value={80} Icon={TailwindIcon} />
-          <SkillBar name="HeroUI" value={70} Icon={HeroUIIcon} />
-          <SkillBar name="Figma" value={50} Icon={FigmaIcon} />
-          <Typography variant="subtitle2" sx={{ fontWeight: 600, color: 'var(--primary)', fontSize: '0.85rem', mt: 2, mb: 0.5 }}>{t('cv:skills.otherLanguagesTools')}</Typography>
-          <SkillBar name="Git / GitHub" value={85} Icon={GithubIcon} />
-          <SkillBar name="Python" value={75} Icon={PythonIcon} />
-          <SkillBar name="Java" value={75} Icon={JavaIcon} />
+          <Box sx={{ breakInside: 'avoid', pageBreakInside: 'avoid' }}>
+            <Typography variant="subtitle2" sx={{ fontWeight: 600, color: 'var(--primary)', fontSize: '0.85rem', mb: 0.5 }}>{t('cv:skills.webDevelopment')}</Typography>
+            <SkillBar name="JavaScript" value={90} Icon={JavascriptIcon} />
+            <SkillBar name="Next.js" value={90} Icon={NextJsIcon} />
+            <SkillBar name="React.js" value={80} Icon={ReactIcon} />
+            <SkillBar name="TypeScript" value={70} Icon={TypescriptIcon} />
+          </Box>
+          <Box sx={{ breakInside: 'avoid', pageBreakInside: 'avoid', mt: 2 }}>
+            <Typography variant="subtitle2" sx={{ fontWeight: 600, color: 'var(--primary)', fontSize: '0.85rem', mb: 0.5 }}>{t('cv:skills.mobileDevelopment')}</Typography>
+            <SkillBar name="PWA" value={100} Icon={PwaIcon} />
+            <SkillBar name="Flutter" value={80} Icon={FlutterIcon} />
+            <SkillBar name="Android (Java)" value={80} Icon={AndroidIcon} />
+            <SkillBar name="React Native" value={70} Icon={ReactIcon} />
+          </Box>
+          <Box sx={{ breakInside: 'avoid', pageBreakInside: 'avoid', mt: 2 }}>
+            <Typography variant="subtitle2" sx={{ fontWeight: 600, color: 'var(--primary)', fontSize: '0.85rem', mb: 0.5 }}>{t('cv:skills.databases')}</Typography>
+            <SkillBar name="Firebase" value={90} Icon={FirebaseIcon} />
+            <SkillBar name="SQLite" value={90} Icon={SqlLiteIcon} />
+            <SkillBar name="PostgreSQL" value={80} Icon={PostgresIcon} />
+            <SkillBar name="MySQL" value={80} Icon={MySqlIcon} />
+          </Box>
+          <Box sx={{ breakInside: 'avoid', pageBreakInside: 'avoid', mt: 2 }}>
+            <Typography variant="subtitle2" sx={{ fontWeight: 600, color: 'var(--primary)', fontSize: '0.85rem', mb: 0.5 }}>{t('cv:skills.blockchain')}</Typography>
+            <SkillBar name="Ethers.js" value={85} Icon={EtherJsIcon} />
+            <SkillBar name="Web3.js" value={85} Icon={Web3JsIcon} />
+            <SkillBar name="Solidity" value={70} Icon={SolidityIcon} />
+          </Box>
+          <Box sx={{ breakInside: 'avoid', pageBreakInside: 'avoid', mt: 2 }}>
+            <Typography variant="subtitle2" sx={{ fontWeight: 600, color: 'var(--primary)', fontSize: '0.85rem', mb: 0.5 }}>{t('cv:skills.design')}</Typography>
+            <SkillBar name="CSS" value={100} Icon={CssIcon} />
+            <SkillBar name="Material UI" value={95} Icon={MaterialUiIcon} />
+            <SkillBar name="Tailwind CSS" value={80} Icon={TailwindIcon} />
+            <SkillBar name="HeroUI" value={70} Icon={HeroUIIcon} />
+            <SkillBar name="Figma" value={50} Icon={FigmaIcon} />
+          </Box>
+          <Box sx={{ breakInside: 'avoid', pageBreakInside: 'avoid', mt: 2 }}>
+            <Typography variant="subtitle2" sx={{ fontWeight: 600, color: 'var(--primary)', fontSize: '0.85rem', mb: 0.5 }}>{t('cv:skills.otherLanguagesTools')}</Typography>
+            <SkillBar name="Git / GitHub" value={85} Icon={GithubIcon} />
+            <SkillBar name="Python" value={75} Icon={PythonIcon} />
+            <SkillBar name="Java" value={75} Icon={JavaIcon} />
+          </Box>
         </Stack>
       </CvSectionAccordion>
 
