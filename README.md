@@ -1,34 +1,245 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Portfolio de Daniel Mbengui
 
-## Getting Started
+Portfolio personnel moderne, multilingue et interactif, construit avec Next.js pour présenter mon profil, mes projets, mes compétences, ainsi que mon CV dynamique avec export PDF.
 
-First, run the development server:
+Site public: [https://danielmbengui.ch](https://danielmbengui.ch)
 
-```bash
-npm run dev
-# or
-yarn dev
+![Next.js](https://img.shields.io/badge/Next.js-13-black?logo=next.js)
+![React](https://img.shields.io/badge/React-18-20232A?logo=react)
+![MUI](https://img.shields.io/badge/MUI-5-007FFF?logo=mui)
+![OpenAI](https://img.shields.io/badge/OpenAI-API-412991?logo=openai)
+![i18n](https://img.shields.io/badge/i18n-5_langues-success)
+![License](https://img.shields.io/badge/license-Public-lightgrey)
+
+---
+
+## Table des matieres
+
+- [Apercu](#apercu)
+- [Demo visuelle](#demo-visuelle)
+- [Fonctionnalites principales](#fonctionnalites-principales)
+- [Stack technique](#stack-technique)
+- [Arborescence utile](#arborescence-utile)
+- [Installation & lancement](#installation--lancement)
+- [Scripts disponibles](#scripts-disponibles)
+- [Internationalisation](#internationalisation)
+- [Assistant IA: notes techniques](#assistant-ia-notes-techniques)
+- [Roadmap](#roadmap)
+- [Changelog](#changelog)
+- [Deploiement](#deploiement)
+- [Auteur](#auteur)
+
+---
+
+## Apercu
+
+Ce projet va au-dela d'une simple page vitrine:
+
+- Interface premium (MUI + animations) avec sections immersives.
+- Assistant IA integre (drawer desktop/mobile) connecte a l'API OpenAI.
+- Contenu internationalise en 5 langues (`fr`, `en`, `it`, `pt`, `ao`).
+- Page CV complete et telechargeable en PDF.
+- Navigation rapide (menu flottant) et composants modulaires reutilisables.
+
+---
+
+## Demo visuelle
+
+### Hero / ambiance
+![Hero portfolio](./public/img/home/background-dark.gif)
+
+### Assistant IA
+![Assistant IA](./public/img/chat-bot.gif)
+
+### Profil
+![Profil](./public/me-color.png)
+
+### Media en plus
+- Video de presentation: [presentation.mp4](./public/assets/videos/presentation.mp4)
+- Video home: [home.mp4](./public/videos/home.mp4)
+- Video marketing: [marketing.mp4](./public/videos/marketing.mp4)
+
+---
+
+## Fonctionnalites principales
+
+### Home (`/`)
+- Hero anime avec avatar, icones stack rotatives et CTA.
+- Video de presentation embarquee.
+- Sections dediees:
+  - Langues
+  - Ce qui me definit
+  - Univers & Valeurs
+  - Projets
+  - Contact
+  - Competences
+- Footer social (LinkedIn, GitHub, Play Store, App Store, email).
+
+### CV (`/cv`)
+- CV structure en accordions (experiences, formation, certificats, projets, soft skills, hobbies, publications...).
+- Telechargement PDF client-side via `html2pdf.js`.
+- Liens externes vers certificats/publications.
+
+### Assistant IA (`/api/chat` + UI)
+- Interface conversationnelle avec suggestions.
+- Effet "typing" progressif des reponses.
+- Parsing des liens markdown dans les messages.
+- API Next.js routee vers OpenAI Responses API.
+
+---
+
+## Stack technique
+
+| Categorie | Technologies |
+|---|---|
+| Framework | `Next.js 13` (Pages Router), `React 18` |
+| UI / Design System | `MUI`, `Emotion`, `Bootstrap` |
+| Animations | `framer-motion`, `react-spring` |
+| i18n | `next-i18next` |
+| IA | OpenAI Responses API (`gpt-4o-mini`) |
+| PDF | `html2pdf.js`, `@react-pdf/renderer` |
+| Qualite | `ESLint` (`next lint`) |
+
+---
+
+## Arborescence utile
+
+```text
+.
+|- pages/
+|  |- index.js            # home
+|  |- cv.js               # page CV
+|  |- api/chat.js         # endpoint assistant IA
+|- components/
+|  |- assistant/          # bouton + panneau assistant IA
+|  |- cv/                 # composant CV
+|  |- projects/           # section projets
+|  |- skills/             # section competences
+|  |- ...
+|- lib/
+|  |- assistantContext.js # instructions/context de l'assistant
+|- public/
+|  |- locales/            # traductions (fr, en, it, pt, ao)
+|  |- assets/             # videos, certifications, publications
+|- styles/
+|- _mocks_/
+|  |- _settings_items_.js # constantes globales site/profil
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Installation & lancement
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+### Quick Start
+```bash
+npm install
+echo "OPEN_AI_KEY=your_openai_api_key" > .env.local
+npm run dev
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Puis ouvrir [http://localhost:3000](http://localhost:3000).
 
-## Learn More
+### Setup detaille
 
-To learn more about Next.js, take a look at the following resources:
+### 1) Prerequis
+- Node.js 18+ recommande
+- npm (le projet contient `package-lock.json`)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 2) Installer les dependances
+```bash
+npm install
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### 3) Configurer l'environnement
+Creer un fichier `.env.local` a la racine:
 
-## Deploy on Vercel
+```bash
+OPEN_AI_KEY=your_openai_api_key
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+> Sans cette variable, l'endpoint `pages/api/chat.js` renverra une erreur 500.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### 4) Demarrer en local
+```bash
+npm run dev
+```
+
+Ouvrir ensuite [http://localhost:3000](http://localhost:3000).
+
+---
+
+## Scripts disponibles
+
+```bash
+npm run dev     # environnement de developpement
+npm run build   # build de production
+npm run start   # demarrage en mode production
+npm run lint    # verification ESLint
+```
+
+---
+
+## Internationalisation
+
+- Configuration centralisee dans `next-i18next.config.js`.
+- Langue par defaut: `fr`.
+- Locales actives: `fr`, `en`, `it`, `pt`, `ao`.
+- Fichiers de traduction dans `public/locales/<lang>/` (`common.json`, `home.json`, `cv.json`).
+
+---
+
+## Assistant IA: notes techniques
+
+- Endpoint: `POST /api/chat`
+- Payload attendu:
+
+```json
+{
+  "messages": [{ "role": "user", "text": "..." }],
+  "language": "fr"
+}
+```
+
+- Le serveur injecte des instructions metier via `getAssistantInstructions()` depuis `lib/assistantContext.js`.
+- Outil web-search active cote OpenAI (`tools: [{ type: "web_search" }]`).
+
+---
+
+## Roadmap
+
+- [x] Base portfolio Next.js + sections principales
+- [x] CV interactif + export PDF
+- [x] i18n (`fr`, `en`, `it`, `pt`, `ao`)
+- [x] Assistant IA (UI + endpoint OpenAI)
+- [ ] Ajouter tests unitaires/UI sur composants critiques
+- [ ] Ajouter CI GitHub Actions (lint + build)
+- [ ] Ajouter analytics/events plus detailles
+
+---
+
+## Changelog
+
+### 2026-03-05
+- Refonte complete du `README.md`
+- Ajout des sections stack, architecture, setup, i18n et API chat
+- Ajout d'une version "marketing GitHub" (badges, demo visuelle, roadmap, changelog)
+
+### Historique precedent
+- Projet portfolio initialement cree sur Next.js (`create-next-app`), puis personnalise en profondeur.
+
+---
+
+## Deploiement
+
+Le projet est adapte a un deploiement simple sur [Vercel](https://vercel.com/), avec support natif Next.js.
+
+---
+
+## Auteur
+
+**Daniel Mbengui**  
+- Site: [https://danielmbengui.ch](https://danielmbengui.ch)  
+- LinkedIn: [https://www.linkedin.com/in/daniel-mbengui/](https://www.linkedin.com/in/daniel-mbengui/)  
+- GitHub: [https://github.com/danielmbengui](https://github.com/danielmbengui)  
+- Play Store (profil developpeur): [https://play.google.com/store/apps/dev?id=5041386544087051991](https://play.google.com/store/apps/dev?id=5041386544087051991)  
+- Apple App Store (profil developpeur): [https://apps.apple.com/ch/developer/mbengui-daniel-slaver/id1695490329?l=fr-FR](https://apps.apple.com/ch/developer/mbengui-daniel-slaver/id1695490329?l=fr-FR)
