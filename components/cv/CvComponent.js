@@ -38,6 +38,9 @@ import { AndroidIcon, C_LangageIcon, CssIcon, EtherJsIcon, FigmaIcon, FlutterIco
 
 const getCvPdfFilename = (lang) => `cv-daniel-mbengui-${lang || 'fr'}.pdf`;
 
+const LINK_GOOGLE_PLAY_PLAYPAD = 'https://play.google.com/store/apps/details?id=com.playpad.playpadapp';
+const LINK_APP_STORE_PLAYPAD = 'https://apps.apple.com/app/playpad-app-padel/id6450876480';
+
 const CvSectionAccordion = ({ sectionId, title, children, expanded, onChange }) => (
   <Accordion
     className="cv-section cv-accordion"
@@ -348,16 +351,31 @@ export default function CvComponent({ embedded = false }) {
       requestAnimationFrame(async () => {
         try {
           const html2pdf = (await import('html2pdf.js')).default;
-          const blob = await html2pdf()
+          const pdfWorker = html2pdf()
             .set({
-              margin: [10, 10, 10, 10],
+              margin: [10, 10, 18, 10],
               image: { type: 'jpeg', quality: 0.98 },
               html2canvas: { scale: 2, useCORS: true, letterRendering: true },
               jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
               pagebreak: { mode: ['avoid-all', 'css', 'legacy'] },
             })
-            .from(clone)
-            .outputPdf('blob');
+            .from(clone);
+          const pdf = await pdfWorker.toPdf().get('pdf');
+          const totalPages = pdf.internal.getNumberOfPages();
+          const pageWidth = pdf.internal.pageSize.getWidth();
+          const pageHeight = pdf.internal.pageSize.getHeight();
+          const footerText = 'Généré depuis : https://danielmbengui.ch/cv';
+          const footerUrl = 'https://danielmbengui.ch/cv';
+          for (let i = 1; i <= totalPages; i++) {
+            pdf.setPage(i);
+            pdf.setFontSize(8);
+            pdf.setTextColor(120, 120, 120);
+            const textWidth = pdf.getStringUnitWidth(footerText) * 8 / pdf.internal.scaleFactor;
+            const xPos = (pageWidth - textWidth) / 2;
+            const yPos = pageHeight - 8;
+            pdf.textWithLink(footerText, xPos, yPos, { url: footerUrl });
+          }
+          const blob = pdf.output('blob');
           const url = URL.createObjectURL(blob);
           const a = document.createElement('a');
           a.href = url;
@@ -541,14 +559,33 @@ export default function CvComponent({ embedded = false }) {
         <CvEntry
           period={t('cv:experiences.dandela.period')}
           location={t('cv:experiences.dandela.location')}
-          title={<>{t('cv:experiences.dandela.titlePrefix')}<a href="https://academy.dandela.com" target="_blank" rel="noopener noreferrer" className="cv-link">Dandela Academy</a></>}
-          items={[t('cv:experiences.dandela.items.0'), t('cv:experiences.dandela.items.1'), t('cv:experiences.dandela.items.2'), t('cv:experiences.dandela.items.3')]}
+          title={<>{t('cv:experiences.dandela.titlePrefix')}Dandela Academy</>}
+          items={[
+            t('cv:experiences.dandela.items.0'),
+            t('cv:experiences.dandela.items.1'),
+            <React.Fragment key="dandela-2">{t('cv:experiences.dandela.items.2Prefix')}<a href="https://academy.dandela.com" target="_blank" rel="noopener noreferrer" className="cv-link">{t('cv:experiences.dandela.linkSite')}</a>{t('cv:experiences.dandela.items.2Suffix')}</React.Fragment>,
+            <React.Fragment key="dandela-3">{t('cv:experiences.dandela.items.3Prefix')}<a href="https://academy.dandela.com" target="_blank" rel="noopener noreferrer" className="cv-link">{t('cv:experiences.dandela.linkApp')}</a>{t('cv:experiences.dandela.items.3Suffix')}</React.Fragment>,
+          ]}
         />
         <CvEntry
           period={t('cv:experiences.playpad.period')}
           location={t('cv:experiences.playpad.location')}
-          title={<>{t('cv:experiences.playpad.titlePrefix')}<a href="https://playpadapp.com" target="_blank" rel="noopener noreferrer" className="cv-link">PlayPad Sàrl</a></>}
-          items={[t('cv:experiences.playpad.items.0'), t('cv:experiences.playpad.items.1'), t('cv:experiences.playpad.items.2')]}
+          title={<>{t('cv:experiences.playpad.titlePrefix')}PlayPad Sàrl</>}
+          items={[
+            t('cv:experiences.playpad.items.0'),
+            <React.Fragment key="playpad-1">
+              {t('cv:experiences.playpad.items.1Prefix')}
+              <a href={LINK_GOOGLE_PLAY_PLAYPAD} target="_blank" rel="noopener noreferrer" className="cv-link">{t('cv:experiences.playpad.linkGooglePlay')}</a>
+              {t('cv:experiences.playpad.items.1Between')}
+              <a href={LINK_APP_STORE_PLAYPAD} target="_blank" rel="noopener noreferrer" className="cv-link">{t('cv:experiences.playpad.linkAppStore')}</a>
+              {t('cv:experiences.playpad.items.1Suffix')}
+            </React.Fragment>,
+            <React.Fragment key="playpad-2">
+              {t('cv:experiences.playpad.items.2Prefix')}
+              <a href="https://playpadapp.com" target="_blank" rel="noopener noreferrer" className="cv-link">{t('cv:experiences.playpad.linkSite')}</a>
+              {t('cv:experiences.playpad.items.2Suffix')}
+            </React.Fragment>,
+          ]}
         />
         <CvEntry
           period={t('cv:experiences.mdandela.period')}
@@ -687,35 +724,47 @@ export default function CvComponent({ embedded = false }) {
         onChange={handleSectionChange('skills')}
       >
         <Stack className="cv-skills-content" spacing={1.5}>
-          <Typography variant="subtitle2" sx={{ fontWeight: 600, color: 'var(--primary)', fontSize: '0.85rem', mb: 0.5 }}>{t('cv:skills.webDevelopment')}</Typography>
-          <SkillBar name="JavaScript" value={90} Icon={JavascriptIcon} />
-          <SkillBar name="Next.js" value={90} Icon={NextJsIcon} />
-          <SkillBar name="React.js" value={80} Icon={ReactIcon} />
-          <SkillBar name="TypeScript" value={70} Icon={TypescriptIcon} />
-          <Typography variant="subtitle2" sx={{ fontWeight: 600, color: 'var(--primary)', fontSize: '0.85rem', mt: 2, mb: 0.5 }}>{t('cv:skills.mobileDevelopment')}</Typography>
-          <SkillBar name="PWA" value={100} Icon={PwaIcon} />
-          <SkillBar name="Flutter" value={80} Icon={FlutterIcon} />
-          <SkillBar name="Android (Java)" value={80} Icon={AndroidIcon} />
-          <SkillBar name="React Native" value={70} Icon={ReactIcon} />
-          <Typography variant="subtitle2" sx={{ fontWeight: 600, color: 'var(--primary)', fontSize: '0.85rem', mt: 2, mb: 0.5 }}>{t('cv:skills.databases')}</Typography>
-          <SkillBar name="Firebase" value={90} Icon={FirebaseIcon} />
-          <SkillBar name="SQLite" value={90} Icon={SqlLiteIcon} />
-          <SkillBar name="PostgreSQL" value={80} Icon={PostgresIcon} />
-          <SkillBar name="MySQL" value={80} Icon={MySqlIcon} />
-          <Typography variant="subtitle2" sx={{ fontWeight: 600, color: 'var(--primary)', fontSize: '0.85rem', mt: 2, mb: 0.5 }}>{t('cv:skills.blockchain')}</Typography>
-          <SkillBar name="Ethers.js" value={85} Icon={EtherJsIcon} />
-          <SkillBar name="Web3.js" value={85} Icon={Web3JsIcon} />
-          <SkillBar name="Solidity" value={70} Icon={SolidityIcon} />
-          <Typography variant="subtitle2" sx={{ fontWeight: 600, color: 'var(--primary)', fontSize: '0.85rem', mt: 2, mb: 0.5 }}>{t('cv:skills.design')}</Typography>
-          <SkillBar name="CSS" value={100} Icon={CssIcon} />
-          <SkillBar name="Material UI" value={95} Icon={MaterialUiIcon} />
-          <SkillBar name="Tailwind CSS" value={80} Icon={TailwindIcon} />
-          <SkillBar name="HeroUI" value={70} Icon={HeroUIIcon} />
-          <SkillBar name="Figma" value={50} Icon={FigmaIcon} />
-          <Typography variant="subtitle2" sx={{ fontWeight: 600, color: 'var(--primary)', fontSize: '0.85rem', mt: 2, mb: 0.5 }}>{t('cv:skills.otherLanguagesTools')}</Typography>
-          <SkillBar name="Git / GitHub" value={85} Icon={GithubIcon} />
-          <SkillBar name="Python" value={75} Icon={PythonIcon} />
-          <SkillBar name="Java" value={75} Icon={JavaIcon} />
+          <Box sx={{ breakInside: 'avoid', pageBreakInside: 'avoid' }}>
+            <Typography variant="subtitle2" sx={{ fontWeight: 600, color: 'var(--primary)', fontSize: '0.85rem', mb: 0.5 }}>{t('cv:skills.webDevelopment')}</Typography>
+            <SkillBar name="JavaScript" value={90} Icon={JavascriptIcon} />
+            <SkillBar name="Next.js" value={90} Icon={NextJsIcon} />
+            <SkillBar name="React.js" value={80} Icon={ReactIcon} />
+            <SkillBar name="TypeScript" value={70} Icon={TypescriptIcon} />
+          </Box>
+          <Box sx={{ breakInside: 'avoid', pageBreakInside: 'avoid', mt: 2 }}>
+            <Typography variant="subtitle2" sx={{ fontWeight: 600, color: 'var(--primary)', fontSize: '0.85rem', mb: 0.5 }}>{t('cv:skills.mobileDevelopment')}</Typography>
+            <SkillBar name="PWA" value={100} Icon={PwaIcon} />
+            <SkillBar name="Flutter" value={80} Icon={FlutterIcon} />
+            <SkillBar name="Android (Java)" value={80} Icon={AndroidIcon} />
+            <SkillBar name="React Native" value={70} Icon={ReactIcon} />
+          </Box>
+          <Box sx={{ breakInside: 'avoid', pageBreakInside: 'avoid', mt: 2 }}>
+            <Typography variant="subtitle2" sx={{ fontWeight: 600, color: 'var(--primary)', fontSize: '0.85rem', mb: 0.5 }}>{t('cv:skills.databases')}</Typography>
+            <SkillBar name="Firebase" value={90} Icon={FirebaseIcon} />
+            <SkillBar name="SQLite" value={90} Icon={SqlLiteIcon} />
+            <SkillBar name="PostgreSQL" value={80} Icon={PostgresIcon} />
+            <SkillBar name="MySQL" value={80} Icon={MySqlIcon} />
+          </Box>
+          <Box sx={{ breakInside: 'avoid', pageBreakInside: 'avoid', mt: 2 }}>
+            <Typography variant="subtitle2" sx={{ fontWeight: 600, color: 'var(--primary)', fontSize: '0.85rem', mb: 0.5 }}>{t('cv:skills.blockchain')}</Typography>
+            <SkillBar name="Ethers.js" value={85} Icon={EtherJsIcon} />
+            <SkillBar name="Web3.js" value={85} Icon={Web3JsIcon} />
+            <SkillBar name="Solidity" value={70} Icon={SolidityIcon} />
+          </Box>
+          <Box sx={{ breakInside: 'avoid', pageBreakInside: 'avoid', mt: 2 }}>
+            <Typography variant="subtitle2" sx={{ fontWeight: 600, color: 'var(--primary)', fontSize: '0.85rem', mb: 0.5 }}>{t('cv:skills.design')}</Typography>
+            <SkillBar name="CSS" value={100} Icon={CssIcon} />
+            <SkillBar name="Material UI" value={95} Icon={MaterialUiIcon} />
+            <SkillBar name="Tailwind CSS" value={80} Icon={TailwindIcon} />
+            <SkillBar name="HeroUI" value={70} Icon={HeroUIIcon} />
+            <SkillBar name="Figma" value={50} Icon={FigmaIcon} />
+          </Box>
+          <Box sx={{ breakInside: 'avoid', pageBreakInside: 'avoid', mt: 2 }}>
+            <Typography variant="subtitle2" sx={{ fontWeight: 600, color: 'var(--primary)', fontSize: '0.85rem', mb: 0.5 }}>{t('cv:skills.otherLanguagesTools')}</Typography>
+            <SkillBar name="Git / GitHub" value={85} Icon={GithubIcon} />
+            <SkillBar name="Python" value={75} Icon={PythonIcon} />
+            <SkillBar name="Java" value={75} Icon={JavaIcon} />
+          </Box>
         </Stack>
       </CvSectionAccordion>
 

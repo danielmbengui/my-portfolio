@@ -39,7 +39,7 @@
                     "name" : "Italien",
                     "value" : 40,
                     "level" : "Élémentaire (A2)",
-                    "description" : "L'italien est une langue que je pratique notamment en Suisse romande, où elle est l'une des langues nationales. Je peux suivre des conversations courantes, lire des textes et m'exprimer dans des situations du quotidien. Je continue à l'améliorer par la pratique et l'exposition au contenu en italien."
+                    "description" : "L'italien est une langue que je pratique notamment en Suisse romande, où c'est l'une des langues nationales. Je peux suivre des conversations du quotidien, lire des textes et m'exprimer en situations courantes. Je continue à l'améliorer par la pratique et l'exposition à des contenus en italien."
                 },
                 "ao" : {
                     "name" : "Lingala",
@@ -62,22 +62,46 @@
                 }
             },
             "frameworks" : {
-                "title" : "Librairies/Outils"
+                "title" : "Librairies/Outils",
+                "react" : {
+                    "name": "ReactJS",
+                    "value": 80
+                }
             },
             "software" : {
-                "title" : "Logiciels"
+                "title" : "Logiciels",
+                "visualStudio" : {
+                    "name": "Visual Studio Code",
+                    "value": 80
+                }
             },
             "web" : {
-                "title" : "Web"
+                "title" : "Web",
+                "visualStudio" : {
+                    "name": "Visual Studio Code",
+                    "value": 80
+                }
             },
             "mobile" : {
-                "title" : "Mobile"
+                "title" : "Mobile",
+                "visualStudio" : {
+                    "name": "Visual Studio Code",
+                    "value": 80
+                }
             },
             "blockchain" : {
-                "title" : "Blockchain"
+                "title" : "Blockchain",
+                "visualStudio" : {
+                    "name": "Visual Studio Code",
+                    "value": 80
+                }
             },
             "database" : {
-                "title" : "Base de données"
+                "title" : "Base de données",
+                "visualStudio" : {
+                    "name": "Visual Studio Code",
+                    "value": 80
+                }
             },
             "artificial" : {
                 "title" : "Intelligence Artificielle (IA)",
@@ -85,7 +109,11 @@
                 "agents" : "Agents IA",
                 "contentCreation" : "Création de contenu",
                 "contentCreationSubtitle" : "OpenAI, Runway, Veo, etc.",
-                "vibeCoding" : "Vibe coding"
+                "vibeCoding" : "Vibe coding",
+                "visualStudio" : {
+                    "name": "Visual Studio Code",
+                    "value": 80
+                }
             },
             "names" : {
                 "javascript" : "Javascript",
@@ -106,13 +134,13 @@
                 "typescript" : "Typage statique pour des projets plus maintenables et scalables.",
                 "reactjs" : "Bibliothèque UI pour construire des interfaces modernes et réactives.",
                 "nextjs" : "Framework full-stack pour le rendu côté serveur et le déploiement.",
-                "ios" : "Développement d’applications natives pour l’écosystème Apple.",
-                "android" : "Développement d’applications pour le parc Android.",
+                "ios" : "Développement d'applications natives pour l'écosystème Apple.",
+                "android" : "Développement d'applications pour le parc Android.",
                 "pwa" : "Applications web installables, offline-first et multi-appareils.",
-                "apiCalls" : "Intégration d’API (OpenAI, etc.) dans les applications.",
-                "agents" : "Automatisation et flux assistés par l’IA.",
-                "contentCreation" : "Création d’images, vidéos et contenus avec l’IA.",
-                "vibeCoding" : "Développement assisté par l’IA (ex. Cursor).",
+                "apiCalls" : "Intégration d'API (OpenAI, etc.) dans les applications.",
+                "agents" : "Automatisation et flux assistés par l'IA.",
+                "contentCreation" : "Création d'images, vidéos et contenus avec l'IA.",
+                "vibeCoding" : "Développement assisté par l'IA (ex. Cursor).",
                 "solidity" : "Langage des smart contracts sur Ethereum et EVM.",
                 "web3js" : "Connexion front-end aux réseaux et contrats décentralisés.",
                 "bitcoin" : "Référence en crypto-monnaie et blockchain.",
@@ -122,27 +150,27 @@
         },
         "defineMe" : {
             "title" : "Ce qui me définit",
-            "subtitle" : "Quatre aspects qui façonnent ma vision et mon approche.",
+            "subtitle" : "Quatre axes qui façonnent ma vision et mon approche.",
             "video1" : {
                 "axeTitle" : "🧩 AXE 1 — Créer avec l'IA, pas la subir",
-                "title" : "Co-création homme–IA",
-                "description" : "Je ne vois pas l'IA comme un outil passif, mais comme un partenaire actif. Je conçois, j'orchestre et je construis avec elle — dans une logique de collaboration, pas de substitution."
+                "title" : "Co-création humain–IA",
+                "description" : "Je ne vois pas l'IA comme un outil passif, mais comme un partenaire actif. Je conçois, orchestre et construis avec elle — dans une logique de collaboration, pas de substitution."
             },
             "video2" : {
                 "axeTitle" : "🧩 AXE 2 — Vision, instinct et convictions",
                 "title" : "Penser avant d'agir",
-                "description" : "Prendre de la hauteur, questionner le sens, assumer ses convictions. La technologie sans vision n'est qu'un outil de plus."
+                "description" : "Prendre du recul, interroger le sens, assumer ses convictions. La tech sans vision n'est qu'un outil de plus."
             },
             "video3" : {
                 "axeTitle" : "🧩 AXE 3 — Construire ensemble",
                 "title" : "La collaboration comme fondation",
-                "description" : "Les meilleurs projets ne se construisent jamais seul. J'accorde autant d'importance à l'intelligence collective qu'à la technologie."
+                "description" : "Les meilleurs projets ne se font jamais seuls. Je valorise l'intelligence collective autant que la tech."
             },
             "video4" : {
                 "axeTitle" : "🧩 AXE 4 — Déléguer pour mieux créer",
                 "title" : "Automatiser l'utile pour libérer l'essentiel",
                 "description" : "Je sais déléguer, automatiser et optimiser. Moins de charge mentale, plus d'espace pour la création, la réflexion et l'impact.",
-                "bullets" : ["Vibe coding ✔", "Architecte de systèmes ✔", "Esprit \"CEO / builder\" ✔"]
+                "bullets" : ["Vibe coding ✔", "Architecte systèmes ✔", "Esprit \"CEO / builder\" ✔"]
             }
         },
         "universeAndValues" : {
@@ -150,7 +178,7 @@
             "subtitle" : "Quelques piliers qui guident ma façon de travailler et de vivre.",
             "video1" : {
                 "title" : "Loyauté & responsabilité",
-                "description" : "Je protège ce que je construis. L'IA est un outil puissant — elle doit être encadrée, défendue et utilisée avec conscience."
+                "description" : "Je protège ce que je construis. L'IA est un outil puissant — elle doit être cadrée, défendue et utilisée en conscience."
             },
             "video2" : {
                 "title" : "Déléguer avec confiance",
@@ -162,12 +190,12 @@
             },
             "video4" : {
                 "title" : "Défendre une vision",
-                "description" : "Savoir écouter, mais aussi savoir trancher. Les idées fortes méritent parfois d'être défendues avec fermeté."
+                "description" : "Savoir écouter, mais aussi savoir décider. Les idées fortes méritent parfois d'être défendues avec fermeté."
             }
         },
         "projects" : {
             "title" : "Projets",
-            "subtitle" : "Des réalisations concrètes à l'intersection du digital, de l'IA et du mobile.",
+            "subtitle" : "Réalisations concrètes à l'intersection du digital, de l'IA et du mobile.",
             "viewProject" : "Voir le projet",
             "dandela" : {
                 "name" : "Dandela Academy",
@@ -202,18 +230,18 @@
         },
         "contactMe" : {
             "title" : "Contacte-moi",
-            "subtitle" : "Une idée, un projet ou une collaboration ? Envoie-moi un message ou retrouve-moi sur les réseaux."
+            "subtitle" : "Une idée, un projet ou envie de collaborer ? Envoie-moi un message ou retrouve-moi sur les réseaux."
         }
     },
     "chatbot" : "Discutes avec moi",
     "cvTitlePage": "Mbengui Daniel Slaver | Vibe Developer",
-    "cvDescriptionPage": "Curriculum Vitae de Mbengui Daniel Slaver — Développeur Web, Mobile & IA. Expériences, compétences techniques et formations.",
+    "cvDescriptionPage": "CV de Daniel Mbengui — Développeur Web, Mobile & IA. Expériences, compétences techniques et formation.",
     "seeMyCV" : "Voir mon CV",
     "sendMeMail" : "Contactes moi",
     "profileLinkedin" : "Profil Linkedin",
     "profileGithub" : "Profil Github",
     "profilePlaystore" : "Profil Playstore",
-    "profileAppstore" : "Développeur App Store",
+    "profileAppstore" : "Profil App Store",
     "quickMenuContact" : "Contact",
     "slogan" : "Parce que je suis un geek !",
     "theme" : "thème",
@@ -223,20 +251,20 @@
         "close": "Fermer",
         "send": "Envoyer",
         "placeholder": "Écris ton message…",
-        "placeholderReply": "J'ai bien reçu ton message. L'assistant IA sera connecté prochainement.",
-        "errorReply": "Une erreur est survenue. Réessaie ou contacte-moi directement.",
+        "placeholderReply": "J'ai bien reçu ton message. L'assistant IA sera connecté sous peu.",
+        "errorReply": "Une erreur s'est produite. Réessaie ou contacte-moi directement.",
         "suggestionsTitle": "Suggestions",
         "suggestions": [
             "Qu'est-ce que tu aimes manger ?",
             "Tu aimes voyager ? Où ?",
-            "Comment s'est créée Dandela Academy ?",
-            "Comment est né le projet PlayPad ?",
-            "Comment ça se fait que tu ne parles pas portugais ?",
-            "Ta position sur les animaux ?",
-            "Tu as une blague à nous raconter ?",
-            "Quelles musiques tu écoutes ?",
-            "Quelle équipe de foot tu supportes ?",
-            "Tu supportes quel pilote en Formule 1 ?"
+            "Comment est née Dandela Academy ?",
+            "Comment a démarré le projet PlayPad ?",
+            "Pourquoi tu ne parles pas portugais ?",
+            "Quelle est ta position sur les animaux ?",
+            "Tu as une blague à partager ?",
+            "Quelle musique écoutes-tu ?",
+            "Tu supportes quelle équipe de foot ?",
+            "Qui est ton pilote de Formule 1 préféré ?"
         ]
     },
     "loadingDocument" : "Chargement du document...",

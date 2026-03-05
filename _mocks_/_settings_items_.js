@@ -54,7 +54,8 @@ export const _PAGE_LINK_PROJECTS_ = "/portfolio/projects";
 export const _MY_PROFILE_ = {
     name : "Daniel Mbengui",
     mail : "daniel.mbengui@gmail.com",
-    phone : "+41 76 679 51 15",
+    phone : "+41 76 266 61 04",
+    phone_ao : "+244 925 508 327",
     position : "Étudiant 42Lausanne",
     srcImage: "/img/me.png",
     srcBot:"/img/bot-no-back.png",
