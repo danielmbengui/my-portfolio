@@ -24,9 +24,8 @@ Site public: [https://danielmbengui.ch](https://danielmbengui.ch)
 - [Scripts disponibles](#scripts-disponibles)
 - [Internationalisation](#internationalisation)
 - [Assistant IA: notes techniques](#assistant-ia-notes-techniques)
-- [Roadmap](#roadmap)
-- [Changelog](#changelog)
-- [Deploiement](#deploiement)
+- [Feuille de route](#roadmap)
+- [Déploiement](#deploiement)
 - [Auteur](#auteur)
 
 ---
@@ -45,20 +44,23 @@ Ce projet va au-dela d'une simple page vitrine:
 
 ## Demo visuelle
 
-### Hero / ambiance
-![Hero portfolio](./public/img/home/background-dark.gif)
-
-### Assistant IA
-![Assistant IA](./public/img/chat-bot.gif)
-
 ### Profil
 ![Profil](./public/me-color.png)
 
-### Media en plus
-- Video de presentation: [presentation.mp4](./public/assets/videos/presentation.mp4)
-- Video home: [home.mp4](./public/videos/home.mp4)
-- Video marketing: [marketing.mp4](./public/videos/marketing.mp4)
+### Vidéo de présentation
+- Video de présentation: [Présentation](https://www.danielmbengui.ch/assets/videos/presentation.mp4)
 
+### Vidéos "Ce qui me définit"
+- Video "AXE 1 — Vision, instinct et convictions": [Penser avant d'agir](https://www.danielmbengui.ch/assets/videos/1-4.mp4)
+- Video "AXE 2 — Construire ensemble": [La collaboration comme fondation](https://www.danielmbengui.ch/assets/videos/1-3.mp4)
+- Video "AXE 3 — Créer avec l'IA, pas la subir": [Co-création humain–IA](https://www.danielmbengui.ch/assets/videos/1-1.mp4)
+- Video "AXE 4 — Déléguer pour mieux créer": [Automatiser l'utile pour libérer l'essentiel](https://www.danielmbengui.ch/assets/videos/1-2.mp4)
+
+### Vidéos "Mon univers et mes valeurs"
+- Video "Loyauté & responsabilité": [1](https://www.danielmbengui.ch/assets/videos/2-1.mp4)
+- Video "Déléguer avec confiance": [2](https://www.danielmbengui.ch/assets/videos/2-2.mp4)
+- Video "Équilibre et respiration": [3](https://www.danielmbengui.ch/assets/videos/2-3.mp4)
+- Video "Défendre une vision": [4](https://www.danielmbengui.ch/assets/videos/2-4.mp4)
 ---
 
 ## Fonctionnalites principales
@@ -98,7 +100,7 @@ Ce projet va au-dela d'une simple page vitrine:
 | i18n | `next-i18next` |
 | IA | OpenAI Responses API (`gpt-4o-mini`) |
 | PDF | `html2pdf.js`, `@react-pdf/renderer` |
-| Qualite | `ESLint` (`next lint`) |
+| Qualité | `ESLint` (`next lint`) |
 
 ---
 
@@ -130,7 +132,7 @@ Ce projet va au-dela d'une simple page vitrine:
 
 ## Installation & lancement
 
-### Quick Start
+### Lancement rapide
 ```bash
 npm install
 echo "OPEN_AI_KEY=your_openai_api_key" > .env.local
@@ -139,13 +141,13 @@ npm run dev
 
 Puis ouvrir [http://localhost:3000](http://localhost:3000).
 
-### Setup detaille
+### Configuration detaillée
 
 ### 1) Prerequis
 - Node.js 18+ recommande
 - npm (le projet contient `package-lock.json`)
 
-### 2) Installer les dependances
+### 2) Installer les dépendances
 ```bash
 npm install
 ```
@@ -159,7 +161,7 @@ OPEN_AI_KEY=your_openai_api_key
 
 > Sans cette variable, l'endpoint `pages/api/chat.js` renverra une erreur 500.
 
-### 4) Demarrer en local
+### 4) Démarrer en local
 ```bash
 npm run dev
 ```
@@ -205,7 +207,7 @@ npm run lint    # verification ESLint
 
 ---
 
-## Roadmap
+## Feuille de route
 
 - [x] Base portfolio Next.js + sections principales
 - [x] CV interactif + export PDF
@@ -217,19 +219,7 @@ npm run lint    # verification ESLint
 
 ---
 
-## Changelog
-
-### 2026-03-05
-- Refonte complete du `README.md`
-- Ajout des sections stack, architecture, setup, i18n et API chat
-- Ajout d'une version "marketing GitHub" (badges, demo visuelle, roadmap, changelog)
-
-### Historique precedent
-- Projet portfolio initialement cree sur Next.js (`create-next-app`), puis personnalise en profondeur.
-
----
-
-## Deploiement
+## Déploiement
 
 Le projet est adapte a un deploiement simple sur [Vercel](https://vercel.com/), avec support natif Next.js.
 
