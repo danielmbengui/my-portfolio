@@ -5,4 +5,5 @@ module.exports = {
       localeDetection: false,
     },
     react: { useSuspense: false },
+    reloadOnPrerender: process.env.NODE_ENV === 'development',
   };

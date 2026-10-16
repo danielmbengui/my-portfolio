@@ -1,0 +1,183 @@
+{
+  "pageTitle": "My journey in 3D | Daniel Mbengui",
+  "pageDescription": "Daniel Mbengui's interactive 3D journey, from Angola to Switzerland.",
+  "ui": {
+    "title": "MY JOURNEY",
+    "subtitle": "ANGOLA ⇄ SWITZERLAND · FROM BIRTH TO TODAY",
+    "loading": "LOADING THE UNIVERSE…",
+    "languages": "Languages",
+    "skills": "Skills",
+    "unlockedAt": "Unlocked: {{title}} ({{year}})",
+    "notUnlocked": "Not unlocked yet at this point",
+    "acquiredAt": "Acquired: {{title}} ({{year}})",
+    "toUnlock": "Unlocked later on",
+    "unlockedHere": "Unlocked at this step",
+    "videoSoon": "Video coming soon",
+    "seeDetails": "See details",
+    "collapse": "Collapse",
+    "today": "Today",
+    "unknownYear": "????",
+    "placeholderYear": "…",
+    "placeholderTitle": "Step {{n}}",
+    "placeholderDescription": "Step to be completed: add a description, a video and the skills acquired at that time.",
+    "home": "Home",
+    "settings": "Profile, languages & skills",
+    "theme": "Theme",
+    "themeDark": "Dark",
+    "themeLight": "Light",
+    "themeSystem": "System",
+    "language": "Language",
+    "play": "Autoplay",
+    "pause": "Pause",
+    "previous": "Previous step",
+    "next": "Next step"
+  },
+  "profile": {
+    "name": "Daniel Mbengui",
+    "role": "Web & Mobile Developer · Vibe Developer",
+    "tagline": "Between Geneva and Luanda, I blend technology and creativity to bring projects to life.",
+    "based": "Geneva · Luanda"
+  },
+  "eras": {
+    "origines": "Origins",
+    "enfance": "Childhood in Switzerland",
+    "formation": "Education & first jobs",
+    "retour": "Back to my roots",
+    "reconversion": "Tech career switch",
+    "entrepreneur": "Entrepreneur"
+  },
+  "regions": {
+    "angola": "Angola",
+    "suisse": "Switzerland"
+  },
+  "languages": {
+    "french": { "label": "French", "level": "C2 · Native" },
+    "lingala": { "label": "Lingala", "level": "B2 · Fluent" },
+    "english": { "label": "English", "level": "C1 · Fluent" },
+    "italian": { "label": "Italian", "level": "A2 · Elementary" },
+    "portuguese": { "label": "Portuguese", "level": "A1 · Beginner" }
+  },
+  "skills": {
+    "business": "Business & management",
+    "writing": "Writing",
+    "ai": "Generative AI",
+    "cursor": "Cursor & AI agents"
+  },
+  "milestones": {
+    "birth": {
+      "title": "Birth",
+      "place": "Angola",
+      "description": "The very beginning of the story. Date, exact place and anecdotes to be added."
+    },
+    "immigration": {
+      "title": "Moving to Switzerland",
+      "place": "Geneva, Switzerland",
+      "description": "Left Angola at a very young age and arrived in Switzerland. My parents focused on French."
+    },
+    "childhood": {
+      "title": "Childhood & school in Geneva",
+      "place": "Geneva, Switzerland",
+      "description": "Compulsory school in Geneva. First steps in English and Italian."
+    },
+    "schneider": {
+      "title": "Apprenticeship at Schneider & Cie SA",
+      "place": "Geneva, Switzerland",
+      "description": "Commercial apprentice in freight transport, alternating with the Madame De Staël business school."
+    },
+    "jeunesseco": {
+      "title": "Jeunesse&Co & first article",
+      "place": "Vernier, Switzerland",
+      "description": "Article in Actu Vernier (November 2009) about the creation of the Jeunesse&Co association."
+    },
+    "actu2010": {
+      "title": "Second publication",
+      "place": "Vernier, Switzerland",
+      "description": "Article in Actu Vernier (February 2010) about Jeunesse&Co's first official party."
+    },
+    "cfc": {
+      "title": "Federal VET Diploma in Commerce",
+      "place": "Geneva, Switzerland",
+      "description": "Earned the Swiss Federal Certificate of Competence after three years of work-study."
+    },
+    "esig": {
+      "title": "Joining ESIG",
+      "place": "Geneva, Switzerland",
+      "description": "Start at the School of Business IT: the real beginning of my IT journey."
+    },
+    "esigImad": {
+      "title": "ESIG diploma & IMAD",
+      "place": "Geneva, Switzerland",
+      "description": "Federal diploma in business IT, then set up a CMDB at IMAD."
+    },
+    "backToAngola": {
+      "title": "Back to Angola",
+      "place": "Luanda, Angola",
+      "description": "Back to my roots as an adult and co-founded the family business M. Dandela (cybercafé, real estate)."
+    },
+    "ifage": {
+      "title": "Ifage: JEE & Android",
+      "place": "Geneva, Switzerland",
+      "description": "JEE & Android Developer certificate, discovering Android Studio and Ionic."
+    },
+    "pythonScrum": {
+      "title": "Python & Scrum",
+      "place": "Geneva, Switzerland",
+      "description": "Python certificate at IT Training Academy and Professional Scrum Master I training."
+    },
+    "javaSe11": {
+      "title": "Java SE11 during the pandemic",
+      "place": "Geneva, Switzerland",
+      "description": "Training started on site and finished over video calls during Covid-19."
+    },
+    "freecodecamp": {
+      "title": "freeCodeCamp certifications",
+      "place": "Online",
+      "description": "JavaScript Algorithms & Data Structures and Responsive Web Design."
+    },
+    "fortytwo": {
+      "title": "42 Lausanne",
+      "place": "Renens, Switzerland",
+      "description": "Team project-based learning, gamified curriculum. This is where the idea of Dandela Academy was born."
+    },
+    "winno": {
+      "title": "Winno Bearz Club",
+      "place": "Polygon",
+      "description": "Collection of 5,555 generative NFTs with over 194 traits, listed on OpenSea."
+    },
+    "drilldev": {
+      "title": "Drill Dev",
+      "place": "Online",
+      "description": "AI image creation and tools for developers, with AI-assisted workflows."
+    },
+    "playpadIdea": {
+      "title": "The PlayPad idea",
+      "place": "Geneva, Switzerland",
+      "description": "A padel-playing friend couldn't find partners: the idea for the app was born."
+    },
+    "playpad": {
+      "title": "PlayPad Sàrl",
+      "place": "Geneva, Switzerland",
+      "description": "The company was officially founded in January 2024. App published on Google Play and the App Store."
+    },
+    "dandela": {
+      "title": "Founding Dandela Academy",
+      "place": "Luanda, Angola",
+      "description": "INEFOP-certified vocational school, with a digital platform and AI at the heart of learning."
+    },
+    "react": {
+      "title": "React certification",
+      "place": "Online",
+      "description": "Front-End Engineering with React (CodeSignal)."
+    },
+    "dandelaOpening": {
+      "title": "Dandela Academy opening",
+      "place": "Luanda, Angola",
+      "description": "Opening planned for April 2026."
+    },
+    "today": {
+      "title": "Vibe Developer",
+      "place": "Geneva · Luanda",
+      "description": "Web & Mobile developer between Switzerland and Angola, working with AI every day."
+    }
+  }
+}
