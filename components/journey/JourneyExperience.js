@@ -866,13 +866,25 @@ function StopDetails({ stop, total, onPrev, onNext, compact = false, mobileLayou
   const text = stopText(stop);
   const showBody = !compact || expanded;
   const fullHeightMobile = mobileLayout && expanded;
-  const unlocked = [
-    ...stop.languages.map((id) => t(`languages.${id}.label`)),
-    ...stop.skills.map((id) => {
-      const skill = JOURNEY_SKILLS.find((s) => s.id === id);
-      return skill?.label || getJourneySkillLabel(i18n.language, id);
-    }),
-  ];
+  const languageFlagById = useMemo(
+    () => Object.fromEntries(JOURNEY_LANGUAGES.map((lang) => [lang.id, lang.flag])),
+    [],
+  );
+  const unlockedLanguages = stop.languages.map((id) => {
+    const langFields = getJourneyLanguageFields(i18n.language, id);
+    return {
+      id,
+      label: langFields?.label || t(`languages.${id}.label`),
+      flagKey: languageFlagById[id],
+    };
+  });
+  const unlockedSkills = stop.skills.map((id) => {
+    const skill = JOURNEY_SKILLS.find((s) => s.id === id);
+    return {
+      id,
+      label: skill?.label || getJourneySkillLabel(i18n.language, id),
+    };
+  });
 
   useEffect(() => {
     setExpanded(false);
@@ -975,13 +987,39 @@ function StopDetails({ stop, total, onPrev, onNext, compact = false, mobileLayou
             )}
           </Box>
 
-          {unlocked.length > 0 && (
+          {(unlockedLanguages.length > 0 || unlockedSkills.length > 0) && (
             <Box sx={{ mt: 2 }}>
               <SectionTitle theme={theme}>{t('ui.unlockedHere')}</SectionTitle>
               <Stack direction="row" flexWrap="wrap" useFlexGap gap={0.75}>
-                {unlocked.map((label) => (
+                {unlockedLanguages.map(({ id, label, flagKey }) => {
+                  const Flag = flagKey ? FLAGS[flagKey] : null;
+                  return (
+                    <Chip
+                      key={`lang-${id}`}
+                      size="small"
+                      icon={
+                        Flag ? (
+                          <Box component="span" sx={{ display: 'flex', alignItems: 'center', pl: 0.75 }}>
+                            <Flag size={16} />
+                          </Box>
+                        ) : undefined
+                      }
+                      label={`+ ${label}`}
+                      sx={{
+                        color: theme.text,
+                        fontWeight: 600,
+                        pl: Flag ? 0.25 : undefined,
+                        '& .MuiChip-icon': { ml: 0.5, mr: -0.25 },
+                        bgcolor: `${era?.color}${theme.mode === 'dark' ? '26' : '2e'}`,
+                        border: `1px solid ${era?.color}99`,
+                        boxShadow: theme.mode === 'dark' ? `0 0 10px ${era?.color}33` : 'none',
+                      }}
+                    />
+                  );
+                })}
+                {unlockedSkills.map(({ id, label }) => (
                   <Chip
-                    key={label}
+                    key={`skill-${id}`}
                     size="small"
                     label={`+ ${label}`}
                     sx={{

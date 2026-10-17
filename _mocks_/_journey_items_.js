@@ -84,7 +84,7 @@ export const JOURNEY_SKILLS = [
  * Titre, description et lieu : clés `milestones.<id>` dans journey.json.
  */
 export const JOURNEY_MILESTONES = [
-  { id: 'birth', era: 'origines', region: 'angola', year: '1989', image: '/img/portfolio/step-1-birth.jpeg' },
+  { id: 'birth', era: 'origines', region: 'angola', year: '1989', image: '/img/portfolio/step-1-birth.jpeg', languages: ['lingala', 'portuguese'] },
   { id: 'immigration', era: 'origines', region: 'suisse', year: null, languages: ['french', 'lingala'] },
   { id: 'childhood', era: 'enfance', region: 'suisse', year: null, languages: ['english', 'italian'] },
   { id: 'schneider', era: 'formation', region: 'suisse', year: '2008', skills: ['business'] },
