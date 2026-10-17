@@ -30,12 +30,19 @@
     "play": "Reprodução automática",
     "pause": "Pausa",
     "previous": "Etapa anterior",
-    "next": "Etapa seguinte"
+    "next": "Etapa seguinte",
+    "view3d": "Vista 3D interativa",
+    "view2d": "Vista cronológica acessível",
+    "view2dHeading": "Percurso cronológico",
+    "timelineNav": "Etapas do percurso",
+    "placeholderStepHint": "Etapa por completar",
+    "mapLegendLines": "Linhas · épocas"
   },
   "profile": {
     "name": "Daniel Mbengui",
     "role": "Programador Web & Mobile · Vibe Developer",
     "tagline": "Entre Genebra e Luanda, junto tecnologia e criatividade para dar vida aos projetos.",
+    "hudIntro": "Apaixonado por código, junto tecnologia e criatividade para dar vida aos seus projetos. Entre tech e negócios, sou o seu parceiro de inovação!",
     "based": "Genebra · Luanda"
   },
   "eras": {
@@ -66,8 +73,9 @@
   "milestones": {
     "birth": {
       "title": "Nascimento",
-      "place": "Angola",
-      "description": "O início da história. Data, local exato e episódios por completar."
+      "yearLabel": "Fevereiro de 1989",
+      "place": "Luanda, Palanca, Angola",
+      "description": "Nasci em fevereiro de 1989 em Luanda, no bairro da Palanca, em Angola."
     },
     "immigration": {
       "title": "Imigração para a Suíça",

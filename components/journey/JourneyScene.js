@@ -61,25 +61,24 @@ function JourneyPath({ curve, stops, activeIndex, theme }) {
     const total = (stops.length - 1) * samplesPerStop;
     const activeT = stops.length > 1 ? activeIndex / (stops.length - 1) : 0;
     const background = new THREE.Color(theme.background);
+    const pathActive = new THREE.Color(theme.scene.pathLine);
+    const pathFuture = new THREE.Color(theme.scene.pathLineFuture || theme.scene.pathLine);
     const pts = [];
     const cols = [];
-    const a = new THREE.Color();
-    const b = new THREE.Color();
     for (let s = 0; s <= total; s++) {
       const t = s / total;
       pts.push(curve.getPoint(t));
-      const segment = Math.min(Math.floor(s / samplesPerStop), stops.length - 2);
-      a.set(eraColor(stops[segment]));
-      b.set(eraColor(stops[segment + 1]));
-      const c = a.clone().lerp(b, (s % samplesPerStop) / samplesPerStop);
-      if (t > activeT + 1e-6) c.lerp(background, theme.scene.pathDim);
-      else c.multiplyScalar(theme.scene.pathGlow);
+      const c = (t > activeT + 1e-6 ? pathFuture : pathActive).clone();
+      if (t > activeT + 1e-6 && theme.scene.pathFutureMix > 0) {
+        c.lerp(background, theme.scene.pathFutureMix);
+      }
       cols.push(c);
     }
     return { points: pts, colors: cols };
   }, [curve, stops, activeIndex, theme]);
 
-  return <Line points={points} vertexColors={colors} lineWidth={3} toneMapped={false} />;
+  const lineWidth = theme.scene.pathLineWidth ?? 2.5;
+  return <Line points={points} vertexColors={colors} lineWidth={lineWidth} toneMapped={false} />;
 }
 
 function Comet({ curve, stops, activeIndex, color }) {
@@ -107,7 +106,7 @@ function Comet({ curve, stops, activeIndex, color }) {
   );
 }
 
-function StopNode({ stop, label, position, active, visited, onSelect, theme }) {
+function StopNode({ stop, label, position, active, visited, onSelect, theme, showFloatingLabel = true }) {
   const [hovered, setHovered] = useState(false);
   const group = useRef();
   const ring = useRef();
@@ -130,7 +129,8 @@ function StopNode({ stop, label, position, active, visited, onSelect, theme }) {
     }
   });
 
-  const intensity = active ? 4 : visited ? 2.2 : stop.placeholder ? 0.6 : 1.2;
+  const boost = theme.scene.stopEmissiveBoost ?? 1;
+  const intensity = (active ? 4 : visited ? 2.2 : stop.placeholder ? 0.6 : 1.2) * boost;
 
   return (
     <group position={position}>
@@ -170,7 +170,7 @@ function StopNode({ stop, label, position, active, visited, onSelect, theme }) {
         </mesh>
       )}
 
-      {(hovered || active) && (
+      {showFloatingLabel && (hovered || active) && (
         <Html position={[0, 1.6, 0]} center distanceFactor={14} zIndexRange={[10, 0]} style={{ pointerEvents: 'none' }}>
           <div
             style={{
@@ -196,6 +196,7 @@ function StopNode({ stop, label, position, active, visited, onSelect, theme }) {
 function RegionGround({ region, label, length, centerZ, theme }) {
   const labels = [];
   for (let z = 4; z > -length; z -= 60) labels.push(z);
+  const labelColor = region.id === 'angola' ? theme.scene.regionLabelAngola : theme.scene.regionLabelSuisse;
   return (
     <group>
       <Grid
@@ -206,7 +207,7 @@ function RegionGround({ region, label, length, centerZ, theme }) {
         cellColor={theme.scene.gridCell}
         sectionSize={5}
         sectionThickness={1.2}
-        sectionColor={region.color}
+        sectionColor={theme.scene.gridSection}
         fadeDistance={90}
         fadeStrength={1.5}
       />
@@ -217,7 +218,7 @@ function RegionGround({ region, label, length, centerZ, theme }) {
           rotation={[-Math.PI / 2, 0, 0]}
           fontSize={3.2}
           letterSpacing={0.3}
-          color={region.color}
+          color={labelColor}
           anchorX="center"
           anchorY="middle"
           material-toneMapped={false}
@@ -229,7 +230,7 @@ function RegionGround({ region, label, length, centerZ, theme }) {
   );
 }
 
-function Scene({ stops, labels, regionLabels, activeIndex, onSelect, theme }) {
+function Scene({ stops, labels, regionLabels, activeIndex, onSelect, theme, showFloatingLabels = true }) {
   const positions = useMemo(() => getStopPositions(stops), [stops]);
   const curve = useMemo(
     () => new THREE.CatmullRomCurve3(positions.length > 1 ? positions : [positions[0], positions[0].clone()], false, 'catmullrom', 0.5),
@@ -241,9 +242,15 @@ function Scene({ stops, labels, regionLabels, activeIndex, onSelect, theme }) {
   return (
     <>
       <color attach="background" args={[theme.background]} />
-      <fog attach="fog" args={[theme.background, 35, 110]} />
+      <fog attach="fog" args={[theme.background, theme.scene.fogNear ?? 35, theme.scene.fogFar ?? 110]} />
       <ambientLight intensity={theme.scene.ambient} />
-      <pointLight position={positions[activeIndex].toArray()} intensity={60} distance={30} color={eraColor(stops[activeIndex])} />
+      <directionalLight position={[28, 42, 18]} intensity={theme.scene.directional ?? 0.4} color="#ffffff" />
+      <pointLight
+        position={positions[activeIndex].toArray()}
+        intensity={theme.scene.pointLightIntensity ?? 60}
+        distance={30}
+        color={eraColor(stops[activeIndex])}
+      />
 
       {theme.scene.stars && <Stars radius={160} depth={60} count={6000} factor={5} saturation={0.6} fade speed={0.6} />}
       <Sparkles count={260} scale={[60, 20, length]} position={[0, 2, centerZ]} size={3} speed={0.35} color={theme.scene.sparkles} />
@@ -260,7 +267,7 @@ function Scene({ stops, labels, regionLabels, activeIndex, onSelect, theme }) {
       ))}
 
       <JourneyPath curve={curve} stops={stops} activeIndex={activeIndex} theme={theme} />
-      <Comet curve={curve} stops={stops} activeIndex={activeIndex} color={theme.scene.comet} />
+      <Comet curve={curve} stops={stops} activeIndex={activeIndex} color={theme.scene.pathLine} />
 
       {stops.map((stop, i) => (
         <StopNode
@@ -272,6 +279,7 @@ function Scene({ stops, labels, regionLabels, activeIndex, onSelect, theme }) {
           visited={i < activeIndex}
           onSelect={onSelect}
           theme={theme}
+          showFloatingLabel={showFloatingLabels}
         />
       ))}
 

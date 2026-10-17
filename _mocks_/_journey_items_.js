@@ -73,8 +73,8 @@ export const JOURNEY_SKILLS = [
  * Titre, description et lieu : clés `milestones.<id>` dans journey.json.
  */
 export const JOURNEY_MILESTONES = [
-  { id: 'birth', era: 'origines', region: 'angola', year: null, languages: ['french', 'lingala'] },
-  { id: 'immigration', era: 'origines', region: 'suisse', year: null },
+  { id: 'birth', era: 'origines', region: 'angola', year: '1989', image: '/img/portfolio/step-1-birth.jpeg' },
+  { id: 'immigration', era: 'origines', region: 'suisse', year: null, languages: ['french', 'lingala'] },
   { id: 'childhood', era: 'enfance', region: 'suisse', year: null, languages: ['english', 'italian'] },
   { id: 'schneider', era: 'formation', region: 'suisse', year: '2008', skills: ['business'] },
   { id: 'jeunesseco', era: 'formation', region: 'suisse', year: '2009', skills: ['writing'] },
@@ -124,6 +124,7 @@ export function buildJourneyStops(total = JOURNEY_TOTAL_STOPS) {
       year: milestone ? milestone.year : undefined,
       today: Boolean(milestone?.today),
       video: milestone?.video || null,
+      image: milestone?.image || null,
       skills: milestone?.skills || [],
       languages: milestone?.languages || [],
     });

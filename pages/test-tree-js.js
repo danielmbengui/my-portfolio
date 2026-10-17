@@ -19,7 +19,7 @@ export default function TestTreeJsPage() {
   );
 }
 
-export async function getStaticProps({ locale }) {
+export async function getServerSideProps({ locale }) {
   const lang = JOURNEY_LOCALES.includes(locale) ? locale : 'fr';
   return {
     props: {
