@@ -399,6 +399,39 @@ export function CursorIcon({size = 30, color = 'var(--text)', ...props}) {
     )
 }
 
+function JourneyLogoIcon({ src, size = 30, ...props }) {
+    return (
+        <img
+            src={src}
+            alt=""
+            width={size}
+            height={size}
+            style={{ display: 'block', objectFit: 'contain' }}
+            {...props}
+        />
+    );
+}
+
+/** Marque Grok (xAI) — public/img/logos/grok.svg */
+export function GrokIcon({ size = 30, ...props }) {
+    return <JourneyLogoIcon src="/img/logos/grok.svg" size={size} {...props} />;
+}
+
+/** Grok Bot (Play Store ai.x.grok.bot) */
+export function GrokBotIcon({ size = 30, ...props }) {
+    return <JourneyLogoIcon src="/img/logos/grok-bot.png" size={size} {...props} />;
+}
+
+/** Claude Code — favicon claude.ai */
+export function ClaudeCodeIcon({ size = 30, ...props }) {
+    return <JourneyLogoIcon src="/img/logos/claude-code.svg" size={size} {...props} />;
+}
+
+/** Xcode — icône bleue officielle (Apple Developer) */
+export function XcodeIcon({ size = 30, ...props }) {
+    return <JourneyLogoIcon src="/img/logos/xcode.png" size={size} {...props} />;
+}
+
 export function ApiCallsIcon({size = 30, color = 'var(--text)', ...props}) {
     return(
         <Icon icon="mdi:api" {...props} color={color} width={size} />

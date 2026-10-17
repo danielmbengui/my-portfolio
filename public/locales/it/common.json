@@ -169,6 +169,11 @@
             "title" : "Progetti",
             "subtitle" : "Realizzazioni concrete all'incrocio tra digitale, IA e mobile.",
             "viewProject" : "Vedi il progetto",
+            "vaakai" : {
+                "name" : "Vaakai Store",
+                "type" : "E-commerce & Retail",
+                "description" : "Vaakai Store è la drogheria online svizzera pensata per la vita di tutti i giorni: freschezza, qualità e consegna rapida in tutta la Svizzera. Il sito riunisce catalogo prodotti, programma fedeltà, servizi in negozio e selezioni tematiche, in un'esperienza multilingue (francese, inglese, tedesco, italiano) con tema chiaro, scuro o di sistema. Sviluppata con Dandela Tech, la piattaforma illustra un retail digitale completo — percorso cliente fluido, fiducia e un punto vendita locale connesso alla sua comunità."
+            },
             "dandela" : {
                 "name" : "Dandela Academy",
                 "type" : "Formazione e E-learning",
@@ -250,6 +255,10 @@
     "viewProject": "Vedi il progetto",
     "last_projects" : "Progetti recenti",
     "projects": {
+        "vaakai" : {
+            "name" : "Vaakai Store",
+            "type" : "E-commerce & Retail"
+        },
         "dandela" : {
             "name" : "Dandela Academy",
             "type" : "Formazione e E-learning"

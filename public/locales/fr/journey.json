@@ -21,6 +21,14 @@
     "placeholderTitle": "Étape {{n}}",
     "placeholderDescription": "Étape à compléter : ajoute une description, une vidéo et les compétences acquises à ce moment-là.",
     "home": "Accueil",
+    "menuOpen": "Menu",
+    "menuExplore": "Explorer",
+    "menuClose": "Fermer",
+    "menuAssistant": "Assistant",
+    "menuCtaAssistant": "Discuter avec l'assistant",
+    "menuSectionJourney": "Le parcours",
+    "menuSectionMore": "Et au-delà",
+    "viewSection": "Affichage",
     "settings": "Profil, langues & compétences",
     "theme": "Thème",
     "themeDark": "Sombre",
@@ -36,7 +44,9 @@
     "view2dHeading": "Parcours chronologique",
     "timelineNav": "Étapes du parcours",
     "placeholderStepHint": "Étape à compléter",
-    "mapLegendLines": "Lignes · époques"
+    "mapLegendLines": "Lignes · époques",
+    "introViewJourney": "Voir mon parcours",
+    "introViewCv": "Voir mon CV"
   },
   "profile": {
     "name": "Daniel Mbengui",
@@ -59,16 +69,20 @@
   },
   "languages": {
     "french": { "label": "Français", "level": "C2 · Langue maternelle" },
-    "lingala": { "label": "Lingala", "level": "B2 · Courant" },
+    "lingala": { "label": "Lingala", "level": "C2 · Langue maternelle" },
     "english": { "label": "Anglais", "level": "C1 · Courant" },
-    "italian": { "label": "Italien", "level": "A2 · Élémentaire" },
-    "portuguese": { "label": "Portugais", "level": "A1 · Débutant" }
+    "portuguese": { "label": "Portugais", "level": "A2 · Élémentaire" },
+    "italian": { "label": "Italien", "level": "A2 · Élémentaire" }
   },
   "skills": {
     "business": "Business & gestion",
     "writing": "Écriture",
     "ai": "IA générative",
-    "cursor": "Cursor & agents IA"
+    "cursor": "Cursor & agents IA",
+    "grok": "Grok",
+    "grokBot": "Grok Bot",
+    "claudeCode": "Claude Code",
+    "xcode": "Xcode"
   },
   "milestones": {
     "birth": {

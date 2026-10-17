@@ -169,6 +169,11 @@
             "title" : "Projetos",
             "subtitle" : "Realizações concretas na interseção do digital, da IA e do mobile.",
             "viewProject" : "Ver o projeto",
+            "vaakai" : {
+                "name" : "Vaakai Store",
+                "type" : "E-commerce & retail",
+                "description" : "A Vaakai Store é a mercearia online suíça para o dia a dia: produtos frescos, qualidade e entrega rápida em toda a Suíça. O site reúne catálogo, cartão de fidelidade, serviços em loja e destaques de produtos, numa experiência multilingue (francês, inglês, alemão, italiano) com tema claro, escuro ou automático. Desenvolvida pela Dandela Tech, mostra um retail digital de ponta a ponta — jornada de compra fluida e uma loja de proximidade ligada à sua comunidade."
+            },
             "dandela" : {
                 "name" : "Dandela Academy",
                 "type" : "Formação e E-learning",
@@ -202,7 +207,11 @@
         },
         "contactMe" : {
             "title" : "Contacta-me",
-            "subtitle" : "Uma ideia, um projeto ou uma colaboração? Envia-me uma mensagem ou encontra-me nas redes."
+            "subtitle" : "Uma ideia, um projeto ou uma colaboração? Envia-me uma mensagem ou encontra-me nas redes.",
+            "email": "E-mail",
+            "phoneSwitzerland": "Telefone · Suíça",
+            "phoneAngola": "Telefone · Angola",
+            "website": "Site web"
         }
     },
     "chatbot" : "Fala comigo",
@@ -250,6 +259,10 @@
     "viewProject": "Ver o projeto",
     "last_projects" : "Projetos recentes",
     "projects": {
+        "vaakai" : {
+            "name" : "Vaakai Store",
+            "type" : "E-commerce & retail"
+        },
         "dandela" : {
             "name" : "Dandela Academy",
             "type" : "Formação e E-learning"

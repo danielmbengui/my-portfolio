@@ -3,6 +3,10 @@
 
 export const _NAMESPACE_LANGAGE_JOURNEY_ = 'journey';
 export const JOURNEY_LOCALES = ['fr', 'en', 'pt'];
+export const JOURNEY_DEFAULT_LOCALE = 'fr';
+export const JOURNEY_LANG_STORAGE_KEY = 'journey-lang';
+export const JOURNEY_VIEW_STORAGE_KEY = 'journey-view-mode';
+export const JOURNEY_DEFAULT_VIEW = '3d';
 
 /** Nombre total de points sur la carte. Les étapes non renseignées deviennent des points "à compléter". */
 export const JOURNEY_TOTAL_STOPS = 30;
@@ -38,8 +42,8 @@ export const JOURNEY_LANGUAGES = [
   { id: 'french', flag: 'fr' },
   { id: 'lingala', flag: 'ao' },
   { id: 'english', flag: 'en' },
-  { id: 'italian', flag: 'it' },
   { id: 'portuguese', flag: 'pt' },
+  { id: 'italian', flag: 'it' },
 ];
 
 export const JOURNEY_SKILLS = [
@@ -65,6 +69,10 @@ export const JOURNEY_SKILLS = [
   { id: 'mui', label: 'Material UI' },
   { id: 'typescript', label: 'TypeScript' },
   { id: 'cursor' },
+  { id: 'grok' },
+  { id: 'grokBot' },
+  { id: 'claudeCode', label: 'Claude Code' },
+  { id: 'xcode', label: 'Xcode' },
 ];
 
 /**
@@ -95,7 +103,7 @@ export const JOURNEY_MILESTONES = [
   { id: 'dandela', era: 'entrepreneur', region: 'angola', year: '2024', skills: ['pwa', 'mui'] },
   { id: 'react', era: 'entrepreneur', region: 'suisse', year: '2025', skills: ['typescript'] },
   { id: 'dandelaOpening', era: 'entrepreneur', region: 'angola', year: '2026' },
-  { id: 'today', era: 'entrepreneur', region: 'suisse', today: true, skills: ['cursor'] },
+  { id: 'today', era: 'entrepreneur', region: 'suisse', today: true, skills: ['cursor', 'grok', 'grokBot', 'claudeCode', 'xcode'] },
 ];
 
 /** Répartit les étapes clés sur `total` points et remplit les trous avec des étapes à compléter. */

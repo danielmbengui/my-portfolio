@@ -1,12 +1,13 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Grid, Html, Line, OrbitControls, Sparkles, Stars, Text } from '@react-three/drei';
+import { Billboard, Grid, Html, Line, OrbitControls, Sparkles, Stars, Text } from '@react-three/drei';
 import { Bloom, EffectComposer, Vignette } from '@react-three/postprocessing';
 import { JOURNEY_ERAS, JOURNEY_REGIONS } from '@/_mocks_/_journey_items_';
 
 const GROUND_Y = -6;
 const CAMERA_OFFSET = new THREE.Vector3(9, 5, 13);
+const REGION_WIDTH = 22;
 
 export function getStopPositions(stops) {
   const stepZ = stops.length > 80 ? 3 : 7;
@@ -22,6 +23,16 @@ export function getStopPositions(stops) {
 
 function eraColor(stop) {
   return JOURNEY_ERAS[stop.era]?.color || '#ffffff';
+}
+
+/** Applique l’exposition du thème au renderer. */
+function RendererSettings({ exposure }) {
+  const { gl } = useThree();
+  useEffect(() => {
+    gl.toneMapping = THREE.ACESFilmicToneMapping;
+    gl.toneMappingExposure = exposure ?? 1;
+  }, [gl, exposure]);
+  return null;
 }
 
 function CameraRig({ target }) {
@@ -68,21 +79,38 @@ function JourneyPath({ curve, stops, activeIndex, theme }) {
     for (let s = 0; s <= total; s++) {
       const t = s / total;
       pts.push(curve.getPoint(t));
-      const c = (t > activeT + 1e-6 ? pathFuture : pathActive).clone();
-      if (t > activeT + 1e-6 && theme.scene.pathFutureMix > 0) {
-        c.lerp(background, theme.scene.pathFutureMix);
-      }
+      const future = t > activeT + 1e-6;
+      const c = (future ? pathFuture : pathActive).clone();
+      if (future && theme.scene.pathFutureMix > 0) c.lerp(background, theme.scene.pathFutureMix);
       cols.push(c);
     }
     return { points: pts, colors: cols };
   }, [curve, stops, activeIndex, theme]);
 
   const lineWidth = theme.scene.pathLineWidth ?? 2.5;
-  return <Line points={points} vertexColors={colors} lineWidth={lineWidth} toneMapped={false} />;
+  const haloOpacity = theme.scene.pathHaloOpacity ?? 0;
+
+  return (
+    <group>
+      {haloOpacity > 0 && (
+        <Line
+          points={points}
+          color={theme.scene.pathHalo || theme.scene.pathLine}
+          lineWidth={lineWidth * 3.2}
+          transparent
+          opacity={haloOpacity}
+          depthWrite={false}
+          toneMapped={false}
+        />
+      )}
+      <Line points={points} vertexColors={colors} lineWidth={lineWidth} toneMapped={false} />
+    </group>
+  );
 }
 
 function Comet({ curve, stops, activeIndex, color }) {
   const ref = useRef();
+  const glow = useRef();
   const progress = useRef(0);
   const end = stops.length > 1 ? activeIndex / (stops.length - 1) : 0;
 
@@ -96,20 +124,28 @@ function Comet({ curve, stops, activeIndex, color }) {
     progress.current += delta * 0.12;
     if (progress.current > end) progress.current = 0;
     ref.current.position.copy(curve.getPoint(progress.current));
+    if (glow.current) glow.current.scale.setScalar(1.6 + Math.sin(progress.current * 40) * 0.15);
   });
 
   return (
-    <mesh ref={ref}>
-      <sphereGeometry args={[0.28, 16, 16]} />
-      <meshBasicMaterial color={color} toneMapped={false} />
-    </mesh>
+    <group ref={ref}>
+      <mesh>
+        <sphereGeometry args={[0.24, 16, 16]} />
+        <meshBasicMaterial color={color} toneMapped={false} />
+      </mesh>
+      <mesh ref={glow}>
+        <sphereGeometry args={[0.24, 16, 16]} />
+        <meshBasicMaterial color={color} transparent opacity={0.22} depthWrite={false} toneMapped={false} blending={THREE.AdditiveBlending} />
+      </mesh>
+    </group>
   );
 }
 
-function StopNode({ stop, label, position, active, visited, onSelect, theme, showFloatingLabel = true }) {
+function StopNode({ stop, label, position, active, visited, onSelect, theme, showFloatingLabel = true, showYear = true }) {
   const [hovered, setHovered] = useState(false);
   const group = useRef();
   const ring = useRef();
+  const halo = useRef();
   const color = eraColor(stop);
   const baseScale = stop.placeholder ? 0.55 : 1;
 
@@ -120,17 +156,23 @@ function StopNode({ stop, label, position, active, visited, onSelect, theme, sho
 
   useFrame(({ clock }, delta) => {
     if (!group.current) return;
-    const pulse = active ? 1.35 + Math.sin(clock.elapsedTime * 4) * 0.12 : hovered ? 1.25 : 1;
+    const pulse = active ? 1.3 + Math.sin(clock.elapsedTime * 3.2) * 0.08 : hovered ? 1.22 : 1;
     const s = THREE.MathUtils.lerp(group.current.scale.x, baseScale * pulse, 1 - Math.exp(-delta * 8));
     group.current.scale.setScalar(s);
     if (ring.current) {
-      ring.current.rotation.x += delta * 0.9;
-      ring.current.rotation.y += delta * 0.6;
+      ring.current.rotation.x += delta * 0.7;
+      ring.current.rotation.y += delta * 0.45;
+    }
+    if (halo.current) {
+      const target = active ? 2.3 + Math.sin(clock.elapsedTime * 2) * 0.2 : hovered ? 1.9 : 0.001;
+      const h = THREE.MathUtils.lerp(halo.current.scale.x, target, 1 - Math.exp(-delta * 6));
+      halo.current.scale.setScalar(h);
     }
   });
 
   const boost = theme.scene.stopEmissiveBoost ?? 1;
-  const intensity = (active ? 4 : visited ? 2.2 : stop.placeholder ? 0.6 : 1.2) * boost;
+  const intensity = (active ? 3.4 : visited ? 1.9 : stop.placeholder ? 0.5 : 1.1) * boost;
+  const isLight = theme.mode === 'light';
 
   return (
     <group position={position}>
@@ -142,6 +184,20 @@ function StopNode({ stop, label, position, active, visited, onSelect, theme, sho
         <sphereGeometry args={[1.6, 12, 12]} />
         <meshBasicMaterial transparent opacity={0} depthWrite={false} />
       </mesh>
+
+      {/* Halo doux (actif / survol) */}
+      <mesh ref={halo} scale={0.001}>
+        <sphereGeometry args={[0.6, 24, 24]} />
+        <meshBasicMaterial
+          color={color}
+          transparent
+          opacity={isLight ? 0.16 : 0.22}
+          depthWrite={false}
+          toneMapped={false}
+          blending={isLight ? THREE.NormalBlending : THREE.AdditiveBlending}
+        />
+      </mesh>
+
       <group ref={group}>
         <mesh>
           <icosahedronGeometry args={[0.6, 2]} />
@@ -149,43 +205,76 @@ function StopNode({ stop, label, position, active, visited, onSelect, theme, sho
             color={color}
             emissive={color}
             emissiveIntensity={intensity}
-            roughness={0.25}
-            metalness={0.4}
+            roughness={0.3}
+            metalness={0.25}
             toneMapped={false}
             wireframe={stop.placeholder && !active}
           />
         </mesh>
         {!stop.placeholder && (
           <mesh ref={ring}>
-            <torusGeometry args={[1.05, 0.04, 8, 64]} />
-            <meshBasicMaterial color={color} toneMapped={false} transparent opacity={active ? 1 : 0.55} />
+            <torusGeometry args={[1.05, 0.035, 10, 72]} />
+            <meshBasicMaterial color={color} toneMapped={false} transparent opacity={active ? 1 : visited ? 0.7 : 0.45} />
           </mesh>
         )}
       </group>
 
-      {active && (
-        <mesh position={[0, (GROUND_Y - position.y) / 2, 0]}>
-          <cylinderGeometry args={[0.05, 0.05, Math.abs(GROUND_Y - position.y), 8]} />
-          <meshBasicMaterial color={color} toneMapped={false} transparent opacity={0.7} />
-        </mesh>
+      {/* Fil vers le sol */}
+      <mesh position={[0, (GROUND_Y - position.y) / 2, 0]}>
+        <cylinderGeometry args={[0.03, 0.03, Math.abs(GROUND_Y - position.y), 6]} />
+        <meshBasicMaterial
+          color={active ? color : theme.scene.pathLineFuture}
+          toneMapped={false}
+          transparent
+          opacity={active ? 0.75 : stop.placeholder ? 0.08 : 0.2}
+        />
+      </mesh>
+
+      {/* Disque au sol */}
+      <mesh position={[0, GROUND_Y - position.y + 0.03, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+        <ringGeometry args={[stop.placeholder ? 0.25 : 0.45, stop.placeholder ? 0.32 : 0.6, 40]} />
+        <meshBasicMaterial color={color} toneMapped={false} transparent opacity={active ? 0.9 : visited ? 0.5 : 0.25} side={THREE.DoubleSide} />
+      </mesh>
+
+      {showYear && !stop.placeholder && !active && (
+        <Billboard position={[0, -1.25, 0]} follow>
+          <Text
+            fontSize={0.5}
+            letterSpacing={0.04}
+            color={theme.scene.yearLabel}
+            anchorX="center"
+            anchorY="top"
+            outlineWidth={0.04}
+            outlineColor={theme.background}
+            outlineOpacity={0.9}
+            material-toneMapped={false}
+            fillOpacity={visited ? 0.9 : 0.55}
+          >
+            {label.year}
+          </Text>
+        </Billboard>
       )}
 
       {showFloatingLabel && (hovered || active) && (
-        <Html position={[0, 1.6, 0]} center distanceFactor={14} zIndexRange={[10, 0]} style={{ pointerEvents: 'none' }}>
+        <Html position={[0, 1.7, 0]} center distanceFactor={14} zIndexRange={[10, 0]} style={{ pointerEvents: 'none' }}>
           <div
             style={{
               whiteSpace: 'nowrap',
-              padding: '6px 12px',
+              padding: '7px 14px',
               borderRadius: 999,
               border: `1px solid ${color}`,
               background: theme.scene.labelBg,
               color: theme.scene.labelText,
               fontFamily: 'Roboto, sans-serif',
               fontSize: 14,
-              boxShadow: `0 0 18px ${color}`,
+              letterSpacing: 0.2,
+              boxShadow: `0 8px 24px rgba(0,0,0,${isLight ? 0.18 : 0.5}), 0 0 16px ${color}55`,
+              backdropFilter: 'blur(10px)',
             }}
           >
-            <strong style={{ color }}>{label.year}</strong> · {label.title}
+            <strong style={{ color }}>{label.year}</strong>
+            <span style={{ opacity: 0.5, margin: '0 8px' }}>·</span>
+            {label.title}
           </div>
         </Html>
       )}
@@ -197,20 +286,41 @@ function RegionGround({ region, label, length, centerZ, theme }) {
   const labels = [];
   for (let z = 4; z > -length; z -= 60) labels.push(z);
   const labelColor = region.id === 'angola' ? theme.scene.regionLabelAngola : theme.scene.regionLabelSuisse;
+  const outerX = region.x < 0 ? region.x - REGION_WIDTH / 2 : region.x + REGION_WIDTH / 2;
+
   return (
     <group>
+      {/* Sol plein : donne de la profondeur et du contraste */}
+      <mesh position={[region.x, GROUND_Y - 0.03, centerZ]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
+        <planeGeometry args={[REGION_WIDTH + 1.5, length + 2]} />
+        <meshStandardMaterial
+          color={theme.scene.ground}
+          roughness={1}
+          metalness={0}
+          transparent
+          opacity={theme.scene.groundOpacity ?? 1}
+        />
+      </mesh>
+
       <Grid
         position={[region.x, GROUND_Y, centerZ]}
-        args={[22, length]}
+        args={[REGION_WIDTH, length]}
         cellSize={1}
-        cellThickness={0.6}
+        cellThickness={0.55}
         cellColor={theme.scene.gridCell}
         sectionSize={5}
-        sectionThickness={1.2}
+        sectionThickness={1.1}
         sectionColor={theme.scene.gridSection}
-        fadeDistance={90}
-        fadeStrength={1.5}
+        fadeDistance={110}
+        fadeStrength={1.4}
       />
+
+      {/* Rail discret à la couleur de la région, en bordure extérieure */}
+      <mesh position={[outerX, GROUND_Y + 0.02, centerZ]} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[0.12, length]} />
+        <meshBasicMaterial color={labelColor} transparent opacity={theme.mode === 'dark' ? 0.32 : 0.5} />
+      </mesh>
+
       {labels.map((z) => (
         <Text
           key={z}
@@ -221,6 +331,7 @@ function RegionGround({ region, label, length, centerZ, theme }) {
           color={labelColor}
           anchorX="center"
           anchorY="middle"
+          fillOpacity={0.9}
           material-toneMapped={false}
         >
           {label.toUpperCase()}
@@ -238,22 +349,35 @@ function Scene({ stops, labels, regionLabels, activeIndex, onSelect, theme, show
   );
   const length = Math.abs(positions[positions.length - 1].z) + 30;
   const centerZ = -length / 2 + 15;
+  const s = theme.scene;
 
   return (
     <>
+      <RendererSettings exposure={s.exposure} />
       <color attach="background" args={[theme.background]} />
-      <fog attach="fog" args={[theme.background, theme.scene.fogNear ?? 35, theme.scene.fogFar ?? 110]} />
-      <ambientLight intensity={theme.scene.ambient} />
-      <directionalLight position={[28, 42, 18]} intensity={theme.scene.directional ?? 0.4} color="#ffffff" />
+      <fog attach="fog" args={[theme.background, s.fogNear ?? 35, s.fogFar ?? 110]} />
+
+      <hemisphereLight args={[s.hemiSky, s.hemiGround, s.hemiIntensity ?? 0.5]} />
+      <ambientLight intensity={s.ambient} />
+      <directionalLight position={[28, 42, 18]} intensity={s.directional ?? 0.4} color="#ffffff" />
       <pointLight
         position={positions[activeIndex].toArray()}
-        intensity={theme.scene.pointLightIntensity ?? 60}
-        distance={30}
+        intensity={s.pointLightIntensity ?? 60}
+        distance={32}
+        decay={2}
         color={eraColor(stops[activeIndex])}
       />
 
-      {theme.scene.stars && <Stars radius={160} depth={60} count={6000} factor={5} saturation={0.6} fade speed={0.6} />}
-      <Sparkles count={260} scale={[60, 20, length]} position={[0, 2, centerZ]} size={3} speed={0.35} color={theme.scene.sparkles} />
+      {s.stars && <Stars radius={160} depth={60} count={5000} factor={4.5} saturation={0.4} fade speed={0.5} />}
+      <Sparkles
+        count={220}
+        scale={[60, 18, length]}
+        position={[0, 3, centerZ]}
+        size={2.6}
+        speed={0.3}
+        color={s.sparkles}
+        opacity={s.sparklesOpacity ?? 0.4}
+      />
 
       {Object.values(JOURNEY_REGIONS).map((region) => (
         <RegionGround
@@ -267,7 +391,7 @@ function Scene({ stops, labels, regionLabels, activeIndex, onSelect, theme, show
       ))}
 
       <JourneyPath curve={curve} stops={stops} activeIndex={activeIndex} theme={theme} />
-      <Comet curve={curve} stops={stops} activeIndex={activeIndex} color={theme.scene.pathLine} />
+      <Comet curve={curve} stops={stops} activeIndex={activeIndex} color={s.comet || s.pathLine} />
 
       {stops.map((stop, i) => (
         <StopNode
@@ -280,15 +404,29 @@ function Scene({ stops, labels, regionLabels, activeIndex, onSelect, theme, show
           onSelect={onSelect}
           theme={theme}
           showFloatingLabel={showFloatingLabels}
+          showYear={showFloatingLabels}
         />
       ))}
 
-      <OrbitControls makeDefault enableDamping dampingFactor={0.08} minDistance={4} maxDistance={90} maxPolarAngle={Math.PI * 0.85} />
+      <OrbitControls
+        makeDefault
+        enableDamping
+        dampingFactor={0.08}
+        minDistance={4}
+        maxDistance={90}
+        maxPolarAngle={Math.PI * 0.85}
+        enablePan={false}
+      />
       <CameraRig target={positions[activeIndex]} />
 
       <EffectComposer disableNormalPass>
-        <Bloom mipmapBlur intensity={theme.scene.bloom.intensity} luminanceThreshold={theme.scene.bloom.threshold} luminanceSmoothing={0.3} />
-        <Vignette eskil={false} offset={0.15} darkness={theme.scene.vignette} />
+        <Bloom
+          mipmapBlur
+          intensity={s.bloom.intensity}
+          luminanceThreshold={s.bloom.threshold}
+          luminanceSmoothing={s.bloom.smoothing ?? 0.3}
+        />
+        <Vignette eskil={false} offset={0.2} darkness={s.vignette} />
       </EffectComposer>
     </>
   );
@@ -297,9 +435,9 @@ function Scene({ stops, labels, regionLabels, activeIndex, onSelect, theme, show
 export default function JourneyScene(props) {
   return (
     <Canvas
-      dpr={[1, 2]}
-      camera={{ position: [45, 55, 45], fov: 50, near: 0.1, far: 500 }}
-      gl={{ antialias: true, powerPreference: 'high-performance' }}
+      dpr={[1, 1.75]}
+      camera={{ position: [45, 55, 45], fov: 46, near: 0.1, far: 500 }}
+      gl={{ antialias: true, powerPreference: 'high-performance', alpha: false }}
       style={{ position: 'absolute', inset: 0 }}
     >
       <Scene {...props} />

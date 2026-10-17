@@ -169,6 +169,11 @@
             "title" : "Maprojeti",
             "subtitle" : "Mosala ya soló na croisée ya digital, IA mpe mobile.",
             "viewProject" : "Kotala projeti",
+            "vaakai" : {
+                "name" : "Vaakai Store",
+                "type" : "E-commerce & Retail",
+                "description" : "Vaakai Store ezali épicerie en ligne ya Suisse mpo na mokolo na mokolo: biloko ya sika, qualité mpe livraison ya noki na Suisse mobimba. Site ezali na catalogue, programme ya fidélité, services na magasin mpe sélection ya produits, na expérience multilingue (lifalansé, lingelesa, lialémani, litalien). Esalemi na Dandela Tech — retail digital mobimba mpo na magasin local oyo ekangisami na communauté na ye."
+            },
             "dandela" : {
                 "name" : "Dandela Academy",
                 "type" : "Formation & E-learning",
@@ -250,6 +255,10 @@
     "viewProject": "Kotala projeti",
     "last_projects" : "Maprojeti ya nsima",
     "projects": {
+        "vaakai" : {
+            "name" : "Vaakai Store",
+            "type" : "E-commerce & Retail"
+        },
         "dandela" : {
             "name" : "Dandela Academy",
             "type" : "Formation & E-learning"

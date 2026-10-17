@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -11,9 +11,8 @@ import {
   Box,
   Chip,
   IconButton,
+  Portal,
   Stack,
-  ToggleButton,
-  ToggleButtonGroup,
   Tooltip,
   Typography,
   useMediaQuery,
@@ -26,17 +25,15 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
-import HomeIcon from '@mui/icons-material/Home';
+import SmartToyIcon from '@mui/icons-material/SmartToy';
 import PlaceIcon from '@mui/icons-material/Place';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import TuneIcon from '@mui/icons-material/Tune';
 import CloseIcon from '@mui/icons-material/Close';
-import DarkModeIcon from '@mui/icons-material/DarkMode';
-import LightModeIcon from '@mui/icons-material/LightMode';
-import SettingsBrightnessIcon from '@mui/icons-material/SettingsBrightness';
-import ViewInArIcon from '@mui/icons-material/ViewInAr';
-import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import EmailIcon from '@mui/icons-material/Email';
+import PhoneIcon from '@mui/icons-material/Phone';
+import LanguageIcon from '@mui/icons-material/Language';
 import FullscreenIcon from '@mui/icons-material/Fullscreen';
 import VideoFullscreenDialog from '@/components/shared/VideoFullscreenDialog';
 import JourneyStepLightboxImage from '@/components/journey/JourneyStepLightboxImage';
@@ -44,7 +41,9 @@ import {
   ANGOLA_COLORS,
   JOURNEY_ERAS,
   JOURNEY_LANGUAGES,
+  JOURNEY_DEFAULT_VIEW,
   JOURNEY_LOCALES,
+  JOURNEY_VIEW_STORAGE_KEY,
   JOURNEY_PROFILE,
   JOURNEY_SKILLS,
   JOURNEY_TOTAL_STOPS,
@@ -54,13 +53,39 @@ import {
 import { useLangMode } from '@/contexts/LangModeProvider';
 import { AngolanIcon, EnglishIcon, FrenchIcon, ItalianIcon, PortugueseIcon, SwissIcon } from '@/components/icons/FlagIcons';
 import {
-  AndroidIcon, C_LangageIcon, CssIcon, CursorIcon, FirebaseIcon, FlutterIcon, GithubIcon, JavaIcon,
-  JavascriptIcon, MaterialUiIcon, MySqlIcon, NextJsIcon, OpenAiIcon, PwaIcon, PythonIcon, ReactIcon,
-  SolidityIcon, TypescriptIcon, Web3JsIcon,
+  AndroidIcon, C_LangageIcon, CssIcon, CursorIcon, FirebaseIcon, FlutterIcon, GithubIcon, IosIcon, JavaIcon,
+  ClaudeCodeIcon, GrokBotIcon, GrokIcon, JavascriptIcon, MaterialUiIcon, MySqlIcon, NextJsIcon, OpenAiIcon,
+  PlayStoreIcon, PwaIcon, XcodeIcon,
+  PythonIcon, ReactIcon, SolidityIcon, TypescriptIcon, Web3JsIcon,
 } from '@/components/icons/IconifiyIcons';
-import { getJourneyTheme, useJourneyThemeMode } from './journeyTheme';
-import { getJourneyMilestoneFields, getJourneyProfile, getJourneyUi } from '@/utility/journeyMilestoneText';
+import { _MY_PROFILE_, _NAMESPACE_LANGAGE_COMMON_, _PAGE_LINK_CV_ } from '@/_mocks_/_settings_items_';
+import AiAssistantPanel from '@/components/assistant/AiAssistantPanel';
+import {
+  getJourneyTheme,
+  journeyHeaderBackdropSx,
+  journeyHeaderBarSx,
+  journeyHeaderMenuPortalRootSx,
+  journeyHeaderMenuToggleSx,
+  journeyHeaderPanelCtaSx,
+  journeyHeaderPanelSx,
+  journeyHeaderPillSx,
+  journeyHeaderPreferencesSx,
+  journeyNavMenuRowSx,
+  journeyNavSectionEyebrowSx,
+  journeySiteCssVars,
+  useJourneyThemeMode,
+} from './journeyTheme';
+import {
+  getJourneyMilestoneFields,
+  getJourneyProfile,
+  getJourneyLanguageFields,
+  getJourneyProjectFields,
+  getJourneyProjectsUi,
+  getJourneySkillLabel,
+  getJourneyUi,
+} from '@/utility/journeyMilestoneText';
 import JourneyView2D from '@/components/journey/JourneyView2D';
+import JourneyIntroOverlay from '@/components/journey/JourneyIntroOverlay';
 
 const JourneyScene = dynamic(() => import('./JourneyScene'), { ssr: false });
 
@@ -89,6 +114,10 @@ const SKILL_ICONS = {
   mui: MaterialUiIcon,
   typescript: TypescriptIcon,
   cursor: CursorIcon,
+  grok: GrokIcon,
+  grokBot: GrokBotIcon,
+  claudeCode: ClaudeCodeIcon,
+  xcode: XcodeIcon,
 };
 
 function HudAccordion({ id, title, countLabel, theme, children }) {
@@ -100,11 +129,13 @@ function HudAccordion({ id, title, countLabel, theme, children }) {
         bgcolor: 'transparent',
         boxShadow: 'none',
         '&::before': { display: 'none' },
-        border: `1px solid ${theme.glassBorder}`,
+        border: `1px solid ${theme.divider || theme.glassBorder}`,
         borderRadius: '12px !important',
         mb: 1,
         overflow: 'hidden',
-        '&.Mui-expanded': { mb: 1 },
+        transition: 'border-color .2s ease, background-color .2s ease',
+        '&:hover': { borderColor: `${theme.accent}66` },
+        '&.Mui-expanded': { mb: 1, bgcolor: theme.mode === 'dark' ? 'rgba(255,255,255,0.03)' : 'rgba(21,17,15,0.03)' },
       }}
     >
       <AccordionSummary
@@ -218,47 +249,97 @@ function HudTextEntry({ theme, kicker, title, description, bullets, videoSrc, on
   );
 }
 
-function HudProjectEntry({ project, theme, tc }) {
-  const name = tc(`sections.projects.${project.id}.name`);
-  const type = tc(`sections.projects.${project.id}.type`);
-  const description = tc(`sections.projects.${project.id}.description`);
+const projectLinkButtonSx = (theme) => ({
+  ...navButtonSx(theme),
+  color: theme.accent,
+  textDecoration: 'none',
+  '& .MuiSvgIcon-root': { color: 'inherit' },
+  '&:link, &:visited, &:active': { color: theme.accent },
+  '&:hover': {
+    color: theme.accent,
+    borderColor: theme.accent,
+    bgcolor: `${theme.accent}22`,
+    transform: 'translateY(-1px)',
+  },
+});
+
+function HudProjectEntry({ project, theme, locale, tc }) {
+  const fields = getJourneyProjectFields(locale, project.id);
+  const name = fields?.name || tc(`sections.projects.${project.id}.name`);
+  const type = fields?.type || tc(`sections.projects.${project.id}.type`);
+  const description = fields?.description || tc(`sections.projects.${project.id}.description`);
+  const stopAccordionToggle = (e) => {
+    e.stopPropagation();
+  };
+
   return (
-    <Stack
-      direction="row"
-      spacing={1.25}
-      alignItems="flex-start"
+    <Accordion
+      disableGutters
+      defaultExpanded={false}
       sx={{
-        p: 1.25,
-        borderRadius: 2,
-        border: `1px solid ${theme.glassBorder}`,
         bgcolor: `${theme.accent}0d`,
+        boxShadow: 'none',
+        '&::before': { display: 'none' },
+        border: `1px solid ${theme.glassBorder}`,
+        borderRadius: '10px !important',
+        overflow: 'hidden',
+        transition: 'border-color .2s ease',
+        '&:hover': { borderColor: `${theme.accent}55` },
+        '&.Mui-expanded': { bgcolor: `${theme.accent}12` },
       }}
     >
-      <Box
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon sx={{ color: theme.accent, fontSize: 20 }} />}
+        aria-controls={`project-${project.id}-content`}
+        id={`project-${project.id}-header`}
         sx={{
-          width: 48,
-          height: 48,
-          flexShrink: 0,
-          borderRadius: 1.5,
-          border: `1px solid ${theme.glassBorder}`,
-          bgcolor: theme.mode === 'dark' ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.85)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          overflow: 'hidden',
-          p: 0.5,
+          minHeight: 44,
+          px: 1,
+          py: 0.25,
+          '& .MuiAccordionSummary-content': { my: 0.75, alignItems: 'center', mr: 0.5 },
         }}
       >
-        <Box component="img" src={project.img} alt={name} sx={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
-      </Box>
-      <Box sx={{ flex: 1, minWidth: 0 }}>
-        <Stack direction="row" alignItems="center" spacing={0.5} flexWrap="wrap" useFlexGap>
-          <Typography sx={{ fontSize: 13, fontWeight: 700, color: theme.text, lineHeight: 1.25 }}>{name}</Typography>
-          <Chip
-            size="small"
-            label={type}
-            sx={{ height: 20, fontSize: 10, fontWeight: 600, color: theme.text, border: `1px solid ${theme.accent}`, bgcolor: `${theme.accent}22` }}
-          />
+        <Stack direction="row" spacing={1} alignItems="center" sx={{ width: '100%', minWidth: 0 }}>
+          <Box
+            sx={{
+              width: 40,
+              height: 40,
+              flexShrink: 0,
+              borderRadius: 1.25,
+              border: `1px solid ${theme.glassBorder}`,
+              bgcolor: theme.mode === 'dark' ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.85)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              overflow: 'hidden',
+              p: 0.4,
+            }}
+          >
+            <Box
+              component="img"
+              src={hudProjectLogoSrc(project, theme)}
+              alt=""
+              sx={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
+            />
+          </Box>
+          <Box sx={{ flex: 1, minWidth: 0 }}>
+            <Typography sx={{ fontSize: 12.5, fontWeight: 700, color: theme.text, lineHeight: 1.25, pr: 0.5 }} noWrap>
+              {name}
+            </Typography>
+            <Chip
+              size="small"
+              label={type}
+              sx={{
+                mt: 0.35,
+                height: 18,
+                fontSize: 9.5,
+                fontWeight: 600,
+                color: theme.text,
+                border: `1px solid ${theme.accent}`,
+                bgcolor: `${theme.accent}22`,
+              }}
+            />
+          </Box>
           <IconButton
             component="a"
             href={project.link}
@@ -266,13 +347,95 @@ function HudProjectEntry({ project, theme, tc }) {
             rel="noopener noreferrer"
             size="small"
             aria-label={tc('sections.projects.viewProject')}
-            sx={{ ...navButtonSx(theme), width: 28, height: 28, ml: 'auto !important' }}
+            onClick={stopAccordionToggle}
+            onMouseDown={stopAccordionToggle}
+            sx={{ ...projectLinkButtonSx(theme), width: 28, height: 28, flexShrink: 0 }}
           >
             <OpenInNewIcon sx={{ fontSize: 14 }} />
           </IconButton>
         </Stack>
-        <Typography sx={{ fontSize: 11.5, color: theme.textSoft, lineHeight: 1.5, mt: 0.75 }}>{description}</Typography>
+      </AccordionSummary>
+      <AccordionDetails sx={{ pt: 0, px: 1.25, pb: 1.25 }}>
+        <Typography sx={{ fontSize: 11.5, color: theme.textSoft, lineHeight: 1.55 }}>{description}</Typography>
+      </AccordionDetails>
+    </Accordion>
+  );
+}
+
+const hudContactLinkSx = (theme) => ({
+  p: 1,
+  borderRadius: 1.5,
+  border: `1px solid ${theme.glassBorder}`,
+  bgcolor: `${theme.accent}08`,
+  textDecoration: 'none',
+  transition: 'border-color .2s ease, background-color .2s ease',
+  '&:link, &:visited, &:active': {
+    color: theme.text,
+    '& .hud-contact-value, & .hud-contact-icon': { color: theme.accent },
+  },
+  '&:hover': {
+    borderColor: theme.accent,
+    bgcolor: `${theme.accent}14`,
+  },
+});
+
+function HudContactLink({ entry, theme, tc }) {
+  const profile = _MY_PROFILE_;
+  if (!entry.show(profile)) return null;
+
+  const href = entry.getHref(profile);
+  const label = tc(entry.labelKey);
+  const display = entry.getDisplay(profile);
+  const { Icon } = entry;
+
+  return (
+    <Stack
+      component="a"
+      href={href}
+      target={entry.external ? '_blank' : undefined}
+      rel={entry.external ? 'noopener noreferrer' : undefined}
+      direction="row"
+      spacing={1.1}
+      alignItems="center"
+      sx={hudContactLinkSx(theme)}
+    >
+      <Box
+        sx={{
+          width: 32,
+          height: 32,
+          flexShrink: 0,
+          borderRadius: 1.25,
+          border: `1px solid ${theme.glassBorder}`,
+          bgcolor: theme.mode === 'dark' ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.85)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: theme.accent,
+        }}
+        className="hud-contact-icon"
+      >
+        {entry.muiIcon ? <Icon sx={{ fontSize: 17 }} /> : <Icon size={17} />}
       </Box>
+      <Box sx={{ flex: 1, minWidth: 0 }}>
+        <Typography sx={{ fontSize: 10.5, fontWeight: 600, color: theme.textMuted, lineHeight: 1.3 }}>{label}</Typography>
+        <Typography
+          className="hud-contact-value"
+          sx={{
+            fontSize: 12,
+            fontWeight: 700,
+            color: theme.accent,
+            lineHeight: 1.35,
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          {display}
+        </Typography>
+      </Box>
+      {entry.external && (
+        <OpenInNewIcon className="hud-contact-icon" sx={{ fontSize: 14, color: theme.accent, flexShrink: 0, opacity: 0.85 }} />
+      )}
     </Stack>
   );
 }
@@ -313,18 +476,104 @@ const UNIVERSE_VIDEOS = {
   video4: '/assets/videos/2-4.mp4',
 };
 
+const PLAYPAD_LOGO_DARK = '/img/playpad/playpad-logo-dark.svg';
+const PLAYPAD_LOGO_LIGHT = '/img/playpad/playpad-logo-light.svg';
+
 const JOURNEY_HUD_PROJECTS = [
+  { id: 'vaakai', img: '/img/vaakai/logo.png', link: 'https://vaakai-store.ch/' },
   { id: 'dandela', img: 'https://academy.dandela.com/images/logo.png', link: 'https://academy.dandela.com' },
-  { id: 'playpad', img: '/img/playpad/playpad_banner.png', link: 'https://playpadapp.com/' },
+  { id: 'playpad', img: PLAYPAD_LOGO_DARK, link: 'https://playpadapp.com/' },
   { id: 'drilldev', img: '/img/drilldev/complete_logo_drilldev.png', link: 'https://drilldev.com/' },
   { id: 'winno', img: '/img/logos/winnobearzclub.png', link: 'https://winno.bearzclub.io/' },
 ];
 
+function hudProjectLogoSrc(project, theme) {
+  if (project.id === 'playpad') {
+    return theme.mode === 'light' ? PLAYPAD_LOGO_LIGHT : PLAYPAD_LOGO_DARK;
+  }
+  return project.img;
+}
+
+const JOURNEY_HUD_CONTACTS = [
+  {
+    id: 'email',
+    labelKey: 'sections.contactMe.email',
+    getHref: (p) => `mailto:${p.mail}`,
+    getDisplay: (p) => p.mail,
+    external: false,
+    muiIcon: true,
+    Icon: EmailIcon,
+    show: () => true,
+  },
+  {
+    id: 'phone-ch',
+    labelKey: 'sections.contactMe.phoneSwitzerland',
+    getHref: (p) => `tel:${p.phone.replace(/\s/g, '')}`,
+    getDisplay: (p) => p.phone,
+    external: false,
+    muiIcon: true,
+    Icon: PhoneIcon,
+    show: (p) => Boolean(p.phone),
+  },
+  {
+    id: 'phone-ao',
+    labelKey: 'sections.contactMe.phoneAngola',
+    getHref: (p) => `tel:${p.phone_ao.replace(/\s/g, '')}`,
+    getDisplay: (p) => p.phone_ao,
+    external: false,
+    muiIcon: true,
+    Icon: PhoneIcon,
+    show: (p) => Boolean(p.phone_ao),
+  },
+  {
+    id: 'website',
+    labelKey: 'sections.contactMe.website',
+    getHref: (p) => p.socials.website,
+    getDisplay: (p) => p.socials.website.replace(/^https?:\/\//, ''),
+    external: true,
+    muiIcon: true,
+    Icon: LanguageIcon,
+    show: (p) => Boolean(p.socials?.website),
+  },
+  {
+    id: 'github',
+    labelKey: 'profileGithub',
+    getHref: (p) => p.socials.github,
+    getDisplay: () => 'GitHub',
+    external: true,
+    muiIcon: false,
+    Icon: GithubIcon,
+    show: (p) => Boolean(p.socials?.github),
+  },
+  {
+    id: 'playstore',
+    labelKey: 'profilePlaystore',
+    getHref: (p) => p.socials.playstore,
+    getDisplay: () => 'Google Play',
+    external: true,
+    muiIcon: false,
+    Icon: PlayStoreIcon,
+    show: (p) => Boolean(p.socials?.playstore),
+  },
+  {
+    id: 'appstore',
+    labelKey: 'profileAppstore',
+    getHref: (p) => p.socials.appstore,
+    getDisplay: () => 'App Store',
+    external: true,
+    muiIcon: false,
+    Icon: IosIcon,
+    show: (p) => Boolean(p.socials?.appstore),
+  },
+];
+
 const glass = (theme) => ({
   background: theme.glassBg,
-  backdropFilter: 'blur(14px)',
-  WebkitBackdropFilter: 'blur(14px)',
+  backgroundImage: `linear-gradient(180deg, ${theme.glassHighlight || 'transparent'} 0%, transparent 42%)`,
+  backdropFilter: 'blur(18px) saturate(1.25)',
+  WebkitBackdropFilter: 'blur(18px) saturate(1.25)',
   border: `1px solid ${theme.glassBorder}`,
+  boxShadow: theme.glassShadow,
   borderRadius: 3,
   color: theme.text,
   pointerEvents: 'auto',
@@ -333,22 +582,11 @@ const glass = (theme) => ({
 const navButtonSx = (theme) => ({
   color: theme.text,
   border: `1px solid ${theme.locked}`,
-  '&:hover': { borderColor: theme.accent, bgcolor: `${theme.accent}22` },
+  transition: 'border-color .2s ease, background-color .2s ease, transform .15s ease',
+  '&:hover': { borderColor: theme.accent, bgcolor: `${theme.accent}22`, transform: 'translateY(-1px)' },
+  '&:active': { transform: 'translateY(0)' },
+  '&.Mui-focusVisible': { outline: `2px solid ${theme.focusRing}`, outlineOffset: 2 },
   '&.Mui-disabled': { color: theme.textFaint, borderColor: theme.track },
-});
-
-const toggleGroupSx = (theme) => ({
-  ...glass(theme),
-  '& .MuiToggleButton-root': {
-    color: theme.textMuted,
-    border: 'none',
-    px: 1.1,
-    py: 0.6,
-    fontSize: 12,
-    fontWeight: 700,
-    '&.Mui-selected': { color: theme.mode === 'dark' ? '#140405' : '#fff', bgcolor: theme.accent },
-    '&.Mui-selected:hover': { bgcolor: theme.accent },
-  },
 });
 
 function useStopText() {
@@ -384,7 +622,7 @@ function SectionTitle({ children, right, theme }) {
   );
 }
 
-function ProfileCard({ theme, compact = false, collapsible = false }) {
+function ProfileCard({ theme, compact = false, collapsible = false, headerBar = false }) {
   const { t, i18n } = useTranslation(_NAMESPACE_LANGAGE_JOURNEY_);
   const [detailsOpen, setDetailsOpen] = useState(false);
   const profile = getJourneyProfile(i18n.language);
@@ -393,10 +631,14 @@ function ProfileCard({ theme, compact = false, collapsible = false }) {
   const based = profile.based || t('profile.based');
   const tagline = profile.tagline || t('profile.tagline');
   const showDetails = !collapsible || detailsOpen;
-  const avatarPx = compact ? (collapsible && !detailsOpen ? 44 : { xs: 48, md: 64 }) : 64;
+  const avatarPx = headerBar
+    ? (collapsible && !detailsOpen ? 40 : { xs: 40, md: 44 })
+    : compact
+      ? (collapsible && !detailsOpen ? 44 : { xs: 48, md: 64 })
+      : 64;
 
   return (
-    <Box sx={{ mb: compact ? 0 : 2.5, minWidth: 0, flex: compact && !collapsible ? 1 : undefined }}>
+    <Box sx={{ mb: compact || headerBar ? 0 : 2.5, minWidth: 0, flex: compact && !collapsible ? 1 : undefined }}>
       <Stack direction="row" spacing={collapsible && !detailsOpen ? 0 : 1.5} alignItems="center">
         <Box
           component={collapsible ? 'button' : 'div'}
@@ -429,25 +671,39 @@ function ProfileCard({ theme, compact = false, collapsible = false }) {
         {showDetails && (
           <Box sx={{ minWidth: 0, animation: collapsible ? 'journeyIn .35s ease' : 'none' }}>
             <Typography
-              component={compact ? 'h1' : 'p'}
+              component={compact || headerBar ? 'h1' : 'p'}
               sx={{
-                fontSize: compact ? { xs: 15, md: 18 } : 17,
+                fontSize: headerBar ? { xs: 14, md: 16 } : compact ? { xs: 15, md: 18 } : 17,
                 fontWeight: 800,
                 color: theme.text,
                 lineHeight: 1.2,
                 m: 0,
               }}
+              noWrap={headerBar}
             >
               {name}
             </Typography>
-            <Typography sx={{ fontSize: compact ? { xs: 10.5, md: 12 } : 12, color: theme.accent, fontWeight: 600, mt: 0.25, lineHeight: 1.35 }}>
+            <Typography
+              sx={{
+                fontSize: headerBar ? { xs: 10, md: 11 } : compact ? { xs: 10.5, md: 12 } : 12,
+                color: theme.accent,
+                fontWeight: 600,
+                mt: 0.25,
+                lineHeight: 1.35,
+              }}
+              noWrap={headerBar}
+            >
               {role}
             </Typography>
-            <Stack direction="row" alignItems="center" spacing={0.75} sx={{ mt: 0.5, flexWrap: 'wrap' }}>
-              <AngolanIcon size={14} />
-              <SwissIcon size={14} />
-              <Typography sx={{ fontSize: 11, color: theme.textMuted }}>{based}</Typography>
-            </Stack>
+            {(!headerBar || (headerBar && showDetails && collapsible)) && (
+              <Stack direction="row" alignItems="center" spacing={0.75} sx={{ mt: 0.5, flexWrap: 'wrap' }}>
+                <AngolanIcon size={14} />
+                <SwissIcon size={14} />
+                <Typography sx={{ fontSize: 11, color: theme.textMuted }} noWrap={headerBar}>
+                  {based}
+                </Typography>
+              </Stack>
+            )}
           </Box>
         )}
       </Stack>
@@ -463,6 +719,10 @@ function UnlockHud({ stops, activeIndex, onClose, theme, stopText, mobileOverlay
   const tc = useCallback((key, opts) => t(key, { ns: NS_COMMON, ...opts }), [t]);
   const profile = getJourneyProfile(i18n.language);
   const hudIntro = profile.hudIntro || t('profile.hudIntro', { ns: _NAMESPACE_LANGAGE_JOURNEY_ });
+  const skillLabel = useCallback(
+    (skill) => skill.label || getJourneySkillLabel(i18n.language, skill.id),
+    [i18n.language],
+  );
   const [fullscreenVideo, setFullscreenVideo] = useState(null);
   const { skills, languages } = useMemo(() => {
     const s = new Map();
@@ -524,11 +784,14 @@ function UnlockHud({ stops, activeIndex, onClose, theme, stopText, mobileOverlay
             const Flag = FLAGS[lang.flag];
             const unlockedAt = languages.get(lang.id);
             const accent = unlockedAt ? JOURNEY_ERAS[unlockedAt.era]?.color : theme.accent;
+            const langFields = getJourneyLanguageFields(i18n.language, lang.id);
+            const langLabel = langFields?.label || t(`languages.${lang.id}.label`);
+            const langLevel = langFields?.level || t(`languages.${lang.id}.level`);
             return (
               <Tooltip
                 key={lang.id}
                 placement="right"
-                title={unlockedAt ? unlockedLabel('ui.unlockedAt', unlockedAt) : t(`languages.${lang.id}.level`)}
+                title={unlockedAt ? unlockedLabel('ui.unlockedAt', unlockedAt) : langLevel}
               >
                 <Stack
                   direction="row"
@@ -546,8 +809,8 @@ function UnlockHud({ stops, activeIndex, onClose, theme, stopText, mobileOverlay
                     </Box>
                   )}
                   <Box sx={{ flex: 1 }}>
-                    <Typography sx={{ fontSize: 13, fontWeight: 600, lineHeight: 1.2, color: theme.text }}>{t(`languages.${lang.id}.label`)}</Typography>
-                    <Typography sx={{ fontSize: 11, color: theme.textMuted }}>{t(`languages.${lang.id}.level`)}</Typography>
+                    <Typography sx={{ fontSize: 13, fontWeight: 600, lineHeight: 1.2, color: theme.text }}>{langLabel}</Typography>
+                    <Typography sx={{ fontSize: 11, color: theme.textMuted }}>{langLevel}</Typography>
                   </Box>
                   <Box sx={{ width: 6, height: 6, borderRadius: '50%', bgcolor: accent, boxShadow: `0 0 8px ${accent}` }} />
                 </Stack>
@@ -585,12 +848,12 @@ function UnlockHud({ stops, activeIndex, onClose, theme, stopText, mobileOverlay
             return (
               <Tooltip
                 key={skill.id}
-                title={unlockedAt ? unlockedLabel('ui.acquiredAt', unlockedAt) : skill.label || t(`skills.${skill.id}`)}
+                title={unlockedAt ? unlockedLabel('ui.acquiredAt', unlockedAt) : skillLabel(skill)}
               >
                 <Chip
                   size="small"
                   icon={<SkillChipIcon Icon={Icon} theme={theme} muiIcon={muiIcon} />}
-                  label={skill.label || t(`skills.${skill.id}`)}
+                  label={skillLabel(skill)}
                   sx={{
                     color: theme.text,
                     fontSize: 11,
@@ -660,13 +923,33 @@ function UnlockHud({ stops, activeIndex, onClose, theme, stopText, mobileOverlay
 
       <HudAccordion
         id="journey-projects"
-        title={tc('sections.projects.title')}
+        title={getJourneyProjectsUi(i18n.language, 'title') || tc('sections.projects.title')}
         theme={theme}
         countLabel={<Typography sx={{ fontSize: 11, color: theme.textMuted }}>{JOURNEY_HUD_PROJECTS.length}</Typography>}
       >
         <Stack spacing={1}>
           {JOURNEY_HUD_PROJECTS.map((project) => (
-            <HudProjectEntry key={project.id} project={project} theme={theme} tc={tc} />
+            <HudProjectEntry key={project.id} project={project} theme={theme} locale={i18n.language} tc={tc} />
+          ))}
+        </Stack>
+      </HudAccordion>
+
+      <HudAccordion
+        id="journey-contact"
+        title={tc('quickMenuContact')}
+        theme={theme}
+        countLabel={(
+          <Typography sx={{ fontSize: 11, color: theme.textMuted }}>
+            {JOURNEY_HUD_CONTACTS.filter((entry) => entry.show(_MY_PROFILE_)).length}
+          </Typography>
+        )}
+      >
+        <Typography sx={{ fontSize: 11.5, color: theme.textSoft, lineHeight: 1.55, mb: 1.25 }}>
+          {tc('sections.contactMe.subtitle')}
+        </Typography>
+        <Stack spacing={0.75}>
+          {JOURNEY_HUD_CONTACTS.map((entry) => (
+            <HudContactLink key={entry.id} entry={entry} theme={theme} tc={tc} />
           ))}
         </Stack>
       </HudAccordion>
@@ -681,8 +964,8 @@ function UnlockHud({ stops, activeIndex, onClose, theme, stopText, mobileOverlay
   );
 }
 
-function StopDetails({ stop, total, onPrev, onNext, compact = false, mobileLayout = false, theme, stopText }) {
-  const { t } = useTranslation(_NAMESPACE_LANGAGE_JOURNEY_);
+function StopDetails({ stop, total, onPrev, onNext, compact = false, mobileLayout = false, ghostTitle = true, theme, stopText }) {
+  const { t, i18n } = useTranslation(_NAMESPACE_LANGAGE_JOURNEY_);
   const [expanded, setExpanded] = useState(false);
   const era = JOURNEY_ERAS[stop.era];
   const text = stopText(stop);
@@ -692,7 +975,7 @@ function StopDetails({ stop, total, onPrev, onNext, compact = false, mobileLayou
     ...stop.languages.map((id) => t(`languages.${id}.label`)),
     ...stop.skills.map((id) => {
       const skill = JOURNEY_SKILLS.find((s) => s.id === id);
-      return skill?.label || t(`skills.${id}`);
+      return skill?.label || getJourneySkillLabel(i18n.language, id);
     }),
   ];
 
@@ -717,7 +1000,17 @@ function StopDetails({ stop, total, onPrev, onNext, compact = false, mobileLayou
         overflow: 'hidden',
         position: 'relative',
         zIndex: 1,
-        ...(mobileLayout && { mt: 3, pt: 2.5 }),
+        ...(mobileLayout && ghostTitle && { mt: 3, pt: 2.5 }),
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: 3,
+          background: `linear-gradient(90deg, ${era?.color}, ${era?.color}00)`,
+          opacity: 0.9,
+        },
       }}
     >
       <Box sx={{ flex: fullHeightMobile ? 1 : undefined, minHeight: 0, overflowY: fullHeightMobile ? 'auto' : 'visible', WebkitOverflowScrolling: 'touch' }}>
@@ -760,7 +1053,16 @@ function StopDetails({ stop, total, onPrev, onNext, compact = false, mobileLayou
             {text.description}
           </Typography>
 
-          <Box sx={{ mt: 2, borderRadius: 2, overflow: 'hidden', border: `1px solid ${era?.color}55`, bgcolor: theme.track }}>
+          <Box
+            sx={{
+              mt: 2,
+              borderRadius: 2,
+              overflow: 'hidden',
+              border: `1px solid ${theme.divider || `${era?.color}55`}`,
+              bgcolor: theme.surfaceAlt || theme.track,
+              boxShadow: theme.mode === 'dark' ? '0 10px 30px rgba(0,0,0,0.45)' : '0 8px 24px rgba(50,35,20,0.10)',
+            }}
+          >
             {stop.video ? (
               <video key={stop.video} src={stop.video} autoPlay muted loop playsInline controls style={{ width: '100%', display: 'block' }} />
             ) : stop.image ? (
@@ -783,7 +1085,18 @@ function StopDetails({ stop, total, onPrev, onNext, compact = false, mobileLayou
               <SectionTitle theme={theme}>{t('ui.unlockedHere')}</SectionTitle>
               <Stack direction="row" flexWrap="wrap" useFlexGap gap={0.75}>
                 {unlocked.map((label) => (
-                  <Chip key={label} size="small" label={`+ ${label}`} sx={{ color: theme.text, bgcolor: `${era?.color}33`, border: `1px solid ${era?.color}` }} />
+                  <Chip
+                    key={label}
+                    size="small"
+                    label={`+ ${label}`}
+                    sx={{
+                      color: theme.text,
+                      fontWeight: 600,
+                      bgcolor: `${era?.color}${theme.mode === 'dark' ? '26' : '2e'}`,
+                      border: `1px solid ${era?.color}99`,
+                      boxShadow: theme.mode === 'dark' ? `0 0 10px ${era?.color}33` : 'none',
+                    }}
+                  />
                 ))}
               </Stack>
             </Box>
@@ -842,6 +1155,7 @@ function StopDetails({ stop, total, onPrev, onNext, compact = false, mobileLayou
         isolation: 'isolate',
       }}
     >
+      {ghostTitle && (
       <Box
         aria-hidden
         sx={{
@@ -895,6 +1209,7 @@ function StopDetails({ stop, total, onPrev, onNext, compact = false, mobileLayou
           {text.place}
         </Typography>
       </Box>
+      )}
       {card}
     </Box>
   );
@@ -917,40 +1232,93 @@ function Timeline({ stops, activeIndex, onSelect, playing, onTogglePlay, onPrev,
           <ArrowForwardIosIcon sx={{ fontSize: 14 }} />
         </IconButton>
 
-        <Stack direction="row" alignItems="flex-end" sx={{ flex: 1, height: 34, gap: '2px' }}>
-          {stops.map((stop) => {
-            const color = JOURNEY_ERAS[stop.era]?.color;
-            const active = stop.index === activeIndex;
-            const passed = stop.index <= activeIndex;
-            const text = stopText(stop);
-            return (
-              <Tooltip key={stop.id} title={`${text.year} · ${text.title}`} placement="top" disableInteractive>
-                <Box
-                  onClick={() => onSelect(stop.index)}
-                  sx={{
-                    flex: 1,
-                    minWidth: 2,
-                    cursor: 'pointer',
-                    borderRadius: 1,
-                    height: active ? 34 : stop.placeholder ? 10 : 20,
-                    bgcolor: color,
-                    opacity: passed ? 1 : theme.mode === 'light' ? 0.42 : 0.22,
-                    border: theme.mode === 'light' && !passed ? `1px solid ${color}55` : 'none',
-                    boxShadow: active ? `0 0 14px ${color}` : theme.mode === 'light' ? `0 0 4px ${color}44` : 'none',
-                    transition: 'all .35s ease',
-                    '&:hover': { opacity: 1, height: active ? 34 : 26 },
-                  }}
-                />
-              </Tooltip>
-            );
-          })}
-        </Stack>
+        <Box sx={{ flex: 1, position: 'relative', height: 36 }}>
+          {/* Rail de fond */}
+          <Box
+            aria-hidden
+            sx={{
+              position: 'absolute',
+              left: 0,
+              right: 0,
+              bottom: 0,
+              height: 2,
+              borderRadius: 1,
+              bgcolor: theme.track,
+            }}
+          />
+          {/* Progression */}
+          <Box
+            aria-hidden
+            sx={{
+              position: 'absolute',
+              left: 0,
+              bottom: 0,
+              height: 2,
+              borderRadius: 1,
+              width: `${stops.length > 1 ? (activeIndex / (stops.length - 1)) * 100 : 0}%`,
+              bgcolor: theme.scene?.pathLine || theme.text,
+              boxShadow: theme.mode === 'dark' ? `0 0 10px ${theme.scene?.pathLine || theme.text}66` : 'none',
+              transition: 'width .45s cubic-bezier(.4,0,.2,1)',
+            }}
+          />
+          <Stack direction="row" alignItems="flex-end" sx={{ position: 'relative', height: '100%', gap: '2px', pb: '5px' }}>
+            {stops.map((stop) => {
+              const color = JOURNEY_ERAS[stop.era]?.color;
+              const active = stop.index === activeIndex;
+              const passed = stop.index <= activeIndex;
+              const text = stopText(stop);
+              const isLight = theme.mode === 'light';
+              return (
+                <Tooltip key={stop.id} title={`${text.year} · ${text.title}`} placement="top" disableInteractive>
+                  <Box
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`${text.year} · ${text.title}`}
+                    aria-current={active ? 'step' : undefined}
+                    onClick={() => onSelect(stop.index)}
+                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onSelect(stop.index); } }}
+                    sx={{
+                      flex: 1,
+                      minWidth: 3,
+                      cursor: 'pointer',
+                      borderRadius: '3px 3px 1px 1px',
+                      height: active ? 30 : stop.placeholder ? 9 : 18,
+                      background: active
+                        ? `linear-gradient(180deg, ${color}, ${color}cc)`
+                        : passed
+                          ? color
+                          : `${color}${isLight ? '66' : '40'}`,
+                      border: !passed ? `1px solid ${color}${isLight ? '88' : '55'}` : 'none',
+                      boxShadow: active ? `0 0 16px ${color}, 0 0 0 1px ${theme.background}` : passed && !isLight ? `0 0 6px ${color}55` : 'none',
+                      transition: 'all .3s cubic-bezier(.4,0,.2,1)',
+                      '&:hover': { height: active ? 30 : 24, filter: 'brightness(1.1)' },
+                      '&:focus-visible': { outline: `2px solid ${theme.focusRing}`, outlineOffset: 2 },
+                    }}
+                  />
+                </Tooltip>
+              );
+            })}
+          </Stack>
+        </Box>
+        <Typography
+          sx={{
+            fontSize: 12,
+            fontWeight: 700,
+            color: theme.textMuted,
+            fontVariantNumeric: 'tabular-nums',
+            display: { xs: 'none', sm: 'block' },
+            minWidth: 54,
+            textAlign: 'right',
+          }}
+        >
+          {String(activeIndex + 1).padStart(2, '0')} / {String(stops.length).padStart(2, '0')}
+        </Typography>
       </Stack>
-      <Stack direction="row" flexWrap="wrap" useFlexGap gap={1.5} sx={{ mt: 1, display: { xs: 'none', md: 'flex' } }}>
+      <Stack direction="row" flexWrap="wrap" useFlexGap gap={1.75} sx={{ mt: 1.25, display: { xs: 'none', md: 'flex' } }}>
         {Object.values(JOURNEY_ERAS).map((era) => (
           <Stack key={era.id} direction="row" alignItems="center" spacing={0.75}>
-            <Box sx={{ width: 8, height: 8, borderRadius: '50%', bgcolor: era.color, boxShadow: `0 0 8px ${era.color}` }} />
-            <Typography sx={{ fontSize: 11, color: theme.textMuted }}>{t(`eras.${era.id}`)}</Typography>
+            <Box sx={{ width: 9, height: 9, borderRadius: '50%', bgcolor: era.color, boxShadow: theme.mode === 'dark' ? `0 0 8px ${era.color}88` : 'none' }} />
+            <Typography sx={{ fontSize: 11, color: theme.textMuted, fontWeight: 600 }}>{t(`eras.${era.id}`)}</Typography>
           </Stack>
         ))}
       </Stack>
@@ -958,22 +1326,74 @@ function Timeline({ stops, activeIndex, onSelect, playing, onTogglePlay, onPrev,
   );
 }
 
-const JOURNEY_VIEW_STORAGE_KEY = 'journey-view-mode';
+function PlaypadNavIcon({ open }) {
+  const lineSx = {
+    display: 'block',
+    height: '1px',
+    bgcolor: 'currentColor',
+    transition: 'transform .2s ease, width .2s ease',
+  };
+  return (
+    <Box component="span" aria-hidden sx={{ display: 'grid', gap: '5px', width: 17, flexShrink: 0 }}>
+      <Box
+        component="i"
+        sx={{
+          ...lineSx,
+          width: 17,
+          transform: open ? 'translateY(3px) rotate(45deg)' : 'none',
+        }}
+      />
+      <Box
+        component="i"
+        sx={{
+          ...lineSx,
+          width: open ? 17 : 12,
+          justifySelf: 'end',
+          transform: open ? 'translateY(-3px) rotate(-45deg)' : 'none',
+        }}
+      />
+    </Box>
+  );
+}
 
-function HeaderControls({ theme, themeMode, onThemeChange, isMobile, onToggleHud, viewMode, onViewModeChange }) {
-  const { t, i18n } = useTranslation(_NAMESPACE_LANGAGE_JOURNEY_);
+function JourneySiteNav({
+  theme,
+  themeMode,
+  onThemeChange,
+  isMobile,
+  onToggleHud,
+  viewMode,
+  onViewModeChange,
+  onOpenAssistant,
+}) {
+  const { t, i18n } = useTranslation([_NAMESPACE_LANGAGE_JOURNEY_, _NAMESPACE_LANGAGE_COMMON_]);
   const router = useRouter();
   const langContext = useLangMode();
+  const shellRef = useRef(null);
+  const barRef = useRef(null);
   const currentLang = JOURNEY_LOCALES.includes(router.locale) ? router.locale : 'fr';
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [panelRect, setPanelRect] = useState(null);
 
-  const changeLang = (_, lang) => {
+  const updatePanelRect = useCallback(() => {
+    if (!barRef.current) return;
+    const rect = barRef.current.getBoundingClientRect();
+    const margin = 12;
+    setPanelRect({
+      top: rect.bottom + 10,
+      left: Math.max(margin, rect.left),
+      width: Math.min(rect.width, window.innerWidth - margin * 2),
+    });
+  }, []);
+
+  const changeLang = (lang) => {
     if (!lang || lang === currentLang) return;
     i18n.changeLanguage(lang);
     if (langContext) langContext[1](lang);
     else router.replace(router.asPath, router.asPath, { locale: lang });
   };
 
-  const setView = (_, mode) => {
+  const setView = (mode) => {
     if (!mode || mode === viewMode) return;
     onViewModeChange(mode);
     try {
@@ -984,48 +1404,229 @@ function HeaderControls({ theme, themeMode, onThemeChange, isMobile, onToggleHud
   };
 
   const ui = (key) => getJourneyUi(i18n.language, key) || t(`ui.${key}`);
+  const tc = (key) => t(key, { ns: _NAMESPACE_LANGAGE_COMMON_ });
+
+  const closeMenu = () => setMenuOpen(false);
+  const toggleMenu = () => setMenuOpen((o) => !o);
+
+  useLayoutEffect(() => {
+    if (!menuOpen) {
+      setPanelRect(null);
+      return undefined;
+    }
+    updatePanelRect();
+    window.addEventListener('resize', updatePanelRect);
+    window.addEventListener('scroll', updatePanelRect, true);
+    return () => {
+      window.removeEventListener('resize', updatePanelRect);
+      window.removeEventListener('scroll', updatePanelRect, true);
+    };
+  }, [menuOpen, updatePanelRect]);
+
+  const prefLinkSx = (active) => ({
+    display: 'inline-flex',
+    alignItems: 'center',
+    minHeight: 24,
+    px: 0.25,
+    fontSize: 10,
+    fontWeight: active ? 700 : 500,
+    color: active ? theme.accent : theme.textMuted,
+    border: 'none',
+    bgcolor: 'transparent',
+    cursor: 'pointer',
+    textDecoration: active ? 'underline' : 'none',
+    textUnderlineOffset: 3,
+    '&:hover': { color: theme.accent },
+  });
 
   return (
-    <Stack direction="row" spacing={1} alignItems="center" flexWrap="wrap" useFlexGap sx={{ pointerEvents: 'auto', gap: 1 }}>
-      <ToggleButtonGroup exclusive size="small" value={viewMode} onChange={setView} sx={toggleGroupSx(theme)}>
-        <ToggleButton value="3d" aria-label={ui('view3d')}>
-          <Tooltip title={ui('view3d')}><ViewInArIcon sx={{ fontSize: 18 }} /></Tooltip>
-        </ToggleButton>
-        <ToggleButton value="2d" aria-label={ui('view2d')}>
-          <Tooltip title={ui('view2d')}><FormatListBulletedIcon sx={{ fontSize: 18 }} /></Tooltip>
-        </ToggleButton>
-      </ToggleButtonGroup>
-      <Tooltip title={t('ui.language')}>
-        <ToggleButtonGroup exclusive size="small" value={currentLang} onChange={changeLang} sx={toggleGroupSx(theme)}>
-          {JOURNEY_LOCALES.map((lang) => (
-            <ToggleButton key={lang} value={lang}>{lang.toUpperCase()}</ToggleButton>
-          ))}
-        </ToggleButtonGroup>
-      </Tooltip>
-      <ToggleButtonGroup exclusive size="small" value={themeMode} onChange={(_, m) => m && onThemeChange(m)} sx={toggleGroupSx(theme)}>
-        <ToggleButton value="dark" aria-label={t('ui.themeDark')}>
-          <Tooltip title={t('ui.themeDark')}><DarkModeIcon sx={{ fontSize: 18 }} /></Tooltip>
-        </ToggleButton>
-        <ToggleButton value="light" aria-label={t('ui.themeLight')}>
-          <Tooltip title={t('ui.themeLight')}><LightModeIcon sx={{ fontSize: 18 }} /></Tooltip>
-        </ToggleButton>
-        <ToggleButton value="system" aria-label={t('ui.themeSystem')}>
-          <Tooltip title={t('ui.themeSystem')}><SettingsBrightnessIcon sx={{ fontSize: 18 }} /></Tooltip>
-        </ToggleButton>
-      </ToggleButtonGroup>
-      {isMobile && (
-        <Tooltip title={t('ui.settings')}>
-          <IconButton onClick={onToggleHud} sx={{ ...glass(theme), ...navButtonSx(theme) }}>
-            <TuneIcon />
-          </IconButton>
-        </Tooltip>
+    <Box ref={shellRef} sx={{ position: 'relative', pointerEvents: 'auto', width: '100%', minWidth: 0 }}>
+      <Box ref={barRef} data-journey-nav-bar sx={journeyHeaderBarSx(theme)}>
+        <Box sx={{ minWidth: 0, overflow: 'hidden' }}>
+          <ProfileCard theme={theme} compact headerBar collapsible={isMobile} />
+        </Box>
+        <Stack direction="row" alignItems="center" spacing={{ xs: 0.75, sm: 1.25 }} sx={{ flexShrink: 0 }}>
+          <Box
+            component="button"
+            type="button"
+            onClick={onOpenAssistant}
+            aria-label={tc('assistant.open')}
+            sx={journeyHeaderPillSx(theme)}
+          >
+            <SmartToyIcon sx={{ fontSize: 18, color: theme.accent }} />
+            <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>
+              {ui('menuAssistant')}
+            </Box>
+            <Box component="span" className="journey-nav-arrow" aria-hidden>
+              ↗
+            </Box>
+          </Box>
+          <Box
+            component="button"
+            type="button"
+            id="journey-header-menu"
+            aria-label={menuOpen ? ui('menuClose') : ui('menuExplore')}
+            aria-controls="journey-header-panel"
+            aria-expanded={menuOpen ? 'true' : 'false'}
+            onClick={toggleMenu}
+            sx={journeyHeaderMenuToggleSx(theme, menuOpen)}
+          >
+            <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>
+              {menuOpen ? ui('menuClose') : ui('menuExplore')}
+            </Box>
+            <PlaypadNavIcon open={menuOpen} />
+          </Box>
+        </Stack>
+      </Box>
+
+      {menuOpen && panelRect && (
+        <Portal>
+          <Box sx={journeyHeaderMenuPortalRootSx(theme)}>
+            <Box aria-hidden onClick={closeMenu} sx={journeyHeaderBackdropSx(theme)} />
+            <Box
+              id="journey-header-panel"
+              role="dialog"
+              aria-labelledby="journey-header-menu"
+              sx={{
+                ...journeyHeaderPanelSx(theme),
+                position: 'fixed',
+                top: panelRect.top,
+                left: panelRect.left,
+                width: panelRect.width,
+              }}
+            >
+          <Box
+            sx={{
+              display: 'grid',
+              gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' },
+              gap: { xs: 2, md: 4 },
+              px: { xs: 2, md: 3 },
+              pt: 2,
+              pb: { xs: 1.5, md: 2 },
+            }}
+          >
+            <Box component="nav" aria-label={ui('menuSectionJourney')}>
+              <Typography component="p" sx={journeyNavSectionEyebrowSx(theme)}>
+                {ui('menuSectionJourney')}
+              </Typography>
+              <Box
+                component="button"
+                type="button"
+                onClick={() => setView('3d')}
+                sx={journeyNavMenuRowSx(theme, viewMode === '3d')}
+              >
+                <Box component="span" className="journey-nav-index">
+                  01
+                </Box>
+                <Box component="span">{ui('view3d')}</Box>
+                <Box component="span" className="journey-nav-arrow">
+                  ↗
+                </Box>
+              </Box>
+              <Box
+                component="button"
+                type="button"
+                onClick={() => setView('2d')}
+                sx={journeyNavMenuRowSx(theme, viewMode === '2d')}
+              >
+                <Box component="span" className="journey-nav-index">
+                  02
+                </Box>
+                <Box component="span">{ui('view2d')}</Box>
+                <Box component="span" className="journey-nav-arrow">
+                  ↗
+                </Box>
+              </Box>
+            </Box>
+
+            <Box component="nav" aria-label={ui('menuSectionMore')}>
+              <Typography component="p" sx={journeyNavSectionEyebrowSx(theme)}>
+                {ui('menuSectionMore')}
+              </Typography>
+              <Box component={Link} href={_PAGE_LINK_CV_} onClick={closeMenu} sx={journeyNavMenuRowSx(theme)}>
+                <Box component="span">{tc('seeMyCV')}</Box>
+                <Box component="span" className="journey-nav-arrow">
+                  ↗
+                </Box>
+              </Box>
+              {isMobile && (
+                <Box
+                  component="button"
+                  type="button"
+                  onClick={() => {
+                    onToggleHud();
+                    closeMenu();
+                  }}
+                  sx={journeyNavMenuRowSx(theme)}
+                >
+                  <Box component="span">{ui('settings')}</Box>
+                  <Box component="span" className="journey-nav-arrow">
+                    ↗
+                  </Box>
+                </Box>
+              )}
+              <Box
+                component="button"
+                type="button"
+                onClick={() => {
+                  onOpenAssistant();
+                  closeMenu();
+                }}
+                sx={journeyHeaderPanelCtaSx(theme)}
+              >
+                <Box component="span">{ui('menuCtaAssistant')}</Box>
+                <Box component="span" className="journey-nav-arrow" aria-hidden>
+                  ↗
+                </Box>
+              </Box>
+            </Box>
+          </Box>
+
+          <Box sx={journeyHeaderPreferencesSx(theme)}>
+            <Box>
+              <Typography sx={{ fontSize: 10, color: theme.textMuted, mb: 0.75 }}>{ui('language')}</Typography>
+              <Stack direction="row" flexWrap="wrap" useFlexGap gap={0.5}>
+                {JOURNEY_LOCALES.map((lang) => (
+                  <Box
+                    key={lang}
+                    component="button"
+                    type="button"
+                    aria-current={lang === currentLang ? 'true' : undefined}
+                    onClick={() => changeLang(lang)}
+                    sx={prefLinkSx(lang === currentLang)}
+                  >
+                    {lang === 'fr' ? 'Français' : lang === 'en' ? 'English' : 'Português'}
+                  </Box>
+                ))}
+              </Stack>
+            </Box>
+            <Box>
+              <Typography sx={{ fontSize: 10, color: theme.textMuted, mb: 0.75 }}>{ui('theme')}</Typography>
+              <Stack direction="row" flexWrap="wrap" useFlexGap gap={0.75}>
+                {[
+                  { id: 'dark', label: ui('themeDark') },
+                  { id: 'light', label: ui('themeLight') },
+                  { id: 'system', label: ui('themeSystem') },
+                ].map(({ id, label }) => (
+                  <Box
+                    key={id}
+                    component="button"
+                    type="button"
+                    aria-pressed={themeMode === id ? 'true' : 'false'}
+                    onClick={() => onThemeChange(id)}
+                    sx={prefLinkSx(themeMode === id)}
+                  >
+                    {label}
+                  </Box>
+                ))}
+              </Stack>
+            </Box>
+          </Box>
+            </Box>
+          </Box>
+        </Portal>
       )}
-      <Tooltip title={t('ui.home')}>
-        <IconButton component={Link} href="/" sx={{ ...glass(theme), ...navButtonSx(theme) }}>
-          <HomeIcon />
-        </IconButton>
-      </Tooltip>
-    </Stack>
+    </Box>
   );
 }
 
@@ -1038,13 +1639,28 @@ export default function JourneyExperience() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [hudOpen, setHudOpen] = useState(false);
-  const [viewMode, setViewMode] = useState('3d');
+  const [viewMode, setViewMode] = useState(JOURNEY_DEFAULT_VIEW);
+  const [assistantOpen, setAssistantOpen] = useState(false);
+  const [introOpen, setIntroOpen] = useState(true);
   const isMobile = useMediaQuery('(max-width: 900px)');
+
+  useEffect(() => {
+    if (!introOpen) return undefined;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [introOpen]);
 
   useEffect(() => {
     try {
       const saved = sessionStorage.getItem(JOURNEY_VIEW_STORAGE_KEY);
-      if (saved === '2d' || saved === '3d') setViewMode(saved);
+      if (saved === '2d' || saved === '3d') {
+        setViewMode(saved);
+      } else {
+        sessionStorage.setItem(JOURNEY_VIEW_STORAGE_KEY, JOURNEY_DEFAULT_VIEW);
+      }
     } catch {
       /* ignore */
     }
@@ -1082,6 +1698,14 @@ export default function JourneyExperience() {
     return () => window.removeEventListener('keydown', onKey);
   }, [next, prev]);
 
+  // Après un (re)montage de la scène 3D, force une mesure du canvas : certains
+  // navigateurs n'émettent pas de ResizeObserver tant que rien n'a bougé.
+  useEffect(() => {
+    if (viewMode !== '3d') return undefined;
+    const timer = setTimeout(() => window.dispatchEvent(new Event('resize')), 120);
+    return () => clearTimeout(timer);
+  }, [viewMode]);
+
   return (
     <Box
       sx={{
@@ -1089,31 +1713,40 @@ export default function JourneyExperience() {
         inset: 0,
         overflow: 'hidden',
         bgcolor: theme.background,
+        backgroundImage: theme.backgroundGradient,
         transition: 'background-color .4s ease',
         fontFamily: 'Roboto, sans-serif',
+        colorScheme: theme.mode,
+        ...journeySiteCssVars(theme),
         '@keyframes journeyIn': {
           from: { opacity: 0, transform: 'translateY(12px)' },
           to: { opacity: 1, transform: 'translateY(0)' },
         },
+        '& *::-webkit-scrollbar': { width: 8, height: 8 },
+        '& *::-webkit-scrollbar-thumb': { bgcolor: theme.locked, borderRadius: 8 },
+        '& *::-webkit-scrollbar-track': { bgcolor: 'transparent' },
       }}
     >
       {viewMode === '3d' && (
-        <JourneyScene
-          stops={stops}
-          labels={labels}
-          regionLabels={regionLabels}
-          activeIndex={activeIndex}
-          onSelect={manualSelect}
-          theme={theme}
-          showFloatingLabels={!isMobile}
-        />
+        <Box sx={{ position: 'absolute', inset: 0, zIndex: 0, overflow: 'hidden' }}>
+          <JourneyScene
+            stops={stops}
+            labels={labels}
+            regionLabels={regionLabels}
+            activeIndex={activeIndex}
+            onSelect={manualSelect}
+            theme={theme}
+            showFloatingLabels={!isMobile}
+          />
+        </Box>
       )}
 
       <Box
         sx={{
           position: 'absolute',
           inset: 0,
-          zIndex: 2,
+          zIndex: 10,
+          isolation: 'isolate',
           pointerEvents: 'none',
           display: 'grid',
           gridTemplateRows: 'auto 1fr auto',
@@ -1121,26 +1754,16 @@ export default function JourneyExperience() {
           p: { xs: 1.5, md: 3 },
         }}
       >
-        <Stack
-          direction="row"
-          justifyContent="space-between"
-          alignItems={{ xs: 'center', md: 'flex-start' }}
-          spacing={1}
-          sx={{ width: '100%', gap: 1 }}
-        >
-          <Box sx={{ pointerEvents: 'auto', minWidth: 0, flex: isMobile ? '0 0 auto' : 1, maxWidth: isMobile ? 'calc(100% - 8px)' : 'none' }}>
-            <ProfileCard theme={theme} compact collapsible={isMobile} />
-          </Box>
-          <HeaderControls
-            theme={theme}
-            themeMode={themeMode}
-            onThemeChange={changeMode}
-            isMobile={isMobile}
-            onToggleHud={() => setHudOpen((o) => !o)}
-            viewMode={viewMode}
-            onViewModeChange={setViewMode}
-          />
-        </Stack>
+        <JourneySiteNav
+          theme={theme}
+          themeMode={themeMode}
+          onThemeChange={changeMode}
+          isMobile={isMobile}
+          onToggleHud={() => setHudOpen((o) => !o)}
+          viewMode={viewMode}
+          onViewModeChange={setViewMode}
+          onOpenAssistant={() => setAssistantOpen(true)}
+        />
 
         <Stack
           direction="row"
@@ -1189,6 +1812,7 @@ export default function JourneyExperience() {
                   onNext={manualNext}
                   compact
                   mobileLayout
+                  ghostTitle={false}
                   theme={theme}
                   stopText={stopText}
                 />
@@ -1316,6 +1940,15 @@ export default function JourneyExperience() {
           stopText={stopText}
         />
       </Box>
+      <AiAssistantPanel open={assistantOpen} onClose={() => setAssistantOpen(false)} />
+      {introOpen && (
+        <JourneyIntroOverlay
+          theme={theme}
+          themeMode={themeMode}
+          onThemeChange={changeMode}
+          onEnter={() => setIntroOpen(false)}
+        />
+      )}
     </Box>
   );
 }

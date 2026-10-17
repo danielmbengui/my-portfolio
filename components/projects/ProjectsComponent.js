@@ -11,9 +11,9 @@ import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import PublicIcon from '@mui/icons-material/Public';
 import { AngolanIcon, SwissIcon } from '@/components/icons/FlagIcons';
 
-// ——— Constantes carousel 3D (4 slides visibles : plus de marge pour éviter le clipping) ———
+// ——— Constantes carousel 3D (5 projets) ———
 const ITEM_WIDTH = 200;
-const LEN = 4;
+const LEN = 5;
 const THETA = 360 / LEN;
 const RADIUS = Math.round((ITEM_WIDTH / 2) / Math.tan((Math.PI * 2) / LEN / 2));
 const CAROUSEL_VIEW_WIDTH = 480; // largeur suffisante pour voir les 3 slides (centre + 2 côtés)
@@ -28,8 +28,9 @@ const springSlow = {
 const DANDELA_ACADEMY_LOGO_URL = 'https://academy.dandela.com/images/logo.png';
 
 const projectData = [
+  { id: 'vaakai', img: '/img/vaakai/logo.png', link: 'https://vaakai-store.ch/' },
   { id: 'dandela', img: DANDELA_ACADEMY_LOGO_URL, link: 'https://academy.dandela.com' },
-  { id: 'playpad', img: '/img/playpad/playpad_banner.png', link: 'https://playpadapp.com/' },
+  { id: 'playpad', img: '/img/playpad/playpad-logo-dark.svg', link: 'https://playpadapp.com/' },
   { id: 'drilldev', img: '/img/drilldev/complete_logo_drilldev.png', link: 'https://drilldev.com/' },
   { id: 'winno', img: '/img/logos/winnobearzclub.png', link: 'https://winno.bearzclub.io/' },
 ];
@@ -385,7 +386,9 @@ export default function ProjectsComponent({ embedded = false }) {
                   >
                     <Stack alignItems="center" sx={{ mb: 2 }}>
                       {currentProject.id === 'dandela' && <AngolanIcon size={40} style={{ borderRadius: 4 }} />}
-                      {currentProject.id === 'playpad' && <SwissIcon size={40} style={{ borderRadius: 4 }} />}
+                      {(currentProject.id === 'playpad' || currentProject.id === 'vaakai') && (
+                        <SwissIcon size={40} style={{ borderRadius: 4 }} />
+                      )}
                       {(currentProject.id === 'drilldev' || currentProject.id === 'winno') && (
                         <PublicIcon sx={{ fontSize: 40, color: 'var(--primary)' }} />
                       )}

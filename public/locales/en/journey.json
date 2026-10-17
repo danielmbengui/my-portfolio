@@ -21,6 +21,14 @@
     "placeholderTitle": "Step {{n}}",
     "placeholderDescription": "Step to be completed: add a description, a video and the skills acquired at that time.",
     "home": "Home",
+    "menuOpen": "Menu",
+    "menuExplore": "Explore",
+    "menuClose": "Close",
+    "menuAssistant": "Assistant",
+    "menuCtaAssistant": "Chat with the assistant",
+    "menuSectionJourney": "The journey",
+    "menuSectionMore": "Go further",
+    "viewSection": "Display",
     "settings": "Profile, languages & skills",
     "theme": "Theme",
     "themeDark": "Dark",
@@ -36,7 +44,9 @@
     "view2dHeading": "Chronological journey",
     "timelineNav": "Journey steps",
     "placeholderStepHint": "Step to be completed",
-    "mapLegendLines": "Lines · eras"
+    "mapLegendLines": "Lines · eras",
+    "introViewJourney": "View my journey",
+    "introViewCv": "See my resume"
   },
   "profile": {
     "name": "Daniel Mbengui",
@@ -59,16 +69,20 @@
   },
   "languages": {
     "french": { "label": "French", "level": "C2 · Native" },
-    "lingala": { "label": "Lingala", "level": "B2 · Fluent" },
+    "lingala": { "label": "Lingala", "level": "C2 · Native" },
     "english": { "label": "English", "level": "C1 · Fluent" },
-    "italian": { "label": "Italian", "level": "A2 · Elementary" },
-    "portuguese": { "label": "Portuguese", "level": "A1 · Beginner" }
+    "portuguese": { "label": "Portuguese", "level": "A2 · Elementary" },
+    "italian": { "label": "Italian", "level": "A2 · Elementary" }
   },
   "skills": {
     "business": "Business & management",
     "writing": "Writing",
     "ai": "Generative AI",
-    "cursor": "Cursor & AI agents"
+    "cursor": "Cursor & AI agents",
+    "grok": "Grok",
+    "grokBot": "Grok Bot",
+    "claudeCode": "Claude Code",
+    "xcode": "Xcode"
   },
   "milestones": {
     "birth": {

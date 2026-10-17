@@ -22,7 +22,7 @@ const LINK_GOOGLE_PLAY_PLAYPAD = 'https://play.google.com/store/apps/details?id=
 const LINK_DANDELA_ACADEMY = 'https://academy.dandela.com';
 const DANDELA_ACADEMY_LOGO_URL = 'https://academy.dandela.com/images/logo.png';
 const LINK_PLAYPAD_WEB = 'https://playpadapp.com';
-const PLAYPAD_IMAGE_PATH = '/img/playpad/playpad_banner.png';
+const PLAYPAD_IMAGE_PATH = '/img/playpad/playpad-logo-dark.svg';
 
 // ——— Liens (rubrique IA) — Drill Dev ———
 const LINK_DRILL_DEV = 'https://drilldev.com/';
