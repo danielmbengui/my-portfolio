@@ -92,34 +92,154 @@
       "description": "Je nais en février 1989 à Luanda, dans le quartier de Palanca, en Angola."
     },
     "immigration": {
-      "title": "Immigration en Suisse",
-      "place": "Genève, Suisse",
-      "description": "Départ de l'Angola très jeune et arrivée en Suisse. Mes parents misent sur le français."
+      "title": "Escale en Italie",
+      "yearLabel": "Juin 1991",
+      "place": "Côme, Italie",
+      "description": "Arrivée en Italie avec ma mère et ma sœur : une escale à Côme, étape de transit sur la route de notre nouvelle vie, avant de poursuivre le voyage vers la Suisse."
     },
-    "childhood": {
-      "title": "Enfance & scolarité à Genève",
+    "asylum": {
+      "title": "Demande d'asile en Suisse",
+      "yearLabel": "Juin 1991",
+      "place": "Suisse",
+      "description": "Après le transit par l'Italie, ma mère, ma sœur et moi déposons notre demande d'asile en Suisse. Juin 1991 marque le début de notre installation et d'un nouveau chapitre en terre helvétique."
+    },
+    "asylumDenied": {
+      "title": "Refus de la demande d'asile",
+      "yearLabel": "Septembre 1991",
+      "place": "Suisse",
+      "description": "En septembre 1991, l'administration suisse refuse notre demande d'asile. Un tournant difficile pour ma mère, ma sœur et moi, avec un avenir à reconstruire malgré l'incertitude."
+    },
+    "returnAngola1991": {
+      "title": "Retour en Angola",
+      "yearLabel": "Fin 1991",
+      "place": "Luanda, Angola",
+      "description": "Après le refus de l'asile, ma mère, ma sœur et moi retournons en Angola. Un retour au pays d'origine pour reprendre le fil de notre histoire et préparer la suite."
+    },
+    "fatherSoloSwitzerland": {
+      "title": "Mon père part seul en Suisse",
+      "yearLabel": "Janvier 1992",
+      "place": "Suisse",
+      "description": "Mon père tente l'aventure en Suisse seul, dans l'espoir de nous ouvrir la voie et de nous permettre de le rejoindre plus tard, ma mère, ma sœur et moi restant en Angola en attendant."
+    },
+    "fatherReturnAngola1992": {
+      "title": "Mon père revient en Angola",
+      "yearLabel": "Avril 1992",
+      "place": "Luanda, Angola",
+      "description": "En avril 1992, mon père revient nous retrouver en Angola, avec le même échec que le nôtre : sa demande d'asile en Suisse a aussi été refusée. Toute la famille est à nouveau réunie au pays."
+    },
+    "retrySwitzerland1992": {
+      "title": "Nous retentons l'aventure en Suisse",
+      "yearLabel": "Août 1992",
+      "place": "Suisse",
+      "description": "En août 1992, ma mère, ma sœur et moi repartons tenter l'aventure vers la Suisse — une nouvelle tentative après les refus de 1991, dans l'espoir d'y construire notre avenir."
+    },
+    "flightToSwitzerland1992": {
+      "title": "En vol vers la Suisse",
+      "yearLabel": "Août 1992",
+      "place": "Vers la Suisse",
+      "description": "Toujours en août 1992 : ma mère, ma sœur et moi sommes dans l'avion, en route pour la Suisse. Un moment suspendu entre l'Angola qu'on quitte et l'accueil qu'on espère."
+    },
+    "asylumAccepted1992": {
+      "title": "Demande d'asile acceptée",
+      "yearLabel": "Novembre 1992",
+      "place": "Suisse",
+      "description": "En novembre 1992, la Suisse accepte enfin notre demande d'asile — ma mère, ma sœur et moi. Après les refus de 1991 et le long chemin de 1992, un soulagement et le début d'une installation durable."
+    },
+    "foyerAccueil1992": {
+      "title": "Entrée en foyer d'accueil",
+      "yearLabel": "Décembre 1992",
+      "place": "Suisse",
+      "description": "En décembre 1992, ma mère, ma sœur et moi entrons en foyer d'accueil. Premiers pas concrets dans la vie quotidienne suisse, entre encadrement, rencontres et apprentissage du pays qui nous accueille."
+    },
+    "fatherJoinsFoyer1993": {
+      "title": "Mon père nous rejoint au foyer",
+      "yearLabel": "Mars 1993",
+      "place": "Suisse",
+      "description": "En mars 1993, mon père nous rejoint enfin au foyer d'accueil en Suisse. La famille est réunie : après les séparations et les tentatives de 1991–1992, nous sommes ensemble dans notre nouveau quotidien."
+    },
+    "apartmentGeneva1993": {
+      "title": "Installation dans un nouvel appartement",
+      "yearLabel": "Mai 1993",
       "place": "Genève, Suisse",
-      "description": "École obligatoire à Genève. Premiers contacts avec l'anglais et l'italien."
+      "description": "En mai 1993, nous quittons le foyer pour nous installer dans un nouvel appartement à Genève. Un chez-nous enfin, où toute la famille pose ses valises et commence à s'enraciner."
+    },
+    "parentsWorkingStable": {
+      "title": "Mes parents reprennent le travail",
+      "yearLabel": "Juillet 1993",
+      "place": "Genève, Suisse",
+      "description": "En juillet 1993, mon père et ma mère trouvent chacun un emploi à Genève. Nous sommes réellement installés : un appartement, des revenus stables — nos vies prennent enfin un rythme serein."
+    },
+    "schoolEntry1993": {
+      "title": "Entrée à l'école",
+      "yearLabel": "Septembre 1993",
+      "place": "Genève, Suisse",
+      "description": "En septembre 1993, ma sœur et moi entrons à l'école à Genève. Premiers pas dans le système scolaire suisse : nouvelles classes, camarades et le français au quotidien."
+    },
+    "peacefulLifeGeneva": {
+      "title": "Une vie paisible à Genève",
+      "yearLabel": "Septembre 1993 – novembre 1996",
+      "place": "Genève, Suisse",
+      "description": "De la rentrée scolaire de 1993 à novembre 1996, nous menons une vie normale et paisible à Genève. Toute la famille s'adapte à la culture locale, le français devient notre langue du quotidien — à l'école, au travail, entre voisins — et nos racines suisses se renforcent."
+    },
+    "avanchets1996": {
+      "title": "Arrivée aux Avanchets",
+      "yearLabel": "Décembre 1996",
+      "place": "Les Avanchets, Genève",
+      "description": "En décembre 1996, nous déménageons dans le quartier des Avanchets, toujours à Genève. Un nouveau chez-nous, un nouveau voisinage — la famille continue de s'enraciner dans la ville qui nous accueille."
+    },
+    "primarySchoolAvanchets1997": {
+      "title": "Entrée à l'école primaire",
+      "yearLabel": "Janvier 1997",
+      "place": "Les Avanchets, Genève",
+      "description": "En janvier 1997, ma sœur et moi entrons à l'école primaire aux Avanchets. L'école du quartier, les camarades de proximité — notre scolarité s'inscrit enfin dans le paysage de notre nouveau chez-nous."
+    },
+    "footballClubAvanchets": {
+      "title": "Football au club du quartier",
+      "yearLabel": "Août 1998 – juin 2001",
+      "place": "Les Avanchets, Genève",
+      "description": "D'août 1998 à juin 2001, je joue au football dans le club du quartier aux Avanchets. Entraînements, matchs et copains de vestiaire — mes premières années de sport en équipe, ancrées dans la vie de quartier."
+    },
+    "coudriers2001": {
+      "title": "Entrée au cycle d'orientation",
+      "yearLabel": "Septembre 2001",
+      "place": "Les Coudriers, Genève",
+      "description": "En septembre 2001, j'entre au cycle d'orientation des Coudriers à Genève. Une nouvelle étape scolaire : orientation, matières élargies et préparation des choix pour la suite de mon parcours."
+    },
+    "collegeRousseau2004": {
+      "title": "Entrée au collège Rousseau",
+      "yearLabel": "Septembre 2004",
+      "place": "Collège Rousseau, Genève",
+      "description": "En septembre 2004, j'entre au collège Rousseau à Genève. Le cycle de collège : exigences accrues, nouvelles matières et un cadre scolaire qui structure la suite de ma formation."
     },
     "schneider": {
-      "title": "Apprentissage chez Schneider & Cie SA",
+      "title": "Stage chez Schneider & Cie SA",
+      "yearLabel": "Août 2008",
       "place": "Genève, Suisse",
-      "description": "Apprenti commercial dans le transport de marchandises, en alternance avec l'École de commerce Madame De Staël."
+      "description": "En août 2008, je fais un revirement et entre dans le monde semi-professionnel en commençant mon stage chez Schneider & Cie SA — transport de marchandises, en alternance avec l'École de commerce Madame De Staël."
     },
     "jeunesseco": {
-      "title": "Jeunesse&Co & premier article",
+      "title": "Création de Jeunesse&Co",
+      "yearLabel": "Novembre 2009",
       "place": "Vernier, Suisse",
-      "description": "Article dans Actu Vernier (novembre 2009) sur la création de l'association Jeunesse&Co."
+      "description": "En novembre 2009, je participe à la création de l'association Jeunesse&Co et, à cette occasion, j'écris mon premier article — publié dans Actu Vernier sur la naissance du projet et l'engagement des jeunes du quartier."
     },
     "actu2010": {
-      "title": "Deuxième publication",
+      "title": "Première soirée Jeunesse&Co",
+      "yearLabel": "Février 2010",
       "place": "Vernier, Suisse",
-      "description": "Article dans Actu Vernier (février 2010) sur la première soirée officielle de Jeunesse&Co."
+      "description": "En février 2010, Jeunesse&Co organise sa première soirée officielle — un moment fort pour l'association et le quartier. J'en rends compte dans un second article publié dans Actu Vernier."
     },
     "cfc": {
       "title": "CFC Employé de commerce",
+      "yearLabel": "Juin 2011",
       "place": "Genève, Suisse",
-      "description": "Obtention du Certificat fédéral de capacité après trois ans d'alternance."
+      "description": "En juin 2011, j'obtiens mon Certificat fédéral de capacité d'employé de commerce — aboutissement de trois ans d'alternance chez Schneider & Cie et à l'École de commerce Madame De Staël."
+    },
+    "itopie2013": {
+      "title": "Stage chez Itopie",
+      "yearLabel": "Janvier – avril 2013",
+      "place": "Genève, Suisse",
+      "description": "De janvier à avril 2013, je effectue un stage chez Itopie pour découvrir le monde de l'informatique. L'expérience me convainc de me lancer dans ce domaine et de changer d'orientation une nouvelle fois."
     },
     "esig": {
       "title": "Entrée à l'ESIG",

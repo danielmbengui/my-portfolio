@@ -39,6 +39,7 @@ import {
   JOURNEY_ERAS,
   JOURNEY_LANGUAGES,
   JOURNEY_DEFAULT_VIEW,
+  JOURNEY_INTRO_SEEN_STORAGE_KEY,
   JOURNEY_VIEW_STORAGE_KEY,
   JOURNEY_SKILLS,
   JOURNEY_TOTAL_STOPS,
@@ -1273,6 +1274,25 @@ export default function JourneyExperience() {
   const [introOpen, setIntroOpen] = useState(true);
   const isMobile = useMediaQuery('(max-width: 900px)');
 
+  const dismissIntro = useCallback(() => {
+    try {
+      window.localStorage.setItem(JOURNEY_INTRO_SEEN_STORAGE_KEY, '1');
+    } catch {
+      /* ignore */
+    }
+    setIntroOpen(false);
+  }, []);
+
+  useEffect(() => {
+    try {
+      if (window.localStorage.getItem(JOURNEY_INTRO_SEEN_STORAGE_KEY) === '1') {
+        setIntroOpen(false);
+      }
+    } catch {
+      /* ignore */
+    }
+  }, []);
+
   useEffect(() => {
     if (!introOpen) return undefined;
     const prev = document.body.style.overflow;
@@ -1581,7 +1601,7 @@ export default function JourneyExperience() {
           theme={theme}
           themeMode={themeMode}
           onThemeChange={changeMode}
-          onEnter={() => setIntroOpen(false)}
+          onEnter={dismissIntro}
         />
       )}
     </Box>

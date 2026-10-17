@@ -92,34 +92,154 @@
       "description": "Nasci em fevereiro de 1989 em Luanda, no bairro da Palanca, em Angola."
     },
     "immigration": {
-      "title": "Imigração para a Suíça",
-      "place": "Genebra, Suíça",
-      "description": "Saída de Angola muito cedo e chegada à Suíça. Os meus pais apostaram no francês."
+      "title": "Escala na Itália",
+      "yearLabel": "Junho de 1991",
+      "place": "Como, Itália",
+      "description": "Chegada à Itália com a minha mãe e a minha irmã: uma escala em Como, etapa de trânsito no caminho da nossa nova vida, antes de seguir viagem para a Suíça."
     },
-    "childhood": {
-      "title": "Infância e escola em Genebra",
+    "asylum": {
+      "title": "Pedido de asilo na Suíça",
+      "yearLabel": "Junho de 1991",
+      "place": "Suíça",
+      "description": "Depois da escala na Itália, a minha mãe, a minha irmã e eu apresentamos o nosso pedido de asilo na Suíça. Junho de 1991 marca o início da nossa instalação e de um novo capítulo em solo helvético."
+    },
+    "asylumDenied": {
+      "title": "Recusa do pedido de asilo",
+      "yearLabel": "Setembro de 1991",
+      "place": "Suíça",
+      "description": "Em setembro de 1991, a administração suíça recusa o nosso pedido de asilo. Um momento difícil para a minha mãe, a minha irmã e para mim, com um futuro a reconstruir perante a incerteza."
+    },
+    "returnAngola1991": {
+      "title": "Regresso a Angola",
+      "yearLabel": "Final de 1991",
+      "place": "Luanda, Angola",
+      "description": "Após a recusa do asilo, a minha mãe, a minha irmã e eu regressamos a Angola. Volta ao país de origem para retomar a nossa história e preparar o que se segue."
+    },
+    "fatherSoloSwitzerland": {
+      "title": "O meu pai parte sozinho para a Suíça",
+      "yearLabel": "Janeiro de 1992",
+      "place": "Suíça",
+      "description": "O meu pai tenta a aventura na Suíça sozinho, na esperança de nos abrir caminho para o podermos juntar mais tarde — enquanto a minha mãe, a minha irmã e eu ficamos em Angola à espera."
+    },
+    "fatherReturnAngola1992": {
+      "title": "O meu pai regressa a Angola",
+      "yearLabel": "Abril de 1992",
+      "place": "Luanda, Angola",
+      "description": "Em abril de 1992, o meu pai volta para nos encontrar em Angola, com o mesmo insucesso que o nosso: o pedido de asilo dele na Suíça também foi recusado. Toda a família está de novo reunida no país."
+    },
+    "retrySwitzerland1992": {
+      "title": "Tentamos de novo a aventura na Suíça",
+      "yearLabel": "Agosto de 1992",
+      "place": "Suíça",
+      "description": "Em agosto de 1992, a minha mãe, a minha irmã e eu voltamos a tentar a aventura rumo à Suíça — uma nova tentativa após as recusas de 1991, na esperança de construir o nosso futuro lá."
+    },
+    "flightToSwitzerland1992": {
+      "title": "A caminho da Suíça, de avião",
+      "yearLabel": "Agosto de 1992",
+      "place": "Rumo à Suíça",
+      "description": "Ainda em agosto de 1992: a minha mãe, a minha irmã e eu estamos no avião, a caminho da Suíça. Um instante suspenso entre Angola, que deixamos, e o acolhimento que esperamos."
+    },
+    "asylumAccepted1992": {
+      "title": "Pedido de asilo aceite",
+      "yearLabel": "Novembro de 1992",
+      "place": "Suíça",
+      "description": "Em novembro de 1992, a Suíça aceita finalmente o nosso pedido de asilo — a minha mãe, a minha irmã e eu. Depois das recusas de 1991 e do longo percurso de 1992, alívio e início de uma instalação duradoura."
+    },
+    "foyerAccueil1992": {
+      "title": "Entrada num lar de acolhimento",
+      "yearLabel": "Dezembro de 1992",
+      "place": "Suíça",
+      "description": "Em dezembro de 1992, a minha mãe, a minha irmã e eu entramos num lar de acolhimento. Primeiros passos concretos na vida quotidiana suíça, entre acompanhamento, encontros e descoberta do país que nos acolhe."
+    },
+    "fatherJoinsFoyer1993": {
+      "title": "O meu pai junta-se a nós no lar",
+      "yearLabel": "Março de 1993",
+      "place": "Suíça",
+      "description": "Em março de 1993, o meu pai junta-se finalmente a nós no lar de acolhimento na Suíça. A família está reunida: depois das separações e tentativas de 1991–1992, partilhamos o nosso novo quotidiano sob o mesmo teto."
+    },
+    "apartmentGeneva1993": {
+      "title": "Instalação num novo apartamento",
+      "yearLabel": "Maio de 1993",
       "place": "Genebra, Suíça",
-      "description": "Escolaridade obrigatória em Genebra. Primeiros contactos com o inglês e o italiano."
+      "description": "Em maio de 1993, deixamos o lar de acolhimento e instalamo-nos num novo apartamento em Genebra. Finalmente um lar nosso, onde toda a família assenta as malas e começa a criar raízes."
+    },
+    "parentsWorkingStable": {
+      "title": "Os meus pais voltam a trabalhar",
+      "yearLabel": "Julho de 1993",
+      "place": "Genebra, Suíça",
+      "description": "Em julho de 1993, o meu pai e a minha mãe encontram cada um um emprego em Genebra. Estamos verdadeiramente instalados: um apartamento, rendimentos estáveis — as nossas vidas ganham finalmente um ritmo sereno."
+    },
+    "schoolEntry1993": {
+      "title": "Entrada na escola",
+      "yearLabel": "Setembro de 1993",
+      "place": "Genebra, Suíça",
+      "description": "Em setembro de 1993, a minha irmã e eu entramos na escola em Genebra. Primeiros passos no sistema escolar suíço: novas salas, colegas e francês no dia a dia."
+    },
+    "peacefulLifeGeneva": {
+      "title": "Uma vida tranquila em Genebra",
+      "yearLabel": "Setembro de 1993 – novembro de 1996",
+      "place": "Genebra, Suíça",
+      "description": "Da entrada na escola em 1993 até novembro de 1996, levamos uma vida normal e tranquila em Genebra. Toda a família adapta-se à cultura local; o francês torna-se a nossa língua do quotidiano — na escola, no trabalho, com os vizinhos — e as nossas raízes suíças fortalecem-se."
+    },
+    "avanchets1996": {
+      "title": "Chegada aos Avanchets",
+      "yearLabel": "Dezembro de 1996",
+      "place": "Les Avanchets, Genebra",
+      "description": "Em dezembro de 1996, mudamo-nos para o bairro dos Avanchets, ainda em Genebra. Uma nova casa, uma nova vizinhança — a família continua a criar raízes na cidade que nos acolhe."
+    },
+    "primarySchoolAvanchets1997": {
+      "title": "Entrada no ensino primário",
+      "yearLabel": "Janeiro de 1997",
+      "place": "Les Avanchets, Genebra",
+      "description": "Em janeiro de 1997, a minha irmã e eu entramos na escola primária nos Avanchets. A escola do bairro, colegas por perto — a nossa escolaridade encaixa-se finalmente no sítio que chamamos lar."
+    },
+    "footballClubAvanchets": {
+      "title": "Futebol no clube do bairro",
+      "yearLabel": "Agosto de 1998 – junho de 2001",
+      "place": "Les Avanchets, Genebra",
+      "description": "De agosto de 1998 a junho de 2001, jogo futebol no clube do bairro nos Avanchets. Treinos, jogos e companheiros de balneário — os meus primeiros anos de desporto de equipa, ligados à vida do quartier."
+    },
+    "coudriers2001": {
+      "title": "Entrada no ciclo de orientação",
+      "yearLabel": "Setembro de 2001",
+      "place": "Les Coudriers, Genebra",
+      "description": "Em setembro de 2001, entro no ciclo de orientação dos Coudriers, em Genebra. Uma nova fase escolar: orientação, disciplinas mais amplas e preparação das escolhas para o resto do percurso."
+    },
+    "collegeRousseau2004": {
+      "title": "Entrada no collège Rousseau",
+      "yearLabel": "Setembro de 2004",
+      "place": "Collège Rousseau, Genebra",
+      "description": "Em setembro de 2004, entro no collège Rousseau, em Genebra. O ciclo do secundário: exigências maiores, novas matérias e um quadro escolar que estrutura a continuação da minha formação."
     },
     "schneider": {
-      "title": "Aprendizagem na Schneider & Cie SA",
+      "title": "Estágio na Schneider & Cie SA",
+      "yearLabel": "Agosto de 2008",
       "place": "Genebra, Suíça",
-      "description": "Aprendiz comercial no transporte de mercadorias, em alternância com a Escola de Comércio Madame De Staël."
+      "description": "Em agosto de 2008, dou uma viragem e entro no mundo semi-profissional ao começar o meu estágio na Schneider & Cie SA — transporte de mercadorias, em alternância com a Escola de Comércio Madame De Staël."
     },
     "jeunesseco": {
-      "title": "Jeunesse&Co e primeiro artigo",
+      "title": "Criação da Jeunesse&Co",
+      "yearLabel": "Novembro de 2009",
       "place": "Vernier, Suíça",
-      "description": "Artigo no Actu Vernier (novembro de 2009) sobre a criação da associação Jeunesse&Co."
+      "description": "Em novembro de 2009, participo na criação da associação Jeunesse&Co e, nessa ocasião, escrevo o meu primeiro artigo — publicado no Actu Vernier sobre o nascimento do projeto e o envolvimento dos jovens do bairro."
     },
     "actu2010": {
-      "title": "Segunda publicação",
+      "title": "Primeira noite Jeunesse&Co",
+      "yearLabel": "Fevereiro de 2010",
       "place": "Vernier, Suíça",
-      "description": "Artigo no Actu Vernier (fevereiro de 2010) sobre a primeira festa oficial da Jeunesse&Co."
+      "description": "Em fevereiro de 2010, a Jeunesse&Co organiza a sua primeira noite oficial — um momento marcante para a associação e o bairro. Conto-o num segundo artigo publicado no Actu Vernier."
     },
     "cfc": {
       "title": "CFC Empregado de comércio",
+      "yearLabel": "Junho de 2011",
       "place": "Genebra, Suíça",
-      "description": "Obtenção do Certificado Federal de Capacidade após três anos de formação em alternância."
+      "description": "Em junho de 2011, obtenho o Certificado Federal de Capacidade de empregado de comércio — conclusão de três anos de formação em alternância na Schneider & Cie e na Escola de Comércio Madame De Staël."
+    },
+    "itopie2013": {
+      "title": "Estágio na Itopie",
+      "yearLabel": "Janeiro – abril de 2013",
+      "place": "Genebra, Suíça",
+      "description": "De janeiro a abril de 2013, faço um estágio na Itopie para descobrir o mundo da informática. A experiência convence-me a seguir esta área e a mudar de orientação mais uma vez."
     },
     "esig": {
       "title": "Entrada na ESIG",

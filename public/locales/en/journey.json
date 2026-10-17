@@ -92,34 +92,154 @@
       "description": "I was born in February 1989 in Luanda, in the Palanca neighborhood, in Angola."
     },
     "immigration": {
-      "title": "Moving to Switzerland",
-      "place": "Geneva, Switzerland",
-      "description": "Left Angola at a very young age and arrived in Switzerland. My parents focused on French."
+      "title": "Stopover in Italy",
+      "yearLabel": "June 1991",
+      "place": "Como, Italy",
+      "description": "Arrival in Italy with my mother and sister: a stopover in Como, a transit leg on the road to our new life, before continuing on to Switzerland."
     },
-    "childhood": {
-      "title": "Childhood & school in Geneva",
+    "asylum": {
+      "title": "Asylum application in Switzerland",
+      "yearLabel": "June 1991",
+      "place": "Switzerland",
+      "description": "After the stopover in Italy, my mother, my sister and I file our asylum application in Switzerland. June 1991 marks the start of our settlement and a new chapter on Swiss soil."
+    },
+    "asylumDenied": {
+      "title": "Asylum application refused",
+      "yearLabel": "September 1991",
+      "place": "Switzerland",
+      "description": "In September 1991, the Swiss authorities refuse our asylum application. A difficult turning point for my mother, my sister and me, with a future to rebuild amid uncertainty."
+    },
+    "returnAngola1991": {
+      "title": "Return to Angola",
+      "yearLabel": "Late 1991",
+      "place": "Luanda, Angola",
+      "description": "After the asylum refusal, my mother, my sister and I return to Angola. Back to our home country to pick up our story and prepare for what comes next."
+    },
+    "fatherSoloSwitzerland": {
+      "title": "My father sets off alone for Switzerland",
+      "yearLabel": "January 1992",
+      "place": "Switzerland",
+      "description": "My father tries the adventure in Switzerland on his own, hoping to pave the way so we can join him later—while my mother, my sister and I wait in Angola."
+    },
+    "fatherReturnAngola1992": {
+      "title": "My father returns to Angola",
+      "yearLabel": "April 1992",
+      "place": "Luanda, Angola",
+      "description": "In April 1992, my father comes back to join us in Angola, with the same outcome as ours: his asylum application in Switzerland was refused too. The whole family is together again at home."
+    },
+    "retrySwitzerland1992": {
+      "title": "We try again for Switzerland",
+      "yearLabel": "August 1992",
+      "place": "Switzerland",
+      "description": "In August 1992, my mother, my sister and I set off again to try our luck in Switzerland—a new attempt after the 1991 refusals, hoping to build our future there."
+    },
+    "flightToSwitzerland1992": {
+      "title": "Flying to Switzerland",
+      "yearLabel": "August 1992",
+      "place": "Bound for Switzerland",
+      "description": "Still August 1992: my mother, my sister and I are on the plane, heading for Switzerland. A moment in between—the Angola we leave and the welcome we hope for."
+    },
+    "asylumAccepted1992": {
+      "title": "Asylum granted",
+      "yearLabel": "November 1992",
+      "place": "Switzerland",
+      "description": "In November 1992, Switzerland finally grants our asylum application—my mother, my sister and me. After the 1991 refusals and the long road through 1992, relief and the start of a lasting settlement."
+    },
+    "foyerAccueil1992": {
+      "title": "Moving into a reception home",
+      "yearLabel": "December 1992",
+      "place": "Switzerland",
+      "description": "In December 1992, my mother, my sister and I move into a reception home. Our first concrete steps into everyday life in Switzerland—support, new people, and learning the country that has taken us in."
+    },
+    "fatherJoinsFoyer1993": {
+      "title": "My father joins us at the home",
+      "yearLabel": "March 1993",
+      "place": "Switzerland",
+      "description": "In March 1993, my father finally joins us at the reception home in Switzerland. The family is together again: after the separations and attempts of 1991–1992, we share our new daily life under one roof."
+    },
+    "apartmentGeneva1993": {
+      "title": "Moving into a new apartment",
+      "yearLabel": "May 1993",
       "place": "Geneva, Switzerland",
-      "description": "Compulsory school in Geneva. First steps in English and Italian."
+      "description": "In May 1993, we leave the reception home and move into a new apartment in Geneva. A place of our own at last, where the whole family settles in and starts putting down roots."
+    },
+    "parentsWorkingStable": {
+      "title": "My parents back at work",
+      "yearLabel": "July 1993",
+      "place": "Geneva, Switzerland",
+      "description": "In July 1993, my father and mother each find work in Geneva. We are truly settled: an apartment, steady incomes—our lives finally settle into a calm routine."
+    },
+    "schoolEntry1993": {
+      "title": "Starting school",
+      "yearLabel": "September 1993",
+      "place": "Geneva, Switzerland",
+      "description": "In September 1993, my sister and I start school in Geneva. Our first steps into the Swiss education system—new classrooms, classmates, and French every day."
+    },
+    "peacefulLifeGeneva": {
+      "title": "A peaceful life in Geneva",
+      "yearLabel": "September 1993 – November 1996",
+      "place": "Geneva, Switzerland",
+      "description": "From the 1993 school year through November 1996, we live a normal, peaceful life in Geneva. The whole family adapts to local culture; French becomes our everyday language—at school, at work, with neighbors—and our Swiss roots grow stronger."
+    },
+    "avanchets1996": {
+      "title": "Moving to Les Avanchets",
+      "yearLabel": "December 1996",
+      "place": "Les Avanchets, Geneva",
+      "description": "In December 1996, we move to the Les Avanchets neighborhood, still in Geneva. A new home, a new community—the family keeps putting down roots in the city that welcomed us."
+    },
+    "primarySchoolAvanchets1997": {
+      "title": "Starting primary school",
+      "yearLabel": "January 1997",
+      "place": "Les Avanchets, Geneva",
+      "description": "In January 1997, my sister and I start primary school in Les Avanchets. The neighborhood school, classmates nearby—our education finally fits the place we call home."
+    },
+    "footballClubAvanchets": {
+      "title": "Neighborhood club football",
+      "yearLabel": "August 1998 – June 2001",
+      "place": "Les Avanchets, Geneva",
+      "description": "From August 1998 to June 2001, I play football at the neighborhood club in Les Avanchets. Training, matches, and teammates—my first years of team sport, rooted in local community life."
+    },
+    "coudriers2001": {
+      "title": "Starting orientation cycle",
+      "yearLabel": "September 2001",
+      "place": "Les Coudriers, Geneva",
+      "description": "In September 2001, I start the orientation cycle at Les Coudriers in Geneva. A new school stage—broader subjects, guidance, and preparing the choices ahead in my education."
+    },
+    "collegeRousseau2004": {
+      "title": "Starting at Collège Rousseau",
+      "yearLabel": "September 2004",
+      "place": "Collège Rousseau, Geneva",
+      "description": "In September 2004, I start lower secondary at Collège Rousseau in Geneva. Higher expectations, new subjects, and a school setting that shapes the next stage of my education."
     },
     "schneider": {
-      "title": "Apprenticeship at Schneider & Cie SA",
+      "title": "Internship at Schneider & Cie SA",
+      "yearLabel": "August 2008",
       "place": "Geneva, Switzerland",
-      "description": "Commercial apprentice in freight transport, alternating with the Madame De Staël business school."
+      "description": "In August 2008, I take a turn into the semi-professional world and start my internship at Schneider & Cie SA—freight transport, combined with the Madame De Staël business school."
     },
     "jeunesseco": {
-      "title": "Jeunesse&Co & first article",
+      "title": "Founding Jeunesse&Co",
+      "yearLabel": "November 2009",
       "place": "Vernier, Switzerland",
-      "description": "Article in Actu Vernier (November 2009) about the creation of the Jeunesse&Co association."
+      "description": "In November 2009, I help create the Jeunesse&Co association and, on that occasion, write my first article—published in Actu Vernier about the birth of the project and youth engagement in the neighborhood."
     },
     "actu2010": {
-      "title": "Second publication",
+      "title": "Jeunesse&Co's first event",
+      "yearLabel": "February 2010",
       "place": "Vernier, Switzerland",
-      "description": "Article in Actu Vernier (February 2010) about Jeunesse&Co's first official party."
+      "description": "In February 2010, Jeunesse&Co holds its first official evening—a milestone for the association and the neighborhood. I cover it in a second article published in Actu Vernier."
     },
     "cfc": {
       "title": "Federal VET Diploma in Commerce",
+      "yearLabel": "June 2011",
       "place": "Geneva, Switzerland",
-      "description": "Earned the Swiss Federal Certificate of Competence after three years of work-study."
+      "description": "In June 2011, I earn my Federal Certificate of Competence as a commercial employee—the culmination of three years of work-study at Schneider & Cie and the Madame De Staël business school."
+    },
+    "itopie2013": {
+      "title": "Internship at Itopie",
+      "yearLabel": "January – April 2013",
+      "place": "Geneva, Switzerland",
+      "description": "From January to April 2013, I intern at Itopie to explore the IT world. The experience convinces me to pursue this field and change direction once again."
     },
     "esig": {
       "title": "Joining ESIG",
