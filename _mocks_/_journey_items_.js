@@ -8,6 +8,9 @@ export const JOURNEY_LANG_STORAGE_KEY = 'journey-lang';
 export const JOURNEY_VIEW_STORAGE_KEY = 'journey-view-mode';
 export const JOURNEY_DEFAULT_VIEW = '3d';
 
+/** Routes qui partagent la langue parcours (localStorage journey-lang). */
+export const JOURNEY_PAGE_PATHS = ['/', '/test-tree-js'];
+
 /** Nombre total de points sur la carte. Les étapes non renseignées deviennent des points "à compléter". */
 export const JOURNEY_TOTAL_STOPS = 30;
 

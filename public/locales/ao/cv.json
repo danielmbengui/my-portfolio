@@ -1,6 +1,6 @@
 {
-  "name": "Mbengui Daniel Slaver",
-  "role": "Moto ya Web & Mobile",
+  "name": "Daniel Slaver MBENGUI",
+  "role": "Dev Full Stack & Mobile",
   "tagline": "Nazali na mawa na code, nazali kosangisa tech mpe créativité mpo na kosalisa maprojeti na bino. Kati na tech mpe business, nazali ndeko na bino ya innovation!",
   "aiToolsLabel": "IA mpe outils ya mokolo:",
   "aiTools": "LLM & APIs chat · Agents IA · Code esalemi na IA · Image, son, vidéo na IA",
@@ -181,6 +181,11 @@
     }
   },
   "projects": {
+    "vaakai": {
+      "period": "10/2026 – lelo",
+      "title": "Vaakai Store",
+      "desc": "Épicerie en ligne ya Suisse : catalogue, fidélité, services na magasin mpe expérience multilingue na thème clair/sombre/système. Esalemi na Dandela Tech — retail digital mobimba."
+    },
     "drilldev": {
       "period": "02/2023 – 04/2023",
       "title": "Drill Dev",

@@ -1,5 +1,7 @@
 {
     "titlePageHome": "Portfolio · Daniel Mbengui",
+    "indexTabTitle": "Daniel Slaver MBENGUI | Boyei malamu",
+    "cvTabTitle": "Daniel Slaver MBENGUI | CV",
     "welcome" :  "Mbote 👋🏿, nazali Daan. Nasepeli koyeba yo! Ozali malamu lelo?",
     "footer": {
         "deployedWith" : "Esalemi na mawa mpe kokanga motema, esalemi na",
@@ -211,8 +213,8 @@
         }
     },
     "chatbot" : "Lobela ngai",
-    "cvTitlePage": "Mbengui Daniel Slaver | Vibe Developer",
-    "cvDescriptionPage": "CV ya Mbengui Daniel Slaver — Développeur Web, Mobile & IA. Expériences, makoki technique mpe formations.",
+    "cvTitlePage": "Daniel Slaver MBENGUI | CV",
+    "cvDescriptionPage": "CV ya Mbengui Daniel Slaver — Dev Full Stack & Mobile. Expériences, makoki technique mpe formations.",
     "seeMyCV" : "Kotala CV na ngai",
     "sendMeMail" : "Benga ngai",
     "profileLinkedin" : "Profil Linkedin",

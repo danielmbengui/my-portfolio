@@ -158,6 +158,30 @@ export function journeyChromeButtonSx(theme, size = 44) {
 
 const journeyBorderStrong = (theme) => (theme.mode === 'light' ? theme.locked : 'rgba(255, 255, 255, 0.14)');
 
+/** Enveloppe fixe du header (sans fond — seule la barre glass a un fond). */
+export function journeyFixedHeaderShellSx() {
+  return {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 100,
+    p: { xs: 1.5, md: 3 },
+    pointerEvents: 'none',
+  };
+}
+
+export function journeyFixedHeaderNavSx() {
+  return { pointerEvents: 'auto', width: '100%' };
+}
+
+/** Décalage sous le header fixe (padding + hauteur barre). */
+export function journeyFixedHeaderOffsetSx() {
+  return {
+    pt: { xs: '84px', md: '112px' },
+  };
+}
+
 /** Barre de navigation type PlayPad (logo / actions). */
 export function journeyHeaderBarSx(theme) {
   return {
@@ -373,10 +397,22 @@ export function journeySiteCssVars(theme) {
   return {
     '--primary': theme.accent,
     '--primary-opacity': isLight ? `${theme.accent}22` : 'rgba(255, 203, 0, 0.28)',
+    '--primary-hover': isLight ? theme.accent2 : theme.accent,
+    '--background': theme.background,
     '--background-card': theme.surface,
     '--background-menu': theme.glassBg,
-    '--accents3': theme.glassBorder,
     '--text': theme.text,
+    '--text-secondary': theme.onAccent,
+    '--accents2': isLight ? theme.surfaceAlt : 'rgba(255,255,255,0.04)',
+    '--accents3': theme.glassBorder,
+    '--accents4': isLight ? 'rgba(21, 17, 15, 0.12)' : theme.locked,
+    '--accents5': isLight ? 'rgba(21, 17, 15, 0.18)' : 'rgba(255,255,255,0.12)',
+    '--accents6': theme.textFaint,
+    '--accents7': theme.textMuted,
+    '--accents8': theme.textSoft,
+    '--gold-300': isLight ? '#ffd966' : '#ffe9a8',
+    '--gold-400': theme.accent,
+    '--gold-500': isLight ? theme.accent2 : theme.accent,
   };
 }
 

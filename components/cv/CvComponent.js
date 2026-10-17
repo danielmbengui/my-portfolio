@@ -32,7 +32,7 @@ import TvIcon from '@mui/icons-material/Tv';
 import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
 import { useTranslation } from 'next-i18next';
 import { _MY_PROFILE_, _NAMESPACE_LANGAGE_COMMON_, _PAGE_LINK_HOME_ } from '@/_mocks_/_settings_items_';
-import { MY_AVATAR_BLACK_AND_WHITE } from '@/constants';
+import { MY_AVATAR_COLOR } from '@/constants';
 import { AngolanIcon, EnglishIcon, FrenchIcon, ItalianIcon, PortugueseIcon } from '@/components/icons/FlagIcons';
 import { AndroidIcon, C_LangageIcon, CssIcon, EtherJsIcon, FigmaIcon, FlutterIcon, FirebaseIcon, GithubIcon, HeroUIIcon, JavaIcon, JavascriptIcon, MaterialUiIcon, MySqlIcon, NextJsIcon, PostgresIcon, PwaIcon, PythonIcon, ReactIcon, SolidityIcon, SqlLiteIcon, TailwindIcon, TypescriptIcon, Web3JsIcon } from '@/components/icons/IconifiyIcons';
 
@@ -503,7 +503,7 @@ export default function CvComponent({ embedded = false }) {
           aria-label={t('cv:backToHome')}
         >
           <Avatar
-            src={MY_AVATAR_BLACK_AND_WHITE}
+            src={MY_AVATAR_COLOR}
             alt={t('cv:name')}
             className="cv-photo"
             sx={{
@@ -542,10 +542,10 @@ export default function CvComponent({ embedded = false }) {
       >
         <Stack spacing={0.5}>
           <LanguageStars name={t('cv:languages.french')} level={t('cv:languages.levelNative')} stars={5} Icon={FrenchIcon} />
+          <LanguageStars name={t('cv:languages.lingala')} level={t('cv:languages.levelNative')} stars={5} Icon={AngolanIcon} />
           <LanguageStars name={t('cv:languages.english')} level={t('cv:languages.levelFluent')} stars={5} Icon={EnglishIcon} />
-          <LanguageStars name={t('cv:languages.lingala')} level={t('cv:languages.levelFluentB2')} stars={4} Icon={AngolanIcon} />
+          <LanguageStars name={t('cv:languages.portuguese')} level={t('cv:languages.levelElementary')} stars={2} Icon={PortugueseIcon} />
           <LanguageStars name={t('cv:languages.italian')} level={t('cv:languages.levelElementary')} stars={2} Icon={ItalianIcon} />
-          <LanguageStars name={t('cv:languages.portuguese')} level={t('cv:languages.levelBeginner')} stars={1} Icon={PortugueseIcon} />
         </Stack>
       </CvSectionAccordion>
 
@@ -705,6 +705,11 @@ export default function CvComponent({ embedded = false }) {
         onChange={handleSectionChange('projects')}
       >
         <CvProjectEntry
+          period={t('cv:projects.vaakai.period')}
+          title={<a href="https://vaakai-store.ch" target="_blank" rel="noopener noreferrer" className="cv-link">{t('cv:projects.vaakai.title')}</a>}
+          desc={t('cv:projects.vaakai.desc')}
+        />
+        <CvProjectEntry
           period={t('cv:projects.drilldev.period')}
           title={<a href="https://drilldev.com" target="_blank" rel="noopener noreferrer" className="cv-link">{t('cv:projects.drilldev.title')}</a>}
           desc={t('cv:projects.drilldev.desc')}
@@ -863,9 +868,7 @@ export default function CvComponent({ embedded = false }) {
   return (
     <Box
       sx={{
-        minHeight: '100vh',
-        background: 'var(--background)',
-        pt: 3,
+        pt: { xs: 1, sm: 2 },
         pb: 6,
       }}
     >

@@ -49,8 +49,8 @@
     "introViewCv": "Voir mon CV"
   },
   "profile": {
-    "name": "Daniel Mbengui",
-    "role": "Développeur Web & Mobile · Vibe Developer",
+    "name": "Daniel Slaver MBENGUI",
+    "role": "Développeur Full Stack & Mobile",
     "tagline": "Entre Genève et Luanda, je mêle technologie et créativité pour donner vie aux projets.",
     "hudIntro": "Passionné par le code, je mêle technologie et créativité pour donner vie à vos projets. Entre tech et business, je suis votre partenaire innovation !",
     "based": "Genève · Luanda"
@@ -197,9 +197,9 @@
       "description": "Ouverture prévue en avril 2026."
     },
     "today": {
-      "title": "Vibe Developer",
+      "title": "Développeur Full Stack & Mobile",
       "place": "Genève · Luanda",
-      "description": "Développeur Web & Mobile entre la Suisse et l'Angola, avec l'IA au quotidien."
+      "description": "Développeur Full Stack & Mobile entre la Suisse et l'Angola, avec l'IA au quotidien."
     }
   }
 }

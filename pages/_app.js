@@ -85,13 +85,13 @@ const MyApp = (props) => {
           <LangModeProvider langMode={langMode}>
             <DeviceModeProvider>
               <Head>
-                <title>{"Daniel Mbengui | Vibe Developer"}</title>
+                <title>Daniel Mbengui | Full Stack &amp; Mobile Developer</title>
                 <meta
                   name="description"
-                  content="Vibe Developer | Fullstack Developer | Mobile Developer "
+                  content="Full Stack & Mobile Developer — Web, mobile and AI."
                 />
                 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
-                <link rel="icon" href="/me-black-and-white.png" />
+                <link rel="icon" href="/favicon.ico" />
               </Head>
               <Script
                 src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.esm.js"

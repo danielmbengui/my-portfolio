@@ -43,6 +43,7 @@ export const GENERAL_FONT_FAMILY = "Roboto";
 export const _PAGE_LINK_HOME_ = "/";
 export const _PAGE_LINK_RESUME_ = "/portfolio/resume";
 export const _PAGE_LINK_CV_ = "/cv";
+export const _PAGE_LINK_JOURNEY_ = "/test-tree-js";
 /** CV anglais (image ou PDF) — fichier dans assets, pas dans certification */
 export const _CV_EN_ASSET_ = "/assets/cv-en.png";
 export const _PAGE_LINK_CHAT_BOT_ = "/portfolio/chatbot";

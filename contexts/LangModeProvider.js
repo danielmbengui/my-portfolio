@@ -3,16 +3,15 @@ import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import moment from 'moment';
 import 'moment/locale/fr';
-import { STORAGE_LANG_MODE } from '../_mocks_/_settings_items_';
+import { ARRAY_LANGAGES, STORAGE_LANG_MODE } from '../_mocks_/_settings_items_';
 import {
   JOURNEY_DEFAULT_LOCALE,
   JOURNEY_LANG_STORAGE_KEY,
   JOURNEY_LOCALES,
+  JOURNEY_PAGE_PATHS,
 } from '../_mocks_/_journey_items_';
 
 export const LangModeProviderContext = createContext(null);
-
-const JOURNEY_PATH = '/test-tree-js';
 
 function readStoredJourneyLang() {
   try {
@@ -28,7 +27,8 @@ function readStoredJourneyLang() {
 export default function LangModeProvider({ children, langMode }) {
   const { i18n } = useTranslation();
   const router = useRouter();
-  const isJourneyPage = router.pathname === JOURNEY_PATH;
+  const isJourneyPage = JOURNEY_PAGE_PATHS.includes(router.pathname);
+  const isCvPage = router.pathname === '/cv';
   const [lang, setLang] = useState(() => router.locale || langMode);
 
   useEffect(() => {
@@ -36,8 +36,12 @@ export default function LangModeProvider({ children, langMode }) {
       setLang(readStoredJourneyLang());
       return;
     }
+    if (isCvPage && router.locale && ARRAY_LANGAGES.includes(router.locale)) {
+      setLang(router.locale);
+      return;
+    }
     setLang(langMode);
-  }, [langMode, isJourneyPage]);
+  }, [langMode, isJourneyPage, isCvPage, router.locale]);
 
   useEffect(() => {
     document.documentElement.setAttribute(STORAGE_LANG_MODE, lang);
@@ -56,10 +60,10 @@ export default function LangModeProvider({ children, langMode }) {
       /* ignore */
     }
 
-    if (router.isReady && router.locale !== lang) {
+    if (router.isReady && router.locale !== lang && (isJourneyPage || isCvPage)) {
       router.replace(router.asPath, router.asPath, { locale: lang });
     }
-  }, [lang, isJourneyPage, i18n, router]);
+  }, [lang, isJourneyPage, isCvPage, i18n, router]);
 
   return (
     <LangModeProviderContext.Provider value={[lang, setLang]}>

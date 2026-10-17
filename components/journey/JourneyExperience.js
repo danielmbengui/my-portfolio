@@ -1,7 +1,6 @@
-import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import {
   Accordion,
@@ -11,7 +10,6 @@ import {
   Box,
   Chip,
   IconButton,
-  Portal,
   Stack,
   Tooltip,
   Typography,
@@ -25,7 +23,6 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
-import SmartToyIcon from '@mui/icons-material/SmartToy';
 import PlaceIcon from '@mui/icons-material/Place';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import TuneIcon from '@mui/icons-material/Tune';
@@ -42,36 +39,25 @@ import {
   JOURNEY_ERAS,
   JOURNEY_LANGUAGES,
   JOURNEY_DEFAULT_VIEW,
-  JOURNEY_LOCALES,
   JOURNEY_VIEW_STORAGE_KEY,
-  JOURNEY_PROFILE,
   JOURNEY_SKILLS,
   JOURNEY_TOTAL_STOPS,
   _NAMESPACE_LANGAGE_JOURNEY_,
   buildJourneyStops,
 } from '@/_mocks_/_journey_items_';
-import { useLangMode } from '@/contexts/LangModeProvider';
-import { AngolanIcon, EnglishIcon, FrenchIcon, ItalianIcon, PortugueseIcon, SwissIcon } from '@/components/icons/FlagIcons';
+import { AngolanIcon, EnglishIcon, FrenchIcon, ItalianIcon, PortugueseIcon } from '@/components/icons/FlagIcons';
 import {
   AndroidIcon, C_LangageIcon, CssIcon, CursorIcon, FirebaseIcon, FlutterIcon, GithubIcon, IosIcon, JavaIcon,
   ClaudeCodeIcon, GrokBotIcon, GrokIcon, JavascriptIcon, MaterialUiIcon, MySqlIcon, NextJsIcon, OpenAiIcon,
   PlayStoreIcon, PwaIcon, XcodeIcon,
   PythonIcon, ReactIcon, SolidityIcon, TypescriptIcon, Web3JsIcon,
 } from '@/components/icons/IconifiyIcons';
-import { _MY_PROFILE_, _NAMESPACE_LANGAGE_COMMON_, _PAGE_LINK_CV_ } from '@/_mocks_/_settings_items_';
+import { _MY_PROFILE_, _NAMESPACE_LANGAGE_COMMON_ } from '@/_mocks_/_settings_items_';
 import AiAssistantPanel from '@/components/assistant/AiAssistantPanel';
 import {
   getJourneyTheme,
-  journeyHeaderBackdropSx,
-  journeyHeaderBarSx,
-  journeyHeaderMenuPortalRootSx,
-  journeyHeaderMenuToggleSx,
-  journeyHeaderPanelCtaSx,
-  journeyHeaderPanelSx,
-  journeyHeaderPillSx,
-  journeyHeaderPreferencesSx,
-  journeyNavMenuRowSx,
-  journeyNavSectionEyebrowSx,
+  journeyFixedHeaderNavSx,
+  journeyFixedHeaderShellSx,
   journeySiteCssVars,
   useJourneyThemeMode,
 } from './journeyTheme';
@@ -86,6 +72,7 @@ import {
 } from '@/utility/journeyMilestoneText';
 import JourneyView2D from '@/components/journey/JourneyView2D';
 import JourneyIntroOverlay from '@/components/journey/JourneyIntroOverlay';
+import JourneySiteNav from '@/components/journey/JourneySiteNav';
 
 const JourneyScene = dynamic(() => import('./JourneyScene'), { ssr: false });
 
@@ -619,98 +606,6 @@ function SectionTitle({ children, right, theme }) {
       </Typography>
       {right}
     </Stack>
-  );
-}
-
-function ProfileCard({ theme, compact = false, collapsible = false, headerBar = false }) {
-  const { t, i18n } = useTranslation(_NAMESPACE_LANGAGE_JOURNEY_);
-  const [detailsOpen, setDetailsOpen] = useState(false);
-  const profile = getJourneyProfile(i18n.language);
-  const name = profile.name || t('profile.name');
-  const role = profile.role || t('profile.role');
-  const based = profile.based || t('profile.based');
-  const tagline = profile.tagline || t('profile.tagline');
-  const showDetails = !collapsible || detailsOpen;
-  const avatarPx = headerBar
-    ? (collapsible && !detailsOpen ? 40 : { xs: 40, md: 44 })
-    : compact
-      ? (collapsible && !detailsOpen ? 44 : { xs: 48, md: 64 })
-      : 64;
-
-  return (
-    <Box sx={{ mb: compact || headerBar ? 0 : 2.5, minWidth: 0, flex: compact && !collapsible ? 1 : undefined }}>
-      <Stack direction="row" spacing={collapsible && !detailsOpen ? 0 : 1.5} alignItems="center">
-        <Box
-          component={collapsible ? 'button' : 'div'}
-          type={collapsible ? 'button' : undefined}
-          onClick={collapsible ? () => setDetailsOpen((o) => !o) : undefined}
-          aria-label={collapsible ? name : undefined}
-          aria-expanded={collapsible ? detailsOpen : undefined}
-          sx={{
-            p: '3px',
-            borderRadius: '50%',
-            background: `conic-gradient(${ANGOLA_COLORS.red}, ${ANGOLA_COLORS.black}, ${ANGOLA_COLORS.gold}, ${ANGOLA_COLORS.red})`,
-            boxShadow: `0 0 18px ${theme.accent}55`,
-            flexShrink: 0,
-            border: 'none',
-            cursor: collapsible ? 'pointer' : 'default',
-            display: 'flex',
-            '&:focus-visible': { outline: `2px solid ${theme.accent}`, outlineOffset: 2 },
-          }}
-        >
-          <Avatar
-            src={JOURNEY_PROFILE.photo}
-            alt={name}
-            sx={{
-              width: avatarPx,
-              height: avatarPx,
-              border: `2px solid ${theme.background}`,
-            }}
-          />
-        </Box>
-        {showDetails && (
-          <Box sx={{ minWidth: 0, animation: collapsible ? 'journeyIn .35s ease' : 'none' }}>
-            <Typography
-              component={compact || headerBar ? 'h1' : 'p'}
-              sx={{
-                fontSize: headerBar ? { xs: 14, md: 16 } : compact ? { xs: 15, md: 18 } : 17,
-                fontWeight: 800,
-                color: theme.text,
-                lineHeight: 1.2,
-                m: 0,
-              }}
-              noWrap={headerBar}
-            >
-              {name}
-            </Typography>
-            <Typography
-              sx={{
-                fontSize: headerBar ? { xs: 10, md: 11 } : compact ? { xs: 10.5, md: 12 } : 12,
-                color: theme.accent,
-                fontWeight: 600,
-                mt: 0.25,
-                lineHeight: 1.35,
-              }}
-              noWrap={headerBar}
-            >
-              {role}
-            </Typography>
-            {(!headerBar || (headerBar && showDetails && collapsible)) && (
-              <Stack direction="row" alignItems="center" spacing={0.75} sx={{ mt: 0.5, flexWrap: 'wrap' }}>
-                <AngolanIcon size={14} />
-                <SwissIcon size={14} />
-                <Typography sx={{ fontSize: 11, color: theme.textMuted }} noWrap={headerBar}>
-                  {based}
-                </Typography>
-              </Stack>
-            )}
-          </Box>
-        )}
-      </Stack>
-      {!compact && (
-        <Typography sx={{ fontSize: 12.5, color: theme.textSoft, lineHeight: 1.55, mt: 1.25 }}>{tagline}</Typography>
-      )}
-    </Box>
   );
 }
 
@@ -1326,310 +1221,6 @@ function Timeline({ stops, activeIndex, onSelect, playing, onTogglePlay, onPrev,
   );
 }
 
-function PlaypadNavIcon({ open }) {
-  const lineSx = {
-    display: 'block',
-    height: '1px',
-    bgcolor: 'currentColor',
-    transition: 'transform .2s ease, width .2s ease',
-  };
-  return (
-    <Box component="span" aria-hidden sx={{ display: 'grid', gap: '5px', width: 17, flexShrink: 0 }}>
-      <Box
-        component="i"
-        sx={{
-          ...lineSx,
-          width: 17,
-          transform: open ? 'translateY(3px) rotate(45deg)' : 'none',
-        }}
-      />
-      <Box
-        component="i"
-        sx={{
-          ...lineSx,
-          width: open ? 17 : 12,
-          justifySelf: 'end',
-          transform: open ? 'translateY(-3px) rotate(-45deg)' : 'none',
-        }}
-      />
-    </Box>
-  );
-}
-
-function JourneySiteNav({
-  theme,
-  themeMode,
-  onThemeChange,
-  isMobile,
-  onToggleHud,
-  viewMode,
-  onViewModeChange,
-  onOpenAssistant,
-}) {
-  const { t, i18n } = useTranslation([_NAMESPACE_LANGAGE_JOURNEY_, _NAMESPACE_LANGAGE_COMMON_]);
-  const router = useRouter();
-  const langContext = useLangMode();
-  const shellRef = useRef(null);
-  const barRef = useRef(null);
-  const currentLang = JOURNEY_LOCALES.includes(router.locale) ? router.locale : 'fr';
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [panelRect, setPanelRect] = useState(null);
-
-  const updatePanelRect = useCallback(() => {
-    if (!barRef.current) return;
-    const rect = barRef.current.getBoundingClientRect();
-    const margin = 12;
-    setPanelRect({
-      top: rect.bottom + 10,
-      left: Math.max(margin, rect.left),
-      width: Math.min(rect.width, window.innerWidth - margin * 2),
-    });
-  }, []);
-
-  const changeLang = (lang) => {
-    if (!lang || lang === currentLang) return;
-    i18n.changeLanguage(lang);
-    if (langContext) langContext[1](lang);
-    else router.replace(router.asPath, router.asPath, { locale: lang });
-  };
-
-  const setView = (mode) => {
-    if (!mode || mode === viewMode) return;
-    onViewModeChange(mode);
-    try {
-      sessionStorage.setItem(JOURNEY_VIEW_STORAGE_KEY, mode);
-    } catch {
-      /* ignore */
-    }
-  };
-
-  const ui = (key) => getJourneyUi(i18n.language, key) || t(`ui.${key}`);
-  const tc = (key) => t(key, { ns: _NAMESPACE_LANGAGE_COMMON_ });
-
-  const closeMenu = () => setMenuOpen(false);
-  const toggleMenu = () => setMenuOpen((o) => !o);
-
-  useLayoutEffect(() => {
-    if (!menuOpen) {
-      setPanelRect(null);
-      return undefined;
-    }
-    updatePanelRect();
-    window.addEventListener('resize', updatePanelRect);
-    window.addEventListener('scroll', updatePanelRect, true);
-    return () => {
-      window.removeEventListener('resize', updatePanelRect);
-      window.removeEventListener('scroll', updatePanelRect, true);
-    };
-  }, [menuOpen, updatePanelRect]);
-
-  const prefLinkSx = (active) => ({
-    display: 'inline-flex',
-    alignItems: 'center',
-    minHeight: 24,
-    px: 0.25,
-    fontSize: 10,
-    fontWeight: active ? 700 : 500,
-    color: active ? theme.accent : theme.textMuted,
-    border: 'none',
-    bgcolor: 'transparent',
-    cursor: 'pointer',
-    textDecoration: active ? 'underline' : 'none',
-    textUnderlineOffset: 3,
-    '&:hover': { color: theme.accent },
-  });
-
-  return (
-    <Box ref={shellRef} sx={{ position: 'relative', pointerEvents: 'auto', width: '100%', minWidth: 0 }}>
-      <Box ref={barRef} data-journey-nav-bar sx={journeyHeaderBarSx(theme)}>
-        <Box sx={{ minWidth: 0, overflow: 'hidden' }}>
-          <ProfileCard theme={theme} compact headerBar collapsible={isMobile} />
-        </Box>
-        <Stack direction="row" alignItems="center" spacing={{ xs: 0.75, sm: 1.25 }} sx={{ flexShrink: 0 }}>
-          <Box
-            component="button"
-            type="button"
-            onClick={onOpenAssistant}
-            aria-label={tc('assistant.open')}
-            sx={journeyHeaderPillSx(theme)}
-          >
-            <SmartToyIcon sx={{ fontSize: 18, color: theme.accent }} />
-            <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>
-              {ui('menuAssistant')}
-            </Box>
-            <Box component="span" className="journey-nav-arrow" aria-hidden>
-              ↗
-            </Box>
-          </Box>
-          <Box
-            component="button"
-            type="button"
-            id="journey-header-menu"
-            aria-label={menuOpen ? ui('menuClose') : ui('menuExplore')}
-            aria-controls="journey-header-panel"
-            aria-expanded={menuOpen ? 'true' : 'false'}
-            onClick={toggleMenu}
-            sx={journeyHeaderMenuToggleSx(theme, menuOpen)}
-          >
-            <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>
-              {menuOpen ? ui('menuClose') : ui('menuExplore')}
-            </Box>
-            <PlaypadNavIcon open={menuOpen} />
-          </Box>
-        </Stack>
-      </Box>
-
-      {menuOpen && panelRect && (
-        <Portal>
-          <Box sx={journeyHeaderMenuPortalRootSx(theme)}>
-            <Box aria-hidden onClick={closeMenu} sx={journeyHeaderBackdropSx(theme)} />
-            <Box
-              id="journey-header-panel"
-              role="dialog"
-              aria-labelledby="journey-header-menu"
-              sx={{
-                ...journeyHeaderPanelSx(theme),
-                position: 'fixed',
-                top: panelRect.top,
-                left: panelRect.left,
-                width: panelRect.width,
-              }}
-            >
-          <Box
-            sx={{
-              display: 'grid',
-              gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' },
-              gap: { xs: 2, md: 4 },
-              px: { xs: 2, md: 3 },
-              pt: 2,
-              pb: { xs: 1.5, md: 2 },
-            }}
-          >
-            <Box component="nav" aria-label={ui('menuSectionJourney')}>
-              <Typography component="p" sx={journeyNavSectionEyebrowSx(theme)}>
-                {ui('menuSectionJourney')}
-              </Typography>
-              <Box
-                component="button"
-                type="button"
-                onClick={() => setView('3d')}
-                sx={journeyNavMenuRowSx(theme, viewMode === '3d')}
-              >
-                <Box component="span" className="journey-nav-index">
-                  01
-                </Box>
-                <Box component="span">{ui('view3d')}</Box>
-                <Box component="span" className="journey-nav-arrow">
-                  ↗
-                </Box>
-              </Box>
-              <Box
-                component="button"
-                type="button"
-                onClick={() => setView('2d')}
-                sx={journeyNavMenuRowSx(theme, viewMode === '2d')}
-              >
-                <Box component="span" className="journey-nav-index">
-                  02
-                </Box>
-                <Box component="span">{ui('view2d')}</Box>
-                <Box component="span" className="journey-nav-arrow">
-                  ↗
-                </Box>
-              </Box>
-            </Box>
-
-            <Box component="nav" aria-label={ui('menuSectionMore')}>
-              <Typography component="p" sx={journeyNavSectionEyebrowSx(theme)}>
-                {ui('menuSectionMore')}
-              </Typography>
-              <Box component={Link} href={_PAGE_LINK_CV_} onClick={closeMenu} sx={journeyNavMenuRowSx(theme)}>
-                <Box component="span">{tc('seeMyCV')}</Box>
-                <Box component="span" className="journey-nav-arrow">
-                  ↗
-                </Box>
-              </Box>
-              {isMobile && (
-                <Box
-                  component="button"
-                  type="button"
-                  onClick={() => {
-                    onToggleHud();
-                    closeMenu();
-                  }}
-                  sx={journeyNavMenuRowSx(theme)}
-                >
-                  <Box component="span">{ui('settings')}</Box>
-                  <Box component="span" className="journey-nav-arrow">
-                    ↗
-                  </Box>
-                </Box>
-              )}
-              <Box
-                component="button"
-                type="button"
-                onClick={() => {
-                  onOpenAssistant();
-                  closeMenu();
-                }}
-                sx={journeyHeaderPanelCtaSx(theme)}
-              >
-                <Box component="span">{ui('menuCtaAssistant')}</Box>
-                <Box component="span" className="journey-nav-arrow" aria-hidden>
-                  ↗
-                </Box>
-              </Box>
-            </Box>
-          </Box>
-
-          <Box sx={journeyHeaderPreferencesSx(theme)}>
-            <Box>
-              <Typography sx={{ fontSize: 10, color: theme.textMuted, mb: 0.75 }}>{ui('language')}</Typography>
-              <Stack direction="row" flexWrap="wrap" useFlexGap gap={0.5}>
-                {JOURNEY_LOCALES.map((lang) => (
-                  <Box
-                    key={lang}
-                    component="button"
-                    type="button"
-                    aria-current={lang === currentLang ? 'true' : undefined}
-                    onClick={() => changeLang(lang)}
-                    sx={prefLinkSx(lang === currentLang)}
-                  >
-                    {lang === 'fr' ? 'Français' : lang === 'en' ? 'English' : 'Português'}
-                  </Box>
-                ))}
-              </Stack>
-            </Box>
-            <Box>
-              <Typography sx={{ fontSize: 10, color: theme.textMuted, mb: 0.75 }}>{ui('theme')}</Typography>
-              <Stack direction="row" flexWrap="wrap" useFlexGap gap={0.75}>
-                {[
-                  { id: 'dark', label: ui('themeDark') },
-                  { id: 'light', label: ui('themeLight') },
-                  { id: 'system', label: ui('themeSystem') },
-                ].map(({ id, label }) => (
-                  <Box
-                    key={id}
-                    component="button"
-                    type="button"
-                    aria-pressed={themeMode === id ? 'true' : 'false'}
-                    onClick={() => onThemeChange(id)}
-                    sx={prefLinkSx(themeMode === id)}
-                  >
-                    {label}
-                  </Box>
-                ))}
-              </Stack>
-            </Box>
-          </Box>
-            </Box>
-          </Box>
-        </Portal>
-      )}
-    </Box>
-  );
-}
-
 export default function JourneyExperience() {
   const { t } = useTranslation(_NAMESPACE_LANGAGE_JOURNEY_);
   const stops = useMemo(() => buildJourneyStops(JOURNEY_TOTAL_STOPS), []);
@@ -1741,6 +1332,21 @@ export default function JourneyExperience() {
         </Box>
       )}
 
+      <Box sx={journeyFixedHeaderShellSx()}>
+        <Box sx={journeyFixedHeaderNavSx()}>
+          <JourneySiteNav
+            theme={theme}
+            themeMode={themeMode}
+            onThemeChange={changeMode}
+            isMobile={isMobile}
+            onToggleHud={() => setHudOpen((o) => !o)}
+            viewMode={viewMode}
+            onViewModeChange={setViewMode}
+            onOpenAssistant={() => setAssistantOpen(true)}
+          />
+        </Box>
+      </Box>
+
       <Box
         sx={{
           position: 'absolute',
@@ -1749,22 +1355,13 @@ export default function JourneyExperience() {
           isolation: 'isolate',
           pointerEvents: 'none',
           display: 'grid',
-          gridTemplateRows: 'auto 1fr auto',
+          gridTemplateRows: '1fr auto',
           gap: 2,
-          p: { xs: 1.5, md: 3 },
+          px: { xs: 1.5, md: 3 },
+          pb: { xs: 1.5, md: 3 },
+          pt: { xs: '84px', md: '112px' },
         }}
       >
-        <JourneySiteNav
-          theme={theme}
-          themeMode={themeMode}
-          onThemeChange={changeMode}
-          isMobile={isMobile}
-          onToggleHud={() => setHudOpen((o) => !o)}
-          viewMode={viewMode}
-          onViewModeChange={setViewMode}
-          onOpenAssistant={() => setAssistantOpen(true)}
-        />
-
         <Stack
           direction="row"
           justifyContent={{ xs: 'center', md: 'space-between' }}

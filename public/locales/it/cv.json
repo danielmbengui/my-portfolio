@@ -1,6 +1,6 @@
 {
-  "name": "Mbengui Daniel Slaver",
-  "role": "Sviluppatore Web e Mobile",
+  "name": "Daniel Slaver MBENGUI",
+  "role": "Sviluppatore Full Stack & Mobile",
   "tagline": "Appassionato di programmazione, unisco tecnologia e creatività per dare vita ai vostri progetti. Tra tech e business, sono il vostro partner per l'innovazione!",
   "aiToolsLabel": "IA e strumenti moderni:",
   "aiTools": "LLM e API chat · Agenti IA · Codice assistito dall'IA · Immagini, audio e video IA",
@@ -181,6 +181,11 @@
     }
   },
   "projects": {
+    "vaakai": {
+      "period": "10/2026 – oggi",
+      "title": "Vaakai Store",
+      "desc": "Drogheria online svizzera: catalogo prodotti, programma fedeltà, servizi in negozio ed esperienza multilingue (fr, en, de, it) con tema chiaro, scuro o di sistema. Sviluppata con Dandela Tech — retail digitale end-to-end."
+    },
     "drilldev": {
       "period": "02/2023 – 04/2023",
       "title": "Drill Dev",

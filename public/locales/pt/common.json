@@ -1,5 +1,7 @@
 {
     "titlePageHome": "Portfólio · Daniel Mbengui",
+    "indexTabTitle": "Daniel Slaver MBENGUI | Bem-vindo",
+    "cvTabTitle": "Daniel Slaver MBENGUI | CV",
     "welcome" :  "Olá 👋🏿, sou o Daan. Prazer em te conhecer! Como você está hoje?",
     "footer": {
         "deployedWith" : "Feito com paixão e dedicação, desenvolvido com",
@@ -215,8 +217,8 @@
         }
     },
     "chatbot" : "Fala comigo",
-    "cvTitlePage": "Mbengui Daniel Slaver | Vibe Developer",
-    "cvDescriptionPage": "Curriculum Vitae de Mbengui Daniel Slaver — Desenvolvedor Web, Mobile & IA. Experiências, competências técnicas e formações.",
+    "cvTitlePage": "Daniel Slaver MBENGUI | CV",
+    "cvDescriptionPage": "Curriculum Vitae de Mbengui Daniel Slaver — Desenvolvedor Full Stack & Mobile. Experiências, competências técnicas e formações.",
     "seeMyCV" : "Ver o meu CV",
     "sendMeMail" : "Contacta-me",
     "profileLinkedin" : "Perfil Linkedin",

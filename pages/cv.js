@@ -2,38 +2,35 @@ import React from 'react';
 import Head from 'next/head';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { ARRAY_NAMESPACES, ARRAY_LANGAGES, _NAMESPACE_LANGAGE_COMMON_, _MY_PROFILE_, _WEBSITE_ADDRESS_, _NEXTJS_LINK_ } from '@/_mocks_/_settings_items_';
+import {
+  ARRAY_NAMESPACES,
+  ARRAY_LANGAGES,
+  _NAMESPACE_LANGAGE_COMMON_,
+  _MY_PROFILE_,
+  _WEBSITE_ADDRESS_,
+  _NEXTJS_LINK_,
+} from '@/_mocks_/_settings_items_';
+import { _NAMESPACE_LANGAGE_JOURNEY_ } from '@/_mocks_/_journey_items_';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Stack, Tooltip } from '@mui/material';
 import CvComponent from '@/components/cv/CvComponent';
-import ContactMeComponent from '@/components/contactMe/ContactMeComponent';
-import FloatingQuickMenu from '@/components/contexts/FloatingQuickMenu';
+import CvPageLayout from '@/components/cv/CvPageLayout';
 import { PlayStoreIcon, IosIcon, NextJsIcon, CursorIcon } from '@/components/icons/IconifiyIcons';
-import AiAssistant from '@/components/assistant/AiAssistant';
 
 export default function CvPage() {
-  const { t } = useTranslation(_NAMESPACE_LANGAGE_COMMON_);
+  const { t, i18n } = useTranslation(_NAMESPACE_LANGAGE_COMMON_);
   const currentYear = new Date().getFullYear();
+  const tabTitle = t('cvTabTitle');
 
   return (
-    <div
-      style={{
-        background: 'var(--background)',
-        overflowX: 'hidden',
-        overflowY: 'auto',
-        minHeight: '100vh',
-        width: '100%',
-      }}
-    >
+    <CvPageLayout>
       <Head>
-        <title>{t('cvTitlePage')}</title>
+        <title key={i18n.resolvedLanguage || i18n.language}>{tabTitle}</title>
         <meta name="description" content={t('cvDescriptionPage')} />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <CssBaseline />
-      <CvComponent />
-      <ContactMeComponent embedded />
-      <AiAssistant />
-      <FloatingQuickMenu hideCvLink />
+      <CvComponent embedded />
       <footer
         className="appFooter"
         style={{
@@ -51,32 +48,35 @@ export default function CvPage() {
             <Tooltip sx={{ zIndex: 1 }} title={t('sendMeMail')} placement="top">
               <a href={`mailto:${_MY_PROFILE_.mail}`} className="btn btn-icon btn-sm" style={{
                 background: 'var(--primary)',
-                color: 'var(--text-secondary)'
-              }}>
+                color: 'var(--text-secondary)',
+              }}
+              >
                 <ion-icon name="mail"></ion-icon>
               </a>
             </Tooltip>
 
             <Tooltip sx={{ zIndex: 1 }} title={t('profileLinkedin')} placement="top">
-              <a href={_MY_PROFILE_.socials.linkedin} target='_blank' className="btn btn-icon btn-sm" style={{
+              <a href={_MY_PROFILE_.socials.linkedin} target="_blank" rel="noopener noreferrer" className="btn btn-icon btn-sm" style={{
                 background: 'var(--blue-linkedin)',
-                color: 'white'
-              }}>
+                color: 'white',
+              }}
+              >
                 <ion-icon name="logo-linkedin"></ion-icon>
               </a>
             </Tooltip>
 
             <Tooltip sx={{ zIndex: 1 }} title={t('profileGithub')} placement="top">
-              <a href={_MY_PROFILE_.socials.github} target='_blank' className="btn btn-icon btn-sm" style={{
+              <a href={_MY_PROFILE_.socials.github} target="_blank" rel="noopener noreferrer" className="btn btn-icon btn-sm" style={{
                 background: 'black',
-                color: 'white'
-              }}>
+                color: 'white',
+              }}
+              >
                 <ion-icon name="logo-github"></ion-icon>
               </a>
             </Tooltip>
 
             <Tooltip sx={{ zIndex: 1 }} title={t('profilePlaystore')} placement="top">
-              <a href={_MY_PROFILE_.socials.playstore} target="_blank" className="btn btn-icon btn-sm" style={{ background: 'white' }}>
+              <a href={_MY_PROFILE_.socials.playstore} target="_blank" rel="noopener noreferrer" className="btn btn-icon btn-sm" style={{ background: 'white' }}>
                 <PlayStoreIcon size={15} />
               </a>
             </Tooltip>
@@ -90,23 +90,31 @@ export default function CvPage() {
           </Stack>
           <Stack alignItems="center" spacing={0.5} sx={{ fontSize: 12, color: 'var(--accents7)' }}>
             <div>
-              {t('footer.deployedWith')} <a href={_NEXTJS_LINK_} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary)' }}>Next.js <NextJsIcon size={14} /></a> & <a href="https://cursor.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary)' }}>Cursor <CursorIcon size={14} /></a>
+              {t('footer.deployedWith')}{' '}
+              <a href={_NEXTJS_LINK_} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary)' }}>
+                Next.js <NextJsIcon size={14} />
+              </a>{' '}
+              &{' '}
+              <a href="https://cursor.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary)' }}>
+                Cursor <CursorIcon size={14} />
+              </a>
             </div>
             <div>
-              {t('footer.copyright')} <span>{currentYear === 2023 ? '2023' : `2023–${currentYear}`}</span> {_WEBSITE_ADDRESS_}
+              {t('footer.copyright')}{' '}
+              <span>{currentYear === 2023 ? '2023' : `2023–${currentYear}`}</span> {_WEBSITE_ADDRESS_}
             </div>
             <div>{t('footer.allRightsReserved')}</div>
           </Stack>
         </Stack>
       </footer>
-    </div>
+    </CvPageLayout>
   );
 }
 
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, [...ARRAY_NAMESPACES, 'cv'], null, ARRAY_LANGAGES)),
+      ...(await serverSideTranslations(locale, [...ARRAY_NAMESPACES, 'cv', _NAMESPACE_LANGAGE_JOURNEY_], null, ARRAY_LANGAGES)),
     },
   };
 }
