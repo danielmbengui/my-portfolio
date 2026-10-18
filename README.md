@@ -1,199 +1,186 @@
 # Portfolio de Daniel Mbengui
 
-Portfolio personnel moderne, multilingue et interactif, construit avec Next.js pour présenter mon profil, mes projets, mes compétences, ainsi que mon CV dynamique avec export PDF.
+Portfolio personnel multilingue : **parcours interactif** (3D / 2D), **CV** exportable en PDF et **assistant IA**.
 
-Site public: [https://danielmbengui.ch](https://danielmbengui.ch)
+Site public : [https://danielmbengui.ch](https://danielmbengui.ch)
 
 ![Next.js](https://img.shields.io/badge/Next.js-13-black?logo=next.js)
 ![React](https://img.shields.io/badge/React-18-20232A?logo=react)
+![Three.js](https://img.shields.io/badge/Three.js-r160-black?logo=three.js)
 ![MUI](https://img.shields.io/badge/MUI-5-007FFF?logo=mui)
 ![OpenAI](https://img.shields.io/badge/OpenAI-API-412991?logo=openai)
 ![i18n](https://img.shields.io/badge/i18n-5_langues-success)
-![License](https://img.shields.io/badge/license-Public-lightgrey)
 
 ---
 
-## Table des matieres
+## Table des matières
 
-- [Apercu](#apercu)
-- [Demo visuelle](#demo-visuelle)
-- [Fonctionnalites principales](#fonctionnalites-principales)
+- [Aperçu](#aperçu)
+- [Pages & routes](#pages--routes)
+- [Fonctionnalités](#fonctionnalités)
 - [Stack technique](#stack-technique)
-- [Arborescence utile](#arborescence-utile)
-- [Installation & lancement](#installation--lancement)
-- [Scripts disponibles](#scripts-disponibles)
+- [Arborescence](#arborescence)
+- [Installation](#installation)
+- [Scripts](#scripts)
 - [Internationalisation](#internationalisation)
-- [Assistant IA: notes techniques](#assistant-ia-notes-techniques)
-- [Feuille de route](#roadmap)
-- [Déploiement](#deploiement)
+- [Assistant IA](#assistant-ia)
+- [SEO](#seo)
+- [Déploiement](#déploiement)
 - [Auteur](#auteur)
 
 ---
 
-## Apercu
+## Aperçu
 
-Ce projet va au-dela d'une simple page vitrine:
+Le site met en avant mon parcours **Angola ⇄ Suisse** à travers une timeline immersive, complétée par un CV structuré et un assistant conversationnel.
 
-- Interface premium (MUI + animations) avec sections immersives.
-- Assistant IA integre (drawer desktop/mobile) connecte a l'API OpenAI.
-- Contenu internationalise en 5 langues (`fr`, `en`, `it`, `pt`, `ao`).
-- Page CV complete et telechargeable en PDF.
-- Navigation rapide (menu flottant) et composants modulaires reutilisables.
+- **Accueil** : expérience « Mon parcours » (~59 jalons), thème clair / sombre / système, vues **3D** (Three.js) et **2D** (carte type métro).
+- **CV** : même charte visuelle, sections repliables, téléchargement PDF.
+- **Langues** : français (défaut), anglais, italien, portugais, lingala (`ao`).
+- **Assistant** : drawer accessible depuis la navigation, alimenté par l’API OpenAI.
 
----
+### Médias
 
-## Demo visuelle
-
-### Profil
 ![Profil](./public/me-color.png)
 
-### Vidéo de présentation
-- Video de présentation: [Présentation](https://www.danielmbengui.ch/assets/videos/presentation.mp4)
+- Présentation : [presentation.mp4](https://www.danielmbengui.ch/assets/videos/presentation.mp4)
+- Axes « Ce qui me définit » et « Univers & valeurs » : fichiers dans `public/assets/videos/` (voir anciennes URLs sur le site si besoin).
 
-### Vidéos "Ce qui me définit"
-- Video "AXE 1 — Vision, instinct et convictions": [Penser avant d'agir](https://www.danielmbengui.ch/assets/videos/1-4.mp4)
-- Video "AXE 2 — Construire ensemble": [La collaboration comme fondation](https://www.danielmbengui.ch/assets/videos/1-3.mp4)
-- Video "AXE 3 — Créer avec l'IA, pas la subir": [Co-création humain–IA](https://www.danielmbengui.ch/assets/videos/1-1.mp4)
-- Video "AXE 4 — Déléguer pour mieux créer": [Automatiser l'utile pour libérer l'essentiel](https://www.danielmbengui.ch/assets/videos/1-2.mp4)
-
-### Vidéos "Mon univers et mes valeurs"
-- Video "Loyauté & responsabilité": [1](https://www.danielmbengui.ch/assets/videos/2-1.mp4)
-- Video "Déléguer avec confiance": [2](https://www.danielmbengui.ch/assets/videos/2-2.mp4)
-- Video "Équilibre et respiration": [3](https://www.danielmbengui.ch/assets/videos/2-3.mp4)
-- Video "Défendre une vision": [4](https://www.danielmbengui.ch/assets/videos/2-4.mp4)
 ---
 
-## Fonctionnalites principales
+## Pages & routes
 
-### Home (`/`)
-- Hero anime avec avatar, icones stack rotatives et CTA.
-- Video de presentation embarquee.
-- Sections dediees:
-  - Langues
-  - Ce qui me definit
-  - Univers & Valeurs
-  - Projets
-  - Contact
-  - Competences
-- Footer social (LinkedIn, GitHub, Play Store, App Store, email).
+| Route | Fichier | Description |
+|--------|---------|-------------|
+| `/` | `pages/index.js` | Parcours interactif (`JourneyExperience`) |
+| `/cv` | `pages/cv.js` | CV en ligne + export PDF |
+| `POST /api/chat` | `pages/api/chat.js` | Backend assistant IA |
+
+Locales Next.js : préfixe `/en`, `/it`, `/pt`, `/ao` ; le français est servi sans préfixe (`/`, `/cv`).
+
+---
+
+## Fonctionnalités
+
+### Parcours (`/`)
+
+- Timeline chronologique avec ères colorées (origines, intégration, formation, reconversion, entrepreneuriat, défi xAI, etc.).
+- **Mode 3D** : rail Angola / Suisse, caméra, bloom, étapes cliquables, labels flottants.
+- **Mode 2D** : timeline verticale avec branches par région.
+- Fiche détail par étape (texte, image, vidéo, compétences et langues débloquées).
+- HUD « déblocages », lecture automatique, navigation clavier.
+- **Intro** (première visite) : choix langue / thème avant d’entrer dans le parcours.
+- Loader au démarrage (thème, vue 2D/3D, scène WebGL).
+
+Données : `_mocks_/_journey_items_.js`, textes `public/locales/*/journey.json`, visuels `public/img/portfolio/step-*`.
 
 ### CV (`/cv`)
-- CV structure en accordions (experiences, formation, certificats, projets, soft skills, hobbies, publications...).
-- Telechargement PDF client-side via `html2pdf.js`.
-- Liens externes vers certificats/publications.
 
-### Assistant IA (`/api/chat` + UI)
-- Interface conversationnelle avec suggestions.
-- Effet "typing" progressif des reponses.
-- Parsing des liens markdown dans les messages.
-- API Next.js routee vers OpenAI Responses API.
+- Accordéons : langues, expériences, formation, certificats, projets, compétences, soft skills, loisirs, publications.
+- Liens vers PDF de certificats dans `public/assets/certifications/`.
+- Export PDF client (`html2pdf.js`).
+- Navigation partagée avec le parcours (menu, thème, assistant).
+
+### Assistant IA
+
+- Panneau latéral, suggestions, effet de frappe.
+- Contexte métier : `lib/assistantContext.js`.
 
 ---
 
 ## Stack technique
 
-| Categorie | Technologies |
-|---|---|
-| Framework | `Next.js 13` (Pages Router), `React 18` |
-| UI / Design System | `MUI`, `Emotion`, `Bootstrap` |
-| Animations | `framer-motion`, `react-spring` |
-| i18n | `next-i18next` |
-| IA | OpenAI Responses API (`gpt-4o-mini`) |
-| PDF | `html2pdf.js`, `@react-pdf/renderer` |
-| Qualité | `ESLint` (`next lint`) |
+| Catégorie | Technologies |
+|-----------|----------------|
+| Framework | Next.js 13 (Pages Router), React 18 |
+| 3D | Three.js, React Three Fiber, Drei, postprocessing |
+| UI | MUI, Emotion |
+| i18n | next-i18next, i18next |
+| IA | OpenAI (Responses API via `pages/api/chat.js`) |
+| PDF | html2pdf.js, @react-pdf/renderer |
+| Analytics | Vercel Analytics & Speed Insights |
+| Qualité | ESLint (`next lint`) |
 
 ---
 
-## Arborescence utile
+## Arborescence
 
 ```text
 .
-|- pages/
-|  |- index.js            # home
-|  |- cv.js               # page CV
-|  |- api/chat.js         # endpoint assistant IA
-|- components/
-|  |- assistant/          # bouton + panneau assistant IA
-|  |- cv/                 # composant CV
-|  |- projects/           # section projets
-|  |- skills/             # section competences
-|  |- ...
-|- lib/
-|  |- assistantContext.js # instructions/context de l'assistant
-|- public/
-|  |- locales/            # traductions (fr, en, it, pt, ao)
-|  |- assets/             # videos, certifications, publications
-|- styles/
-|- _mocks_/
-|  |- _settings_items_.js # constantes globales site/profil
+├── pages/
+│   ├── index.js              # accueil = parcours
+│   ├── cv.js
+│   └── api/chat.js
+├── components/
+│   ├── journey/              # scène 3D, vue 2D, nav, intro, thème
+│   ├── cv/                   # CvComponent, CvPageLayout
+│   └── assistant/            # panneau & bouton IA
+├── _mocks_/
+│   └── _journey_items_.js    # jalons, ères, stops
+├── lib/
+│   └── assistantContext.js
+├── utility/
+│   └── journeyMilestoneText.js
+├── public/
+│   ├── locales/              # fr, en, it, pt, ao
+│   ├── img/portfolio/        # images d’étapes
+│   ├── assets/               # vidéos, certifications, CSS legacy
+│   ├── favicon.ico
+│   └── sitemap.xml
+└── styles/
 ```
 
 ---
 
-## Installation & lancement
+## Installation
 
-### Lancement rapide
+### Prérequis
+
+- Node.js 18+
+- npm
+
+### Démarrage
+
 ```bash
 npm install
 echo "OPEN_AI_KEY=your_openai_api_key" > .env.local
 npm run dev
 ```
 
-Puis ouvrir [http://localhost:3000](http://localhost:3000).
+Ouvrir [http://localhost:3000](http://localhost:3000).
 
-### Configuration detaillée
-
-### 1) Prerequis
-- Node.js 18+ recommande
-- npm (le projet contient `package-lock.json`)
-
-### 2) Installer les dépendances
-```bash
-npm install
-```
-
-### 3) Configurer l'environnement
-Creer un fichier `.env.local` a la racine:
-
-```bash
-OPEN_AI_KEY=your_openai_api_key
-```
-
-> Sans cette variable, l'endpoint `pages/api/chat.js` renverra une erreur 500.
-
-### 4) Démarrer en local
-```bash
-npm run dev
-```
-
-Ouvrir ensuite [http://localhost:3000](http://localhost:3000).
+Sans `OPEN_AI_KEY`, l’assistant renverra une erreur côté API ; le reste du site fonctionne.
 
 ---
 
-## Scripts disponibles
+## Scripts
 
 ```bash
-npm run dev     # environnement de developpement
-npm run build   # build de production
-npm run start   # demarrage en mode production
-npm run lint    # verification ESLint
+npm run dev     # développement
+npm run build   # build production
+npm run start   # serveur production
+npm run lint    # ESLint
 ```
 
 ---
 
 ## Internationalisation
 
-- Configuration centralisee dans `next-i18next.config.js`.
-- Langue par defaut: `fr`.
-- Locales actives: `fr`, `en`, `it`, `pt`, `ao`.
-- Fichiers de traduction dans `public/locales/<lang>/` (`common.json`, `home.json`, `cv.json`).
+- Config : `next-i18next.config.js`
+- Locale par défaut : `fr`
+- Locales : `fr`, `en`, `it`, `pt`, `ao`
+- Namespaces principaux :
+  - `journey` — parcours (accueil)
+  - `cv` — page CV
+  - `common` — libellés partagés (assistant, footer, etc.)
+
+Fichiers : `public/locales/<lang>/*.json`.
 
 ---
 
-## Assistant IA: notes techniques
+## Assistant IA
 
-- Endpoint: `POST /api/chat`
-- Payload attendu:
+**Endpoint** : `POST /api/chat`
 
 ```json
 {
@@ -202,34 +189,30 @@ npm run lint    # verification ESLint
 }
 ```
 
-- Le serveur injecte des instructions metier via `getAssistantInstructions()` depuis `lib/assistantContext.js`.
-- Outil web-search active cote OpenAI (`tools: [{ type: "web_search" }]`).
+Instructions injectées via `getAssistantInstructions()` dans `lib/assistantContext.js`.
 
 ---
 
-## Feuille de route
+## SEO
 
-- [x] Base portfolio Next.js + sections principales
-- [x] CV interactif + export PDF
-- [x] i18n (`fr`, `en`, `it`, `pt`, `ao`)
-- [x] Assistant IA (UI + endpoint OpenAI)
-- [ ] Ajouter tests unitaires/UI sur composants critiques
-- [ ] Ajouter CI GitHub Actions (lint + build)
-- [ ] Ajouter analytics/events plus detailles
+- `public/sitemap.xml` — accueil et CV pour chaque locale
+- Favicon : `public/favicon.ico` → `/favicon.ico`
+- Métadonnées par page via `next/head`
 
 ---
 
 ## Déploiement
 
-Le projet est adapte a un deploiement simple sur [Vercel](https://vercel.com/), avec support natif Next.js.
+Adapté à [Vercel](https://vercel.com/) (build Next.js natif). Définir `OPEN_AI_KEY` dans les variables d’environnement du projet.
 
 ---
 
 ## Auteur
 
-**Daniel Mbengui**  
-- Site: [https://danielmbengui.ch](https://danielmbengui.ch)  
-- LinkedIn: [https://www.linkedin.com/in/daniel-mbengui/](https://www.linkedin.com/in/daniel-mbengui/)  
-- GitHub: [https://github.com/danielmbengui](https://github.com/danielmbengui)  
-- Play Store (profil developpeur): [https://play.google.com/store/apps/dev?id=5041386544087051991](https://play.google.com/store/apps/dev?id=5041386544087051991)  
-- Apple App Store (profil developpeur): [https://apps.apple.com/ch/developer/mbengui-daniel-slaver/id1695490329?l=fr-FR](https://apps.apple.com/ch/developer/mbengui-daniel-slaver/id1695490329?l=fr-FR)
+**Daniel Mbengui**
+
+- Site : [danielmbengui.ch](https://danielmbengui.ch)
+- LinkedIn : [daniel-mbengui](https://www.linkedin.com/in/daniel-mbengui/)
+- GitHub : [danielmbengui](https://github.com/danielmbengui)
+- Google Play : [profil développeur](https://play.google.com/store/apps/dev?id=5041386544087051991)
+- App Store : [profil développeur](https://apps.apple.com/ch/developer/mbengui-daniel-slaver/id1695490329?l=fr-FR)

@@ -91,7 +91,6 @@ const MyApp = (props) => {
                   content="Full Stack & Mobile Developer — Web, mobile and AI."
                 />
                 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
-                <link rel="icon" href="/favicon.ico" />
               </Head>
               <Script
                 src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.esm.js"

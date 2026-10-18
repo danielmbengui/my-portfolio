@@ -24,7 +24,6 @@ export default function CvPage() {
       <Head>
         <title key={i18n.resolvedLanguage || i18n.language}>{tabTitle}</title>
         <meta name="description" content={t('cvDescriptionPage')} />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <CssBaseline />
       <CvComponent embedded />

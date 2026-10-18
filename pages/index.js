@@ -14,7 +14,6 @@ export default function IndexPage() {
       <Head>
         <title key={i18n.resolvedLanguage || i18n.language}>{tabTitle}</title>
         <meta name="description" content={t('pageDescription')} />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <JourneyExperience />
     </>
