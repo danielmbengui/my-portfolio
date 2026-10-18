@@ -3,26 +3,47 @@ import * as THREE from 'three';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Billboard, Grid, Html, Line, OrbitControls, Sparkles, Stars, Text } from '@react-three/drei';
 import { Bloom, EffectComposer, Vignette } from '@react-three/postprocessing';
-import { JOURNEY_ERAS, JOURNEY_REGIONS } from '@/_mocks_/_journey_items_';
+import { getJourneyEraColor, JOURNEY_REGIONS } from '@/_mocks_/_journey_items_';
 
 const GROUND_Y = -6;
 const CAMERA_OFFSET = new THREE.Vector3(9, 5, 13);
 const REGION_WIDTH = 22;
 
+const PATH_Y = 1.4;
+
+function journeyStepZ(stops) {
+  return stops.length > 80 ? 3 : 7;
+}
+
+/** Une position par jalon : alignée sur le côté Angola ou Suisse, sans ondulation. */
 export function getStopPositions(stops) {
-  const stepZ = stops.length > 80 ? 3 : 7;
+  const stepZ = journeyStepZ(stops);
   return stops.map((stop, i) => {
     const region = JOURNEY_REGIONS[stop.region] || JOURNEY_REGIONS.suisse;
-    return new THREE.Vector3(
-      region.x + Math.sin(i * 1.3) * 3.5,
-      1 + Math.sin(i * 0.55) * 2.2,
-      -i * stepZ
-    );
+    return new THREE.Vector3(region.x, PATH_Y, -i * stepZ);
   });
 }
 
-function eraColor(stop) {
-  return JOURNEY_ERAS[stop.era]?.color || '#ffffff';
+/** Points de courbe : lignes droites par région, arc uniquement au changement de côté. */
+export function buildPathControlPoints(stops, positions) {
+  if (!positions.length) return [];
+  const out = [];
+  for (let i = 0; i < stops.length; i++) {
+    if (i > 0 && stops[i].region !== stops[i - 1].region) {
+      const a = positions[i - 1];
+      const b = positions[i];
+      const zSpan = b.z - a.z;
+      out.push(new THREE.Vector3(a.x, a.y, a.z + zSpan * 0.22));
+      out.push(new THREE.Vector3((a.x + b.x) * 0.5, a.y + 0.12, a.z + zSpan * 0.5));
+      out.push(new THREE.Vector3(b.x, b.y, b.z - zSpan * 0.22));
+    }
+    out.push(positions[i].clone());
+  }
+  return out;
+}
+
+function eraColor(stop, themeMode) {
+  return getJourneyEraColor(stop?.era, themeMode) || '#ffffff';
 }
 
 /** Applique l’exposition du thème au renderer. */
@@ -69,18 +90,19 @@ function CameraRig({ target }) {
 function JourneyPath({ curve, stops, activeIndex, theme }) {
   const samplesPerStop = 12;
   const { points, colors } = useMemo(() => {
-    const total = (stops.length - 1) * samplesPerStop;
+    const segCount = Math.max(1, stops.length - 1);
+    const total = segCount * samplesPerStop;
     const activeT = stops.length > 1 ? activeIndex / (stops.length - 1) : 0;
     const background = new THREE.Color(theme.background);
-    const pathActive = new THREE.Color(theme.scene.pathLine);
-    const pathFuture = new THREE.Color(theme.scene.pathLineFuture || theme.scene.pathLine);
     const pts = [];
     const cols = [];
     for (let s = 0; s <= total; s++) {
       const t = s / total;
       pts.push(curve.getPoint(t));
+      const segIdx = Math.min(Math.floor(t * segCount + 1e-8), segCount - 1);
+      const destStop = stops[segIdx + 1] || stops[stops.length - 1];
+      const c = new THREE.Color(eraColor(destStop, theme.mode));
       const future = t > activeT + 1e-6;
-      const c = (future ? pathFuture : pathActive).clone();
       if (future && theme.scene.pathFutureMix > 0) c.lerp(background, theme.scene.pathFutureMix);
       cols.push(c);
     }
@@ -146,7 +168,7 @@ function StopNode({ stop, label, position, active, visited, onSelect, theme, sho
   const group = useRef();
   const ring = useRef();
   const halo = useRef();
-  const color = eraColor(stop);
+  const color = eraColor(stop, theme.mode);
   const baseScale = stop.placeholder ? 0.55 : 1;
 
   useEffect(() => {
@@ -341,12 +363,29 @@ function RegionGround({ region, label, length, centerZ, theme }) {
   );
 }
 
-function Scene({ stops, labels, regionLabels, activeIndex, onSelect, theme, showFloatingLabels = true }) {
+function Scene({
+  stops,
+  labels,
+  regionLabels,
+  activeIndex,
+  onSelect,
+  theme,
+  showFloatingLabels = true,
+  onReady,
+}) {
+  const readySent = useRef(false);
+  useFrame(() => {
+    if (readySent.current) return;
+    readySent.current = true;
+    onReady?.();
+  });
+
   const positions = useMemo(() => getStopPositions(stops), [stops]);
-  const curve = useMemo(
-    () => new THREE.CatmullRomCurve3(positions.length > 1 ? positions : [positions[0], positions[0].clone()], false, 'catmullrom', 0.5),
-    [positions]
-  );
+  const pathControlPoints = useMemo(() => buildPathControlPoints(stops, positions), [stops, positions]);
+  const curve = useMemo(() => {
+    const pts = pathControlPoints.length > 1 ? pathControlPoints : [positions[0], positions[0]?.clone()].filter(Boolean);
+    return new THREE.CatmullRomCurve3(pts, false, 'centripetal', 0.35);
+  }, [pathControlPoints, positions]);
   const length = Math.abs(positions[positions.length - 1].z) + 30;
   const centerZ = -length / 2 + 15;
   const s = theme.scene;
@@ -365,7 +404,7 @@ function Scene({ stops, labels, regionLabels, activeIndex, onSelect, theme, show
         intensity={s.pointLightIntensity ?? 60}
         distance={32}
         decay={2}
-        color={eraColor(stops[activeIndex])}
+        color={eraColor(stops[activeIndex], theme.mode)}
       />
 
       {s.stars && <Stars radius={160} depth={60} count={5000} factor={4.5} saturation={0.4} fade speed={0.5} />}

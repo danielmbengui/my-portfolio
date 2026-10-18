@@ -89,7 +89,7 @@
       }
     },
     "schneider": {
-      "period": "2008 – 2011",
+      "period": "2008 – 06/2011",
       "location": "Geneva, Switzerland",
       "titlePrefix": "Commercial apprentice, ",
       "items": {
@@ -99,7 +99,7 @@
   },
   "education": {
     "fortytwo": {
-      "period": "2022 – 2024",
+      "period": "09/2022 – 11/2024",
       "location": "Renens, Switzerland",
       "titleSuffix": ", Student",
       "items": {
@@ -107,7 +107,7 @@
       }
     },
     "esig": {
-      "period": "2013 – 2015",
+      "period": "2013 – 06/2015",
       "location": "Geneva, Switzerland",
       "titleSuffix": ", Graduate",
       "items": {
@@ -115,7 +115,7 @@
       }
     },
     "stael": {
-      "period": "2008 – 2011",
+      "period": "2008 – 06/2011",
       "location": "Geneva, Switzerland",
       "title": "Ecole de commerce Madame De Stael, Graduate",
       "items": {
@@ -126,10 +126,10 @@
   },
   "certificates": {
     "react": {
-      "period": "03/2025",
+      "period": "02/2025 – 03/2025",
       "location": "Online",
       "title": "Front-End Engineering with React",
-      "desc": "This learning path carefully prepares a beginner to master React for frontend engineering. Gradually advancing from the basics to more complex topics, this pathway endows learners to create interactive, and scalable web applications using React by the end."
+      "desc": "CodeSignal certification earned after intensive practice getting back into development, ahead of xAI technical assessments."
     },
     "jsAlgo": {
       "period": "03/2022",
@@ -150,7 +150,7 @@
       "desc": "Courses began in February 2020 on-site before the Covid-19 pandemic, then by videoconference for the remainder of the year."
     },
     "python": {
-      "period": "08/2019 – 10/2019",
+      "period": "07/2019 – 10/2019",
       "location": "Geneva, Switzerland",
       "title": "Certificate of proficiency in the Python programming language, IT Training Academy",
       "desc": "Learning the Python language and obtaining the certificate"
@@ -168,13 +168,13 @@
       "desc": "Learning the Java language for Android Studio • Learning the Ionic framework"
     },
     "esigDip": {
-      "period": "2013 – 2015",
+      "period": "2013 – 06/2015",
       "location": "Geneva, Switzerland",
       "title": "Diplôme Fédéral d'Informaticien de Gestion",
       "desc": "Federal Diploma in Management Information Technology obtained at Ecole Supérieure d'Informatique de Gestion (ESIG)."
     },
     "cfc": {
-      "period": "2008 – 2011",
+      "period": "2008 – 06/2011",
       "location": "Geneva, Switzerland",
       "title": "CFC Employé de commerce",
       "desc": "Federal Certificate of Capacity in Commerce obtained through alternating learning between school and work at Ecole de commerce Madame De Staël."
@@ -189,10 +189,10 @@
     "drilldev": {
       "period": "02/2023 – 04/2023",
       "title": "Drill Dev",
-      "desc": "A website dedicated to artificial intelligence image creation and its original creations. Tools and content to help developers progress with modern AI-assisted workflows."
+      "desc": "Mandatory project at 42 Lausanne: a website showcasing AI image generation (mainly Midjourney) and tools for developers."
     },
     "winno": {
-      "period": "04/2022 – 08/2022",
+      "period": "04/2022 – 07/2022",
       "title": "Winno Bearz Club",
       "desc": "Collection of 5,555 generative NFTs (pixelated bears) on the Polygon network. Each NFT is unique with over 194 combinable traits. Interactive bot, OpenSea listing, and community engagement."
     }

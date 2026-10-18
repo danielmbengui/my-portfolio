@@ -89,7 +89,7 @@
       }
     },
     "schneider": {
-      "period": "2008 – 2011",
+      "period": "2008 – 06/2011",
       "location": "Genebra, Suíça",
       "titlePrefix": "Aprendiz comercial, ",
       "items": {
@@ -99,7 +99,7 @@
   },
   "education": {
     "fortytwo": {
-      "period": "2022 – 2024",
+      "period": "09/2022 – 11/2024",
       "location": "Renens, Suíça",
       "titleSuffix": ", Estudante",
       "items": {
@@ -107,7 +107,7 @@
       }
     },
     "esig": {
-      "period": "2013 – 2015",
+      "period": "2013 – 06/2015",
       "location": "Genebra, Suíça",
       "titleSuffix": ", Diplomado",
       "items": {
@@ -115,7 +115,7 @@
       }
     },
     "stael": {
-      "period": "2008 – 2011",
+      "period": "2008 – 06/2011",
       "location": "Genebra, Suíça",
       "title": "Ecole de commerce Madame De Staël, Diplomado",
       "items": {
@@ -126,10 +126,10 @@
   },
   "certificates": {
     "react": {
-      "period": "03/2025",
+      "period": "02/2025 – 03/2025",
       "location": "Online",
       "title": "Front-End Engineering with React",
-      "desc": "Este percurso prepara um iniciante para dominar React na engenharia front-end. Do básico aos tópicos avançados, para criar aplicações web interativas e escaláveis."
+      "desc": "Certificação CodeSignal após remobilização intensiva no desenvolvimento, de olho nos testes técnicos da xAI."
     },
     "jsAlgo": {
       "period": "03/2022",
@@ -150,7 +150,7 @@
       "desc": "Cursos iniciados em fevereiro de 2020 no local antes da pandemia Covid-19, depois por videoconferência."
     },
     "python": {
-      "period": "08/2019 – 10/2019",
+      "period": "07/2019 – 10/2019",
       "location": "Genebra, Suíça",
       "title": "Certificado de competência em linguagem Python, IT Training Academy",
       "desc": "Aprendizagem da linguagem Python e obtenção do certificado."
@@ -168,13 +168,13 @@
       "desc": "Aprendizagem de Java para Android Studio • Framework Ionic."
     },
     "esigDip": {
-      "period": "2013 – 2015",
+      "period": "2013 – 06/2015",
       "location": "Genebra, Suíça",
       "title": "Diplôme Fédéral d'Informaticien de Gestion",
       "desc": "Diploma federal obtido na Ecole Supérieure d'Informatique de Gestion (ESIG)."
     },
     "cfc": {
-      "period": "2008 – 2011",
+      "period": "2008 – 06/2011",
       "location": "Genebra, Suíça",
       "title": "CFC Employé de commerce",
       "desc": "Certificado federal de capacidade em comércio, obtido em alternância na Ecole de commerce Madame De Staël."
@@ -189,10 +189,10 @@
     "drilldev": {
       "period": "02/2023 – 04/2023",
       "title": "Drill Dev",
-      "desc": "Site dedicado à criação de imagens por IA e criações originais. Ferramentas e conteúdo para ajudar desenvolvedores a evoluir com fluxos de trabalho modernos assistidos por IA."
+      "desc": "Exercício imposto pela 42 Lausanne: site para apresentar a geração de imagens por IA (principalmente Midjourney) e ferramentas para programadores."
     },
     "winno": {
-      "period": "04/2022 – 08/2022",
+      "period": "04/2022 – 07/2022",
       "title": "Winno Bearz Club",
       "desc": "Coleção de 5.555 NFTs gerativos (ursos pixelizados) na rede Polygon. Cada NFT é único com mais de 194 traços combináveis. Bot interativo, listagem OpenSea e envolvimento comunitário."
     }

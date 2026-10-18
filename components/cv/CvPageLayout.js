@@ -14,7 +14,7 @@ import {
 export default function CvPageLayout({ children }) {
   const { mode: themeMode, resolved, changeMode } = useJourneyThemeMode();
   const theme = getJourneyTheme(resolved);
-  const isMobile = useMediaQuery('(max-width: 900px)');
+  const isMobile = useMediaQuery('(max-width: 900px)', { noSsr: true });
   const [assistantOpen, setAssistantOpen] = useState(false);
 
   return (

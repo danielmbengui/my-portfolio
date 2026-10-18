@@ -65,8 +65,8 @@ const DARK = {
 
 const LIGHT = {
   mode: 'light',
-  background: '#f4efe6',
-  backgroundGradient: 'radial-gradient(120% 90% at 50% 0%, #fdfbf6 0%, #f4efe6 55%, #e9e2d6 100%)',
+  background: '#f4f4f6',
+  backgroundGradient: 'linear-gradient(180deg, #fafafa 0%, #f4f4f6 50%, #ebebef 100%)',
   text: '#15110f',
   textSoft: '#15110fd9',
   textMuted: '#15110fa6',
@@ -76,7 +76,7 @@ const LIGHT = {
   glassHighlight: 'rgba(255, 255, 255, 0.9)',
   glassShadow: '0 14px 40px rgba(60, 40, 20, 0.14), 0 1px 0 rgba(255, 255, 255, 0.8) inset',
   surface: '#ffffff',
-  surfaceAlt: '#f7f3ec',
+  surfaceAlt: '#ececef',
   divider: 'rgba(21, 17, 15, 0.08)',
   accent: ANGOLA_COLORS.red,
   accent2: '#b88900',
@@ -89,11 +89,11 @@ const LIGHT = {
     stars: false,
     sparkles: '#6b6560',
     sparklesOpacity: 0.22,
-    ground: '#e6dfd2',
-    groundOpacity: 0.96,
-    gridCell: '#b9b1a4',
-    gridSection: '#857c70',
-    gridLabel: '#6e6e76',
+    ground: '#FFFFFF',
+    groundOpacity: 1,
+    gridCell: '#FFFFFF',
+    gridSection: '#a1a1aa',
+    gridLabel: '#a1a1aa',
     regionLabelAngola: '#8a6600',
     regionLabelSuisse: '#9b0824',
     pathLine: '#17130f',
@@ -416,10 +416,19 @@ export function journeySiteCssVars(theme) {
   };
 }
 
+function readStoredJourneyThemeMode() {
+  if (typeof window === 'undefined') return 'dark';
+  const saved = window.localStorage.getItem(STORAGE_KEY);
+  return JOURNEY_THEME_MODES.includes(saved) ? saved : 'dark';
+}
+
 /** Mode choisi par l'utilisateur (dark / light / system), persisté, et mode effectif résolu. */
 export function useJourneyThemeMode() {
-  const [mode, setMode] = useState('dark');
-  const [systemDark, setSystemDark] = useState(true);
+  const [mode, setMode] = useState(readStoredJourneyThemeMode);
+  const [systemDark, setSystemDark] = useState(() => (
+    typeof window !== 'undefined' ? window.matchMedia('(prefers-color-scheme: dark)').matches : true
+  ));
+  const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
     const saved = window.localStorage.getItem(STORAGE_KEY);
@@ -433,6 +442,7 @@ export function useJourneyThemeMode() {
     setSystemDark(media.matches);
     const onChange = (e) => setSystemDark(e.matches);
     media.addEventListener('change', onChange);
+    setHydrated(true);
     return () => media.removeEventListener('change', onChange);
   }, []);
 
@@ -442,5 +452,5 @@ export function useJourneyThemeMode() {
   }, []);
 
   const resolved = mode === 'system' ? (systemDark ? 'dark' : 'light') : mode;
-  return { mode, resolved, changeMode };
+  return { mode, resolved, changeMode, hydrated };
 }

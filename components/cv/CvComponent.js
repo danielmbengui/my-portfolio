@@ -31,7 +31,12 @@ import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import TvIcon from '@mui/icons-material/Tv';
 import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
 import { useTranslation } from 'next-i18next';
-import { _MY_PROFILE_, _NAMESPACE_LANGAGE_COMMON_, _PAGE_LINK_HOME_ } from '@/_mocks_/_settings_items_';
+import {
+  _MY_PROFILE_,
+  _NAMESPACE_LANGAGE_COMMON_,
+  _PAGE_LINK_HOME_,
+  cvCertificationHref,
+} from '@/_mocks_/_settings_items_';
 import { MY_AVATAR_COLOR } from '@/constants';
 import { AngolanIcon, EnglishIcon, FrenchIcon, ItalianIcon, PortugueseIcon } from '@/components/icons/FlagIcons';
 import { AndroidIcon, C_LangageIcon, CssIcon, EtherJsIcon, FigmaIcon, FlutterIcon, FirebaseIcon, GithubIcon, HeroUIIcon, JavaIcon, JavascriptIcon, MaterialUiIcon, MySqlIcon, NextJsIcon, PostgresIcon, PwaIcon, PythonIcon, ReactIcon, SolidityIcon, SqlLiteIcon, TailwindIcon, TypescriptIcon, Web3JsIcon } from '@/components/icons/IconifiyIcons';
@@ -644,19 +649,19 @@ export default function CvComponent({ embedded = false }) {
         <CvCertEntry
           period={t('cv:certificates.react.period')}
           location={t('cv:certificates.react.location')}
-          title={<a href="https://codesignal.com/learn/certificates/cm8oi3sj300041wzyv83qfuee/course-paths/13" target="_blank" rel="noopener noreferrer" className="cv-link">{t('cv:certificates.react.title')}</a>}
+          title={<a href={cvCertificationHref('react')} target="_blank" rel="noopener noreferrer" className="cv-link">{t('cv:certificates.react.title')}</a>}
           desc={t('cv:certificates.react.desc')}
         />
         <CvCertEntry
           period={t('cv:certificates.jsAlgo.period')}
           location={t('cv:certificates.jsAlgo.location')}
-          title={<a href="https://www.freecodecamp.org/certification/fccef9a36a5-5f01-45d2-ad9e-88f37eac23d1/javascript-algorithms-and-data-structures" target="_blank" rel="noopener noreferrer" className="cv-link">{t('cv:certificates.jsAlgo.title')}</a>}
+          title={<a href={cvCertificationHref('jsAlgo')} target="_blank" rel="noopener noreferrer" className="cv-link">{t('cv:certificates.jsAlgo.title')}</a>}
           desc={t('cv:certificates.jsAlgo.desc')}
         />
         <CvCertEntry
           period={t('cv:certificates.responsive.period')}
           location={t('cv:certificates.responsive.location')}
-          title={<a href="https://www.freecodecamp.org/certification/fccef9a36a5-5f01-45d2-ad9e-88f37eac23d1/responsive-web-design" target="_blank" rel="noopener noreferrer" className="cv-link">{t('cv:certificates.responsive.title')}</a>}
+          title={<a href={cvCertificationHref('responsive')} target="_blank" rel="noopener noreferrer" className="cv-link">{t('cv:certificates.responsive.title')}</a>}
           desc={t('cv:certificates.responsive.desc')}
         />
         <CvCertEntry
@@ -668,7 +673,7 @@ export default function CvComponent({ embedded = false }) {
         <CvCertEntry
           period={t('cv:certificates.python.period')}
           location={t('cv:certificates.python.location')}
-          title={<a href="https://verify.openedg.org/?id=tNey.YC6P.z9by" target="_blank" rel="noopener noreferrer" className="cv-link">{t('cv:certificates.python.title')}</a>}
+          title={<a href="/assets/certifications/python.pdf" target="_blank" rel="noopener noreferrer" className="cv-link">{t('cv:certificates.python.title')}</a>}
           desc={t('cv:certificates.python.desc')}
         />
         <CvCertEntry

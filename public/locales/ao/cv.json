@@ -89,7 +89,7 @@
       }
     },
     "schneider": {
-      "period": "2008 – 2011",
+      "period": "2008 – 06/2011",
       "location": "Genève, Suisse",
       "titlePrefix": "Apprenti commercial, ",
       "items": {
@@ -99,7 +99,7 @@
   },
   "education": {
     "fortytwo": {
-      "period": "2022 – 2024",
+      "period": "09/2022 – 11/2024",
       "location": "Renens, Suisse",
       "titleSuffix": ", Moyekoli",
       "items": {
@@ -107,7 +107,7 @@
       }
     },
     "esig": {
-      "period": "2013 – 2015",
+      "period": "2013 – 06/2015",
       "location": "Genève, Suisse",
       "titleSuffix": ", Diplômé",
       "items": {
@@ -115,7 +115,7 @@
       }
     },
     "stael": {
-      "period": "2008 – 2011",
+      "period": "2008 – 06/2011",
       "location": "Genève, Suisse",
       "title": "Ecole de commerce Madame De Staël, Diplômé",
       "items": {
@@ -126,10 +126,10 @@
   },
   "certificates": {
     "react": {
-      "period": "03/2025",
+      "period": "02/2025 – 03/2025",
       "location": "En ligne",
       "title": "Front-End Engineering with React",
-      "desc": "Parcours mpo na koyekola React mpo na frontend. Kowuta na basics tii na sujets ya avanzé."
+      "desc": "Certification CodeSignal na remobilisation ya makasi, mpo na tests techniques na xAI."
     },
     "jsAlgo": {
       "period": "03/2022",
@@ -150,7 +150,7 @@
       "desc": "Cours na février 2020 sur site, sima na videoconference."
     },
     "python": {
-      "period": "08/2019 – 10/2019",
+      "period": "07/2019 – 10/2019",
       "location": "Genève, Suisse",
       "title": "Certificat Python, IT Training Academy",
       "desc": "Koyekola Python mpe kozwa certificat."
@@ -168,13 +168,13 @@
       "desc": "Koyekola Java mpo na Android Studio · Framework Ionic."
     },
     "esigDip": {
-      "period": "2013 – 2015",
+      "period": "2013 – 06/2015",
       "location": "Genève, Suisse",
       "title": "Diplôme Fédéral d'Informaticien de Gestion",
       "desc": "Diplôme fédéral na ESIG."
     },
     "cfc": {
-      "period": "2008 – 2011",
+      "period": "2008 – 06/2011",
       "location": "Genève, Suisse",
       "title": "CFC Employé de commerce",
       "desc": "Certificat fédéral na commerce, formation en alternance na Madame De Staël."
@@ -189,10 +189,10 @@
     "drilldev": {
       "period": "02/2023 – 04/2023",
       "title": "Drill Dev",
-      "desc": "Site mpo na création ya image na IA. Outils mpe contenu mpo na kosalisa bato ya code na AI-assisted workflows."
+      "desc": "Exercice ya 42 Lausanne: site mpo na présenter génération ya image na IA (Midjourney mingi) mpe outils mpo na développeurs."
     },
     "winno": {
-      "period": "04/2022 – 08/2022",
+      "period": "04/2022 – 07/2022",
       "title": "Winno Bearz Club",
       "desc": "Collection ya 5.555 NFTs (bears ya pixel) na réseau Polygon. NFT nyonso ezali unique na 194+ traits. Bot, OpenSea mpe communauté."
     }

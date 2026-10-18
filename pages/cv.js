@@ -3,14 +3,11 @@ import Head from 'next/head';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import {
-  ARRAY_NAMESPACES,
-  ARRAY_LANGAGES,
   _NAMESPACE_LANGAGE_COMMON_,
   _MY_PROFILE_,
   _WEBSITE_ADDRESS_,
   _NEXTJS_LINK_,
 } from '@/_mocks_/_settings_items_';
-import { _NAMESPACE_LANGAGE_JOURNEY_ } from '@/_mocks_/_journey_items_';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Stack, Tooltip } from '@mui/material';
 import CvComponent from '@/components/cv/CvComponent';
@@ -114,7 +111,7 @@ export default function CvPage() {
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, [...ARRAY_NAMESPACES, 'cv', _NAMESPACE_LANGAGE_JOURNEY_], null, ARRAY_LANGAGES)),
+      ...(await serverSideTranslations(locale, [_NAMESPACE_LANGAGE_COMMON_, 'cv'])),
     },
   };
 }

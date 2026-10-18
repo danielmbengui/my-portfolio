@@ -17,7 +17,7 @@ export const JOURNEY_PAGE_PATHS = ['/', '/test-tree-js'];
 export const JOURNEY_TOTAL_STOPS = 30;
 
 /** Jalons du début du parcours (1991…) placés consécutivement — augmenter à chaque nouvelle étape ajoutée. */
-export const JOURNEY_PACK_HEAD_COUNT = 26;
+export const JOURNEY_PACK_HEAD_COUNT = 59;
 
 export const JOURNEY_PROFILE = {
   photo: '/me-color.png',
@@ -36,15 +36,54 @@ export const JOURNEY_REGIONS = {
   suisse: { id: 'suisse', color: ANGOLA_COLORS.redBright, x: 11 },
 };
 
-/** Les époques passent du rouge au jaune de l'Angola au fil du temps. */
+/** Couleurs & libellés d’ère par numéro d’étape clé (1 = birth, …) — voir `getJourneyEraForStepNumber`. */
 export const JOURNEY_ERAS = {
-  origines: { id: 'origines', color: '#ff1f3d' },
-  enfance: { id: 'enfance', color: '#ff4528' },
-  formation: { id: 'formation', color: '#ff6d14' },
-  retour: { id: 'retour', color: '#ff9500' },
-  reconversion: { id: 'reconversion', color: '#ffb700' },
-  entrepreneur: { id: 'entrepreneur', color: '#ffd84a' },
+  origines: { id: 'origines', color: ANGOLA_COLORS.gold },
+  integration: { id: 'integration', color: ANGOLA_COLORS.redBright },
+  formationDebut: { id: 'formationDebut', color: '#ff7a1a' },
+  reconversionJobs: { id: 'reconversionJobs', color: '#22c55e' },
+  retour: { id: 'retour', color: ANGOLA_COLORS.redBright },
+  reconversionCert: { id: 'reconversionCert', color: '#22c55e' },
+  /** Teal du logo réseau 42 (#00BABC). */
+  reconversionArchi: { id: 'reconversionArchi', color: '#00BABC' },
+  entrepreneurPlaypad: { id: 'entrepreneurPlaypad', color: '#8E98FF' },
+  defiXai: { id: 'defiXai', color: '#141414' },
+  entrepreneurTech: { id: 'entrepreneurTech', color: '#3b82f6' },
 };
+
+/** Défi xAI : sombre en light, clair en dark (contraste sur le fond). */
+export function getJourneyEraColor(eraId, themeMode = 'dark') {
+  if (eraId === 'defiXai') {
+    return themeMode === 'light' ? '#141414' : '#f4f2ee';
+  }
+  return JOURNEY_ERAS[eraId]?.color;
+}
+
+/** Numéro d’étape = rang dans `JOURNEY_MILESTONES` (1-based, aligné step-N assets). */
+export function getJourneyEraForStepNumber(stepOneBased) {
+  const n = stepOneBased;
+  if (n === 1) return 'origines';
+  if (n >= 2 && n <= 4) return 'integration';
+  if (n === 5) return 'origines';
+  if (n === 6) return 'integration';
+  if (n === 7) return 'origines';
+  if (n >= 8 && n <= 20) return 'integration';
+  if (n <= 25) return 'formationDebut';
+  if (n <= 31) return 'reconversionJobs';
+  if (n === 32) return 'retour';
+  if (n <= 37) return 'reconversionCert';
+  if (n <= 41) return 'reconversionArchi';
+  if (n <= 45) return 'entrepreneurPlaypad';
+  if (n === 46) return 'retour';
+  if (n === 47) return 'reconversionArchi';
+  if (n === 48) return 'entrepreneurPlaypad';
+  if (n <= 52) return 'defiXai';
+  if (n === 53) return 'retour';
+  if (n === 54) return 'entrepreneurPlaypad';
+  if (n <= 56) return 'retour';
+  if (n === 57) return 'entrepreneurPlaypad';
+  return 'entrepreneurTech';
+}
 
 export const JOURNEY_LANGUAGES = [
   { id: 'french', flag: 'fr' },
@@ -81,6 +120,7 @@ export const JOURNEY_SKILLS = [
   { id: 'grokBot' },
   { id: 'claudeCode', label: 'Claude Code' },
   { id: 'xcode', label: 'Xcode' },
+  { id: 'xaiChallenge', label: 'Défi xAI' },
 ];
 
 /**
@@ -115,22 +155,46 @@ export const JOURNEY_MILESTONES = [
   { id: 'actu2010', era: 'formation', region: 'suisse', year: '2010', image: '/img/portfolio/step-24-first-party-jeunesse.jpeg' },
   { id: 'cfc', era: 'formation', region: 'suisse', year: '2011', image: '/img/portfolio/step-25-cfc.jpeg' },
   { id: 'itopie2013', era: 'formation', region: 'suisse', year: '2013', image: '/img/portfolio/step-26-itopie.jpeg' },
-  { id: 'esig', era: 'formation', region: 'suisse', year: '2013', skills: ['java', 'sql'] },
-  { id: 'esigImad', era: 'formation', region: 'suisse', year: '2015' },
-  { id: 'backToAngola', era: 'retour', region: 'angola', year: '2016', languages: ['portuguese'] },
-  { id: 'ifage', era: 'reconversion', region: 'suisse', year: '2018', skills: ['android'] },
-  { id: 'pythonScrum', era: 'reconversion', region: 'suisse', year: '2019', skills: ['python', 'scrum'] },
-  { id: 'javaSe11', era: 'reconversion', region: 'suisse', year: '2020' },
-  { id: 'freecodecamp', era: 'reconversion', region: 'suisse', year: '2022', skills: ['javascript', 'css'] },
-  { id: 'fortytwo', era: 'reconversion', region: 'suisse', year: '2022', skills: ['c', 'git'] },
-  { id: 'winno', era: 'reconversion', region: 'suisse', year: '2022', skills: ['solidity', 'web3'] },
-  { id: 'drilldev', era: 'reconversion', region: 'suisse', year: '2023', skills: ['ai', 'nextjs'] },
-  { id: 'playpadIdea', era: 'entrepreneur', region: 'suisse', year: '2023', skills: ['react'] },
-  { id: 'playpad', era: 'entrepreneur', region: 'suisse', year: '2024', skills: ['flutter', 'firebase'] },
-  { id: 'dandela', era: 'entrepreneur', region: 'angola', year: '2024', skills: ['pwa', 'mui'] },
-  { id: 'react', era: 'entrepreneur', region: 'suisse', year: '2025', skills: ['typescript'] },
-  { id: 'dandelaOpening', era: 'entrepreneur', region: 'angola', year: '2026' },
-  { id: 'today', era: 'entrepreneur', region: 'suisse', today: true, skills: ['cursor', 'grok', 'grokBot', 'claudeCode', 'xcode'] },
+  { id: 'esig', era: 'formation', region: 'suisse', year: '2013', image: '/img/portfolio/step-27-esig.jpeg', skills: ['java', 'sql'] },
+  { id: 'esigSideJobs', era: 'formation', region: 'suisse', year: '2014', image: '/img/portfolio/step-28-students-job.jpeg' },
+  { id: 'esigDiploma2015', era: 'formation', region: 'suisse', year: '2015', image: '/img/portfolio/step-29-diplome esig.jpeg' },
+  { id: 'imad2015', era: 'formation', region: 'suisse', year: '2015', image: '/img/portfolio/step-30-work-imad.jpeg' },
+  { id: 'heg2015', era: 'formation', region: 'suisse', year: '2016', image: '/img/portfolio/step-31-heg.jpeg' },
+  { id: 'backToAngola', era: 'retour', region: 'angola', year: '2016', image: '/img/portfolio/step-32-back-angola.jpeg', languages: ['portuguese'] },
+  { id: 'ifage', era: 'reconversion', region: 'suisse', year: '2019', image: '/img/portfolio/step-33-ifage.jpeg', skills: ['android'] },
+  { id: 'pythonScrum', era: 'reconversion', region: 'suisse', year: '2019', image: '/img/portfolio/step-34-python-scrum.jpeg', skills: ['python', 'scrum'] },
+  { id: 'javaSe11', era: 'reconversion', region: 'suisse', year: '2020', image: '/img/portfolio/step-35-java-se11.jpeg' },
+  { id: 'fccResponsive2022', era: 'reconversion', region: 'suisse', year: '2022', image: '/img/portfolio/step-36-web-design-free-code-camp.jpeg', skills: ['css'] },
+  { id: 'fccJavascript2022', era: 'reconversion', region: 'suisse', year: '2022', image: '/img/portfolio/step-37-java-free-code-camp.jpeg', skills: ['javascript'] },
+  { id: 'winno', era: 'reconversion', region: 'suisse', year: '2022', image: '/img/portfolio/step-38-winno.jpeg', skills: ['solidity', 'web3'] },
+  { id: 'fortytwoPiscine2022', era: 'reconversion', region: 'suisse', year: '2022', image: '/img/portfolio/step-39-42lausanne-piscine.jpeg' },
+  { id: 'alphaBusinessCentre', era: 'reconversion', region: 'suisse', year: '2022', image: '/img/portfolio/step-40-alpha business-centre.jpeg' },
+  { id: 'fortytwo', era: 'reconversion', region: 'suisse', year: '2022', image: '/img/portfolio/step-41-42lausanne-start.jpeg', skills: ['c', 'git'] },
+  { id: 'playpadIdea', era: 'entrepreneur', region: 'suisse', year: '2023', image: '/img/portfolio/step-42-playpad-idea.jpeg', skills: ['react'] },
+  { id: 'playpadLaunch', era: 'entrepreneur', region: 'suisse', year: '2023', image: '/img/portfolio/step-43-playpad-app.jpeg', skills: ['flutter', 'firebase'] },
+  { id: 'playpadSarl', era: 'entrepreneur', region: 'suisse', year: '2024', image: '/img/portfolio/step-44-playpad-sarl.jpeg' },
+  { id: 'playpadPartners', era: 'entrepreneur', region: 'suisse', year: '2024', image: '/img/portfolio/step-45-playpad-partners.jpeg' },
+  { id: 'dandela', era: 'entrepreneur', region: 'angola', year: '2024', image: '/img/portfolio/step-46-dandela-idea.jpeg', skills: ['pwa', 'mui'] },
+  { id: 'fortytwoBlackHole', era: 'reconversion', region: 'suisse', year: '2024', image: '/img/portfolio/step-47-42-blackhole.jpeg', skills: ['c', 'git'] },
+  { id: 'playpadHack', era: 'entrepreneur', region: 'suisse', year: '2024', image: '/img/portfolio/step-48-playpad-hack.jpeg', skills: ['firebase', 'flutter'] },
+  { id: 'xaiInterview', era: 'entrepreneur', region: 'suisse', year: '2025', image: '/img/portfolio/step-49-xai-interview.jpeg', skills: ['xaiChallenge'] },
+  { id: 'react', era: 'entrepreneur', region: 'suisse', year: '2025', image: '/img/portfolio/step-50-certif-react.jpeg', skills: ['react', 'typescript', 'xaiChallenge'] },
+  { id: 'xaiTechnicalTests', era: 'entrepreneur', region: 'suisse', year: '2025', image: '/img/portfolio/step-51-xai-test.jpeg', skills: ['xaiChallenge'] },
+  { id: 'xaiResults', era: 'entrepreneur', region: 'suisse', year: '2025', image: '/img/portfolio/step-52-xai-denied.jpeg', skills: ['xaiChallenge'] },
+  { id: 'dandelaInefop', era: 'entrepreneur', region: 'angola', year: '2025', image: '/img/portfolio/step-53-dandela-creation.jpeg', skills: ['pwa', 'mui'] },
+  { id: 'playpadRelaunch', era: 'entrepreneur', region: 'suisse', year: '2025', image: '/img/portfolio/step-54-playpad-renew.jpeg', skills: ['flutter', 'firebase'] },
+  { id: 'dandelaTeam', era: 'entrepreneur', region: 'angola', year: '2026', image: '/img/portfolio/step-55-dandela-team.jpeg', skills: ['business'] },
+  { id: 'dandelaOpening', era: 'entrepreneur', region: 'angola', year: '2026', image: '/img/portfolio/step-56-dandela-open.jpeg' },
+  { id: 'playpadVps', era: 'entrepreneur', region: 'suisse', year: '2026', image: '/img/portfolio/step-57-playpad-back-again.jpeg', skills: ['flutter', 'firebase'] },
+  { id: 'vaakaiStore', era: 'entrepreneur', region: 'suisse', year: '2026', image: '/img/portfolio/step-58-vaakai.jpeg', skills: ['nextjs', 'typescript'] },
+  {
+    id: 'today',
+    era: 'entrepreneur',
+    region: 'suisse',
+    today: true,
+    video: '/img/portfolio/step-59-dev-ia.mp4',
+    skills: ['cursor', 'grok', 'grokBot', 'claudeCode', 'xcode', 'ai'],
+  },
 ];
 
 /** Répartit les étapes clés sur `total` points et remplit les trous avec des étapes à compléter. */
@@ -151,11 +215,11 @@ export function buildJourneyStops(total = JOURNEY_TOTAL_STOPS) {
       const tailMilestones = milestones.length - packHead;
       index = Math.round(tailAnchor + ((i - packHead + 1) * tailSpan) / tailMilestones);
     }
-    slots.set(index, m);
+    slots.set(index, { ...m, era: getJourneyEraForStepNumber(i + 1) });
   });
 
   const stops = [];
-  let previous = milestones[0];
+  let previous = { ...milestones[0], era: getJourneyEraForStepNumber(1) };
   for (let index = 0; index < count; index++) {
     const milestone = slots.get(index);
     if (milestone) previous = milestone;

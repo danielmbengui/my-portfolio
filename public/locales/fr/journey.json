@@ -14,6 +14,8 @@
     "unlockedHere": "Débloqué à cette étape",
     "videoSoon": "Vidéo à venir",
     "seeDetails": "Voir le détail",
+    "seeFiche": "Voir la fiche",
+    "backToCard": "Retour à l'aperçu",
     "collapse": "Réduire",
     "today": "Aujourd'hui",
     "unknownYear": "????",
@@ -57,11 +59,15 @@
   },
   "eras": {
     "origines": "Origines",
-    "enfance": "Enfance en Suisse",
-    "formation": "Formation & premiers jobs",
+    "integration": "Intégration",
+    "formationDebut": "Début de formations",
+    "reconversionJobs": "Reconversion tech & premiers jobs",
     "retour": "Retour aux racines",
-    "reconversion": "Reconversion tech",
-    "entrepreneur": "Entrepreneur"
+    "reconversionCert": "Reconversion tech & certifications",
+    "reconversionArchi": "Reconversion architecte du numérique",
+    "entrepreneurPlaypad": "Entrepreneur",
+    "defiXai": "Défi xAI",
+    "entrepreneurTech": "Entrepreneur"
   },
   "regions": {
     "angola": "Angola",
@@ -82,7 +88,8 @@
     "grok": "Grok",
     "grokBot": "Grok Bot",
     "claudeCode": "Claude Code",
-    "xcode": "Xcode"
+    "xcode": "Xcode",
+    "xaiChallenge": "Défi xAI"
   },
   "milestones": {
     "birth": {
@@ -243,83 +250,206 @@
     },
     "esig": {
       "title": "Entrée à l'ESIG",
+      "yearLabel": "Septembre 2013",
       "place": "Genève, Suisse",
-      "description": "Début de l'École Supérieure d'Informatique de Gestion : le vrai départ dans l'informatique."
+      "description": "En septembre 2013, j'entre à l'École Supérieure d'Informatique de Gestion (ESIG) à Genève — concrétisation de ma réorientation après le stage Itopie et le vrai départ dans l'informatique."
     },
-    "esigImad": {
-      "title": "Diplôme ESIG & IMAD",
+    "esigSideJobs": {
+      "title": "Jobs d'étudiant pendant l'ESIG",
+      "yearLabel": "2013 – fin 2014",
       "place": "Genève, Suisse",
-      "description": "Diplôme fédéral d'informaticien de gestion, puis mise en place d'une CMDB chez IMAD."
+      "description": "Pendant ma scolarité à l'ESIG, de 2013 à la fin 2014, j'enchaîne divers petits jobs : mes études sont gratuites mais ne rapportent rien, et j'avais besoin d'un revenu à côté — pour me faire plaisir le week-end, entre autres."
+    },
+    "esigDiploma2015": {
+      "title": "Diplôme ESIG",
+      "yearLabel": "Juin 2015",
+      "place": "Genève, Suisse",
+      "description": "En juin 2015, j'obtiens mon diplôme fédéral d'informaticien de gestion à l'ESIG — deux ans de formation qui scellent mon passage vers le métier d'informaticien."
+    },
+    "imad2015": {
+      "title": "Stage puis emploi chez IMAD",
+      "yearLabel": "Février – août 2015",
+      "place": "Genève, Suisse",
+      "description": "De février à juin 2015, je réalise mon stage chez IMAD ; de juin à août 2015, j'y continue en tant qu'employé administratif — dont la mise en place d'une CMDB pour inventorier le parc informatique de l'entreprise."
+    },
+    "heg2015": {
+      "title": "Entrée à la HEG",
+      "yearLabel": "Septembre 2015 – février 2016",
+      "place": "Genève, Suisse",
+      "description": "De septembre 2015 à février 2016, j'entre à la Haute école de gestion (HEG) à Genève. Je stoppe le cursus en cours d'année : d'autres idées me trottent déjà dans la tête et m'appellent ailleurs."
     },
     "backToAngola": {
-      "title": "Retour en Angola",
+      "title": "Retour en Angola & M. Dandela",
+      "yearLabel": "Juin – août 2016",
       "place": "Luanda, Angola",
-      "description": "Retour aux racines à l'âge adulte et co-fondation de l'entreprise familiale M. Dandela (cybercafé, immobilier)."
+      "description": "De juin à août 2016, je retourne en Angola aux côtés de mon père pour participer à la création de M. Dandela — l'entreprise familiale (cybercafé, immobilier) qui marque mon ancrage adulte au pays."
     },
     "ifage": {
-      "title": "Ifage : JEE & Android",
+      "title": "Certificat Ifage : JEE & Android",
+      "yearLabel": "Septembre 2018 – mars 2019",
       "place": "Genève, Suisse",
-      "description": "Certificat Développeur JEE & Android, découverte d'Android Studio et d'Ionic."
+      "description": "De septembre 2018 à mars 2019, je suis la formation à l'Ifage et obtiens le certificat Développeur JEE & Android — découverte d'Android Studio et du framework Ionic."
     },
     "pythonScrum": {
       "title": "Python & Scrum",
+      "yearLabel": "Juillet – octobre 2019",
       "place": "Genève, Suisse",
-      "description": "Certificat Python à l'IT Training Academy et formation Professional Scrum Master I."
+      "description": "De juillet à octobre 2019 : certificat Python à l'IT Training Academy et formation Professional Scrum Master I."
     },
     "javaSe11": {
       "title": "Java SE11 en pleine pandémie",
+      "yearLabel": "Février – mars 2020",
       "place": "Genève, Suisse",
-      "description": "Formation commencée sur site, terminée en visioconférence pendant le Covid-19."
+      "description": "De février à mars 2020, formation Java SE11 commencée sur site et terminée en visioconférence au début du Covid-19."
     },
-    "freecodecamp": {
-      "title": "Certifications freeCodeCamp",
+    "fccResponsive2022": {
+      "title": "Responsive Web Design · freeCodeCamp",
+      "yearLabel": "Mars 2022",
       "place": "En ligne",
-      "description": "JavaScript Algorithms & Data Structures et Responsive Web Design."
+      "description": "En mars 2022, j'obtiens la certification freeCodeCamp Responsive Web Design — HTML, CSS et mise en page adaptative."
     },
-    "fortytwo": {
-      "title": "42 Lausanne",
-      "place": "Renens, Suisse",
-      "description": "Pédagogie par projets en équipe, cursus gamifié. C'est ici qu'est née l'idée de Dandela Academy."
+    "fccJavascript2022": {
+      "title": "JavaScript Algorithms · freeCodeCamp",
+      "yearLabel": "Mars 2022",
+      "place": "En ligne",
+      "description": "En mars 2022, je valide la certification freeCodeCamp JavaScript Algorithms and Data Structures — algorithmes et structures de données en JavaScript."
     },
     "winno": {
       "title": "Winno Bearz Club",
+      "yearLabel": "Avril – juillet 2022",
       "place": "Polygon",
-      "description": "Collection de 5 555 NFTs génératifs avec plus de 194 traits, listée sur OpenSea."
+      "description": "D'avril à juillet 2022, le projet Winno Bearz Club : collection de 5 555 NFTs génératifs avec plus de 194 traits, listée sur OpenSea."
+    },
+    "fortytwoPiscine2022": {
+      "title": "La Piscine · 42 Lausanne",
+      "yearLabel": "Août 2022",
+      "place": "Renens, Suisse",
+      "description": "En août 2022, l'étape de la Piscine à 42 Lausanne : le bootcamp intensif qui mène à l'admission — projets, peer-to-peer et immersion dans la culture 42."
+    },
+    "alphaBusinessCentre": {
+      "title": "Bureau au Alpha Business Centre",
+      "yearLabel": "Septembre 2022",
+      "place": "Genève, Suisse",
+      "description": "En septembre 2022, acquisition de mon bureau au Alpha Business Centre : un espace de travail pour structurer mes projets avant et pendant la reprise d'études."
+    },
+    "fortytwo": {
+      "title": "Début du cursus à 42 Lausanne",
+      "yearLabel": "Septembre 2022",
+      "place": "Renens, Suisse",
+      "description": "En septembre 2022, entrée dans le cursus à 42 Lausanne : pédagogie par projets en équipe et parcours gamifié — c'est pendant ce cursus qu'ont germé les idées de PlayPad et de Dandela Academy."
     },
     "drilldev": {
       "title": "Drill Dev",
-      "place": "En ligne",
-      "description": "Création d'images par IA et outils pour développeurs, avec des flux de travail assistés par l'IA."
+      "yearLabel": "Février – avril 2023",
+      "place": "42 Lausanne · En ligne",
+      "description": "De février à avril 2023, exercice imposé par 42 Lausanne : j'ai choisi de créer le site Drill Dev pour présenter la génération d'images par IA — Midjourney en tête — et divers outils autour de ces flux de travail."
     },
     "playpadIdea": {
       "title": "L'idée PlayPad",
+      "yearLabel": "Mai 2023",
       "place": "Genève, Suisse",
-      "description": "Un ami padeliste ne trouve pas de partenaires : l'idée de l'application est lancée."
+      "description": "En mai 2023, naissance de l'idée PlayPad avec Omar, Jonathan et Joel : trouver des partenaires de padel et organiser des parties devient le fil conducteur du projet."
     },
-    "playpad": {
-      "title": "PlayPad Sàrl",
+    "playpadLaunch": {
+      "title": "Lancement de PlayPad",
+      "yearLabel": "Novembre 2023",
       "place": "Genève, Suisse",
-      "description": "L'entreprise naît officiellement en janvier 2024. App publiée sur Google Play et l'App Store."
+      "description": "En novembre 2023, lancement de l'application PlayPad — première version publique pour connecter les joueurs et faciliter les réservations."
+    },
+    "playpadSarl": {
+      "title": "PlayPad Sàrl",
+      "yearLabel": "Avril 2024",
+      "place": "Genève, Suisse",
+      "description": "En avril 2024, création officielle de PlayPad Sàrl : structuration juridique de l'aventure entrepreneuriale autour de l'application."
+    },
+    "playpadPartners": {
+      "title": "Nos partenaires PlayPad",
+      "yearLabel": "Mai 2024",
+      "place": "Genève, Suisse",
+      "description": "En mai 2024, Airpad et GVA Padel rejoignent l'aventure PlayPad : de nouveaux partenaires pour élargir l'écosystème padel genevois autour de l'application."
     },
     "dandela": {
-      "title": "Fondation de Dandela Academy",
+      "title": "L'idée Dandela Academy",
+      "yearLabel": "Septembre 2024",
       "place": "Luanda, Angola",
-      "description": "École de formation professionnelle certifiée INEFOP, avec une plateforme digitale et l'IA au cœur de l'apprentissage."
+      "description": "En septembre 2024, l'idée de Dandela Academy se concrétise avec mon père : une école de formation professionnelle à Luanda — et les travaux de construction du bâtiment commencent."
+    },
+    "fortytwoBlackHole": {
+      "title": "Black Hole · fin à 42 Lausanne",
+      "yearLabel": "Novembre 2024",
+      "place": "Renens, Suisse · 42 Lausanne",
+      "description": "En novembre 2024, fin de mon parcours à 42 Lausanne : au tronc commun, le « Black Hole » est une échéance qui avance au fil des projets validés et des points d'expérience — si tu n'as pas assez progressé à temps, tu « tombes dedans » et tu ne peux plus poursuivre le cursus. Entre PlayPad et Dandela Academy, je n'ai pas repoussé cette limite assez loin : clôture de mon aventure à 42."
+    },
+    "playpadHack": {
+      "title": "PlayPad piratée",
+      "yearLabel": "Décembre 2024",
+      "place": "Genève, Suisse",
+      "description": "En décembre 2024, notre application PlayPad est hackée. Conséquence immédiate : la perte de nos deux partenaires Airpad et GVA Padel. L'équipe est dévastée — un coup dur au cœur de l'aventure."
+    },
+    "xaiInterview": {
+      "title": "Entretien xAI",
+      "yearLabel": "Janvier 2025",
+      "place": "En ligne",
+      "description": "En janvier 2025, après le revers PlayPad, une heure d'échange avec les équipes xAI : présentation de mon profil et validation du passage aux tests techniques."
     },
     "react": {
-      "title": "Certification React",
+      "title": "Certification React · remobilisation",
+      "yearLabel": "Février – mars 2025",
       "place": "En ligne",
-      "description": "Front-End Engineering with React (CodeSignal)."
+      "description": "De février à mars 2025, je me remotivate dans le développement : entraînement intensif et obtention de la certification Front-End Engineering with React (CodeSignal), pour arriver prêt aux épreuves xAI."
+    },
+    "xaiTechnicalTests": {
+      "title": "Tests techniques xAI",
+      "yearLabel": "Avril – mai 2025",
+      "place": "En ligne",
+      "description": "D'avril à mai 2025, trois tests techniques exigeants chez xAI : algorithmie, code et mise en situation — le cœur du processus de recrutement."
+    },
+    "xaiResults": {
+      "title": "Résultats xAI",
+      "yearLabel": "Juin 2025",
+      "place": "En ligne",
+      "description": "En juin 2025, les résultats tombent : un échec final, mais pas cuisant — j'avais atteint la dernière étape du processus. Une expérience formatrice qui confirme ma trajectoire tech."
+    },
+    "dandelaInefop": {
+      "title": "Création officielle · Dandela Academy",
+      "yearLabel": "Juillet 2025",
+      "place": "Luanda, Angola",
+      "description": "En juillet 2025, création officielle de Dandela Academy et enregistrement auprès de l'INEFOP (Instituto Nacional de Emprego e Formação Profissional) — l'organisme public angolais qui encadre l'emploi et la formation professionnelle certifiée."
+    },
+    "playpadRelaunch": {
+      "title": "Relance de PlayPad",
+      "yearLabel": "Septembre 2025",
+      "place": "Genève, Suisse",
+      "description": "En septembre 2025, relance de l'application PlayPad : on repart comme au début, sans partenaires — l'essentiel, c'est de garder nos convictions ; de nouveaux alliés viendront si le projet reste fidèle à sa vision."
+    },
+    "dandelaTeam": {
+      "title": "Équipe Dandela Academy",
+      "yearLabel": "Janvier 2026",
+      "place": "Luanda, Angola",
+      "description": "En janvier 2026, constitution de l'équipe pédagogique et opérationnelle de Dandela Academy : les bonnes personnes pour porter l'école et la plateforme digitale."
     },
     "dandelaOpening": {
       "title": "Ouverture de Dandela Academy",
+      "yearLabel": "Février 2026",
       "place": "Luanda, Angola",
-      "description": "Ouverture prévue en avril 2026."
+      "description": "En février 2026, ouverture officielle de Dandela Academy : une école de formation professionnelle certifiée, avec la plateforme digitale et l'IA au cœur de l'apprentissage."
+    },
+    "playpadVps": {
+      "title": "PlayPad · nouvelle version",
+      "yearLabel": "Septembre 2026",
+      "place": "Genève, Suisse",
+      "description": "En septembre 2026, une nouvelle mouture de PlayPad, beaucoup plus fluide : hébergement sur notre propre VPS pour reprendre la main — surtout sur la sécurité, après le hack de 2024."
+    },
+    "vaakaiStore": {
+      "title": "Vaakai Store",
+      "yearLabel": "Octobre 2026",
+      "place": "Genève, Suisse · En ligne",
+      "description": "En octobre 2026, création du site Vaakai Store : épicerie en ligne suisse, catalogue, fidélité et expérience multilingue — un projet retail digital mené avec Dandela Tech."
     },
     "today": {
-      "title": "Développeur Full Stack & Mobile",
+      "title": "Aujourd'hui · développeur & entrepreneur",
       "place": "Genève · Luanda",
-      "description": "Développeur Full Stack & Mobile entre la Suisse et l'Angola, avec l'IA au quotidien."
+      "description": "De l'Angola à Genève, un parcours fait d'échecs qui enseignent et de réussites qui pousse à continuer : CFC commerce, diplôme ESIG, reconversions tech, 42 Lausanne, PlayPad (hack, relances, VPS), défi xAI, Dandela Academy avec mon père. Aujourd'hui je suis développeur Full Stack & Mobile et entrepreneur — commerce, code et impact, avec l'IA comme levier au quotidien."
     }
   }
 }

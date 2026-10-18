@@ -9,6 +9,7 @@ import {
   Avatar,
   Box,
   Chip,
+  CircularProgress,
   IconButton,
   Stack,
   Tooltip,
@@ -34,8 +35,10 @@ import LanguageIcon from '@mui/icons-material/Language';
 import FullscreenIcon from '@mui/icons-material/Fullscreen';
 import VideoFullscreenDialog from '@/components/shared/VideoFullscreenDialog';
 import JourneyStepLightboxImage from '@/components/journey/JourneyStepLightboxImage';
+import JourneyStepLightboxVideo from '@/components/journey/JourneyStepLightboxVideo';
 import {
   ANGOLA_COLORS,
+  getJourneyEraColor,
   JOURNEY_ERAS,
   JOURNEY_LANGUAGES,
   JOURNEY_DEFAULT_VIEW,
@@ -76,6 +79,46 @@ import JourneyIntroOverlay from '@/components/journey/JourneyIntroOverlay';
 import JourneySiteNav from '@/components/journey/JourneySiteNav';
 
 const JourneyScene = dynamic(() => import('./JourneyScene'), { ssr: false });
+
+const BOOT_3D_TIMEOUT_MS = 12000;
+
+function JourneyBootLoader({ theme, label }) {
+  return (
+    <Box
+      role="status"
+      aria-live="polite"
+      aria-busy="true"
+      sx={{
+        position: 'fixed',
+        inset: 0,
+        zIndex: 1900,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        bgcolor: theme.background,
+        backgroundImage: theme.backgroundGradient,
+        color: theme.text,
+        ...journeySiteCssVars(theme),
+      }}
+    >
+      <Stack alignItems="center" spacing={2.25} sx={{ px: 2, textAlign: 'center' }}>
+        <CircularProgress size={36} thickness={4} sx={{ color: theme.accent }} aria-hidden />
+        <Typography
+          sx={{
+            fontSize: 11,
+            fontWeight: 800,
+            letterSpacing: '0.2em',
+            textTransform: 'uppercase',
+            color: theme.textMuted,
+            maxWidth: 280,
+          }}
+        >
+          {label}
+        </Typography>
+      </Stack>
+    </Box>
+  );
+}
 
 const FLAGS = { fr: FrenchIcon, ao: AngolanIcon, en: EnglishIcon, it: ItalianIcon, pt: PortugueseIcon };
 
@@ -679,7 +722,7 @@ function UnlockHud({ stops, activeIndex, onClose, theme, stopText, mobileOverlay
           {JOURNEY_LANGUAGES.map((lang) => {
             const Flag = FLAGS[lang.flag];
             const unlockedAt = languages.get(lang.id);
-            const accent = unlockedAt ? JOURNEY_ERAS[unlockedAt.era]?.color : theme.accent;
+            const accent = unlockedAt ? getJourneyEraColor(unlockedAt.era, theme.mode) : theme.accent;
             const langFields = getJourneyLanguageFields(i18n.language, lang.id);
             const langLabel = langFields?.label || t(`languages.${lang.id}.label`);
             const langLevel = langFields?.level || t(`languages.${lang.id}.level`);
@@ -739,7 +782,7 @@ function UnlockHud({ stops, activeIndex, onClose, theme, stopText, mobileOverlay
           {JOURNEY_SKILLS.map((skill) => {
             const Icon = SKILL_ICONS[skill.id];
             const unlockedAt = skills.get(skill.id);
-            const color = unlockedAt ? JOURNEY_ERAS[unlockedAt.era]?.color : theme.accent;
+            const color = unlockedAt ? getJourneyEraColor(unlockedAt.era, theme.mode) : theme.accent;
             const muiIcon = ['business', 'writing', 'scrum'].includes(skill.id);
             return (
               <Tooltip
@@ -862,11 +905,12 @@ function UnlockHud({ stops, activeIndex, onClose, theme, stopText, mobileOverlay
 
 function StopDetails({ stop, total, onPrev, onNext, compact = false, mobileLayout = false, ghostTitle = true, theme, stopText }) {
   const { t, i18n } = useTranslation(_NAMESPACE_LANGAGE_JOURNEY_);
-  const [expanded, setExpanded] = useState(false);
+  const [flipped, setFlipped] = useState(false);
   const era = JOURNEY_ERAS[stop.era];
+  const eraColor = getJourneyEraColor(stop.era, theme.mode) || theme.accent;
   const text = stopText(stop);
-  const showBody = !compact || expanded;
-  const fullHeightMobile = mobileLayout && expanded;
+  const fullHeightMobile = mobileLayout && flipped;
+  const showYearInCard = !mobileLayout || !ghostTitle || flipped;
   const languageFlagById = useMemo(
     () => Object.fromEntries(JOURNEY_LANGUAGES.map((lang) => [lang.id, lang.flag])),
     [],
@@ -888,180 +932,252 @@ function StopDetails({ stop, total, onPrev, onNext, compact = false, mobileLayou
   });
 
   useEffect(() => {
-    setExpanded(false);
+    setFlipped(false);
   }, [stop.id]);
+
+  const cardShellSx = {
+    ...glass(theme),
+    p: 2.5,
+    width: '100%',
+    boxSizing: 'border-box',
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: 0,
+    backfaceVisibility: 'hidden',
+    WebkitBackfaceVisibility: 'hidden',
+    overflow: 'hidden',
+    '&::before': {
+      content: '""',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      height: 3,
+      background: `linear-gradient(90deg, ${eraColor}, ${eraColor}00)`,
+      opacity: 0.9,
+    },
+  };
+
+  const headerRow = (
+    <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 1.5, flexShrink: 0 }}>
+      <Chip
+        size="small"
+        label={t(`eras.${stop.era}`)}
+        sx={{ color: theme.mode === 'dark' ? eraColor : theme.text, border: `1px solid ${eraColor}`, bgcolor: `${eraColor}26`, fontWeight: 700, fontSize: 11 }}
+      />
+      <Typography sx={{ fontSize: 12, color: theme.textMuted, fontVariantNumeric: 'tabular-nums' }}>
+        {String(stop.index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
+      </Typography>
+    </Stack>
+  );
+
+  const yearBlock = (
+    <Typography
+      sx={{
+        fontSize: compact ? 28 : { xs: 34, sm: 44 },
+        fontWeight: 800,
+        lineHeight: 1,
+        background: `linear-gradient(90deg, ${eraColor}, ${theme.text})`,
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
+        flexShrink: 0,
+      }}
+    >
+      {text.year}
+    </Typography>
+  );
+
+  const mediaBlock = (
+    <Box
+      sx={{
+        mt: showYearInCard ? 2 : 0,
+        borderRadius: 2,
+        overflow: 'hidden',
+        border: `1px solid ${theme.divider || `${eraColor}55`}`,
+        bgcolor: theme.surfaceAlt || theme.track,
+        boxShadow: theme.mode === 'dark' ? '0 10px 30px rgba(0,0,0,0.45)' : '0 8px 24px rgba(50,35,20,0.10)',
+        flexShrink: 0,
+      }}
+    >
+      {stop.video ? (
+        <JourneyStepLightboxVideo
+          key={stop.video}
+          src={stop.video}
+          alt={text.title}
+          borderColor={`${eraColor}55`}
+          trackBg={theme.track}
+        />
+      ) : stop.image ? (
+        <JourneyStepLightboxImage
+          src={stop.image}
+          alt={text.title}
+          borderColor={`${eraColor}55`}
+          trackBg={theme.track}
+        />
+      ) : (
+        <Stack alignItems="center" justifyContent="center" spacing={0.5} sx={{ aspectRatio: '16 / 9', color: theme.textFaint }}>
+          <VideocamIcon />
+          <Typography sx={{ fontSize: 12, color: theme.textFaint }}>{t('ui.videoSoon')}</Typography>
+        </Stack>
+      )}
+    </Box>
+  );
+
+  const unlockedBlock = (unlockedLanguages.length > 0 || unlockedSkills.length > 0) && (
+    <Box sx={{ mt: 2, flexShrink: 0 }}>
+      <SectionTitle theme={theme}>{t('ui.unlockedHere')}</SectionTitle>
+      <Stack direction="row" flexWrap="wrap" useFlexGap gap={0.75}>
+        {unlockedLanguages.map(({ id, label, flagKey }) => {
+          const Flag = flagKey ? FLAGS[flagKey] : null;
+          return (
+            <Chip
+              key={`lang-${id}`}
+              size="small"
+              icon={
+                Flag ? (
+                  <Box component="span" sx={{ display: 'flex', alignItems: 'center', pl: 0.75 }}>
+                    <Flag size={16} />
+                  </Box>
+                ) : undefined
+              }
+              label={`+ ${label}`}
+              sx={{
+                color: theme.text,
+                fontWeight: 600,
+                pl: Flag ? 0.25 : undefined,
+                '& .MuiChip-icon': { ml: 0.5, mr: -0.25 },
+                bgcolor: `${eraColor}${theme.mode === 'dark' ? '26' : '2e'}`,
+                border: `1px solid ${eraColor}99`,
+                boxShadow: theme.mode === 'dark' ? `0 0 10px ${eraColor}33` : 'none',
+              }}
+            />
+          );
+        })}
+        {unlockedSkills.map(({ id, label }) => (
+          <Chip
+            key={`skill-${id}`}
+            size="small"
+            label={`+ ${label}`}
+            sx={{
+              color: theme.text,
+              fontWeight: 600,
+              bgcolor: `${eraColor}${theme.mode === 'dark' ? '26' : '2e'}`,
+              border: `1px solid ${eraColor}99`,
+              boxShadow: theme.mode === 'dark' ? `0 0 10px ${eraColor}33` : 'none',
+            }}
+          />
+        ))}
+      </Stack>
+    </Box>
+  );
+
+  const navRow = (onFlip) => (
+    <Stack direction="row" spacing={1} alignItems="center" sx={{ mt: compact ? 1.5 : 2.5, flexShrink: 0 }}>
+      <Tooltip title={t('ui.previous')}>
+        <span>
+          <IconButton onClick={onPrev} disabled={stop.index === 0} sx={navButtonSx(theme)}>
+            <ArrowBackIosNewIcon fontSize="small" />
+          </IconButton>
+        </span>
+      </Tooltip>
+      <Tooltip title={t('ui.next')}>
+        <span>
+          <IconButton onClick={onNext} disabled={stop.index === total - 1} sx={navButtonSx(theme)}>
+            <ArrowForwardIosIcon fontSize="small" />
+          </IconButton>
+        </span>
+      </Tooltip>
+      <Chip
+        label={flipped ? t('ui.backToCard') : t('ui.seeFiche')}
+        onClick={onFlip}
+        sx={{ ml: 'auto !important', color: theme.text, border: `1px solid ${eraColor}`, bgcolor: `${eraColor}22`, fontWeight: 600 }}
+      />
+    </Stack>
+  );
+
+  const scrollBodySx = {
+    flex: fullHeightMobile ? 1 : undefined,
+    minHeight: 0,
+    overflowY: fullHeightMobile ? 'auto' : 'visible',
+    WebkitOverflowScrolling: 'touch',
+    display: 'flex',
+    flexDirection: 'column',
+  };
 
   const card = (
     <Box
       key={stop.id}
       sx={{
-        ...glass(theme),
-        p: 2.5,
         width: '100%',
-        boxSizing: 'border-box',
         animation: 'journeyIn .45s ease',
-        display: 'flex',
-        flexDirection: 'column',
-        minHeight: 0,
+        perspective: 1200,
+        minHeight: fullHeightMobile ? '100%' : 0,
         maxHeight: fullHeightMobile ? '100%' : compact ? 'none' : '100%',
         height: fullHeightMobile ? '100%' : 'auto',
-        overflow: 'hidden',
         position: 'relative',
         zIndex: 1,
-        ...(mobileLayout && ghostTitle && { mt: 3, pt: 2.5 }),
-        '&::before': {
-          content: '""',
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          height: 3,
-          background: `linear-gradient(90deg, ${era?.color}, ${era?.color}00)`,
-          opacity: 0.9,
-        },
+        ...(mobileLayout && ghostTitle && !flipped && { mt: 3, pt: 2.5 }),
       }}
     >
-      <Box sx={{ flex: fullHeightMobile ? 1 : undefined, minHeight: 0, overflowY: fullHeightMobile ? 'auto' : 'visible', WebkitOverflowScrolling: 'touch' }}>
-      <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 1.5 }}>
-        <Chip
-          size="small"
-          label={t(`eras.${stop.era}`)}
-          sx={{ color: theme.mode === 'dark' ? era?.color : theme.text, border: `1px solid ${era?.color}`, bgcolor: `${era?.color}26`, fontWeight: 700, fontSize: 11 }}
-        />
-        <Typography sx={{ fontSize: 12, color: theme.textMuted, fontVariantNumeric: 'tabular-nums' }}>
-          {String(stop.index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
-        </Typography>
-      </Stack>
-
-      {!mobileLayout && (
-        <>
-          <Typography
-            sx={{
-              fontSize: compact ? 28 : { xs: 34, sm: 44 },
-              fontWeight: 800,
-              lineHeight: 1,
-              background: `linear-gradient(90deg, ${era?.color}, ${theme.text})`,
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-            }}
-          >
-            {text.year}
-          </Typography>
-          <Typography sx={{ fontSize: compact ? 16 : { xs: 18, sm: 21 }, fontWeight: 700, mt: 1, color: theme.text }}>{text.title}</Typography>
-        </>
-      )}
-      <Stack direction="row" alignItems="center" spacing={0.5} sx={{ color: theme.textMuted, mt: 0.5 }}>
-        <PlaceIcon sx={{ fontSize: 16, color: era?.color }} />
-        <Typography sx={{ fontSize: 13, color: theme.textMuted }}>{text.place}</Typography>
-      </Stack>
-
-      {showBody && (
-        <>
-          <Typography sx={{ fontSize: 14, lineHeight: 1.65, color: theme.textSoft, mt: 2, fontStyle: stop.placeholder ? 'italic' : 'normal' }}>
-            {text.description}
-          </Typography>
-
-          <Box
-            sx={{
-              mt: 2,
-              borderRadius: 2,
-              overflow: 'hidden',
-              border: `1px solid ${theme.divider || `${era?.color}55`}`,
-              bgcolor: theme.surfaceAlt || theme.track,
-              boxShadow: theme.mode === 'dark' ? '0 10px 30px rgba(0,0,0,0.45)' : '0 8px 24px rgba(50,35,20,0.10)',
-            }}
-          >
-            {stop.video ? (
-              <video key={stop.video} src={stop.video} autoPlay muted loop playsInline controls style={{ width: '100%', display: 'block' }} />
-            ) : stop.image ? (
-              <JourneyStepLightboxImage
-                src={stop.image}
-                alt={text.title}
-                borderColor={`${era?.color}55`}
-                trackBg={theme.track}
-              />
-            ) : (
-              <Stack alignItems="center" justifyContent="center" spacing={0.5} sx={{ aspectRatio: '16 / 9', color: theme.textFaint }}>
-                <VideocamIcon />
-                <Typography sx={{ fontSize: 12, color: theme.textFaint }}>{t('ui.videoSoon')}</Typography>
-              </Stack>
-            )}
+      <Box
+        sx={{
+          position: 'relative',
+          width: '100%',
+          height: fullHeightMobile ? '100%' : 'auto',
+          minHeight: fullHeightMobile ? '100%' : 0,
+          transformStyle: 'preserve-3d',
+          transition: 'transform 0.55s cubic-bezier(0.4, 0.2, 0.2, 1)',
+          transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+        }}
+      >
+        <Box sx={{ ...cardShellSx, position: 'relative', zIndex: flipped ? 0 : 1 }}>
+          <Box sx={scrollBodySx}>
+            {headerRow}
+            {showYearInCard && yearBlock}
+            {mediaBlock}
+            {unlockedBlock}
           </Box>
+          {navRow(() => setFlipped(true))}
+        </Box>
 
-          {(unlockedLanguages.length > 0 || unlockedSkills.length > 0) && (
-            <Box sx={{ mt: 2 }}>
-              <SectionTitle theme={theme}>{t('ui.unlockedHere')}</SectionTitle>
-              <Stack direction="row" flexWrap="wrap" useFlexGap gap={0.75}>
-                {unlockedLanguages.map(({ id, label, flagKey }) => {
-                  const Flag = flagKey ? FLAGS[flagKey] : null;
-                  return (
-                    <Chip
-                      key={`lang-${id}`}
-                      size="small"
-                      icon={
-                        Flag ? (
-                          <Box component="span" sx={{ display: 'flex', alignItems: 'center', pl: 0.75 }}>
-                            <Flag size={16} />
-                          </Box>
-                        ) : undefined
-                      }
-                      label={`+ ${label}`}
-                      sx={{
-                        color: theme.text,
-                        fontWeight: 600,
-                        pl: Flag ? 0.25 : undefined,
-                        '& .MuiChip-icon': { ml: 0.5, mr: -0.25 },
-                        bgcolor: `${era?.color}${theme.mode === 'dark' ? '26' : '2e'}`,
-                        border: `1px solid ${era?.color}99`,
-                        boxShadow: theme.mode === 'dark' ? `0 0 10px ${era?.color}33` : 'none',
-                      }}
-                    />
-                  );
-                })}
-                {unlockedSkills.map(({ id, label }) => (
-                  <Chip
-                    key={`skill-${id}`}
-                    size="small"
-                    label={`+ ${label}`}
-                    sx={{
-                      color: theme.text,
-                      fontWeight: 600,
-                      bgcolor: `${era?.color}${theme.mode === 'dark' ? '26' : '2e'}`,
-                      border: `1px solid ${era?.color}99`,
-                      boxShadow: theme.mode === 'dark' ? `0 0 10px ${era?.color}33` : 'none',
-                    }}
-                  />
-                ))}
-              </Stack>
-            </Box>
-          )}
-        </>
-      )}
+        <Box
+          sx={{
+            ...cardShellSx,
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            transform: 'rotateY(180deg)',
+            zIndex: flipped ? 1 : 0,
+          }}
+        >
+          <Box sx={scrollBodySx}>
+            {headerRow}
+            {yearBlock}
+            <Typography sx={{ fontSize: compact ? 16 : { xs: 18, sm: 21 }, fontWeight: 700, mt: 1, color: theme.text, flexShrink: 0 }}>
+              {text.title}
+            </Typography>
+            <Stack direction="row" alignItems="center" spacing={0.5} sx={{ color: theme.textMuted, mt: 0.5, flexShrink: 0 }}>
+              <PlaceIcon sx={{ fontSize: 16, color: eraColor }} />
+              <Typography sx={{ fontSize: 13, color: theme.textMuted }}>{text.place}</Typography>
+            </Stack>
+            <Typography
+              sx={{
+                fontSize: 14,
+                lineHeight: 1.65,
+                color: theme.textSoft,
+                mt: 2,
+                fontStyle: stop.placeholder ? 'italic' : 'normal',
+                flexShrink: 0,
+              }}
+            >
+              {text.description}
+            </Typography>
+          </Box>
+          {navRow(() => setFlipped(false))}
+        </Box>
       </Box>
-
-      <Stack direction="row" spacing={1} alignItems="center" sx={{ mt: compact ? 1.5 : 2.5, flexShrink: 0 }}>
-        <Tooltip title={t('ui.previous')}>
-          <span>
-            <IconButton onClick={onPrev} disabled={stop.index === 0} sx={navButtonSx(theme)}>
-              <ArrowBackIosNewIcon fontSize="small" />
-            </IconButton>
-          </span>
-        </Tooltip>
-        <Tooltip title={t('ui.next')}>
-          <span>
-            <IconButton onClick={onNext} disabled={stop.index === total - 1} sx={navButtonSx(theme)}>
-              <ArrowForwardIosIcon fontSize="small" />
-            </IconButton>
-          </span>
-        </Tooltip>
-        {compact && (
-          <Chip
-            label={expanded ? t('ui.collapse') : t('ui.seeDetails')}
-            onClick={() => setExpanded((e) => !e)}
-            sx={{ ml: 'auto !important', color: theme.text, border: `1px solid ${era?.color}`, bgcolor: `${era?.color}22` }}
-          />
-        )}
-      </Stack>
     </Box>
   );
 
@@ -1089,7 +1205,7 @@ function StopDetails({ stop, total, onPrev, onNext, compact = false, mobileLayou
         isolation: 'isolate',
       }}
     >
-      {ghostTitle && (
+      {ghostTitle && !flipped && (
       <Box
         aria-hidden
         sx={{
@@ -1111,7 +1227,7 @@ function StopDetails({ stop, total, onPrev, onNext, compact = false, mobileLayou
             fontSize: fullHeightMobile ? 48 : 38,
             fontWeight: 900,
             letterSpacing: '-0.02em',
-            background: `linear-gradient(90deg, ${era?.color}88, ${theme.text}55)`,
+            background: `linear-gradient(90deg, ${eraColor}88, ${theme.text}55)`,
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
           }}
@@ -1197,7 +1313,7 @@ function Timeline({ stops, activeIndex, onSelect, playing, onTogglePlay, onPrev,
           />
           <Stack direction="row" alignItems="flex-end" sx={{ position: 'relative', height: '100%', gap: '2px', pb: '5px' }}>
             {stops.map((stop) => {
-              const color = JOURNEY_ERAS[stop.era]?.color;
+              const color = getJourneyEraColor(stop.era, theme.mode);
               const active = stop.index === activeIndex;
               const passed = stop.index <= activeIndex;
               const text = stopText(stop);
@@ -1251,7 +1367,15 @@ function Timeline({ stops, activeIndex, onSelect, playing, onTogglePlay, onPrev,
       <Stack direction="row" flexWrap="wrap" useFlexGap gap={1.75} sx={{ mt: 1.25, display: { xs: 'none', md: 'flex' } }}>
         {Object.values(JOURNEY_ERAS).map((era) => (
           <Stack key={era.id} direction="row" alignItems="center" spacing={0.75}>
-            <Box sx={{ width: 9, height: 9, borderRadius: '50%', bgcolor: era.color, boxShadow: theme.mode === 'dark' ? `0 0 8px ${era.color}88` : 'none' }} />
+            <Box
+              sx={{
+                width: 9,
+                height: 9,
+                borderRadius: '50%',
+                bgcolor: getJourneyEraColor(era.id, theme.mode),
+                boxShadow: theme.mode === 'dark' ? `0 0 8px ${getJourneyEraColor(era.id, theme.mode)}88` : 'none',
+              }}
+            />
             <Typography sx={{ fontSize: 11, color: theme.textMuted, fontWeight: 600 }}>{t(`eras.${era.id}`)}</Typography>
           </Stack>
         ))}
@@ -1264,15 +1388,20 @@ export default function JourneyExperience() {
   const { t } = useTranslation(_NAMESPACE_LANGAGE_JOURNEY_);
   const stops = useMemo(() => buildJourneyStops(JOURNEY_TOTAL_STOPS), []);
   const stopText = useStopText();
-  const { mode: themeMode, resolved, changeMode } = useJourneyThemeMode();
+  const { mode: themeMode, resolved, changeMode, hydrated: themeHydrated } = useJourneyThemeMode();
   const theme = getJourneyTheme(resolved);
   const [activeIndex, setActiveIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [hudOpen, setHudOpen] = useState(false);
   const [viewMode, setViewMode] = useState(JOURNEY_DEFAULT_VIEW);
   const [assistantOpen, setAssistantOpen] = useState(false);
-  const [introOpen, setIntroOpen] = useState(true);
+  const [introOpen, setIntroOpen] = useState(false);
+  const [prefsHydrated, setPrefsHydrated] = useState(false);
+  const [introPending, setIntroPending] = useState(false);
+  const [appReady, setAppReady] = useState(false);
+  const [scene3dReady, setScene3dReady] = useState(false);
   const isMobile = useMediaQuery('(max-width: 900px)');
+  const loadingLabel = t('ui.loading');
 
   const dismissIntro = useCallback(() => {
     try {
@@ -1281,16 +1410,23 @@ export default function JourneyExperience() {
       /* ignore */
     }
     setIntroOpen(false);
+    setIntroPending(false);
   }, []);
 
   useEffect(() => {
     try {
-      if (window.localStorage.getItem(JOURNEY_INTRO_SEEN_STORAGE_KEY) === '1') {
-        setIntroOpen(false);
+      const seenIntro = window.localStorage.getItem(JOURNEY_INTRO_SEEN_STORAGE_KEY) === '1';
+      setIntroPending(!seenIntro);
+      const saved = sessionStorage.getItem(JOURNEY_VIEW_STORAGE_KEY);
+      if (saved === '2d' || saved === '3d') {
+        setViewMode(saved);
+      } else {
+        sessionStorage.setItem(JOURNEY_VIEW_STORAGE_KEY, JOURNEY_DEFAULT_VIEW);
       }
     } catch {
       /* ignore */
     }
+    setPrefsHydrated(true);
   }, []);
 
   useEffect(() => {
@@ -1302,18 +1438,31 @@ export default function JourneyExperience() {
     };
   }, [introOpen]);
 
-  useEffect(() => {
-    try {
-      const saved = sessionStorage.getItem(JOURNEY_VIEW_STORAGE_KEY);
-      if (saved === '2d' || saved === '3d') {
-        setViewMode(saved);
-      } else {
-        sessionStorage.setItem(JOURNEY_VIEW_STORAGE_KEY, JOURNEY_DEFAULT_VIEW);
-      }
-    } catch {
-      /* ignore */
-    }
+  const handleScene3dReady = useCallback(() => {
+    setScene3dReady(true);
   }, []);
+
+  useEffect(() => {
+    if (viewMode === '2d') {
+      setScene3dReady(true);
+      return undefined;
+    }
+    setScene3dReady(false);
+    const timer = setTimeout(() => setScene3dReady(true), BOOT_3D_TIMEOUT_MS);
+    return () => clearTimeout(timer);
+  }, [viewMode]);
+
+  const booting = !appReady && (
+    !prefsHydrated
+    || !themeHydrated
+    || (viewMode === '3d' && !scene3dReady)
+  );
+
+  useEffect(() => {
+    if (appReady || booting) return;
+    setAppReady(true);
+    if (introPending) setIntroOpen(true);
+  }, [appReady, booting, introPending]);
 
   const labels = useMemo(() => stops.map(stopText), [stops, stopText]);
   const regionLabels = useMemo(() => ({ angola: t('regions.angola'), suisse: t('regions.suisse') }), [t]);
@@ -1376,7 +1525,7 @@ export default function JourneyExperience() {
         '& *::-webkit-scrollbar-track': { bgcolor: 'transparent' },
       }}
     >
-      {viewMode === '3d' && (
+      {prefsHydrated && viewMode === '3d' && (
         <Box sx={{ position: 'absolute', inset: 0, zIndex: 0, overflow: 'hidden' }}>
           <JourneyScene
             stops={stops}
@@ -1386,6 +1535,7 @@ export default function JourneyExperience() {
             onSelect={manualSelect}
             theme={theme}
             showFloatingLabels={!isMobile}
+            onReady={handleScene3dReady}
           />
         </Box>
       )}
@@ -1596,6 +1746,7 @@ export default function JourneyExperience() {
         />
       </Box>
       <AiAssistantPanel open={assistantOpen} onClose={() => setAssistantOpen(false)} />
+      {booting && <JourneyBootLoader theme={theme} label={loadingLabel} />}
       {introOpen && (
         <JourneyIntroOverlay
           theme={theme}

@@ -1,4 +1,6 @@
-import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+
+const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
@@ -42,13 +44,13 @@ const CV_LOCALE_LABELS = {
 };
 
 function ProfileCard({ theme, compact = false, collapsible = false, headerBar = false }) {
-  const { t, i18n } = useTranslation(_NAMESPACE_LANGAGE_JOURNEY_);
+  const router = useRouter();
   const [detailsOpen, setDetailsOpen] = useState(false);
-  const profile = getJourneyProfile(i18n.language);
-  const name = profile.name || t('profile.name');
-  const role = profile.role || t('profile.role');
-  const based = profile.based || t('profile.based');
-  const tagline = profile.tagline || t('profile.tagline');
+  const profile = getJourneyProfile(router.locale || 'fr');
+  const name = profile.name || 'Daniel Mbengui';
+  const role = profile.role || '';
+  const based = profile.based || '';
+  const tagline = profile.tagline || '';
   const showDetails = !collapsible || detailsOpen;
   const avatarPx = headerBar
     ? (collapsible && !detailsOpen ? 40 : { xs: 40, md: 44 })
@@ -174,8 +176,13 @@ export default function JourneySiteNav({
   onOpenAssistant,
   variant = 'journey',
 }) {
-  const { t, i18n } = useTranslation([_NAMESPACE_LANGAGE_JOURNEY_, _NAMESPACE_LANGAGE_COMMON_]);
   const router = useRouter();
+  const journeyNsLoaded = variant !== 'cv';
+  const { t, i18n } = useTranslation(
+    journeyNsLoaded
+      ? [_NAMESPACE_LANGAGE_JOURNEY_, _NAMESPACE_LANGAGE_COMMON_]
+      : _NAMESPACE_LANGAGE_COMMON_,
+  );
   const langContext = useLangMode();
   const shellRef = useRef(null);
   const barRef = useRef(null);
@@ -221,13 +228,13 @@ export default function JourneySiteNav({
     }
   };
 
-  const ui = (key) => getJourneyUi(i18n.language, key) || t(`ui.${key}`);
+  const ui = (key) => getJourneyUi(i18n.language, key) || (journeyNsLoaded ? t(`ui.${key}`) : '');
   const tc = (key) => t(key, { ns: _NAMESPACE_LANGAGE_COMMON_ });
 
   const closeMenu = () => setMenuOpen(false);
   const toggleMenu = () => setMenuOpen((o) => !o);
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (!menuOpen) {
       setPanelRect(null);
       return undefined;

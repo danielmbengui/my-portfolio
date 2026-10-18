@@ -2,7 +2,7 @@ import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useTranslation } from 'next-i18next';
 import { Box, Typography } from '@mui/material';
 import PlaceIcon from '@mui/icons-material/Place';
-import { JOURNEY_ERAS, _NAMESPACE_LANGAGE_JOURNEY_ } from '@/_mocks_/_journey_items_';
+import { getJourneyEraColor, JOURNEY_ERAS, _NAMESPACE_LANGAGE_JOURNEY_ } from '@/_mocks_/_journey_items_';
 import { getJourneyUi } from '@/utility/journeyMilestoneText';
 
 const ROW_HEIGHT = 92;
@@ -158,7 +158,7 @@ export default function JourneyView2D({ stops, activeIndex, onSelect, theme, sto
   const rowRefs = useRef({});
   const stationRefs = useRef({});
   const listRef = useRef(null);
-  const [spine, setSpine] = useState({ top: ROW_HEIGHT / 2, passed: 0, total: 0 });
+  const [stationCenters, setStationCenters] = useState([]);
   const placeholderHint = ui('placeholderStepHint');
   const timelineNavLabel = ui('timelineNav');
   const view2dHeading = ui('view2dHeading');
@@ -177,15 +177,17 @@ export default function JourneyView2D({ stops, activeIndex, onSelect, theme, sto
       const list = listRef.current;
       const first = stationRefs.current[0];
       const last = stationRefs.current[stops.length - 1];
-      const current = stationRefs.current[activeIndex];
-      if (!list || !first || !last || !current) return;
+      if (!list || !first || !last) return;
       const base = list.getBoundingClientRect().top;
       const center = (el) => {
         const r = el.getBoundingClientRect();
         return r.top - base + r.height / 2;
       };
-      const top = center(first);
-      setSpine({ top, passed: Math.max(0, center(current) - top), total: Math.max(0, center(last) - top) });
+      const centers = stops.map((_, i) => {
+        const el = stationRefs.current[i];
+        return el ? center(el) : null;
+      }).filter((y) => y != null);
+      setStationCenters(centers);
     };
     measure();
     window.addEventListener('resize', measure);
@@ -193,10 +195,14 @@ export default function JourneyView2D({ stops, activeIndex, onSelect, theme, sto
   }, [activeIndex, stops.length, lang]);
 
   const isDark = theme.mode === 'dark';
-  const lineColor = theme.scene?.pathLine || theme.text;
   const lineFuture = theme.scene?.pathLineFuture || theme.textFaint;
-  const dotGrid = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(21,17,15,0.08)';
-  const mapBg = isDark ? '#08070b' : '#f8f4ec';
+  const dotGrid = isDark ? 'rgba(255,255,255,0.06)' : '#a1a1aa';
+  const mapBg = isDark ? '#08070b' : theme.background;
+
+  const eraColorForStop = (stop) => getJourneyEraColor(stop?.era, theme.mode) || theme.accent;
+  const linkColorToNext = (index) => (
+    index < stops.length - 1 ? eraColorForStop(stops[index + 1]) : eraColorForStop(stops[index])
+  );
 
   return (
     <Box
@@ -261,49 +267,44 @@ export default function JourneyView2D({ stops, activeIndex, onSelect, theme, sto
             mx: 'auto',
           }}
         >
-          {/* Tronc : partie future */}
-          <Box
-            aria-hidden
-            sx={{
-              position: 'absolute',
-              left: '50%',
-              top: spine.top,
-              height: spine.total,
-              width: SPINE_WIDTH,
-              transform: 'translateX(-50%)',
-              borderRadius: 2,
-              bgcolor: lineFuture,
-              opacity: 0.55,
-              zIndex: 0,
-            }}
-          />
-          {/* Tronc : partie parcourue */}
-          <Box
-            aria-hidden
-            sx={{
-              position: 'absolute',
-              left: '50%',
-              top: spine.top,
-              height: spine.passed,
-              width: SPINE_WIDTH,
-              transform: 'translateX(-50%)',
-              borderRadius: 2,
-              bgcolor: lineColor,
-              boxShadow: isDark ? `0 0 14px ${lineColor}55` : 'none',
-              transition: 'height .45s cubic-bezier(.4,0,.2,1)',
-              zIndex: 0,
-            }}
-          />
+          {/* Tronc : un segment par paire de stations — couleur = ère de l’étape suivante */}
+          {stationCenters.map((top, i) => {
+            if (i >= stops.length - 1 || stationCenters[i + 1] == null) return null;
+            const segColor = linkColorToNext(i);
+            const passed = i + 1 <= activeIndex;
+            return (
+              <Box
+                key={`spine-${i}`}
+                aria-hidden
+                sx={{
+                  position: 'absolute',
+                  left: '50%',
+                  top,
+                  height: Math.max(0, stationCenters[i + 1] - top),
+                  width: SPINE_WIDTH,
+                  transform: 'translateX(-50%)',
+                  borderRadius: 2,
+                  bgcolor: segColor,
+                  opacity: passed ? 0.95 : 0.45,
+                  boxShadow: isDark && passed ? `0 0 10px ${segColor}55` : 'none',
+                  transition: 'opacity .35s ease',
+                  zIndex: 0,
+                }}
+              />
+            );
+          })}
 
           <Box component="ol" ref={listRef} sx={{ listStyle: 'none', m: 0, p: 0, position: 'relative', zIndex: 1 }}>
             {stops.map((stop, index) => {
               const text = stopText(stop);
               const era = JOURNEY_ERAS[stop.era];
-              const color = era?.color || theme.accent;
+              const color = getJourneyEraColor(stop.era, theme.mode) || theme.accent;
+              const outboundColor = linkColorToNext(index);
               const active = index === activeIndex;
               const passed = index <= activeIndex;
               const isLeft = stop.region === 'angola';
               const eraChanged = index === 0 || stops[index - 1].era !== stop.era;
+              const branchColor = passed ? outboundColor : lineFuture;
 
               return (
                 <Box
@@ -365,7 +366,7 @@ export default function JourneyView2D({ stops, activeIndex, onSelect, theme, sto
                       top: '50%',
                       height: 3,
                       transform: 'translateY(-50%)',
-                      bgcolor: passed ? lineColor : lineFuture,
+                      bgcolor: branchColor,
                       opacity: passed ? 0.95 : 0.5,
                       borderRadius: 1,
                       ...(isLeft
@@ -380,7 +381,7 @@ export default function JourneyView2D({ stops, activeIndex, onSelect, theme, sto
                         height: 7,
                         borderRadius: '50%',
                         transform: 'translateY(-50%)',
-                        bgcolor: color,
+                        bgcolor: outboundColor,
                         opacity: passed ? 1 : 0.6,
                       },
                     }}
@@ -391,7 +392,7 @@ export default function JourneyView2D({ stops, activeIndex, onSelect, theme, sto
                       <MapStopCard
                         stop={stop}
                         text={text}
-                        era={era}
+                        era={era ? { ...era, color } : era}
                         active={active}
                         passed={passed}
                         theme={theme}
@@ -414,7 +415,7 @@ export default function JourneyView2D({ stops, activeIndex, onSelect, theme, sto
                         height: active ? 18 : 12,
                         borderRadius: '50%',
                         bgcolor: active ? color : passed ? color : mapBg,
-                        border: `3px solid ${active ? lineColor : passed ? lineColor : lineFuture}`,
+                        border: `3px solid ${active ? outboundColor : passed ? outboundColor : lineFuture}`,
                         boxShadow: active ? `0 0 0 5px ${color}33, 0 0 20px ${color}` : passed ? `0 0 8px ${color}55` : 'none',
                         transition: 'all .3s ease',
                       }}
@@ -426,7 +427,7 @@ export default function JourneyView2D({ stops, activeIndex, onSelect, theme, sto
                       <MapStopCard
                         stop={stop}
                         text={text}
-                        era={era}
+                        era={era ? { ...era, color } : era}
                         active={active}
                         passed={passed}
                         theme={theme}
@@ -475,7 +476,15 @@ export default function JourneyView2D({ stops, activeIndex, onSelect, theme, sto
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.25, mt: 0.75 }}>
           {Object.values(JOURNEY_ERAS).map((era) => (
             <Box key={era.id} sx={{ display: 'flex', alignItems: 'center', gap: 0.6 }}>
-              <Box sx={{ width: 9, height: 9, borderRadius: '50%', bgcolor: era.color, boxShadow: isDark ? `0 0 8px ${era.color}88` : 'none' }} />
+              <Box
+                sx={{
+                  width: 9,
+                  height: 9,
+                  borderRadius: '50%',
+                  bgcolor: getJourneyEraColor(era.id, theme.mode),
+                  boxShadow: isDark ? `0 0 8px ${getJourneyEraColor(era.id, theme.mode)}88` : 'none',
+                }}
+              />
               <Typography sx={{ fontSize: 10.5, color: theme.textSoft, fontWeight: 600 }}>{t(`eras.${era.id}`)}</Typography>
             </Box>
           ))}

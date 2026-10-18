@@ -46,6 +46,18 @@ export const _PAGE_LINK_CV_ = "/cv";
 export const _PAGE_LINK_JOURNEY_ = "/test-tree-js";
 /** CV anglais (image ou PDF) — fichier dans assets, pas dans certification */
 export const _CV_EN_ASSET_ = "/assets/cv-en.png";
+
+/** Certificats récents (PDF dans public/assets/certifications). */
+export const CV_CERTIFICATION_ASSETS = {
+  react: '/assets/certifications/Front-End Engineering with React.pdf',
+  jsAlgo: '/assets/certifications/Legacy JavaScript Algorithms and Data Structures V7.pdf',
+  responsive: '/assets/certifications/Legacy Responsive Web Design V8.pdf',
+};
+
+export function cvCertificationHref(key) {
+  const path = CV_CERTIFICATION_ASSETS[key];
+  return path ? encodeURI(path) : '';
+}
 export const _PAGE_LINK_CHAT_BOT_ = "/portfolio/chatbot";
 export const _PAGE_LINK_SKILLS_ = "/portfolio/skills";
 export const _PAGE_LINK_LANGUAGES_ = "/portfolio/languages";
