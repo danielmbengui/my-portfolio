@@ -109,15 +109,7 @@ const MyApp = (props) => {
 
 
 
-              <Script src="/assets/js/plugins/progressbar-js/progressbar.min.js" />
-              {
-                /*
-                <Script src="/assets/js/plugins/splide/splide.min.js" />
-                <Script src="/assets/js/base.js" />
-                <CssBaseline />
-                */
-              }
-              
+              <Script src="/assets/js/plugins/progressbar-js/progressbar.min.js" />              
               <Component {...pageProps} />
             </DeviceModeProvider>
           </LangModeProvider>
