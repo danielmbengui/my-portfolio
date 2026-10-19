@@ -1463,7 +1463,7 @@ export default function JourneyExperience() {
   const [viewMode, setViewMode] = useState(JOURNEY_DEFAULT_VIEW);
   const [assistantOpen, setAssistantOpen] = useState(false);
   const [introOpen, setIntroOpen] = useState(false);
-  const [detailsOpen, setDetailsOpen] = useState(false);
+  const [detailsOpen, setDetailsOpen] = useState(true);
   const [prefsHydrated, setPrefsHydrated] = useState(false);
   const [introPending, setIntroPending] = useState(false);
   const [appReady, setAppReady] = useState(false);
