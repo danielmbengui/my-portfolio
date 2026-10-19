@@ -903,14 +903,14 @@ function UnlockHud({ stops, activeIndex, onClose, theme, stopText, mobileOverlay
   );
 }
 
-function StopDetails({ stop, total, onPrev, onNext, compact = false, mobileLayout = false, ghostTitle = true, theme, stopText }) {
+function StopDetails({ stop, total, onPrev, onNext, onClose, compact = false, mobileLayout = false, ghostTitle = true, theme, stopText }) {
   const { t, i18n } = useTranslation(_NAMESPACE_LANGAGE_JOURNEY_);
   const [flipped, setFlipped] = useState(false);
   const era = JOURNEY_ERAS[stop.era];
   const eraColor = getJourneyEraColor(stop.era, theme.mode) || theme.accent;
   const text = stopText(stop);
   const fullHeightMobile = mobileLayout && flipped;
-  const showYearInCard = !mobileLayout || !ghostTitle || flipped;
+  const showYearInCard = true;
   const languageFlagById = useMemo(
     () => Object.fromEntries(JOURNEY_LANGUAGES.map((lang) => [lang.id, lang.flag])),
     [],
@@ -939,6 +939,8 @@ function StopDetails({ stop, total, onPrev, onNext, compact = false, mobileLayou
     ...glass(theme),
     p: 2.5,
     width: '100%',
+    maxWidth: '100%',
+    minWidth: 0,
     boxSizing: 'border-box',
     display: 'flex',
     flexDirection: 'column',
@@ -965,9 +967,21 @@ function StopDetails({ stop, total, onPrev, onNext, compact = false, mobileLayou
         label={t(`eras.${stop.era}`)}
         sx={{ color: theme.mode === 'dark' ? eraColor : theme.text, border: `1px solid ${eraColor}`, bgcolor: `${eraColor}26`, fontWeight: 700, fontSize: 11 }}
       />
-      <Typography sx={{ fontSize: 12, color: theme.textMuted, fontVariantNumeric: 'tabular-nums' }}>
-        {String(stop.index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
-      </Typography>
+      <Stack direction="row" alignItems="center" spacing={0.5} sx={{ flexShrink: 0 }}>
+        <Typography sx={{ fontSize: 12, color: theme.textMuted, fontVariantNumeric: 'tabular-nums' }}>
+          {String(stop.index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
+        </Typography>
+        {onClose && (
+          <IconButton
+            size="small"
+            aria-label={t('ui.menuClose')}
+            onClick={onClose}
+            sx={{ color: theme.text, border: `1px solid ${theme.divider}` }}
+          >
+            <CloseIcon sx={{ fontSize: 16 }} />
+          </IconButton>
+        )}
+      </Stack>
     </Stack>
   );
 
@@ -1116,7 +1130,7 @@ function StopDetails({ stop, total, onPrev, onNext, compact = false, mobileLayou
         height: fullHeightMobile ? '100%' : 'auto',
         position: 'relative',
         zIndex: 1,
-        ...(mobileLayout && ghostTitle && !flipped && { mt: 3, pt: 2.5 }),
+        ...(mobileLayout && ghostTitle && !flipped && { mt: 1.5 }),
       }}
     >
       <Box
@@ -1192,17 +1206,21 @@ function StopDetails({ stop, total, onPrev, onNext, compact = false, mobileLayou
   return (
     <Box
       sx={{
-        width: 'min(360px, calc(100vw - 24px))',
+        width: '100%',
+        maxWidth: 360,
+        minWidth: 0,
         mx: 'auto',
-        flex: fullHeightMobile ? '1 1 auto' : '0 0 auto',
+        flex: fullHeightMobile ? '1 1 auto' : '0 1 auto',
         minHeight: 0,
         maxHeight: fullHeightMobile ? '100%' : 'none',
-        alignSelf: fullHeightMobile ? 'stretch' : 'flex-start',
+        alignSelf: 'center',
         display: 'flex',
         flexDirection: 'column',
         pointerEvents: 'auto',
         position: 'relative',
         isolation: 'isolate',
+        boxSizing: 'border-box',
+        overflowX: 'hidden',
       }}
     >
       {ghostTitle && !flipped && (
@@ -1212,28 +1230,19 @@ function StopDetails({ stop, total, onPrev, onNext, compact = false, mobileLayou
           position: 'absolute',
           zIndex: 0,
           top: fullHeightMobile ? 4 : -6,
-          left: '50%',
-          transform: 'translateX(-50%)',
-          width: '115%',
-          maxWidth: 'calc(100vw - 8px)',
+          left: 0,
+          right: 0,
+          width: '100%',
+          maxWidth: '100%',
           textAlign: 'center',
           pointerEvents: 'none',
           userSelect: 'none',
           lineHeight: 1.05,
+          overflow: 'hidden',
+          px: 0.5,
+          boxSizing: 'border-box',
         }}
       >
-        <Typography
-          sx={{
-            fontSize: fullHeightMobile ? 48 : 38,
-            fontWeight: 900,
-            letterSpacing: '-0.02em',
-            background: `linear-gradient(90deg, ${eraColor}88, ${theme.text}55)`,
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-          }}
-        >
-          {text.year}
-        </Typography>
         <Typography
           sx={{
             fontSize: fullHeightMobile ? 22 : 18,
@@ -1242,6 +1251,8 @@ function StopDetails({ stop, total, onPrev, onNext, compact = false, mobileLayou
             px: 1,
             color: theme.text,
             opacity: 0.28,
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
           }}
         >
           {text.title}
@@ -1254,6 +1265,8 @@ function StopDetails({ stop, total, onPrev, onNext, compact = false, mobileLayou
             px: 1,
             color: theme.textMuted,
             opacity: 0.45,
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
           }}
         >
           {text.place}
@@ -1267,9 +1280,82 @@ function StopDetails({ stop, total, onPrev, onNext, compact = false, mobileLayou
 
 function Timeline({ stops, activeIndex, onSelect, playing, onTogglePlay, onPrev, onNext, theme, stopText }) {
   const { t } = useTranslation(_NAMESPACE_LANGAGE_JOURNEY_);
+  const renderTick = (stop, { wrapped = false } = {}) => {
+    const color = getJourneyEraColor(stop.era, theme.mode);
+    const active = stop.index === activeIndex;
+    const passed = stop.index <= activeIndex;
+    const text = stopText(stop);
+    const isLight = theme.mode === 'light';
+    return (
+      <Tooltip key={stop.id} title={`${text.year} · ${text.title}`} placement="top" disableInteractive>
+        <Box
+          role="button"
+          tabIndex={0}
+          aria-label={`${text.year} · ${text.title}`}
+          aria-current={active ? 'step' : undefined}
+          onClick={() => onSelect(stop.index)}
+          onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onSelect(stop.index); } }}
+          sx={{
+            flex: wrapped ? '0 0 8px' : 1,
+            width: wrapped ? 8 : 'auto',
+            minWidth: wrapped ? 8 : 0,
+            maxWidth: wrapped ? 10 : 'none',
+            cursor: 'pointer',
+            borderRadius: '3px 3px 1px 1px',
+            height: active ? (wrapped ? 18 : 30) : stop.placeholder ? 9 : (wrapped ? 12 : 18),
+            background: active
+              ? `linear-gradient(180deg, ${color}, ${color}cc)`
+              : passed
+                ? color
+                : `${color}${isLight ? '66' : '40'}`,
+            border: !passed ? `1px solid ${color}${isLight ? '88' : '55'}` : 'none',
+            boxShadow: active ? `0 0 16px ${color}, 0 0 0 1px ${theme.background}` : passed && !isLight ? `0 0 6px ${color}55` : 'none',
+            transition: 'all .3s cubic-bezier(.4,0,.2,1)',
+            '&:hover': { height: active ? (wrapped ? 18 : 30) : 24, filter: 'brightness(1.1)' },
+            '&:focus-visible': { outline: `2px solid ${theme.focusRing}`, outlineOffset: 2 },
+          }}
+        />
+      </Tooltip>
+    );
+  };
+
   return (
-    <Box sx={{ ...glass(theme), px: 2, py: 1.5, width: '100%' }}>
-      <Stack direction="row" alignItems="center" spacing={1.5}>
+    <Box sx={{ ...glass(theme), px: { xs: 1.25, sm: 2 }, py: 1.5, width: '100%', maxWidth: '100%', minWidth: 0, boxSizing: 'border-box', overflow: 'hidden' }}>
+      <Box sx={{ display: { xs: 'block', sm: 'none' }, width: '100%', minWidth: 0 }}>
+        <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={1} sx={{ width: '100%', minWidth: 0 }}>
+          <Stack direction="row" alignItems="center" spacing={0.75}>
+            <IconButton size="small" onClick={onPrev} disabled={activeIndex === 0} sx={navButtonSx(theme)} aria-label={t('ui.previous')}>
+              <ArrowBackIosNewIcon sx={{ fontSize: 14 }} />
+            </IconButton>
+            <Tooltip title={playing ? t('ui.pause') : t('ui.play')}>
+              <IconButton size="small" onClick={onTogglePlay} sx={{ ...navButtonSx(theme), borderColor: theme.accent }}>
+                {playing ? <PauseIcon fontSize="small" /> : <PlayArrowIcon fontSize="small" />}
+              </IconButton>
+            </Tooltip>
+            <IconButton size="small" onClick={onNext} disabled={activeIndex === stops.length - 1} sx={navButtonSx(theme)} aria-label={t('ui.next')}>
+              <ArrowForwardIosIcon sx={{ fontSize: 14 }} />
+            </IconButton>
+          </Stack>
+          <Typography sx={{ fontSize: 12, fontWeight: 700, color: theme.textMuted, fontVariantNumeric: 'tabular-nums' }}>
+            {String(activeIndex + 1).padStart(2, '0')} / {String(stops.length).padStart(2, '0')}
+          </Typography>
+        </Stack>
+        <Box
+          sx={{
+            mt: 1.25,
+            width: '100%',
+            minWidth: 0,
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            alignItems: 'flex-end',
+            gap: '3px',
+          }}
+        >
+          {stops.map((stop) => renderTick(stop, { wrapped: true }))}
+        </Box>
+      </Box>
+      <Stack direction="row" alignItems="center" spacing={1.5} sx={{ display: { xs: 'none', sm: 'flex' }, width: '100%', minWidth: 0 }}>
         <IconButton size="small" onClick={onPrev} disabled={activeIndex === 0} sx={navButtonSx(theme)} aria-label={t('ui.previous')}>
           <ArrowBackIosNewIcon sx={{ fontSize: 14 }} />
         </IconButton>
@@ -1282,7 +1368,7 @@ function Timeline({ stops, activeIndex, onSelect, playing, onTogglePlay, onPrev,
           <ArrowForwardIosIcon sx={{ fontSize: 14 }} />
         </IconButton>
 
-        <Box sx={{ flex: 1, position: 'relative', height: 36 }}>
+        <Box sx={{ flex: 1, minWidth: 0, position: 'relative', height: 36 }}>
           {/* Rail de fond */}
           <Box
             aria-hidden
@@ -1311,43 +1397,8 @@ function Timeline({ stops, activeIndex, onSelect, playing, onTogglePlay, onPrev,
               transition: 'width .45s cubic-bezier(.4,0,.2,1)',
             }}
           />
-          <Stack direction="row" alignItems="flex-end" sx={{ position: 'relative', height: '100%', gap: '2px', pb: '5px' }}>
-            {stops.map((stop) => {
-              const color = getJourneyEraColor(stop.era, theme.mode);
-              const active = stop.index === activeIndex;
-              const passed = stop.index <= activeIndex;
-              const text = stopText(stop);
-              const isLight = theme.mode === 'light';
-              return (
-                <Tooltip key={stop.id} title={`${text.year} · ${text.title}`} placement="top" disableInteractive>
-                  <Box
-                    role="button"
-                    tabIndex={0}
-                    aria-label={`${text.year} · ${text.title}`}
-                    aria-current={active ? 'step' : undefined}
-                    onClick={() => onSelect(stop.index)}
-                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onSelect(stop.index); } }}
-                    sx={{
-                      flex: 1,
-                      minWidth: 3,
-                      cursor: 'pointer',
-                      borderRadius: '3px 3px 1px 1px',
-                      height: active ? 30 : stop.placeholder ? 9 : 18,
-                      background: active
-                        ? `linear-gradient(180deg, ${color}, ${color}cc)`
-                        : passed
-                          ? color
-                          : `${color}${isLight ? '66' : '40'}`,
-                      border: !passed ? `1px solid ${color}${isLight ? '88' : '55'}` : 'none',
-                      boxShadow: active ? `0 0 16px ${color}, 0 0 0 1px ${theme.background}` : passed && !isLight ? `0 0 6px ${color}55` : 'none',
-                      transition: 'all .3s cubic-bezier(.4,0,.2,1)',
-                      '&:hover': { height: active ? 30 : 24, filter: 'brightness(1.1)' },
-                      '&:focus-visible': { outline: `2px solid ${theme.focusRing}`, outlineOffset: 2 },
-                    }}
-                  />
-                </Tooltip>
-              );
-            })}
+          <Stack direction="row" alignItems="flex-end" sx={{ position: 'relative', height: '100%', gap: '2px', pb: '5px', minWidth: 0 }}>
+            {stops.map((stop) => renderTick(stop))}
           </Stack>
         </Box>
         <Typography
@@ -1364,6 +1415,22 @@ function Timeline({ stops, activeIndex, onSelect, playing, onTogglePlay, onPrev,
           {String(activeIndex + 1).padStart(2, '0')} / {String(stops.length).padStart(2, '0')}
         </Typography>
       </Stack>
+      {stops[activeIndex]?.era && (
+        <Stack direction="row" alignItems="center" spacing={0.75} sx={{ mt: 1.25, display: { xs: 'flex', md: 'none' } }}>
+          <Box
+            sx={{
+              width: 9,
+              height: 9,
+              borderRadius: '50%',
+              bgcolor: getJourneyEraColor(stops[activeIndex].era, theme.mode),
+              boxShadow: theme.mode === 'dark' ? `0 0 8px ${getJourneyEraColor(stops[activeIndex].era, theme.mode)}88` : 'none',
+            }}
+          />
+          <Typography sx={{ fontSize: 12, color: theme.text, fontWeight: 700 }}>
+            {t(`eras.${stops[activeIndex].era}`)}
+          </Typography>
+        </Stack>
+      )}
       <Stack direction="row" flexWrap="wrap" useFlexGap gap={1.75} sx={{ mt: 1.25, display: { xs: 'none', md: 'flex' } }}>
         {Object.values(JOURNEY_ERAS).map((era) => (
           <Stack key={era.id} direction="row" alignItems="center" spacing={0.75}>
@@ -1396,6 +1463,7 @@ export default function JourneyExperience() {
   const [viewMode, setViewMode] = useState(JOURNEY_DEFAULT_VIEW);
   const [assistantOpen, setAssistantOpen] = useState(false);
   const [introOpen, setIntroOpen] = useState(false);
+  const [detailsOpen, setDetailsOpen] = useState(false);
   const [prefsHydrated, setPrefsHydrated] = useState(false);
   const [introPending, setIntroPending] = useState(false);
   const [appReady, setAppReady] = useState(false);
@@ -1473,7 +1541,11 @@ export default function JourneyExperience() {
   const next = useCallback(() => setActiveIndex((i) => Math.min(stops.length - 1, i + 1)), [stops.length]);
   const prev = useCallback(() => setActiveIndex((i) => Math.max(0, i - 1)), []);
 
-  const manualSelect = (index) => { setPlaying(false); select(index); };
+  const manualSelect = (index) => {
+    setPlaying(false);
+    select(index);
+    if (isMobile) setDetailsOpen(true);
+  };
   const manualNext = () => { setPlaying(false); next(); };
   const manualPrev = () => { setPlaying(false); prev(); };
 
@@ -1559,6 +1631,11 @@ export default function JourneyExperience() {
         sx={{
           position: 'absolute',
           inset: 0,
+          width: '100%',
+          maxWidth: '100%',
+          minWidth: 0,
+          boxSizing: 'border-box',
+          overflowX: 'hidden',
           zIndex: 10,
           isolation: 'isolate',
           pointerEvents: 'none',
@@ -1571,14 +1648,14 @@ export default function JourneyExperience() {
         }}
       >
         <Stack
-          direction="row"
-          justifyContent={{ xs: 'center', md: 'space-between' }}
-          alignItems={{ xs: 'flex-start', md: 'stretch' }}
+          direction={{ xs: 'column', md: 'row' }}
+          justifyContent={{ xs: 'flex-start', md: 'space-between' }}
+          alignItems={{ xs: 'center', md: 'stretch' }}
           spacing={2}
-          sx={{ minHeight: 0, height: '100%', width: '100%', position: 'relative' }}
+          sx={{ minHeight: 0, minWidth: 0, height: '100%', width: '100%', maxWidth: '100%', position: 'relative' }}
         >
           {!isMobile && (
-            <Box sx={{ minHeight: 0, display: 'flex', alignItems: 'flex-start' }}>
+            <Box sx={{ minHeight: 0, flexShrink: 0, display: 'flex', alignItems: 'flex-start' }}>
               <UnlockHud
                 stops={stops}
                 activeIndex={activeIndex}
@@ -1599,7 +1676,7 @@ export default function JourneyExperience() {
                 pointerEvents: 'auto',
               }}
             >
-              <Box sx={{ flex: 1, minHeight: 0 }}>
+              <Box sx={{ flex: 1, minHeight: 0, width: '100%' }}>
                 <JourneyView2D
                   stops={stops}
                   activeIndex={activeIndex}
@@ -1609,30 +1686,17 @@ export default function JourneyExperience() {
                   regionLabels={regionLabels}
                 />
               </Box>
-              <Box sx={{ flexShrink: 0, maxHeight: '42vh', overflowY: 'auto', pointerEvents: 'auto' }}>
-                <StopDetails
-                  stop={stops[activeIndex]}
-                  total={stops.length}
-                  onPrev={manualPrev}
-                  onNext={manualNext}
-                  compact
-                  mobileLayout
-                  ghostTitle={false}
-                  theme={theme}
-                  stopText={stopText}
-                />
-              </Box>
             </Box>
           )}
           {viewMode === '2d' && !isMobile && (
             <Box
               sx={{
-                flex: 1,
+                flex: '1 1 auto',
                 minWidth: 0,
                 minHeight: 0,
+                width: '100%',
                 display: 'flex',
                 pointerEvents: 'auto',
-                maxWidth: 'min(560px, 44vw)',
               }}
             >
               <JourneyView2D
@@ -1645,35 +1709,10 @@ export default function JourneyExperience() {
               />
             </Box>
           )}
-          {(!isMobile || !hudOpen) && !(isMobile && viewMode === '2d') && (
-            isMobile ? (
+          {!isMobile && (
               <Box
                 sx={{
-                  width: '100%',
-                  height: '100%',
-                  minHeight: 0,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'flex-start',
-                  pointerEvents: 'none',
-                }}
-              >
-                <StopDetails
-                  stop={stops[activeIndex]}
-                  total={stops.length}
-                  onPrev={manualPrev}
-                  onNext={manualNext}
-                  compact
-                  mobileLayout
-                  theme={theme}
-                  stopText={stopText}
-                />
-              </Box>
-            ) : (
-              <Box
-                sx={{
-                  ml: 'auto',
+                  flexShrink: 0,
                   width: 380,
                   minHeight: 0,
                   display: 'flex',
@@ -1690,7 +1729,6 @@ export default function JourneyExperience() {
                   stopText={stopText}
                 />
               </Box>
-            )
           )}
         </Stack>
 
@@ -1728,6 +1766,46 @@ export default function JourneyExperience() {
                 theme={theme}
                 stopText={stopText}
                 mobileOverlay
+              />
+            </Box>
+          </>
+        )}
+
+        {isMobile && detailsOpen && stops[activeIndex] && (
+          <>
+            <Box
+              aria-hidden
+              onClick={() => setDetailsOpen(false)}
+              sx={{
+                position: 'fixed',
+                inset: 0,
+                zIndex: 1400,
+                bgcolor: 'rgba(0, 0, 0, 0.55)',
+                pointerEvents: 'auto',
+              }}
+            />
+            <Box
+              sx={{
+                position: 'fixed',
+                zIndex: 1410,
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                width: 'min(380px, calc(100vw - 24px))',
+                maxHeight: 'min(78vh, calc(100dvh - 120px))',
+                pointerEvents: 'auto',
+                overflowY: 'auto',
+              }}
+            >
+              <StopDetails
+                stop={stops[activeIndex]}
+                total={stops.length}
+                onPrev={manualPrev}
+                onNext={manualNext}
+                onClose={() => setDetailsOpen(false)}
+                compact
+                theme={theme}
+                stopText={stopText}
               />
             </Box>
           </>

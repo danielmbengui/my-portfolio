@@ -151,7 +151,7 @@ function MapStopCard({ stop, text, era, active, passed, theme, onSelect, index, 
 /**
  * Vue 2D « plan de métro » : tronc central + branches gauche (Angola) / droite (Suisse).
  */
-export default function JourneyView2D({ stops, activeIndex, onSelect, theme, stopText, regionLabels }) {
+export default function JourneyView2D({ stops, activeIndex, onSelect, theme, stopText, regionLabels, stacked = false }) {
   const { t, i18n } = useTranslation(_NAMESPACE_LANGAGE_JOURNEY_);
   const lang = i18n.language;
   const ui = (key) => getJourneyUi(lang, key) || t(`ui.${key}`);
@@ -162,7 +162,6 @@ export default function JourneyView2D({ stops, activeIndex, onSelect, theme, sto
   const placeholderHint = ui('placeholderStepHint');
   const timelineNavLabel = ui('timelineNav');
   const view2dHeading = ui('view2dHeading');
-  const mapLegendLines = ui('mapLegendLines');
 
   useEffect(() => {
     const el = rowRefs.current[activeIndex];
@@ -208,6 +207,8 @@ export default function JourneyView2D({ stops, activeIndex, onSelect, theme, sto
     <Box
       sx={{
         height: '100%',
+        width: '100%',
+        minWidth: 0,
         minHeight: 0,
         display: 'flex',
         flexDirection: 'column',
@@ -263,8 +264,7 @@ export default function JourneyView2D({ stops, activeIndex, onSelect, theme, sto
         <Box
           sx={{
             position: 'relative',
-            maxWidth: 760,
-            mx: 'auto',
+            width: '100%',
           }}
         >
           {/* Tronc : un segment par paire de stations — couleur = ère de l’étape suivante */}
@@ -278,11 +278,11 @@ export default function JourneyView2D({ stops, activeIndex, onSelect, theme, sto
                 aria-hidden
                 sx={{
                   position: 'absolute',
-                  left: '50%',
+                  left: stacked ? 15 : '50%',
                   top,
                   height: Math.max(0, stationCenters[i + 1] - top),
                   width: SPINE_WIDTH,
-                  transform: 'translateX(-50%)',
+                  transform: stacked ? 'none' : 'translateX(-50%)',
                   borderRadius: 2,
                   bgcolor: segColor,
                   opacity: passed ? 0.95 : 0.45,
@@ -323,18 +323,22 @@ export default function JourneyView2D({ stops, activeIndex, onSelect, theme, sto
                         height: ERA_HEADER_HEIGHT,
                         display: 'flex',
                         alignItems: 'center',
-                        justifyContent: 'center',
+                        justifyContent: stacked ? 'flex-start' : 'center',
+                        pl: stacked ? '40px' : 0,
                         position: 'relative',
                         zIndex: 3,
                       }}
                     >
                       <Box
                         sx={{
-                          fontSize: 9.5,
+                          fontSize: stacked ? 10 : 9.5,
                           fontWeight: 800,
-                          letterSpacing: '0.16em',
+                          letterSpacing: stacked ? '0.04em' : '0.16em',
                           textTransform: 'uppercase',
                           whiteSpace: 'nowrap',
+                          maxWidth: '100%',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
                           px: 1.1,
                           py: 0.35,
                           borderRadius: 999,
@@ -349,6 +353,72 @@ export default function JourneyView2D({ stops, activeIndex, onSelect, theme, sto
                     </Box>
                   )}
 
+                  {stacked ? (
+                    <Box sx={{ display: 'grid', gridTemplateColumns: '32px minmax(0, 1fr)', alignItems: 'center', gap: 0.75, py: 0.6 }}>
+                      <Box sx={{ display: 'flex', justifyContent: 'center', position: 'relative', zIndex: 2 }}>
+                        <Box
+                          ref={(node) => {
+                            stationRefs.current[index] = node;
+                          }}
+                          sx={{
+                            width: active ? 16 : 12,
+                            height: active ? 16 : 12,
+                            borderRadius: '50%',
+                            bgcolor: active || passed ? color : mapBg,
+                            border: `3px solid ${passed ? outboundColor : lineFuture}`,
+                            boxShadow: active ? `0 0 0 4px ${color}33` : 'none',
+                          }}
+                        />
+                      </Box>
+                      <Box
+                        component="button"
+                        type="button"
+                        onClick={() => onSelect(index)}
+                        aria-current={active ? 'step' : undefined}
+                        aria-label={`${text.year}, ${text.title}, ${text.place}`}
+                        sx={{
+                          width: '100%',
+                          minWidth: 0,
+                          textAlign: 'left',
+                          cursor: 'pointer',
+                          border: `1px solid ${active ? color : theme.divider}`,
+                          borderRadius: 2,
+                          bgcolor: theme.surface,
+                          color: theme.text,
+                          px: 1.15,
+                          py: 0.85,
+                          boxShadow: active ? `0 0 0 2px ${color}55` : 'none',
+                          opacity: passed ? 1 : 0.62,
+                          '&:focus-visible': { outline: `2px solid ${theme.focusRing}`, outlineOffset: 2 },
+                        }}
+                      >
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75, minWidth: 0 }}>
+                          <Box
+                            component="span"
+                            sx={{
+                              flexShrink: 0,
+                              fontSize: 11,
+                              fontWeight: 800,
+                              fontVariantNumeric: 'tabular-nums',
+                              color: isDark ? color : theme.text,
+                            }}
+                          >
+                            {text.year}
+                          </Box>
+                          <Typography sx={{ fontSize: 13, fontWeight: 700, lineHeight: 1.25, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                            {text.title}
+                          </Typography>
+                        </Box>
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, mt: 0.35, minWidth: 0 }}>
+                          <Box sx={{ width: 7, height: 7, borderRadius: '50%', flexShrink: 0, bgcolor: isLeft ? (theme.scene?.regionLabelAngola || theme.accent2) : (theme.scene?.regionLabelSuisse || theme.accent) }} />
+                          <Typography sx={{ fontSize: 11, color: theme.textMuted, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                            {isLeft ? regionLabels.angola : regionLabels.suisse}
+                            {!stop.placeholder && text.place ? ` · ${text.place}` : ''}
+                          </Typography>
+                        </Box>
+                      </Box>
+                    </Box>
+                  ) : (
                   <Box
                     sx={{
                       position: 'relative',
@@ -439,6 +509,7 @@ export default function JourneyView2D({ stops, activeIndex, onSelect, theme, sto
                     )}
                   </Box>
                   </Box>
+                  )}
                 </Box>
               );
             })}
@@ -446,50 +517,6 @@ export default function JourneyView2D({ stops, activeIndex, onSelect, theme, sto
         </Box>
       </Box>
 
-      {/* Légende */}
-      <Box
-        sx={{
-          flexShrink: 0,
-          px: 1.75,
-          py: 1.1,
-          borderTop: `1px solid ${theme.divider}`,
-          bgcolor: theme.glassBg,
-          backdropFilter: 'blur(10px)',
-        }}
-      >
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 1, flexWrap: 'wrap' }}>
-          <Typography sx={{ fontSize: 9.5, fontWeight: 800, letterSpacing: '0.16em', color: theme.textMuted, textTransform: 'uppercase' }}>
-            {mapLegendLines}
-          </Typography>
-          <Typography sx={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.06em' }}>
-            <Box component="span" sx={{ color: theme.scene?.regionLabelAngola || theme.accent2 }}>
-              {regionLabels.angola}
-            </Box>
-            <Box component="span" sx={{ color: theme.textFaint, mx: 0.75 }}>
-              ←&nbsp;·&nbsp;→
-            </Box>
-            <Box component="span" sx={{ color: theme.scene?.regionLabelSuisse || theme.accent }}>
-              {regionLabels.suisse}
-            </Box>
-          </Typography>
-        </Box>
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.25, mt: 0.75 }}>
-          {Object.values(JOURNEY_ERAS).map((era) => (
-            <Box key={era.id} sx={{ display: 'flex', alignItems: 'center', gap: 0.6 }}>
-              <Box
-                sx={{
-                  width: 9,
-                  height: 9,
-                  borderRadius: '50%',
-                  bgcolor: getJourneyEraColor(era.id, theme.mode),
-                  boxShadow: isDark ? `0 0 8px ${getJourneyEraColor(era.id, theme.mode)}88` : 'none',
-                }}
-              />
-              <Typography sx={{ fontSize: 10.5, color: theme.textSoft, fontWeight: 600 }}>{t(`eras.${era.id}`)}</Typography>
-            </Box>
-          ))}
-        </Box>
-      </Box>
     </Box>
   );
 }
